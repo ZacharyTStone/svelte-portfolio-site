@@ -1,5 +1,11 @@
 import type { Asset } from '$lib/types';
 import { theme } from '$lib/stores/theme';
+import Japan from '$lib/assets/images/japan.png';
+import Security from '$lib/assets/images/security.svg';
+import MusicLight from '$lib/assets/images/music-black.svg';
+import MusicDark from '$lib/assets/images/music-white.svg';
+import JapaneseLight from '$lib/assets/images/japanese-black.svg';
+import JapaneseDark from '$lib/assets/images/japanese-white.svg';
 
 const gh = (file: string) =>
 	`https://raw.githubusercontent.com/RiadhAdrani/slick-portfolio-svelte/assets/logos/${file}`;
@@ -67,8 +73,10 @@ const Assets = {
 	Nuxt: a('nuxt.png'),
 	Vite: a('vite.png'),
 	Vitest: a('vitest.png'),
-	Jest: a('jest.png')
-	//  Jest: { light: '/assets/jest.png', dark: '/assets/jest.png' }, // Example of using a local Jest logo
+	Jest: a('jest.png'),
+	Japan: { light: JapaneseLight, dark: JapaneseDark },
+	Security: { light: Security, dark: Security },
+	Music: { light: MusicLight, dark: MusicDark }
 };
 
 export default Assets;
