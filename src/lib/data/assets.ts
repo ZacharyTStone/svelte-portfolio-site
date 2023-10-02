@@ -68,6 +68,7 @@ const Assets = {
 	Vite: a('vite.png'),
 	Vitest: a('vitest.png'),
 	Jest: a('jest.png')
+	//  Jest: { light: '/assets/jest.png', dark: '/assets/jest.png' }, // Example of using a local Jest logo
 };
 
 export default Assets;
