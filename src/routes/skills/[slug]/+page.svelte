@@ -91,11 +91,33 @@
 						</div>
 					{/if}
 				</div>
+				<div class="px-10px m-y-5">
+					{#if data?.skill?.extraInfo?.length}
+						{#each data.skill.extraInfo as any}
+							<div class="flex flex-row gap-1 self-stretch flex-wrap">
+								{any.title}
+								<div
+									class="px-10px
+								 flex flex-row gap-3 self-stretch flex-wrap
+								 mb-5
+								 
+								"
+								>
+									{#each any.content as info}
+										<a class="font-300" href={info.link}>
+											<span class="text-[var(--accent-text)]">{info.label},{' '}</span>
+										</a>
+									{/each}
+								</div>
+							</div>
+						{/each}
+					{/if}
+				</div>
 			</div>
 			<div class="self-stretch mb-2">
 				<CardDivider />
 			</div>
-			<div class="flex flex-row gap-1 self-stretch flex-wrap ">
+			<div class="flex flex-row gap-1 self-stretch flex-wrap">
 				<div class="px-10px">
 					{#each related as item}
 						<Chip

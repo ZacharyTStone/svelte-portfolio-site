@@ -19,6 +19,14 @@ export enum ContractType {
 
 export type Asset = string | { light: string; dark: string };
 
+interface SkillInfoSection {
+	title: string;
+	content: {
+		label: string;
+		link?: string;
+	}[];
+}
+
 export interface Item {
 	slug: string;
 	name: string;
@@ -26,6 +34,7 @@ export interface Item {
 	shortDescription: string;
 	description: string;
 	screenshots?: Array<{ src: string; label: string }>;
+	extraInfo?: SkillInfoSection[];
 }
 
 export interface Link {
