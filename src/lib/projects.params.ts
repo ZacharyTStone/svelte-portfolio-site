@@ -22,7 +22,8 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'Web Application',
 		video: 'https://www.youtube.com/embed/D_lXDfCJf6k',
 		english: true,
-		japanese: true
+		japanese: true,
+		featured: true
 	},
 	{
 		slug: 'zach-in-japan',
@@ -40,12 +41,13 @@ const MY_PROJECTS: Array<Project> = [
 		period: {
 			from: new Date()
 		},
-		skills: getSkills('fe', 'be', 'dev-tools'),
+		skills: getSkills('fe', 'dev-tools'),
 		project_skills: ['Gatsby', 'React', 'CSS', 'Markdown', 'GraphQL', 'Gatsby Cloud'],
 		type: 'Blog',
 		video: 'https://www.youtube.com/embed/lt48zTXl6j0',
 		english: true,
-		japanese: false
+		japanese: false,
+		featured: true
 	},
 	{
 		slug: 'haku',

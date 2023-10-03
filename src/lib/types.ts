@@ -64,6 +64,7 @@ export interface Project extends Item {
 	video?: string;
 	english?: boolean;
 	japanese?: boolean;
+	featured?: boolean;
 }
 
 export interface Experience extends Project {

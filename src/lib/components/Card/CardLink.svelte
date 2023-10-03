@@ -3,6 +3,9 @@
 
 	export let label: string;
 	export let to: string;
+	export let icon_path: string;
+
+	console.log(icon_path);
 </script>
 
 <a
@@ -13,7 +16,11 @@
 	rel="noreferrer"
 	data-help={label}
 >
-	<UIcon icon="i-carbon-link" classes="text-[var(--secondary-text)]" />
+	{#if icon_path}
+		<img src={icon_path} class="w-10 h-10 flex" alt={label} />
+	{:else}
+		<UIcon icon="i-carbon-link" classes="text-[var(--secondary-text)]" />
+	{/if}
 </a>
 
 <style lang="scss">

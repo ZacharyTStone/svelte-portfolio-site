@@ -84,9 +84,20 @@
 			<p class="font-300">Could not find anything...</p>
 		</div>
 	{:else}
+		<h4 class="text-[var(--accent-text)] text-1.5em font-500 m-y-8">Featured Projects</h4>
 		<div class="projects-list mt-5">
 			{#each displayed as project}
-				<ProjectCard {project} />
+				{#if project.featured}
+					<ProjectCard {project} />
+				{/if}
+			{/each}
+		</div>
+		<h4 class="text-[var(--accent-text)] text-1.5em font-300 m-y-8">More Projects</h4>
+		<div class="projects-list mt-5">
+			{#each displayed as project}
+				{#if !project.featured}
+					<ProjectCard {project} />
+				{/if}
 			{/each}
 		</div>
 	{/if}

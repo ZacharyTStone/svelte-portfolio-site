@@ -27,6 +27,7 @@
 		margin-top: 20px;
 		align-items: center;
 		gap: 20px;
+		flex-direction: column;
 
 		& > a {
 			color: inherit;

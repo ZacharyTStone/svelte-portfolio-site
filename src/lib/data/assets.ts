@@ -8,7 +8,7 @@ import GitHubLight from '$lib/assets/images/github-black.svg';
 import GitHubDark from '$lib/assets/images/github-white.svg';
 import ComputerLight from '$lib/assets/images/computer-black.svg';
 import ComputerDark from '$lib/assets/images/computer-white.svg';
-
+import YouTube from '$lib/assets/images/youtube.svg';
 const gh = (file: string) =>
 	`https://raw.githubusercontent.com/RiadhAdrani/slick-portfolio-svelte/assets/logos/${file}`;
 
@@ -79,7 +79,8 @@ const Assets = {
 	Japan: { light: JapaneseLight, dark: JapaneseDark },
 	Rapptr: { light: Rapptr, dark: Rapptr },
 	GitHub: { light: GitHubLight, dark: GitHubDark },
-	Computer: { light: ComputerLight, dark: ComputerDark }
+	Computer: { light: ComputerLight, dark: ComputerDark },
+	Youtube: { light: YouTube, dark: YouTube }
 };
 
 export default Assets;

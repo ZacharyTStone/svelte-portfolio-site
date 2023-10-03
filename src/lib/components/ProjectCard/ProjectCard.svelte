@@ -8,7 +8,7 @@
 	import ChipIcon from '../Chip/ChipIcon.svelte';
 	import CardLogo from '../Card/CardLogo.svelte';
 	import type { Project } from '$lib/types';
-	import { getAssetURL } from '$lib/data/assets';
+	import Assets, { getAssetURL } from '$lib/data/assets';
 	import { base } from '$app/paths';
 
 	export let project: Project;
@@ -27,7 +27,17 @@
 		<CardTitle title={project.name} />
 		<div class="row">
 			{#each project.links as link}
-				<CardLink label={link.label ?? ''} to={link.to} />
+				<CardLink
+					label={link.label ?? ''}
+					to={link.to}
+					icon_path={getAssetURL(
+						link.label == 'Live Demo'
+							? Assets.Computer
+							: link.label == 'YouTube'
+							? Assets.Youtube
+							: Assets.GitHub
+					)}
+				/>
 			{/each}
 		</div>
 	</div>
