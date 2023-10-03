@@ -12,13 +12,6 @@
 	import { base } from '$app/paths';
 
 	export let project: Project;
-
-	$: months = countMonths(project.period.from, project.period.to);
-	$: period = `${months} month${months > 1 ? 's' : ''}`;
-	$: from = `${getMonthName(project.period.from.getMonth())} ${project.period.from.getFullYear()}`;
-	$: to = project.period.to
-		? `${getMonthName(project.period.to.getMonth())} ${project.period.to.getFullYear()}`
-		: 'now';
 </script>
 
 <Card color={project.color} href={`${base}/projects/${project.slug}`}>
@@ -46,17 +39,10 @@
 		class="row m-b-15px justify-between text-[var(--secondary-text)] text-0.9em font-italic font-300"
 	>
 		<p>{project.type}</p>
-		<p>{period}</p>
 	</div>
 	<p class="text-[0.95em] text-[var(--secondary-text)] font-300 m-t-20px m-b-40px flex-1">
 		{project.shortDescription}
 	</p>
-	<div class="row justify-between text-0.8em font-400">
-		<Chip>{from}</Chip>
-		{#if from !== to}
-			<Chip>{to}</Chip>
-		{/if}
-	</div>
 	<CardDivider />
 	<div class="row">
 		{#each project.skills as tech}

@@ -12,7 +12,7 @@ const MY_EXPERIENCES: Array<Experience> = [
 		contract: ContractType.FullTime,
 		type: 'Software Development',
 		location: 'New York, NY',
-		period: { from: new Date(2022, 8) },
+		period: { from: new Date(2022, 7) },
 		skills: getSkills('fe', 'be', 'dev-tools'),
 		name: 'Front End Engineer',
 		color: '#ffffff',
@@ -26,36 +26,6 @@ const MY_EXPERIENCES: Array<Experience> = [
 		logo: Assets.Rapptr,
 		shortDescription: 'test'
 	}
-	// {
-	// 	slug: 'software-freelance',
-	// 	company: 'Self-employed',
-	// 	description: 'Creating awesome applications for customers.',
-	// 	contract: ContractType.Freelance,
-	// 	type: 'Software Development',
-	// 	location: 'Home',
-	// 	period: { from: new Date() },
-	// 	skills: getSkills('svelte', 'ts', 'sass', 'css', 'html', 'js'),
-	// 	name: 'Freelancer',
-	// 	color: '#ffffff',
-	// 	links: [],
-	// 	logo: Assets.Unknown,
-	// 	shortDescription: ''
-	// },
-	// {
-	// 	slug: 'software-freelance-junior',
-	// 	company: 'Self-employed',
-	// 	description: 'Creating awesome applications for customers.',
-	// 	contract: ContractType.Freelance,
-	// 	type: 'Software Development',
-	// 	location: 'Home',
-	// 	period: { from: new Date() },
-	// 	skills: getSkills('css', 'html', 'js'),
-	// 	name: 'Junior Freelancer',
-	// 	color: '#ffffff',
-	// 	links: [],
-	// 	logo: Assets.Unknown,
-	// 	shortDescription: ''
-	// }
 ];
 
 export default MY_EXPERIENCES;

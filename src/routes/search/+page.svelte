@@ -32,7 +32,7 @@
 	$: {
 		result = [];
 
-		// filter
+		// filter by project names
 		result.push(
 			...MY_PROJECTS.filter((item) => query && item.name.toLowerCase().includes(query)).map<Item>(
 				(data) => ({
@@ -44,6 +44,20 @@
 			)
 		);
 
+		// filter by project skills
+		result.push(
+			...MY_PROJECTS.filter(
+				(item) =>
+					query && item?.project_skills?.some((skill) => skill.toLowerCase().includes(query))
+			).map<Item>((data) => ({
+				data,
+				icon: 'i-carbon-cube',
+				name: data.name,
+				to: `projects/${data.slug}`
+			}))
+		);
+
+		// filter by skills
 		result.push(
 			...MY_SKILLS.filter((item) => query && item.name.toLowerCase().includes(query)).map<Item>(
 				(data) => ({
@@ -55,6 +69,7 @@
 			)
 		);
 
+		// filter by experiences
 		result.push(
 			...MY_EXPERIENCES.filter(
 				(item) =>
@@ -75,7 +90,7 @@
 	{#if !query}
 		<div class="flex-1 self-center col-center m-t-10 gap-5 font-300 text-[var(--accent-text)]">
 			<UIcon icon="i-carbon-search-locate-mirror" classes="text-2em" />
-			<span> Try typing something... </span>
+			<span> Try typing a skill, name, or tool. </span>
 		</div>
 	{:else}
 		<div>

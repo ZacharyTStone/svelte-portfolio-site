@@ -7,6 +7,7 @@
 	import { isBlank } from '@riadh-adrani/utils';
 	import { getAssetURL } from '$lib/data/assets';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
+	import CommonPage from '$lib/components/CommonPage.svelte';
 
 	const { items, title } = SKILLS;
 
@@ -23,7 +24,7 @@
 	};
 </script>
 
-<SearchPage {title} on:search={onSearch}>
+<CommonPage title="Skills">
 	{#if result.length === 0}
 		<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)] flex-1">
 			<UIcon icon="i-carbon-cube" classes="text-3.5em" />
@@ -43,4 +44,4 @@
 			{/each}
 		</div>
 	{/if}
-</SearchPage>
+</CommonPage>
