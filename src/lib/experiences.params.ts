@@ -4,50 +4,58 @@ import { ContractType, type Experience } from './types';
 
 const MY_EXPERIENCES: Array<Experience> = [
 	{
-		slug: 'open-sourcer',
-		company: 'Self-employed',
-		description: 'Creating awesome tools for developers.',
-		contract: ContractType.SelfEmployed,
+		slug: 'rapptr',
+		company: 'Rapptr Labs',
+
+		description:
+			'As a Software Engineer at Rapptr Labs, I primarly implement new features, fix bugs, and oversee OPSIQ’s weekly front-end deployment. I have a proven track record of effectively communicating with clients about new features and implementing comprehensive site-wide improvements, such as creating a new reusable library of components. While my main responsiblity is the front end I also work on the back end when needed.',
+		contract: ContractType.FullTime,
 		type: 'Software Development',
-		location: 'Home',
-		period: { from: new Date() },
-		skills: getSkills('ts', 'js'),
-		name: 'Open Source Developer',
+		location: 'New York, NY',
+		period: { from: new Date(2022, 8) },
+		skills: getSkills('fe', 'be', 'dev-tools'),
+		name: 'Front End Engineer',
 		color: '#ffffff',
-		links: [],
-		logo: Assets.Unknown,
-		shortDescription: ''
-	},
-	{
-		slug: 'software-freelance',
-		company: 'Self-employed',
-		description: 'Creating awesome applications for customers.',
-		contract: ContractType.Freelance,
-		type: 'Software Development',
-		location: 'Home',
-		period: { from: new Date() },
-		skills: getSkills('svelte', 'ts', 'sass', 'css', 'html', 'js'),
-		name: 'Freelancer',
-		color: '#ffffff',
-		links: [],
-		logo: Assets.Unknown,
-		shortDescription: ''
-	},
-	{
-		slug: 'software-freelance-junior',
-		company: 'Self-employed',
-		description: 'Creating awesome applications for customers.',
-		contract: ContractType.Freelance,
-		type: 'Software Development',
-		location: 'Home',
-		period: { from: new Date() },
-		skills: getSkills('css', 'html', 'js'),
-		name: 'Junior Freelancer',
-		color: '#ffffff',
-		links: [],
-		logo: Assets.Unknown,
-		shortDescription: ''
+		links: [
+			{
+				to: 'https://rapptrlabs.com/',
+				label: 'Rapptr Labs',
+				newTab: true
+			}
+		],
+		logo: Assets.Rapptr,
+		shortDescription: 'test'
 	}
+	// {
+	// 	slug: 'software-freelance',
+	// 	company: 'Self-employed',
+	// 	description: 'Creating awesome applications for customers.',
+	// 	contract: ContractType.Freelance,
+	// 	type: 'Software Development',
+	// 	location: 'Home',
+	// 	period: { from: new Date() },
+	// 	skills: getSkills('svelte', 'ts', 'sass', 'css', 'html', 'js'),
+	// 	name: 'Freelancer',
+	// 	color: '#ffffff',
+	// 	links: [],
+	// 	logo: Assets.Unknown,
+	// 	shortDescription: ''
+	// },
+	// {
+	// 	slug: 'software-freelance-junior',
+	// 	company: 'Self-employed',
+	// 	description: 'Creating awesome applications for customers.',
+	// 	contract: ContractType.Freelance,
+	// 	type: 'Software Development',
+	// 	location: 'Home',
+	// 	period: { from: new Date() },
+	// 	skills: getSkills('css', 'html', 'js'),
+	// 	name: 'Junior Freelancer',
+	// 	color: '#ffffff',
+	// 	links: [],
+	// 	logo: Assets.Unknown,
+	// 	shortDescription: ''
+	// }
 ];
 
 export default MY_EXPERIENCES;

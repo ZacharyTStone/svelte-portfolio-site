@@ -3,15 +3,25 @@
 	import MainTitle from '$lib/components/MainTitle/MainTitle.svelte';
 
 	import { base } from '$app/paths';
-	import type { Project } from '$lib/types';
-	import { getAssetURL } from '$lib/data/assets';
-	import { PROJECTS } from '$lib/params';
+	// @ts-ignore
+	import { Platform, type Project } from '$lib/types';
+	import Assets, { getAssetURL } from '$lib/data/assets';
+	import { PROJECTS, getPlatfromIcon } from '$lib/params';
 	import Markdown from '$lib/components/Markdown.svelte';
 	import TabTitle from '$lib/components/TabTitle.svelte';
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import Banner from '$lib/components/Banner/Banner.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
+	import Icon from '$lib/components/Icon/Icon.svelte';
+	import { Icons } from '$lib/utils';
+	import Github from '$lib/assets/images/github.svg';
+	import Youtube from '$lib/assets/images/youtube.svg';
+	import Computer from '$lib/assets/images/computer.svg';
+	import { get } from 'svelte/store';
+	import CardLink from '$lib/components/Card/CardLink.svelte';
+	// @ts-ignore
+	import { Tooltip, tooltip } from '@svelte-plugins/tooltips';
 
 	export let data: { project?: Project };
 
@@ -41,30 +51,28 @@
 					<div class="w-75%">
 						<CardDivider />
 					</div>
-					<div class="row-center flex-wrap text-[0.9em] text-[var(--tertiary-text)] m-b-2">
+					<div class="row-center flex-wrap text-[0.9em] text-[var(--tertiary-text)] m-b-2 gap-5">
 						{#each data.project.links as item}
 							<Chip href={item.to}>
 								<div class="row-center gap-2">
-									<UIcon icon="i-carbon-link" />
-									<span>{item.label}</span>
+									<u title={item.label} use:tooltip>
+										{#if item.label === 'Live Demo'}
+											<img
+												src={getAssetURL(Assets.Computer)}
+												class="w-15 h-15 flex"
+												alt="computer"
+											/>
+										{:else if item.label === 'YouTube'}
+											<img src={Youtube} class="w-15 h-15 flex" alt="youtube" />
+										{:else}
+											<img
+												src={getAssetURL(Assets.GitHub)}
+												class="w-15 h-15 flex"
+												alt={item.label}
+											/>
+										{/if}
+									</u>
 								</div>
-							</Chip>
-						{/each}
-					</div>
-					<div class="row-center flex-wrap m-b-2">
-						{#each data.project.skills as item}
-							<Chip
-								classes="inline-flex flex-row items-center justify-center"
-								href={`${base}/skills/${item.slug}`}
-							>
-								<CardLogo
-									src={getAssetURL(item.logo)}
-									alt={item.name}
-									radius={'0px'}
-									size={15}
-									classes="mr-2"
-								/>
-								<span class="text-[0.9em]">{item.name}</span>
 							</Chip>
 						{/each}
 					</div>
@@ -81,12 +89,49 @@
 						</div>
 					{/if}
 				</div>
+				<div class="pt-3 pb-1 overflow-x-hidden w-full">
+					<div class="px-10px m-y-5">
+						<div class="flex flex-row gap-1 self-stretch flex-wrap">
+							<h4 class="mr-6">Skills</h4>
+							{#each data.project.skills as item}
+								<Chip
+									classes="inline-flex flex-row items-center justify-center"
+									href={`${base}/skills/${item.slug}`}
+								>
+									<CardLogo
+										src={getAssetURL(item.logo)}
+										alt={item.name}
+										radius={'0px'}
+										size={15}
+										classes="mr-2"
+									/>
+									<span class="text-[0.9em]">{item.name}</span>
+								</Chip>
+							{/each}
+						</div>
+					</div>
+				</div>
+				<div class="pt-3 pb-1 overflow-x-hidden w-full">
+					<div class="px-10px m-y-5">
+						{#if data.project.project_skills && data.project.project_skills.length > 0}
+							<div class="flex flex-row gap-1 self-stretch flex-wrap">
+								<h4 class="mr-6">Project Tech</h4>
+								{#each data.project.project_skills as item}
+									<Chip classes="inline-flex flex-row items-center justify-center">
+										<span class="text-[0.9em]">{item}</span>
+									</Chip>
+								{/each}
+							</div>
+						{/if}
+					</div>
+				</div>
+
 				<div class="w-100% m-t-8">
 					<CardDivider />
 				</div>
 				{#if screenshots.length > 0}
 					<div
-						class="px-10px grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 m-t-10 "
+						class="px-10px grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 m-t-10"
 					>
 						{#each screenshots as item}
 							<div class="col-center gap-3 overflow-hidden w-100% h-100% rounded-10px">
@@ -94,11 +139,6 @@
 								<p class="text-[var(--tertiary-text)] font-300">{item.label}</p>
 							</div>
 						{/each}
-					</div>
-				{:else}
-					<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
-						<UIcon icon="i-carbon-image" classes="text-3.5em" />
-						<p class="font-300">No screenshots</p>
 					</div>
 				{/if}
 			</div>

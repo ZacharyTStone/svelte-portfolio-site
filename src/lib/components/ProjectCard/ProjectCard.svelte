@@ -12,6 +12,7 @@
 	import { base } from '$app/paths';
 
 	export let project: Project;
+
 	$: months = countMonths(project.period.from, project.period.to);
 	$: period = `${months} month${months > 1 ? 's' : ''}`;
 	$: from = `${getMonthName(project.period.from.getMonth())} ${project.period.from.getFullYear()}`;

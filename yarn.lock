@@ -289,6 +289,11 @@
     estree-walker "^2.0.2"
     picomatch "^2.3.1"
 
+"@svelte-plugins/tooltips@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@svelte-plugins/tooltips/-/tooltips-0.1.8.tgz#6dc3df06bfc5b5f6896bd8b734c3d00f98ce5eb5"
+  integrity sha512-k0qQ3h7/rQN7aIk/Jvgp89kgH+P0QGDQZWGraj69tEWUY+UoK8a21UH7JDo8X4hjVD2pWIVYj6XGHjijPhRyzg==
+
 "@sveltejs/adapter-auto@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@sveltejs/adapter-auto/-/adapter-auto-2.1.0.tgz#cb36fd7081e3c4b1c9a9192b1a23c8c82dce8a1b"

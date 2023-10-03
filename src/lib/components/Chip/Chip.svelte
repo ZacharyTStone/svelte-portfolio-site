@@ -15,6 +15,7 @@
 	} ${classes}`;
 
 	onMount(() => {
+		console.log('passed in size', size);
 		el.style.setProperty('--size', size);
 	});
 </script>

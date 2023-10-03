@@ -1,11 +1,13 @@
 import type { Asset } from '$lib/types';
 import { theme } from '$lib/stores/theme';
 import Japan from '$lib/assets/images/japan.png';
-import Security from '$lib/assets/images/security.svg';
-import MusicLight from '$lib/assets/images/music-black.svg';
-import MusicDark from '$lib/assets/images/music-white.svg';
 import JapaneseLight from '$lib/assets/images/japanese-black.svg';
 import JapaneseDark from '$lib/assets/images/japanese-white.svg';
+import Rapptr from '$lib/assets/images/rapptr.png';
+import GitHubLight from '$lib/assets/images/github-black.svg';
+import GitHubDark from '$lib/assets/images/github-white.svg';
+import ComputerLight from '$lib/assets/images/computer-black.svg';
+import ComputerDark from '$lib/assets/images/computer-white.svg';
 
 const gh = (file: string) =>
 	`https://raw.githubusercontent.com/RiadhAdrani/slick-portfolio-svelte/assets/logos/${file}`;
@@ -75,8 +77,9 @@ const Assets = {
 	Vitest: a('vitest.png'),
 	Jest: a('jest.png'),
 	Japan: { light: JapaneseLight, dark: JapaneseDark },
-	Security: { light: Security, dark: Security },
-	Music: { light: MusicLight, dark: MusicDark }
+	Rapptr: { light: Rapptr, dark: Rapptr },
+	GitHub: { light: GitHubLight, dark: GitHubDark },
+	Computer: { light: ComputerLight, dark: ComputerDark }
 };
 
 export default Assets;
@@ -86,5 +89,6 @@ let currentTheme: boolean;
 theme.subscribe((v) => (currentTheme = v));
 
 export const getAssetURL = (asset: Asset): string => {
+	console.log('asset', asset);
 	return typeof asset === 'string' ? asset : currentTheme ? asset.dark : asset.light;
 };

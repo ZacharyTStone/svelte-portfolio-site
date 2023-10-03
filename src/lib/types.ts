@@ -60,6 +60,10 @@ export interface Project extends Item {
 	};
 	type: string;
 	skills: Array<Skill>;
+	project_skills?: string[];
+	video?: string;
+	english?: boolean;
+	japanese?: boolean;
 }
 
 export interface Experience extends Project {
@@ -98,5 +102,5 @@ export type ExperiencePageParams = PageWithSearchParams<Experience>;
 export type SkillsPageParams = PageWithSearchParams<Skill>;
 
 export interface ResumePageParams extends PageParams {
-	item: string;
+	links: Array<Link>;
 }

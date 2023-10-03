@@ -17,7 +17,7 @@ export const TITLE_SUFFIX = 'Slick template with Svelte';
 export const NavBar = {
 	home: 'Home',
 	personal: 'Projects',
-	career: 'Experiences',
+	career: 'Work',
 	resume: 'Resume',
 	skills: 'Skills'
 };
@@ -56,12 +56,12 @@ export const HOME: HomePageParams = {
 };
 
 export const PROJECTS: ProjectPageParams = {
-	title: 'Projects',
+	title: 'Personal Projects',
 	items: MY_PROJECTS
 };
 
 export const EXPERIENCES: ExperiencePageParams = {
-	title: 'Experiences',
+	title: 'Work Experience',
 	items: MY_EXPERIENCES
 };
 
@@ -72,7 +72,23 @@ export const SKILLS: SkillsPageParams = {
 
 export const RESUME: ResumePageParams = {
 	title: 'Resumé',
-	item: ''
+	links: [
+		{
+			to: 'https://www.linkedin.com/in/zach-stone-5b2b2b1b3/',
+			label: 'English Resume',
+			newTab: true
+		},
+		{
+			to: 'https://www.linkedin.com/in/zach-stone-5b2b2b1b3/',
+			label: 'Japanese Resume',
+			newTab: true
+		},
+		{
+			to: 'https://www.linkedin.com/in/zach-stone-5b2b2b1b3/',
+			label: 'Japanese Work History Resume',
+			newTab: true
+		}
+	]
 };
 
 export const SEARCH: SearchPageParams = {
