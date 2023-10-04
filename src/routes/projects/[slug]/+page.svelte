@@ -6,22 +6,18 @@
 	// @ts-ignore
 	import { Platform, type Project } from '$lib/types';
 	import Assets, { getAssetURL } from '$lib/data/assets';
-	import { PROJECTS, getPlatfromIcon } from '$lib/params';
+	import { PROJECTS } from '$lib/params';
 	import Markdown from '$lib/components/Markdown.svelte';
 	import TabTitle from '$lib/components/TabTitle.svelte';
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import Banner from '$lib/components/Banner/Banner.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
-	import Icon from '$lib/components/Icon/Icon.svelte';
-	import { Icons } from '$lib/utils';
-	import Github from '$lib/assets/images/github.svg';
+
 	import Youtube from '$lib/assets/images/youtube.svg';
-	import Computer from '$lib/assets/images/computer.svg';
-	import { get } from 'svelte/store';
-	import CardLink from '$lib/components/Card/CardLink.svelte';
+
 	// @ts-ignore
-	import { Tooltip, tooltip } from '@svelte-plugins/tooltips';
+	import { tooltip } from '@svelte-plugins/tooltips';
 
 	export let data: { project?: Project };
 
