@@ -69,7 +69,7 @@
 	});
 </script>
 
-<div class="carrousel flex-[0.5] row-center">
+<div class="carrousel row-center">
 	<button
 		class="row-center font-500 p-5px m-y-0px m-x-10px cursor-pointer border-1px border-solid border-[var(--border)] bg-transparent rounded-[50%] hover:border-[var(--border-hover)]"
 		on:click={toggleLeft}
