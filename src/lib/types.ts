@@ -56,7 +56,7 @@ export interface Project extends Item {
 	color: string;
 	type: string;
 	skills: Array<Skill>;
-	project_skills?: string[];
+	project_skills?:  Array<Link>;
 	video?: string;
 	english?: boolean;
 	japanese?: boolean;

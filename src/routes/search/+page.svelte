@@ -48,7 +48,7 @@
 		result.push(
 			...MY_PROJECTS.filter(
 				(item) =>
-					query && item?.project_skills?.some((skill) => skill.toLowerCase().includes(query))
+					query && item?.project_skills?.some((skill) => skill.label.toLowerCase().includes(query))
 			).map<Item>((data) => ({
 				data,
 				icon: 'i-carbon-cube',

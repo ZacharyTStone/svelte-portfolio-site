@@ -113,8 +113,10 @@
 							<div class="flex flex-row gap-1 self-stretch flex-wrap">
 								<h4 class="mr-6">Project Tech</h4>
 								{#each data.project.project_skills as item}
-									<Chip classes="inline-flex flex-row items-center justify-center">
-										<span class="text-[0.9em]">{item}</span>
+									<Chip classes="inline-flex flex-row items-center justify-center"
+									 href={item.to}
+									>
+										<span class="text-[0.9em]">{item.label}</span>
 									</Chip>
 								{/each}
 							</div>
