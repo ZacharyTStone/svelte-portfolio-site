@@ -50,7 +50,9 @@
 			</a>
 			<!-- <button
 				class="bg-transparent text-1em border-none cursor-pointer hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
-				on:click={() => toggleTheme()}
+				on:click={() => {
+					toggleTheme();
+				}}
 			>
 				{#if $theme}
 					<UIcon icon="i-carbon-moon" />
