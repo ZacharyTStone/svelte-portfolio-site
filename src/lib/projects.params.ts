@@ -5,7 +5,7 @@ import type { Project } from './types';
 const MY_PROJECTS: Array<Project> = [
 	{
 		slug: 'my-anime-collection',
-		color: '#ffd700',
+		color: '#4169e1',
 		description: 'Find and keep track of your favorite anime.',
 		shortDescription: 'Find and keep track of your favorite anime.',
 		links: [
@@ -39,7 +39,7 @@ const MY_PROJECTS: Array<Project> = [
 	},
 	{
 		slug: 'zach-in-japan',
-		color: '#ffd700',
+		color: '#4169e1',
 		description:
 			'Read about coding concepts, Japan, and all things related to being a web developer.',
 		shortDescription:
