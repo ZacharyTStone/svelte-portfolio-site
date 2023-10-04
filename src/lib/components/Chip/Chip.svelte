@@ -30,6 +30,7 @@
 	on:keydown
 	on:keypress
 	on:keyup
+	target={href ? '_blank' : undefined}
 >
 	<slot />
 </svelte:element>

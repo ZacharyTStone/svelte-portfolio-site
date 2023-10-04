@@ -11,7 +11,7 @@ const updateLocalStorage = (value: boolean) => {
 
 export const theme = writable<boolean>(false);
 
-export const toggleTheme = (value?: boolean) =>
+export const toggleTheme = (value?: boolean) => {
 	theme.update((it) => {
 		const $v = typeof value === 'boolean' ? value : !it;
 
@@ -21,6 +21,7 @@ export const toggleTheme = (value?: boolean) =>
 
 		return $v;
 	});
+};
 
 export const onHydrated = () => {
 	const fromStore = localStorage.getItem(key);

@@ -84,6 +84,7 @@ export interface PageWithSearchParams<T> extends PageParams {
 export interface HomeLink {
 	platform: Platform;
 	link: string;
+	newTab?: boolean;
 }
 
 export interface HomePageParams extends PageParams {

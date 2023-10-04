@@ -9,6 +9,8 @@ import GitHubDark from '$lib/assets/images/github-white.svg';
 import ComputerLight from '$lib/assets/images/computer-black.svg';
 import ComputerDark from '$lib/assets/images/computer-white.svg';
 import YouTube from '$lib/assets/images/youtube.svg';
+import SlackLight from '$lib/assets/images/slack-black.svg';
+import SlackDark from '$lib/assets/images/slack-white.svg';
 const gh = (file: string) =>
 	`https://raw.githubusercontent.com/RiadhAdrani/slick-portfolio-svelte/assets/logos/${file}`;
 
@@ -80,14 +82,15 @@ const Assets = {
 	Rapptr: { light: Rapptr, dark: Rapptr },
 	GitHub: { light: GitHubLight, dark: GitHubDark },
 	Computer: { light: ComputerLight, dark: ComputerDark },
-	Youtube: { light: YouTube, dark: YouTube }
+	Youtube: { light: YouTube, dark: YouTube },
+	Slack: { light: SlackLight, dark: SlackDark }
 };
 
-export default Assets;
-
 let currentTheme: boolean;
-
 theme.subscribe((v) => (currentTheme = v));
+
+// assets.js
+export default Assets;
 
 export const getAssetURL = (asset: Asset): string => {
 	console.log('asset', asset);

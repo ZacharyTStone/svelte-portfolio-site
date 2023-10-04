@@ -12,7 +12,7 @@ import {
 } from './types';
 import { Icons } from './utils';
 
-export const TITLE_SUFFIX = 'Slick template with Svelte';
+export const TITLE_SUFFIX = 'Zach Stone';
 
 export const NavBar = {
 	home: 'Home',
@@ -47,10 +47,11 @@ export const HOME: HomePageParams = {
 	lastName: 'Stone',
 	description: 'a software engineer with professional experience in full-stack web developement.',
 	links: [
-		{ platform: Platform.GitHub, link: 'https://github.com/' },
+		{ platform: Platform.GitHub, link: 'https://github.com/', newTab: true },
 		{
 			platform: Platform.Linkedin,
-			link: 'https://www.linkedin.com/'
+			link: 'https://www.linkedin.com/',
+			newTab: true
 		}
 	]
 };
@@ -74,17 +75,17 @@ export const RESUME: ResumePageParams = {
 	title: 'Resumé',
 	links: [
 		{
-			to: 'https://www.linkedin.com/in/zach-stone-5b2b2b1b3/',
+			to: 'https://drive.google.com/file/d/1WrIeOGQ86a2U0DSC8ay4g1NtUr9Ieygs/view?usp=sharing',
 			label: 'English Resume',
 			newTab: true
 		},
 		{
-			to: 'https://www.linkedin.com/in/zach-stone-5b2b2b1b3/',
+			to: 'https://docs.google.com/spreadsheets/d/15MXDUEWai1SW2OZ6Nt8MbvfxRC8kAfCO/edit?usp=sharing&ouid=110021340560949770286&rtpof=true&sd=true',
 			label: 'Japanese Resume',
 			newTab: true
 		},
 		{
-			to: 'https://www.linkedin.com/in/zach-stone-5b2b2b1b3/',
+			to: 'https://docs.google.com/document/d/1SFRXMNP7yeWrZRcPUAJX-_R28WVdn3w3V7w7fxJnn0w/edit?usp=sharing',
 			label: 'Japanese Work History Resume',
 			newTab: true
 		}

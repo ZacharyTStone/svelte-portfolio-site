@@ -9,19 +9,9 @@
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CommonPage from '$lib/components/CommonPage.svelte';
 
-	const { items, title } = SKILLS;
+	const { items } = SKILLS;
 
 	let result: Array<Skill> = items;
-
-	const onSearch = (e: CustomEvent<{ search: string }>) => {
-		const query = e.detail.search;
-
-		if (isBlank(query)) {
-			result = items;
-		}
-
-		result = items.filter((it) => it.name.toLowerCase().includes(query));
-	};
 </script>
 
 <CommonPage title="Skills">
