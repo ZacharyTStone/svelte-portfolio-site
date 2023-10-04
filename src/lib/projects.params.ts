@@ -17,7 +17,7 @@ const MY_PROJECTS: Array<Project> = [
 				newTab: true
 			}
 		],
-		logo: Assets.Unknown,
+		logo: Assets.Anime,
 		name: 'My Anime Collection',
 		skills: getSkills('fe', 'be', 'dev-tools', 'japanese'),
 		project_skills: ['React', 'CSS', 'Node', 'API', 'Authentication', 'MongoDB', 'Heroku'],
@@ -38,7 +38,7 @@ const MY_PROJECTS: Array<Project> = [
 			{ to: 'https://github.com/zachinjapan/my-gatsby-blog', label: 'GitHub', newTab: true },
 			{ to: 'https://www.youtube.com/embed/lt48zTXl6j0', label: 'YouTube', newTab: true }
 		],
-		logo: Assets.Unknown,
+		logo: Assets.Blog,
 		name: 'Zach In Japan',
 
 		skills: getSkills('fe', 'dev-tools', 'japanese'),
@@ -58,7 +58,7 @@ const MY_PROJECTS: Array<Project> = [
 			{ to: 'https://github.com/zachinjapan/haku', label: 'GitHub', newTab: true },
 			{ to: 'https://www.youtube.com/embed/q1rVbqMw0ug', label: 'YouTube', newTab: true }
 		],
-		logo: Assets.Unknown,
+		logo: Assets.Haku,
 		name: 'HAKU',
 
 		skills: getSkills('fe', 'be', 'dev-tools'),
@@ -77,7 +77,7 @@ const MY_PROJECTS: Array<Project> = [
 			{ to: 'https://github.com/zachinjapan/vue-music-app', label: 'GitHub', newTab: true },
 			{ to: 'https://www.youtube.com/embed/gBIhz-0Jkg8', label: 'YouTube', newTab: true }
 		],
-		logo: Assets.Unknown,
+		logo: Assets.Riffs,
 		name: 'Riffs!',
 		skills: getSkills('fe', 'dev-tools', 'japanese'),
 		project_skills: ['Vue', 'CSS', 'Firebase', 'Authentication', 'Netlify'],
@@ -98,7 +98,7 @@ const MY_PROJECTS: Array<Project> = [
 				newTab: true
 			}
 		],
-		logo: Assets.Unknown,
+		logo: Assets.Prefecture,
 		skills: getSkills('fe', 'dev-tools', 'japanese'),
 		project_skills: ['React', 'CSS', 'JavaScript', 'Heroku'],
 		name: 'Prefecture Quiz',

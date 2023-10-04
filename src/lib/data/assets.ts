@@ -11,6 +11,14 @@ import ComputerDark from '$lib/assets/images/computer-white.svg';
 import YouTube from '$lib/assets/images/youtube.svg';
 import SlackLight from '$lib/assets/images/slack-black.svg';
 import SlackDark from '$lib/assets/images/slack-white.svg';
+
+import anime from '$lib/assets/images/projects/anime.webp';
+import blog from '$lib/assets/images/projects/blog.webp';
+import haku from '$lib/assets/images/projects/haku.webp';
+import niceRiff from '$lib/assets/images/projects/niceRiff.jpeg';
+import prefecture from '$lib/assets/images/projects/prefecture.webp';
+import quote from '$lib/assets/images/projects/quote.webp';
+
 const gh = (file: string) =>
 	`https://raw.githubusercontent.com/RiadhAdrani/slick-portfolio-svelte/assets/logos/${file}`;
 
@@ -83,7 +91,13 @@ const Assets = {
 	GitHub: { light: GitHubLight, dark: GitHubDark },
 	Computer: { light: ComputerLight, dark: ComputerDark },
 	Youtube: { light: YouTube, dark: YouTube },
-	Slack: { light: SlackLight, dark: SlackDark }
+	Slack: { light: SlackLight, dark: SlackDark },
+	Anime: { light: anime, dark: anime },
+	Blog: { light: blog, dark: blog },
+	Haku: { light: haku, dark: haku },
+	Riffs: { light: niceRiff, dark: niceRiff },
+	Prefecture: { light: prefecture, dark: prefecture },
+	Quote: { light: quote, dark: quote }
 };
 
 let currentTheme: boolean;
