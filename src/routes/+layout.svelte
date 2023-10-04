@@ -10,7 +10,9 @@
 	onMount(() => onHydrated());
 </script>
 
-<div class={`body contents ${$theme ? 'theme-dark' : 'theme-light'}`}>
+<!-- <div class={`body contents ${$theme ? 'theme-dark' : 'theme-light'}`}>
+	 -->
+<div class={`body contents theme-light`}>
 	<NavMenu />
 	<div class="content container"><slot /></div>
 </div>
