@@ -19,8 +19,14 @@
 
 <style lang="scss">
 	.skill-cover {
-		background: linear-gradient(90deg, var(--main) 0%, var(--main) 55%, var(--main-60) 130%),
-			no-repeat 110% 45% / 50% var(--bg-img);
+		background: linear-gradient(
+				90deg,
+				var(--main) 0%,
+				var(--main) 40%,
+				/* Adjust the second color stop position */ var(--main-60) 110%
+					/* Adjust the third color stop position */
+			),
+			no-repeat 110% 45% / 90% var(--bg-img);
 
 		border-block-end: 1px solid var(--border);
 	}
