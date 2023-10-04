@@ -55,11 +55,11 @@
 								<div class="row-center gap-2">
 									<u title={item.label} use:tooltip>
 										{#if item.label === 'Live Demo'}
-											<Icon icon={Icons.Projects} color={data.project.color} size={'20px'} />
+											<Icon icon={Icons.Projects} color={'var(--accent-text)'} size={'20px'} />
 										{:else if item.label === 'YouTube'}
-											<Icon icon={Icons.Youtube} color={data.project.color} size={'20px'} />
+											<Icon icon={Icons.Youtube} color={'var(--accent-text)'} size={'20px'} />
 										{:else}
-											<Icon icon={Icons.GitHub} color={data.project.color} size={'20px'} />
+											<Icon icon={Icons.GitHub}color={'var(--accent-text)'}size={'20px'} />
 										{/if}
 									</u>
 								</div>

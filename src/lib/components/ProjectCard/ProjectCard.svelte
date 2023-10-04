@@ -31,7 +31,7 @@
 						: link.label == 'GitHub'
 						? Icons.GitHub
 						: ''}
-					icon_color={project.color}
+					icon_color={'var(--accent-text)'}
 				/>
 			{/each}
 		</div>
