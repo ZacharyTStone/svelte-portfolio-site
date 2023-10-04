@@ -1,17 +1,11 @@
 import type { Asset } from '$lib/types';
 import { theme } from '$lib/stores/theme';
-import Japan from '$lib/assets/images/japan.png';
-import JapaneseLight from '$lib/assets/images/japanese-black.svg';
-import JapaneseDark from '$lib/assets/images/japanese-white.svg';
 import Rapptr from '$lib/assets/images/rapptr.png';
-import GitHubLight from '$lib/assets/images/github-black.svg';
-import GitHubDark from '$lib/assets/images/github-white.svg';
-import ComputerLight from '$lib/assets/images/computer-black.svg';
-import ComputerDark from '$lib/assets/images/computer-white.svg';
+import Github from '$lib/assets/images/github.svg';
+import Computer from '$lib/assets/images/computer.svg';
 import YouTube from '$lib/assets/images/youtube.svg';
-import SlackLight from '$lib/assets/images/slack-black.svg';
-import SlackDark from '$lib/assets/images/slack-white.svg';
-
+import Slack from '$lib/assets/images/slack.svg';
+import Japan from '$lib/assets/images/japan.jpeg';
 import anime from '$lib/assets/images/projects/anime.webp';
 import blog from '$lib/assets/images/projects/blog.webp';
 import haku from '$lib/assets/images/projects/haku.webp';
@@ -86,12 +80,12 @@ const Assets = {
 	Vite: a('vite.png'),
 	Vitest: a('vitest.png'),
 	Jest: a('jest.png'),
-	Japan: { light: JapaneseLight, dark: JapaneseDark },
+	Japan: { light: Japan, dark: Japan },
 	Rapptr: { light: Rapptr, dark: Rapptr },
-	GitHub: { light: GitHubLight, dark: GitHubDark },
-	Computer: { light: ComputerLight, dark: ComputerDark },
+	GitHub: { light: Github, dark: Github },
+	Computer: { light: Computer, dark: Computer },
 	Youtube: { light: YouTube, dark: YouTube },
-	Slack: { light: SlackLight, dark: SlackDark },
+	Slack: { light: Slack, dark: Slack },
 	Anime: { light: anime, dark: anime },
 	Blog: { light: blog, dark: blog },
 	Haku: { light: haku, dark: haku },
