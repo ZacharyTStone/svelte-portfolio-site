@@ -2,10 +2,18 @@ import Assets from './data/assets';
 import { getSkills } from './skills.params';
 import type { Project } from './types';
 
+
+export const generateRandomHexColor = (): string => {
+	const hex = Math.floor(Math.random() * 16777215).toString(16);
+	return `#${hex}`;
+}
+
+
+
 const MY_PROJECTS: Array<Project> = [
 	{
 		slug: 'my-anime-collection',
-		color: '#4169e1',
+		color: generateRandomHexColor(),
 		description: 'Find and keep track of your favorite anime.',
 		shortDescription: 'Find and keep track of your favorite anime.',
 		links: [
@@ -39,7 +47,7 @@ const MY_PROJECTS: Array<Project> = [
 	},
 	{
 		slug: 'zach-in-japan',
-		color: '#4169e1',
+		color: generateRandomHexColor(),
 		description:
 			'Read about coding concepts, Japan, and all things related to being a web developer.',
 		shortDescription:
@@ -68,7 +76,7 @@ const MY_PROJECTS: Array<Project> = [
 	},
 	{
 		slug: 'haku',
-		color: '#4169e1',
+		color: generateRandomHexColor(),
 		description: 'Track and compare jobs during the interview process.',
 		shortDescription: 'Track and compare jobs during the interview process.',
 		links: [
@@ -98,7 +106,7 @@ const MY_PROJECTS: Array<Project> = [
 	},
 	{
 		slug: 'riffs',
-		color: '#4169e1',
+		color: generateRandomHexColor(),
 		description: 'A place to share your new songs, covers, and musical ideas with the world.',
 		shortDescription: 'A place to share your new songs, covers, and musical ideas with the world.',
 		links: [
@@ -122,7 +130,7 @@ const MY_PROJECTS: Array<Project> = [
 	},
 	{
 		slug: 'japanese-quiz',
-		color: '#4169e1',
+		color: generateRandomHexColor(),
 		description: 'Test your knowledge of Japanese prefectures with this fun quiz.',
 		shortDescription: 'Test your knowledge of Japanese prefectures with this fun quiz.',
 		links: [
