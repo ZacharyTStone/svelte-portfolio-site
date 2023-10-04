@@ -36,12 +36,13 @@
 	};
 
 	$: {
+		const selectedFilters = filters.filter((tech) => tech.isSelected);
 		displayed = items.filter((project) => {
 			const isFiltered =
-				filters.every((item) => !item.isSelected) ||
-				project.skills.some((tech) =>
-					filters.some((filter) => filter.isSelected && filter.slug === tech.slug)
-				);
+				selectedFilters.length === 0 ||
+				selectedFilters.every((tech) => {
+					return tech.isSelected && project.skills.some((skill) => skill.slug === tech.slug);
+				});
 
 			const isSearched =
 				search.trim().length === 0 ||
