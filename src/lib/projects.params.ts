@@ -4,9 +4,45 @@ import type { Project } from './types';
 
 
 export const generateRandomHexColor = (): string => {
-	const hex = Math.floor(Math.random() * 16777215).toString(16);
-	return `#${hex}`;
+	 // fixed optional colors
+	const colors = [
+		'#FFC0CB',
+		'#FFB6C1',
+		'#FF69B4',
+		'#FF1493',
+		'#DB7093',
+		'#C71585',
+		'#FFA07A',
+		'#FA8072',
+		'#E9967A',
+		'#F08080',
+		'#CD5C5C',
+		'#DC143C',
+		'#B22222',
+		'#8B0000',
+		'#FF0000',
+		'#FF4500',
+		'#FF8C00',
+		'#FFA500',
+		'#FFD700',
+		'#FFFF00',
+		'#ADFF2F',
+		'#7FFF00',
+		'#7CFC00',
+		'#00FF00',
+		'#32CD32',
+		'#00FA9A',
+		'#00FF7F',
+		'#90EE90',
+		'#98FB98',
+		'#00FF00'
+	];
+
+	const randomIndex = Math.floor(Math.random() * colors.length);
+
+	return colors[randomIndex];
 }
+
 
 
 
