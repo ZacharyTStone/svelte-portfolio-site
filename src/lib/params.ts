@@ -47,10 +47,10 @@ export const HOME: HomePageParams = {
 	lastName: 'Stone',
 	description: 'a software engineer with professional experience in full-stack web developement.',
 	links: [
-		{ platform: Platform.GitHub, link: 'https://github.com/', newTab: true },
+		{ platform: Platform.GitHub, link: 'https://github.com/ZacharyTStone', newTab: true },
 		{
 			platform: Platform.Linkedin,
-			link: 'https://www.linkedin.com/',
+			link: 'https://www.linkedin.com/in/zacharystone42/',
 			newTab: true
 		}
 	]
