@@ -34,7 +34,8 @@ const Backend: any[] = [
 	{ label: 'GraphQL', link: 'https://graphql.org/' },
 	{ label: 'MongoDB', link: 'https://www.mongodb.com/' },
 	{ label: 'SQL', link: 'https://www.w3schools.com/sql/' },
-	{ label: 'Hasura', link: 'https://hasura.io/' }
+	{ label: 'Hasura', link: 'https://hasura.io/' },
+	{ label: 'Ably Web Sockets', link: 'https://www.ably.io/' }
 ];
 
 const Server: any[] = [
@@ -47,7 +48,6 @@ const Other: any[] = [
 	{ label: 'Jira', link: 'https://www.atlassian.com/software/jira' },
 	{ label: 'Github', link: 'https://github.com/' },
 	{ label: 'Twilio', link: 'https://www.twilio.com/' },
-	{ label: 'Ably Web Sockets', link: 'https://www.ably.io/' },
 	{ label: 'Chat GPT', link: 'https://chat.openai.com/chat' }
 ];
 

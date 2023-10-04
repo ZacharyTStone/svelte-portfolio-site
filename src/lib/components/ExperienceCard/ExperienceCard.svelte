@@ -12,6 +12,9 @@
 	export let experience: Experience;
 
 	const months = countMonths(experience.period.from, experience.period.to);
+	const years = Math.floor(months / 12);
+	const remainingMonths = months % 12;
+
 	const from = `${getMonthName(
 		experience.period.from.getMonth()
 	)} ${experience.period.from.getFullYear()}`;
@@ -19,7 +22,9 @@
 		? `${getMonthName(experience.period.to.getMonth())} ${experience.period.to.getFullYear()}`
 		: 'Present';
 
-	const period = `${from} - ${to} · ${months} month${months > 1 ? 's' : ''}`;
+	const period = `${years > 0 ? `${years} year${years > 1 ? 's' : ''}` : ''} ${
+		years > 0 && remainingMonths > 0 ? 'and ' : ''
+	}${remainingMonths > 0 ? `${remainingMonths} month${remainingMonths > 1 ? 's' : ''}` : ''}`;
 </script>
 
 <Card margin="0px 0px 20px 0px" tiltDegree={2} href={`${base}/experience/${experience.slug}`}>
