@@ -12,6 +12,7 @@
 	import { base } from '$app/paths';
 
 	export let project: Project;
+	import { Icons } from '$lib/utils/index';
 </script>
 
 <Card color={project.color} href={`${base}/projects/${project.slug}`}>
@@ -23,13 +24,13 @@
 				<CardLink
 					label={link.label ?? ''}
 					to={link.to}
-					icon_path={getAssetURL(
-						link.label == 'Live Demo'
-							? Assets.Computer
-							: link.label == 'YouTube'
-							? Assets.Youtube
-							: Assets.GitHub
-					)}
+					icon_path={link.label == 'Live Demo'
+						? Icons.Projects
+						: link.label == 'YouTube'
+						? Icons.Youtube
+						: link.label == 'GitHub'
+						? Icons.GitHub
+						: ''}
 				/>
 			{/each}
 		</div>

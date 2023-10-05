@@ -6,13 +6,15 @@
 	// @ts-ignore
 	import { Platform, type Project } from '$lib/types';
 	import Assets, { getAssetURL } from '$lib/data/assets';
-	import { PROJECTS } from '$lib/params';
+	import { PROJECTS, getPlatfromIcon } from '$lib/params';
 	import Markdown from '$lib/components/Markdown.svelte';
 	import TabTitle from '$lib/components/TabTitle.svelte';
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import Banner from '$lib/components/Banner/Banner.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
+	import { Icons } from '$lib/utils/index';
+	import Icon from '$lib/components/Icon/Icon.svelte';
 
 	import Youtube from '$lib/assets/images/youtube.svg';
 
@@ -53,19 +55,11 @@
 								<div class="row-center gap-2">
 									<u title={item.label} use:tooltip>
 										{#if item.label === 'Live Demo'}
-											<img
-												src={getAssetURL(Assets.Computer)}
-												class="w-15 h-15 flex"
-												alt="computer"
-											/>
+											<Icon icon={Icons.Projects} color={'var(--accent-text)'} size={'20px'} />
 										{:else if item.label === 'YouTube'}
-											<img src={Youtube} class="w-15 h-15 flex" alt="youtube" />
+											<Icon icon={Icons.Youtube} color={'var(--accent-text)'} size={'20px'} />
 										{:else}
-											<img
-												src={getAssetURL(Assets.GitHub)}
-												class="w-15 h-15 flex"
-												alt={item.label}
-											/>
+											<Icon icon={Icons.GitHub} color={'var(--accent-text)'} size={'20px'} />
 										{/if}
 									</u>
 								</div>
@@ -113,9 +107,7 @@
 							<div class="flex flex-row gap-1 self-stretch flex-wrap">
 								<h4 class="mr-6">Project Tech</h4>
 								{#each data.project.project_skills as item}
-									<Chip classes="inline-flex flex-row items-center justify-center"
-									 href={item.to}
-									>
+									<Chip classes="inline-flex flex-row items-center justify-center" href={item.to}>
 										<span class="text-[0.9em]">{item.label}</span>
 									</Chip>
 								{/each}
