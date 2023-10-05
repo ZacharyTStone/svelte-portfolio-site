@@ -20,14 +20,17 @@ const MY_PROJECTS: Array<Project> = [
 		logo: Assets.Anime,
 		name: 'My Anime Collection',
 		skills: getSkills('fe', 'be', 'dev-tools', 'japanese'),
-	  project_skills: [
+		project_skills: [
 			{ label: 'React', to: 'https://reactjs.org/' },
 			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
 			{ label: 'Node', to: 'https://nodejs.org/' },
-			{ label: 'API', to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/' },
+			{
+				label: 'API',
+				to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/'
+			},
 			{ label: 'Authentication', to: 'https://auth0.com/' },
 			{ label: 'MongoDB', to: 'https://www.mongodb.com/' },
-			{ label: 'Heroku', to: 'https://www.heroku.com/' },
+			{ label: 'Heroku', to: 'https://www.heroku.com/' }
 		],
 		type: 'Web Application',
 		english: true,
@@ -56,7 +59,7 @@ const MY_PROJECTS: Array<Project> = [
 			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
 			{ label: 'Markdown', to: 'https://www.markdownguide.org/' },
 			{ label: 'GraphQL', to: 'https://graphql.org/' },
-			{ label: 'Gatsby Cloud', to: 'https://www.gatsbyjs.com/cloud/' },
+			{ label: 'Gatsby Cloud', to: 'https://www.gatsbyjs.com/cloud/' }
 		],
 		type: 'Web Application',
 		english: true,
@@ -65,7 +68,7 @@ const MY_PROJECTS: Array<Project> = [
 	},
 	{
 		slug: 'haku',
-		color: '#f44336',
+		color: '#4169e1',
 		description: 'Track and compare jobs during the interview process.',
 		shortDescription: 'Track and compare jobs during the interview process.',
 		links: [
@@ -81,10 +84,13 @@ const MY_PROJECTS: Array<Project> = [
 			{ label: 'React', to: 'https://reactjs.org/' },
 			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
 			{ label: 'Node', to: 'https://nodejs.org/' },
-			{ label: 'API', to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/' },
+			{
+				label: 'API',
+				to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/'
+			},
 			{ label: 'Authentication', to: 'https://auth0.com/' },
 			{ label: 'MongoDB', to: 'https://www.mongodb.com/' },
-			{ label: 'Heroku', to: 'https://www.heroku.com/' },
+			{ label: 'Heroku', to: 'https://www.heroku.com/' }
 		],
 		type: 'Web Application',
 		english: true,
@@ -92,7 +98,7 @@ const MY_PROJECTS: Array<Project> = [
 	},
 	{
 		slug: 'riffs',
-		color: '#ff9800',
+		color: '#4169e1',
 		description: 'A place to share your new songs, covers, and musical ideas with the world.',
 		shortDescription: 'A place to share your new songs, covers, and musical ideas with the world.',
 		links: [
@@ -108,7 +114,7 @@ const MY_PROJECTS: Array<Project> = [
 			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
 			{ label: 'Firebase', to: 'https://firebase.google.com/' },
 			{ label: 'Authentication', to: 'https://firebase.google.com/docs/auth' },
-			{ label: 'Netlify', to: 'https://www.netlify.com/' },
+			{ label: 'Netlify', to: 'https://www.netlify.com/' }
 		],
 		type: 'Web Application',
 		english: true,
@@ -116,7 +122,7 @@ const MY_PROJECTS: Array<Project> = [
 	},
 	{
 		slug: 'japanese-quiz',
-		color: '#808000',
+		color: '#4169e1',
 		description: 'Test your knowledge of Japanese prefectures with this fun quiz.',
 		shortDescription: 'Test your knowledge of Japanese prefectures with this fun quiz.',
 		links: [
@@ -133,8 +139,8 @@ const MY_PROJECTS: Array<Project> = [
 			{ label: 'React', to: 'https://reactjs.org/' },
 			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
 			{ label: 'JavaScript', to: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
-			{ label: 'Heroku', to: 'https://www.heroku.com/' },
-		],		
+			{ label: 'Heroku', to: 'https://www.heroku.com/' }
+		],
 		name: 'Prefecture Quiz',
 		type: 'Web Application',
 		english: false,

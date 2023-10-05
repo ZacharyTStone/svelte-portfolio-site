@@ -4,8 +4,8 @@
 	export let label: string;
 	export let to: string;
 	export let icon_path: any;
+	export let icon_color: string;
 
-	console.log(icon_path);
 	import Icon from '../Icon/Icon.svelte';
 </script>
 
@@ -18,7 +18,7 @@
 	data-help={label}
 >
 	{#if icon_path}
-		<Icon icon={icon_path} color={'var(--secondary-text)'} size={'20px'} />
+		<Icon icon={icon_path} color={icon_color ?? 'var(--secondary-text)'} size={'20px'} />
 	{:else}
 		<UIcon icon="i-carbon-link" classes="text-[var(--secondary-text)]" />
 	{/if}
