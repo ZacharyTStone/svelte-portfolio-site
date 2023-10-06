@@ -59,7 +59,7 @@
 										{:else if item.label === 'YouTube'}
 											<Icon icon={Icons.Youtube} color={'var(--accent-text)'} size={'20px'} />
 										{:else}
-											<Icon icon={Icons.GitHub}color={'var(--accent-text)'}size={'20px'} />
+											<Icon icon={Icons.GitHub} color={'var(--accent-text)'} size={'20px'} />
 										{/if}
 									</u>
 								</div>
