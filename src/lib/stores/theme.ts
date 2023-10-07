@@ -1,36 +1,36 @@
 import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 
-const key = 'zach-stone-portfolio-theme';
+const STORAGE_KEY = 'zach-stone-portfolio-theme';
 
-const updateLocalStorage = (value: boolean) => {
+const updateLocalStorage = (value: boolean | string) => {
 	if (browser) {
-		localStorage.setItem(key, JSON.stringify(value));
+		localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
 	}
 };
 
-export const theme = writable<boolean>(false);
+export const theme = writable(false);
 
-export const toggleTheme = (value?: boolean) => {
-	theme.update((it) => {
-		const $v = typeof value === 'boolean' ? value : !it;
+export const toggleTheme = (value: any) => {
+	theme.update((currentValue) => {
+		const newValue = typeof value === 'boolean' ? value : !currentValue;
+		updateLocalStorage(newValue);
 
-		updateLocalStorage($v);
+		const rootElement = document.querySelector(':root');
+		rootElement?.setAttribute('data-theme', newValue ? 'dark' : 'light');
 
-		document.querySelector(':root')?.setAttribute('data-theme', $v ? 'dark' : 'light');
-
-		return $v;
+		return newValue;
 	});
 };
 
 export const onHydrated = () => {
-	const fromStore = localStorage.getItem(key);
+	const storedValue = localStorage.getItem(STORAGE_KEY);
 
-	if (!fromStore) {
-		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			toggleTheme(true);
-		}
+	if (!storedValue) {
+		const prefersDarkMode =
+			window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+		toggleTheme(prefersDarkMode);
 	} else {
-		toggleTheme(JSON.parse(fromStore));
+		toggleTheme(JSON.parse(storedValue));
 	}
 };
