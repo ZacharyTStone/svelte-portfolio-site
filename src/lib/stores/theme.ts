@@ -24,13 +24,12 @@ export const toggleTheme = (value: any) => {
 };
 
 export const onHydrated = () => {
-	const storedValue = localStorage.getItem(STORAGE_KEY);
+	let perferedTheme = localStorage.getItem(STORAGE_KEY);
 
-	if (!storedValue) {
-		const prefersDarkMode =
-			window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-		toggleTheme(prefersDarkMode);
-	} else {
-		toggleTheme(JSON.parse(storedValue));
+	if (!perferedTheme) {
+		// default to light theme
+		perferedTheme = 'false';
 	}
+
+	toggleTheme(JSON.parse(perferedTheme));
 };
