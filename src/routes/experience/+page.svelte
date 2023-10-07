@@ -4,7 +4,6 @@
 	import SearchPage from '$lib/components/SearchPage.svelte';
 	import { EXPERIENCES } from '$lib/params';
 	import type { Experience } from '$lib/types';
-	import { isBlank } from '@riadh-adrani/utils';
 
 	const { items, title } = EXPERIENCES;
 
@@ -13,7 +12,7 @@
 	const onSearch = (e: CustomEvent<{ search: string }>) => {
 		const query = e.detail.search;
 
-		result = isBlank(query)
+		result = !query
 			? items
 			: items.filter(
 					(it) =>

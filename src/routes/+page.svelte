@@ -6,7 +6,6 @@
 	import { HOME, getPlatfromIcon } from '$lib/params';
 	import MY_SKILLS from '$lib/skills.params';
 	import { useTitle } from '$lib/utils/helpers';
-	import { isBlank } from '@riadh-adrani/utils';
 
 	const { description, lastName, links, name, title, skills } = HOME;
 
@@ -14,7 +13,7 @@
 		const reg =
 			/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-		return !isBlank(email) && reg.test(email);
+		return reg.test(email ?? '');
 	};
 </script>
 

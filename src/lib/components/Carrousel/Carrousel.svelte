@@ -5,13 +5,12 @@
 	import UIcon from '../Icon/UIcon.svelte';
 
 	export let items: Array<Skill> = [];
-	const delay = 2000;
+	const delay = 1750;
 
 	let element: HTMLElement;
 
 	let timeout: unknown;
 	let index = 0;
-	let toRight = true;
 
 	$: {
 		if (element) {
@@ -22,50 +21,50 @@
 		}
 	}
 
-	const slide = (right: boolean) => {
-		if (right) {
+	const slide = (direction: 'left' | 'right') => {
+		if (direction == 'right') {
 			if (index < items.length - 1) {
 				index = index + 1;
 			} else {
-				index = index - 1;
-				toRight = false;
+				index = 0;
 			}
 		} else {
 			if (index > 0) {
 				index = index - 1;
 			} else {
-				index = index + 1;
-				toRight = true;
+				index = items.length - 1;
 			}
 		}
 	};
 
-	const toggle = (right: boolean) => {
+	const autoToggle = (direction: 'left' | 'right') => {
 		clearTimeout(timeout as number);
 
 		timeout = setTimeout(() => {
-			slide(right);
+			slide(direction);
 
-			toggle(toRight);
+			autoToggle(direction);
 		}, delay);
 	};
 
 	const toggleLeft = () => {
 		clearTimeout(timeout as number);
-		toRight = false;
-		slide(false);
-		toggle(toRight);
+
+		slide('left');
+		// always auto toggle right
+		autoToggle('right');
 	};
 
 	const toggleRight = () => {
 		clearTimeout(timeout as number);
-		toRight = true;
-		slide(true);
-		toggle(toRight);
+
+		slide('right');
+		// always auto toggle right
+		autoToggle('right');
 	};
 
 	onMount(() => {
-		toggle(true);
+		autoToggle('right');
 	});
 </script>
 

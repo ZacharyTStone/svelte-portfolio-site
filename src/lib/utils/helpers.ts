@@ -36,7 +36,3 @@ export const getMonthName = (index: number): string => {
 export const useImage = (url: string, base: string): string => `${base}${url}`;
 
 export const useTitle = (title: string, suffix: string) => `${title} | ${suffix}`;
-
-// TODO: time ago
-
-// TODO: time duration in years -> months -> days

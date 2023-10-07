@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Experience } from '$lib/types';
-	import { countMonths, getMonthName } from '$lib/utils/helpers';
+	import { countMonths } from '$lib/utils/helpers';
 	import Card from '../Card/Card.svelte';
 	import CardLogo from '../Card/CardLogo.svelte';
 	import CardTitle from '../Card/CardTitle.svelte';
@@ -14,14 +14,6 @@
 	const months = countMonths(experience.period.from, experience.period.to);
 	const years = Math.floor(months / 12);
 	const remainingMonths = months % 12;
-
-	const from = `${getMonthName(
-		experience.period.from.getMonth()
-	)} ${experience.period.from.getFullYear()}`;
-	const to = experience.period.to
-		? `${getMonthName(experience.period.to.getMonth())} ${experience.period.to.getFullYear()}`
-		: 'Present';
-
 	const period = `${years > 0 ? `${years} year${years > 1 ? 's' : ''}` : ''} ${
 		years > 0 && remainingMonths > 0 ? 'and ' : ''
 	}${remainingMonths > 0 ? `${remainingMonths} month${remainingMonths > 1 ? 's' : ''}` : ''}`;

@@ -97,7 +97,7 @@
 			{#if result.length === 0}
 				<div class="flex-1 self-center col-center m-t-10 gap-5 font-300 text-[var(--accent-text)]">
 					<UIcon icon="i-carbon-cube" classes="text-2em" />
-					<span> Oops ! nothing to show ! </span>
+					<span> Oops ! nothing to show for '{query}' </span>
 				</div>
 			{:else}
 				<div class="flex flex-row flex-wrap gap-1">

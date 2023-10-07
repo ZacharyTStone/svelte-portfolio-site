@@ -4,9 +4,9 @@
 
 	import { base } from '$app/paths';
 	// @ts-ignore
-	import { Platform, type Project } from '$lib/types';
-	import Assets, { getAssetURL } from '$lib/data/assets';
-	import { PROJECTS, getPlatfromIcon } from '$lib/params';
+	import { type Project } from '$lib/types';
+	import { getAssetURL } from '$lib/data/assets';
+	import { PROJECTS } from '$lib/params';
 	import Markdown from '$lib/components/Markdown.svelte';
 	import TabTitle from '$lib/components/TabTitle.svelte';
 	import Chip from '$lib/components/Chip/Chip.svelte';
@@ -15,8 +15,6 @@
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
 	import { Icons } from '$lib/utils/index';
 	import Icon from '$lib/components/Icon/Icon.svelte';
-
-	import Youtube from '$lib/assets/images/youtube.svg';
 
 	// @ts-ignore
 	import { tooltip } from '@svelte-plugins/tooltips';
