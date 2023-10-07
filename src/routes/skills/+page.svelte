@@ -2,9 +2,7 @@
 	import Card from '$lib/components/Card/Card.svelte';
 	import { base } from '$app/paths';
 	import { SKILLS } from '$lib/params';
-	import SearchPage from '$lib/components/SearchPage.svelte';
 	import type { Skill } from '$lib/types';
-	import { isBlank } from '@riadh-adrani/utils';
 	import { getAssetURL } from '$lib/data/assets';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CommonPage from '$lib/components/CommonPage.svelte';
