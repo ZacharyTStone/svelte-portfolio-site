@@ -16,7 +16,9 @@
 
 My new portfolio site.
 
-It uses Svelte and Svelte kit along with Tailwind and is hosted on Vercel.
+It uses Svelte and Svelte kit along with Tailwind for the CSS and is hosted on Vercel.
+
+I built it starting with a fantastic starter template. You can check it out by clicking the link under the repo name.
 
 </br>
 
@@ -33,7 +35,7 @@ It uses Svelte and Svelte kit along with Tailwind and is hosted on Vercel.
 
 ## Contributions
 
-I am not taking contributions to this site but I do recommend you check out the starter template I generated it from. Link under repo name.
+I am not taking contributions to this site at this time.
 
 ## Questions
 
