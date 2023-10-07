@@ -28,7 +28,7 @@ export const onHydrated = () => {
 
 	if (!fromStore) {
 		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-			updateLocalStorage(true);
+			toggleTheme(true);
 		}
 	} else {
 		toggleTheme(JSON.parse(fromStore));
