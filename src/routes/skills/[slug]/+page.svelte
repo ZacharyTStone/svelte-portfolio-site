@@ -14,6 +14,7 @@
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import Banner from '$lib/components/Banner/Banner.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
+	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
 
 	type Related = {
 		display: string;
@@ -94,19 +95,26 @@
 				<div class="px-10px m-y-5">
 					{#if data?.skill?.extraInfo?.length}
 						{#each data.skill.extraInfo as any}
-							<div class="flex flex-row gap-1 self-stretch flex-wrap">
-								{any.title}
+							<div
+								class="flex flex-row gap-1 self-stretch flex-wrap mb-5  items-center 
+							"
+							>
+								<span class="text-[var(--accent-text)] text-[1.1em] font-500">
+									{any.title}
+								</span>
 								<div
 									class="px-10px
-								 flex flex-row gap-3 self-stretch flex-wrap
-								 mb-5
-								 
+								 flex flex-row gap-3 self-stretch flex-wrap align-center
 								"
 								>
 									{#each any.content as info}
-										<a class="font-300" href={info.link}>
-											<span class="text-[var(--accent-text)]">{info.label},{' '}</span>
-										</a>
+										{#if any.title === 'Frameworks'}
+											<ChipIcon logo={getAssetURL(info.icon)} name={info.label} href={info.link} />
+										{:else}
+											<a class="font-300" href={info.link}>
+												<span class="text-[var(--accent-text)]">{info.label},{' '}</span>
+											</a>
+										{/if}
 									{/each}
 								</div>
 							</div>

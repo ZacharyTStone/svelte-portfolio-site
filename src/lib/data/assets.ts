@@ -4,6 +4,8 @@ import Rapptr from '$lib/assets/images/rapptr.png';
 import Github from '$lib/assets/images/github.svg';
 import Computer from '$lib/assets/images/computer.svg';
 import YouTube from '$lib/assets/images/youtube.svg';
+import Gatsby from '$lib/assets/images/gatsby.svg';
+import Next from '$lib/assets/images/next.svg';
 import Slack from '$lib/assets/images/slack.svg';
 import Japan from '$lib/assets/images/japan.jpeg';
 import anime from '$lib/assets/images/projects/anime.webp';
@@ -19,7 +21,7 @@ const gh = (file: string) =>
 const a = (light: string, dark?: string): Asset =>
 	dark ? { dark: gh(dark), light: gh(light) } : gh(light);
 
-const Assets = {
+export const COLOR_ASSETS = {
 	AWS: a('aws.svg'),
 	Bootstrap: a('bootstrap.svg'),
 	C: a('c.svg'),
@@ -44,7 +46,7 @@ const Assets = {
 	Xamarin: a('xamarin.svg'),
 	TypeScript: a('ts.png'),
 	VueJs: a('vue.png'),
-	ReactJs: a('react.svg'),
+	React: a('react.svg'),
 	Dart: a('dart.png'),
 	Kotlin: a('kotlin.png'),
 	Python: a('python.png'),
@@ -80,6 +82,8 @@ const Assets = {
 	Vite: a('vite.png'),
 	Vitest: a('vitest.png'),
 	Jest: a('jest.png'),
+	Next: { light: Next, dark: Next },
+	Gatsby: { light: Gatsby, dark: Gatsby },
 	Japan: { light: Japan, dark: Japan },
 	Rapptr: { light: Rapptr, dark: Rapptr },
 	GitHub: { light: Github, dark: Github },
@@ -98,7 +102,7 @@ let currentTheme: boolean;
 theme.subscribe((v) => (currentTheme = v));
 
 // assets.js
-export default Assets;
+export default COLOR_ASSETS;
 
 export const getAssetURL = (asset: Asset): string => {
 	console.log('asset', asset);

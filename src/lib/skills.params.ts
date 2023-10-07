@@ -1,6 +1,7 @@
 import Assets from './data/assets';
 import type { Skill } from './types';
 import svelte from './md/svelte.md?raw';
+import { COLOR_ASSETS } from './data/assets';
 
 const s = (skill: Skill) => skill;
 
@@ -8,11 +9,11 @@ export type ArrayElementType<ArrayType extends readonly unknown[]> =
 	ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
 
 const FRAMEWORKS: any[] = [
-	{ label: 'React (CRA)', link: 'https://reactjs.org/' },
-	{ label: 'Gatsby', link: 'https://www.gatsbyjs.org/' },
-	{ label: 'Vue', link: 'https://vuejs.org/' },
-	{ label: 'Next.js', link: 'https://nextjs.org/' },
-	{ label: 'Svelte', link: 'https://svelte.dev/' }
+	{ label: 'React', link: 'https://reactjs.org/', icon: COLOR_ASSETS.React },
+	{ label: 'Gatsby', link: 'https://www.gatsbyjs.org/', icon: COLOR_ASSETS.Gatsby },
+	{ label: 'Vue', link: 'https://vuejs.org/', icon: COLOR_ASSETS.VueJs },
+	{ label: 'Next', link: 'https://nextjs.org/', icon: COLOR_ASSETS.Next },
+	{ label: 'Svelte', link: 'https://svelte.dev/', icon: COLOR_ASSETS.Svelte }
 ];
 
 const TOOLS: any[] = [

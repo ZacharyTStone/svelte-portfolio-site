@@ -24,6 +24,8 @@ interface SkillInfoSection {
 	content: {
 		label: string;
 		link?: string;
+		// todo: update this type
+		icon: any;
 	}[];
 }
 
@@ -56,7 +58,7 @@ export interface Project extends Item {
 	color: string;
 	type: string;
 	skills: Array<Skill>;
-	project_skills?:  Array<Link>;
+	project_skills?: Array<Link>;
 	video?: string;
 	english?: boolean;
 	japanese?: boolean;
