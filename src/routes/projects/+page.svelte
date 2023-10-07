@@ -14,23 +14,21 @@
 
 	const { items, title } = PROJECTS;
 
-	let filters: Array<SkillFilter> = MY_SKILLS.filter((it) => {
-		return items.some((project) => project.skills.some((skill) => skill.slug === it.slug));
-	});
+	let filters: Array<SkillFilter> = MY_SKILLS.filter((it) =>
+		items.some((project) => project.skills.some((skill) => skill.slug === it.slug))
+	);
 
 	let search = '';
 	let displayed: Array<Project> = [];
 
-	const isSelected = (slug: string): boolean => {
-		return filters.some((item) => item.slug === slug && item.isSelected);
-	};
+	const isSelected = (slug: string): boolean =>
+		filters.some((item) => item.slug === slug && item.isSelected);
 
 	const onSelected = (slug: string) => {
 		filters = filters.map((tech) => {
 			if (tech.slug === slug) {
 				tech.isSelected = !isSelected(slug);
 			}
-
 			return tech;
 		});
 	};
@@ -40,14 +38,12 @@
 		displayed = items.filter((project) => {
 			const isFiltered =
 				selectedFilters.length === 0 ||
-				selectedFilters.every((tech) => {
-					return tech.isSelected && project.skills.some((skill) => skill.slug === tech.slug);
-				});
-
+				selectedFilters.every(
+					(tech) => tech.isSelected && project.skills.some((skill) => skill.slug === tech.slug)
+				);
 			const isSearched =
 				search.trim().length === 0 ||
 				project.name.trim().toLowerCase().includes(search.trim().toLowerCase());
-
 			return isFiltered && isSearched;
 		});
 	}
@@ -58,12 +54,9 @@
 
 	onMount(() => {
 		const query = location.search;
-
 		if (query) {
 			const queryParams = new URLSearchParams(location.search);
-
 			const item = queryParams.get('item');
-
 			if (item) {
 				search = item;
 			}
@@ -74,9 +67,9 @@
 <SearchPage {title} on:search={onSearch}>
 	<div class="projects-filters">
 		{#each filters as tech}
-			<Chip active={tech.isSelected} classes={'text-0.8em'} on:click={() => onSelected(tech.slug)}
-				>{tech.name}</Chip
-			>
+			<Chip active={tech.isSelected} classes={'text-0.8em'} on:click={() => onSelected(tech.slug)}>
+				{tech.name}
+			</Chip>
 		{/each}
 	</div>
 	{#if displayed.length === 0}
@@ -86,8 +79,7 @@
 		</div>
 	{:else}
 		<h4
-			class="text-[var(--accent-text)] text-1.5em font-500 m-y-12 underline flex justify-center items-center
-		"
+			class="text-[var(--accent-text)] text-1.5em font-500 m-y-12 underline flex justify-center items-center"
 		>
 			Featured Projects
 		</h4>

@@ -13,16 +13,14 @@
 	const onSearch = (e: CustomEvent<{ search: string }>) => {
 		const query = e.detail.search;
 
-		if (isBlank(query)) {
-			result = items;
-		}
-
-		result = items.filter(
-			(it) =>
-				it.name.toLowerCase().includes(query) ||
-				it.company.toLowerCase().includes(query) ||
-				it.description.toLowerCase().includes(query)
-		);
+		result = isBlank(query)
+			? items
+			: items.filter(
+					(it) =>
+						it.name.toLowerCase().includes(query) ||
+						it.company.toLowerCase().includes(query) ||
+						it.description.toLowerCase().includes(query)
+			  );
 	};
 </script>
 
