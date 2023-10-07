@@ -33,7 +33,7 @@ It uses Svelte and Svelte kit along with Tailwind and is hosted on Vercel.
 
 ## Contributions
 
-I am not taking contributions to this site but I do recommend you check out the starter template I used.
+I am not taking contributions to this site but I do recommend you check out the starter template I generated it from. Link under repo name.
 
 ## Questions
 
