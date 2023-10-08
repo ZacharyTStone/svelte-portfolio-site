@@ -37,8 +37,7 @@
 		transition-duration: 200ms;
 
 		letter-spacing: 1px;
-
-		height: 100vh;
+		min-height: 100vh;
 	}
 
 	:global(p) {
