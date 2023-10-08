@@ -38,7 +38,7 @@
 
 		letter-spacing: 1px;
 
-		min-height: 100vh;
+		height: 100vh;
 	}
 
 	:global(p) {
