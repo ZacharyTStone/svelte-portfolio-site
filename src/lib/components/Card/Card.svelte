@@ -2,6 +2,7 @@
 	import { changeColorOpacity } from '@riadh-adrani/utils';
 	import { onMount } from 'svelte';
 	import type { MouseEventHandler } from 'svelte/elements';
+	import { onHover } from '$lib/utils/helpers';
 
 	let el: HTMLElement;
 
@@ -24,38 +25,15 @@
 		}
 	}
 
-	// svelte typing is broken...
-	const onHover: MouseEventHandler<HTMLDivElement> = (ev) => {
-		const target = ev.currentTarget;
-
-		const rect = target.getBoundingClientRect();
-
-		const x = ev.clientX - rect.left;
-		const y = ev.clientY - rect.top;
-
-		el.style.setProperty('--drop-x', `${x}px`);
-		el.style.setProperty('--drop-y', `${y}px`);
-
-		const width = el.offsetWidth;
-		const height = el.offsetHeight;
-
-		const cX = rect.x + width / 2;
-		const cY = rect.y + height / 2;
-
-		const mX = ev.clientX - cX;
-		const mY = ev.clientY - cY;
-
-		const rY = ((tiltDegree * mX) / (width / 2)).toFixed(2);
-		const rX = ((-1 * (tiltDegree * mY)) / (height / 2)).toFixed(2);
-
-		el.style.setProperty('--rot-x', `${rX}deg`);
-		el.style.setProperty('--rot-y', `${rY}deg`);
-	};
-
 	onMount(() => {
 		el.style.setProperty('margin', margin);
 		el.style.setProperty('--bg-img', bgImg ? `url(${bgImg})` : '');
 	});
+
+	// @ts-ignore
+	const handleHover: MouseEventHandler = (e: any) => {
+		onHover(e, el, tiltDegree);
+	};
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -63,7 +41,7 @@
 	this={href ? 'a' : 'div'}
 	{href}
 	bind:this={el}
-	on:mousemove={onHover}
+	on:mousemove={handleHover}
 	class={`card text-inherit decoration-none inline-flex flex-col border-1px border-solid border-[var(--border)] rounded-15px duration relative ${classes.join(
 		' '
 	)}`}

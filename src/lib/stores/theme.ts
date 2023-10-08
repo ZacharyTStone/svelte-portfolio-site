@@ -11,7 +11,7 @@ const updateLocalStorage = (value: boolean | string) => {
 
 export const theme = writable(false);
 
-export const toggleTheme = (value: any) => {
+export const toggleTheme = (value?: any) => {
 	theme.update((currentValue) => {
 		const newValue = typeof value === 'boolean' ? value : !currentValue;
 		updateLocalStorage(newValue);

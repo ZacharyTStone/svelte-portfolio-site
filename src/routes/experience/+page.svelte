@@ -15,10 +15,10 @@
 		result = !query
 			? items
 			: items.filter(
-					(it) =>
-						it.name.toLowerCase().includes(query) ||
-						it.company.toLowerCase().includes(query) ||
-						it.description.toLowerCase().includes(query)
+					(experience) =>
+						experience.name.toLowerCase().includes(query) ||
+						experience.company.toLowerCase().includes(query) ||
+						experience.description.toLowerCase().includes(query)
 			  );
 	};
 </script>
