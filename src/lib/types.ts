@@ -29,6 +29,11 @@ interface SkillInfoSection {
 	}[];
 }
 
+interface certifcations {
+	label: string;
+	link?: string;
+}
+
 export interface Item {
 	slug: string;
 	name: string;
@@ -37,6 +42,7 @@ export interface Item {
 	description: string;
 	screenshots?: Array<{ src: string; label: string }>;
 	extraInfo?: SkillInfoSection[];
+	certifications?: certifcations[];
 }
 
 export interface Link {

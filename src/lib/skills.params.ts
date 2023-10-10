@@ -113,9 +113,17 @@ const MY_SKILLS = [
 		slug: 'japanese',
 		color: 'orange',
 		description:
-			'I have passed the JLPT N2, Kanji Kentei level 10 and have lived in Japan for over 3 years as a English teacher. Outside of coding this is my biggest passion.',
+			'Outside of coding this is my biggest passion. I hope to one day be fluent and spend some time every day studying.',
 		logo: Assets.Japan,
-		name: 'Japanese'
+		name: 'Japanese',
+		certifications: [
+			{
+				label: 'Japanese Language Proficiency Test level N2'
+			},
+			{
+				label: 'Kanji Kentei Level 10 (Perfect Score)'
+			}
+		]
 	})
 ];
 
