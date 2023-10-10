@@ -113,7 +113,7 @@ const MY_SKILLS = [
 		slug: 'web-security',
 		color: 'green',
 		description:
-			"My fascination with web security sparked when I implemented a comprehensive site overhaul following a third-party audit at work. This experience exposed me to numerous web security concepts, and since then, I've been avidly seeking to deepen my understanding of this field. I am consistently exploring ways to increase the security of my applications.",
+			"My fascination with web security sparked when I implemented a comprehensive site overhaul according to third-party audit at work. This experience exposed me to numerous web security concepts, and since then, I've been avidly seeking to deepen my understanding of this field. I am consistently exploring ways to increase the security of my applications.",
 		logo: Assets.Security,
 		name: 'Web Security',
 		extraInfo: SECURITY_EXTRA_INFO,
