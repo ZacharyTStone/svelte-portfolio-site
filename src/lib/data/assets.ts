@@ -8,6 +8,7 @@ import Gatsby from '$lib/assets/images/gatsby.svg';
 import Next from '$lib/assets/images/next.svg';
 import Slack from '$lib/assets/images/slack.svg';
 import Japan from '$lib/assets/images/japan.jpeg';
+import Security from '$lib/assets/images/Security.svg';
 import anime from '$lib/assets/images/projects/anime.webp';
 import blog from '$lib/assets/images/projects/blog.webp';
 import haku from '$lib/assets/images/projects/haku.webp';
@@ -95,7 +96,8 @@ export const COLOR_ASSETS = {
 	Haku: { light: haku, dark: haku },
 	Riffs: { light: niceRiff, dark: niceRiff },
 	Prefecture: { light: prefecture, dark: prefecture },
-	Quote: { light: quote, dark: quote }
+	Quote: { light: quote, dark: quote },
+	Security: { light: Security, dark: Security }
 };
 
 let currentTheme: boolean;

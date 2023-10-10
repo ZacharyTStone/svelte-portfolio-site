@@ -16,7 +16,7 @@ const FRAMEWORKS: any[] = [
 	{ label: 'Svelte', link: 'https://svelte.dev/', icon: COLOR_ASSETS.Svelte }
 ];
 
-const TOOLS: any[] = [
+const FE_TOOLS: any[] = [
 	{ label: 'HTML', link: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
 	{ label: 'CSS', link: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
 	{ label: 'JavaScript', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
@@ -52,6 +52,8 @@ const Other: any[] = [
 	{ label: 'Chat GPT', link: 'https://chat.openai.com/chat' }
 ];
 
+const SECURITY_TOOLS: any[] = [{ label: 'OWASP ZAP', link: 'https://owasp.org/www-project-zap/' }];
+
 const FE_EXTRA_INFO = [
 	{
 		title: 'Frameworks',
@@ -59,7 +61,7 @@ const FE_EXTRA_INFO = [
 	},
 	{
 		title: 'Tools',
-		content: TOOLS
+		content: FE_TOOLS
 	}
 ];
 
@@ -71,6 +73,13 @@ const BE_EXTRA_INFO = [
 	{
 		title: 'Server',
 		content: Server
+	}
+];
+
+const SECURITY_EXTRA_INFO = [
+	{
+		title: 'Tools',
+		content: SECURITY_TOOLS
 	}
 ];
 
@@ -99,6 +108,21 @@ const MY_SKILLS = [
 		logo: Assets.NodeJs,
 		name: 'Backend Web',
 		extraInfo: BE_EXTRA_INFO
+	}),
+	s({
+		slug: 'web-security',
+		color: 'green',
+		description:
+			"My fascination with web security sparked when I implemented a comprehensive site overhaul following a third-party audit at work. This experience exposed me to numerous web security concepts, and since then, I've been avidly seeking to deepen my understanding of this field. I am consistently exploring ways to increase the security of my applications.",
+		logo: Assets.Security,
+		name: 'Web Security',
+		extraInfo: SECURITY_EXTRA_INFO,
+		certifications: [
+			{
+				label: 'Web Application Security Testing with OWASP ZAP',
+				link: 'https://coursera.org/share/6534ebedc75f9b25ca28b30aaf093435'
+			}
+		]
 	}),
 	s({
 		slug: 'dev-tools',
