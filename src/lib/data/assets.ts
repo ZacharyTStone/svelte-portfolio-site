@@ -107,6 +107,5 @@ theme.subscribe((v) => (currentTheme = v));
 export default COLOR_ASSETS;
 
 export const getAssetURL = (asset: Asset): string => {
-	console.log('asset', asset);
 	return typeof asset === 'string' ? asset : currentTheme ? asset.dark : asset.light;
 };
