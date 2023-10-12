@@ -7,7 +7,8 @@ const MY_PROJECTS: Array<Project> = [
 	{
 		slug: 'my-anime-collection',
 		color: generateRandomHexColor(),
-		description: 'Find and keep track of your favorite anime.',
+		description:
+			'My Anime Collection is a free anime tracker where users can explore and create custom playlists to keep track of their favorite anime.',
 		shortDescription: 'Find and keep track of your favorite anime.',
 		links: [
 			{ to: 'https://www.my-anime-collection.com/landing', label: 'Live Demo', newTab: true },
@@ -42,9 +43,9 @@ const MY_PROJECTS: Array<Project> = [
 		slug: 'zach-in-japan',
 		color: generateRandomHexColor(),
 		description:
-			'Read about coding concepts, Japan, and all things related to being a web developer.',
+			'My blog. Read about coding concepts, Japan, and all things related to being a web developer.',
 		shortDescription:
-			'Read about coding concepts, Japan, and all things related to being a web developer.',
+			'My blog. Read about coding concepts, Japan, and all things related to being a web developer.',
 		links: [
 			{ to: 'https://zachinjapan.com', label: 'Live Demo', newTab: true },
 			{ to: 'https://github.com/zachinjapan/my-gatsby-blog', label: 'GitHub', newTab: true },
