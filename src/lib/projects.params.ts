@@ -8,7 +8,7 @@ const MY_PROJECTS: Array<Project> = [
 		slug: 'my-anime-collection',
 		color: generateRandomHexColor(),
 		description:
-			'My Anime Collection is a free anime tracker where users can explore and create custom playlists to keep track of their favorite anime.',
+			'My Anime Collection is a free anime tracker where you can explore and create custom playlists of your favorite anime.',
 		shortDescription: 'Find and keep track of your favorite anime.',
 		links: [
 			{ to: 'https://www.my-anime-collection.com/landing', label: 'Live Demo', newTab: true },
