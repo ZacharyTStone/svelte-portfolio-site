@@ -22,9 +22,43 @@
 	let mounted = false;
 	let result: Array<Item> = [];
 
+	function filterItems<T extends { name: string; label?: string; skills?: any }>(
+		items: T[],
+		query: string
+	): T[] {
+		const containsQuery = (value: any, depth: number): boolean => {
+			if (depth > 7) {
+				return false; // Stop recursion if depth exceeds 3 levels
+			}
+
+			if (typeof value === 'string') {
+				return value.toLowerCase().includes(query.toLowerCase());
+			} else if (Array.isArray(value)) {
+				return value.some((item) => containsQuery(item, depth + 1));
+			} else if (typeof value === 'object' && value !== null) {
+				return (
+					Object.values(value).some((nestedValue) => containsQuery(nestedValue, depth + 1)) ||
+					Object.keys(value).some((key) => containsQuery(value[key], depth + 1))
+				);
+			}
+			return false;
+		};
+
+		return items.filter((item: T) => !query || containsQuery(item, 1));
+	}
+
+	// Helper function to generate items for the result array
+	function generateItems<T>(items: T[], icon: string, toFn: (data: T) => string): Item<T>[] {
+		return items.map<Item<T>>((data) => ({
+			data,
+			icon,
+			name: (data as any).name,
+			to: toFn(data)
+		}));
+	}
+
 	onMount(() => {
 		let searchParams = new URLSearchParams(window.location.search);
-
 		query = searchParams.get('q') ?? '';
 		mounted = true;
 	});
@@ -32,83 +66,75 @@
 	$: {
 		result = [];
 
-		// filter by project names
-		result.push(
-			...MY_PROJECTS.filter((item) => query && item.name.toLowerCase().includes(query)).map<Item>(
-				(data) => ({
-					data,
-					icon: 'i-carbon-cube',
-					name: data.name,
-					to: `projects/${data.slug}`
-				})
-			)
-		);
+		// Include all items if there is no query
 
-		// filter by project skills
-		result.push(
-			...MY_PROJECTS.filter(
-				(item) =>
-					query && item?.project_skills?.some((skill) => skill.label.toLowerCase().includes(query))
-			).map<Item>((data) => ({
-				data,
-				icon: 'i-carbon-cube',
-				name: data.name,
-				to: `projects/${data.slug}`
-			}))
-		);
+		if (!query || !mounted || query.trim().length === 0) {
+			result.push(
+				...generateItems(MY_PROJECTS, 'i-carbon-cube', (data) => `projects/${(data as any).slug}`)
+			);
+			result.push(
+				...generateItems(
+					MY_SKILLS,
+					'i-carbon-software-resource-cluster',
+					(data) => `skills/${(data as any).slug}`
+				)
+			);
+			result.push(
+				...generateItems(
+					MY_EXPERIENCES,
+					'i-carbon-development',
+					(data) => `experience/${(data as any).slug}`
+				)
+			);
+		} else {
+			// Filter and generate items for projects by name or project skills
+			result.push(
+				...generateItems(
+					filterItems(MY_PROJECTS, query),
+					'i-carbon-cube',
+					(data) => `projects/${(data as any).slug}`
+				)
+			);
 
-		// filter by skills
-		result.push(
-			...MY_SKILLS.filter((item) => query && item.name.toLowerCase().includes(query)).map<Item>(
-				(data) => ({
-					data,
-					icon: 'i-carbon-software-resource-cluster',
-					name: data.name,
-					to: `skills/${data.slug}`
-				})
-			)
-		);
+			// Filter and generate items for skills
+			result.push(
+				...generateItems(
+					filterItems(MY_SKILLS, query),
+					'i-carbon-software-resource-cluster',
+					(data) => `skills/${(data as any).slug}`
+				)
+			);
 
-		// filter by experiences
-		result.push(
-			...MY_EXPERIENCES.filter(
-				(item) =>
-					query &&
-					(item.name.toLowerCase().includes(query) || item.company.toLowerCase().includes(query))
-			).map<Item>((data) => ({
-				data,
-				icon: 'i-carbon-development',
-				name: `${data.name} @ ${data.company}`,
-				to: `experience/${data.slug}`
-			}))
-		);
+			// Filter and generate items for experiences by name or company
+			result.push(
+				...generateItems(
+					filterItems(MY_EXPERIENCES, query),
+					'i-carbon-development',
+					(data) => `experience/${(data as any).slug}`
+				)
+			);
+		}
 	}
 </script>
 
 <SearchPage {title} on:search={(e) => (query = e.detail.search)}>
 	<div class="flex flex-col items-stretch gap-10 p-2" />
-	{#if !query}
-		<div class="flex-1 self-center col-center m-t-10 gap-5 font-300 text-[var(--accent-text)]">
-			<UIcon icon="i-carbon-search-locate-mirror" classes="text-2em" />
-			<span> Try typing a skill, name, or tool. </span>
-		</div>
-	{:else}
-		<div>
-			{#if result.length === 0}
-				<div class="flex-1 self-center col-center m-t-10 gap-5 font-300 text-[var(--accent-text)]">
-					<UIcon icon="i-carbon-cube" classes="text-2em" />
-					<span> Oops ! nothing to show for '{query}' </span>
-				</div>
-			{:else}
-				<div class="flex flex-row flex-wrap gap-1">
-					{#each result as item}
-						<Chip href={`${base}/${item.to}`} classes="flex flex-row items-center gap-2">
-							<UIcon icon={item.icon} />
-							<span>{item.name}</span>
-						</Chip>
-					{/each}
-				</div>
-			{/if}
-		</div>
-	{/if}
+
+	<div>
+		{#if result.length === 0}
+			<div class="flex-1 self-center col-center m-t-10 gap-5 font-300 text-[var(--accent-text)]">
+				<UIcon icon="i-carbon-cube" classes="text-2em" />
+				<span> Oops! Nothing to show for '{query}' </span>
+			</div>
+		{:else}
+			<div class="flex flex-row flex-wrap gap-1">
+				{#each result as item}
+					<Chip href={`${base}/${item.to}`} classes="flex flex-row items-center gap-2">
+						<UIcon icon={item.icon} />
+						<span>{item.name}</span>
+					</Chip>
+				{/each}
+			</div>
+		{/if}
+	</div>
 </SearchPage>
