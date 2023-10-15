@@ -35,7 +35,7 @@ const MY_EXPERIENCES: Array<Experience> = [
 		type: 'Software Development',
 		location: 'New York, NY',
 		period: { from: new Date(2022, 7) },
-		skills: getSkills('fe', 'be', 'dev-tools'),
+		skills: getSkills('fe', 'be', 'dev-tools', 'web-security'),
 		name: 'Front End Engineer',
 		color: '#ffffff',
 		links: [
