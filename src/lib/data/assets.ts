@@ -1,6 +1,7 @@
 import type { Asset } from '$lib/types';
 import { theme } from '$lib/stores/theme';
 import Rapptr from '$lib/assets/images/rapptr.png';
+import Interac from '$lib/assets/images/interac.jpeg';
 import Github from '$lib/assets/images/github.svg';
 import Computer from '$lib/assets/images/computer.svg';
 import YouTube from '$lib/assets/images/youtube.svg';
@@ -87,6 +88,7 @@ export const COLOR_ASSETS = {
 	Gatsby: { light: Gatsby, dark: Gatsby },
 	Japan: { light: Japan, dark: Japan },
 	Rapptr: { light: Rapptr, dark: Rapptr },
+	Interac: { light: Interac, dark: Interac },
 	GitHub: { light: Github, dark: Github },
 	Computer: { light: Computer, dark: Computer },
 	Youtube: { light: YouTube, dark: YouTube },

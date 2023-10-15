@@ -17,7 +17,7 @@ export const TITLE_SUFFIX = 'Zach Stone';
 export const NavBar = {
 	home: 'Home',
 	personal: 'Projects',
-	career: 'Work',
+	career: 'Experience',
 	resume: 'Resume',
 	skills: 'Skills'
 };
@@ -62,7 +62,7 @@ export const PROJECTS: ProjectPageParams = {
 };
 
 export const EXPERIENCES: ExperiencePageParams = {
-	title: 'Work Experience',
+	title: 'Experience',
 	items: MY_EXPERIENCES
 };
 
