@@ -11,6 +11,10 @@
 
 	export let experience: Experience;
 
+	const start_year = new Date(experience.period.from).getFullYear();
+
+	const end_year = new Date(experience.period.to ?? new Date().toISOString()).getFullYear();
+
 	const months = countMonths(experience.period.from, experience.period.to);
 	const years = Math.floor(months / 12);
 	const remainingMonths = months % 12;
@@ -39,8 +43,10 @@
 					<UIcon icon="i-carbon-hourglass" />
 				</ChipIcon>
 			</div>
-			<div class="text-[var(--accent-text)] text-[0.9em] font-200">{period}</div>
-			<!-- <div class="experience-description">{experience.description}</div> -->
+			<div class="text-[var(--accent-text)] text-[1em] font-400">{period}</div>
+			<div class="text-[var(--accent-text)] text-[0.8em] font-200">
+				({start_year} - {end_year})
+			</div>
 			<div class="flex flex-row flex-wrap mt-5">
 				{#each experience.skills as skill}
 					<ChipIcon
