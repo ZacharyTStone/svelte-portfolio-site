@@ -43,6 +43,11 @@ const MY_EXPERIENCES: Array<Experience> = [
 				to: 'https://rapptrlabs.com/',
 				label: 'Rapptr Labs',
 				newTab: true
+			},
+			{
+				to: 'https://opsiq.ai/',
+				label: 'OPSIQ ',
+				newTab: true
 			}
 		],
 		logo: Assets.Rapptr,
