@@ -116,7 +116,7 @@
 	{:else}
 		<div class="flex flex-row flex-wrap gap-1">
 			{#each result as { data, icon, name, to }}
-				<Chip href={`${base}/${to}`} classes="flex flex-row items-center gap-2">
+				<Chip href={`${base}/${to}`} classes="flex flex-row items-center gap-2" newTab={false}>
 					<UIcon {icon} />
 					<span>{name}</span>
 				</Chip>
@@ -125,7 +125,11 @@
 					{#each data.extraInfo as { title, content }}
 						{#each content as { label, link }}
 							{#if label.toLowerCase().includes(query.toLowerCase())}
-								<Chip href={`${base}/${to}`} classes="flex flex-row items-center gap-2">
+								<Chip
+									href={`${base}/${to}`}
+									classes="flex flex-row items-center gap-2"
+									newTab={false}
+								>
 									<UIcon {icon} />
 									<span>{label}</span>
 								</Chip>
