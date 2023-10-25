@@ -37,7 +37,8 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'Web Application',
 		english: true,
 		japanese: true,
-		featured: true
+		featured: true,
+		featured_reason: 'Cleanest Code'
 	},
 	{
 		slug: 'zach-in-japan',
@@ -66,7 +67,8 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'Web Application',
 		english: true,
 		japanese: false,
-		featured: true
+		featured: true,
+		featured_reason: 'Most Personal'
 	},
 	{
 		slug: 'haku',
@@ -96,7 +98,9 @@ const MY_PROJECTS: Array<Project> = [
 		],
 		type: 'Web Application',
 		english: true,
-		japanese: false
+		japanese: false,
+		featured: true,
+		featured_reason: 'Most Business Value'
 	},
 	{
 		slug: 'riffs',

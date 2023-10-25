@@ -46,13 +46,20 @@
 		{project.shortDescription}
 	</p>
 	<CardDivider />
-	<div class="row">
-		{#each project.skills as tech}
-			<ChipIcon
-				logo={getAssetURL(tech.logo)}
-				name={tech.name}
-				href={`${base}/skills/${tech.slug}`}
-			/>
-		{/each}
+	<div class="row justify-between items-center">
+		<div class="row">
+			{#each project.skills as tech}
+				<ChipIcon
+					logo={getAssetURL(tech.logo)}
+					name={tech.name}
+					href={`${base}/skills/${tech.slug}`}
+				/>
+			{/each}
+		</div>
+		{#if project.featured_reason}
+			<span class="text-[0.95em] text-[var(--secondary-text)] font-300">
+				{project.featured_reason}
+			</span>
+		{/if}
 	</div>
 </Card>

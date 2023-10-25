@@ -69,6 +69,7 @@ export interface Project extends Item {
 	english?: boolean;
 	japanese?: boolean;
 	featured?: boolean;
+	featured_reason?: string;
 }
 
 export interface Experience extends Project {
