@@ -100,7 +100,7 @@ const MY_PROJECTS: Array<Project> = [
 		english: true,
 		japanese: false,
 		featured: true,
-		featured_reason: 'Most Business Value'
+		featured_reason: 'Highest Business Value'
 	},
 	{
 		slug: 'riffs',
