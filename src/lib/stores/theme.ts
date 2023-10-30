@@ -1,35 +1,44 @@
 import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
+import type { Writable } from 'svelte/store';
+
+interface ThemeStore extends Writable<boolean> {}
 
 const STORAGE_KEY = 'zach-stone-portfolio-theme';
 
-const updateLocalStorage = (value: boolean | string) => {
+const updateLocalStorage = (value: boolean | string): void => {
 	if (browser) {
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
 	}
 };
 
-export const theme = writable(false);
+// Check system preference for dark mode
+const prefersDarkMode: boolean =
+	browser && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-export const toggleTheme = (value?: any) => {
+export const theme: ThemeStore = writable(false);
+
+export const toggleTheme = (value: boolean): void => {
 	theme.update((currentValue) => {
 		const newValue = typeof value === 'boolean' ? value : !currentValue;
 		updateLocalStorage(newValue);
 
-		const rootElement = document.querySelector(':root');
-		rootElement?.setAttribute('data-theme', newValue ? 'dark' : 'light');
+		if (browser) {
+			const rootElement = document.querySelector(':root');
+			rootElement?.setAttribute('data-theme', newValue ? 'dark' : 'light');
+		}
 
 		return newValue;
 	});
 };
 
-export const onHydrated = () => {
+export const onHydrated = (): void => {
 	let preferredTheme = localStorage.getItem(STORAGE_KEY);
 
-	if (!preferredTheme) {
-		// default to light theme
-		preferredTheme = 'false';
+	if (preferredTheme === null) {
+		// If nothing is in local storage, use system preference
+		preferredTheme = prefersDarkMode.toString();
 	}
 
-	toggleTheme(JSON.parse(preferredTheme));
+	toggleTheme(JSON.parse(preferredTheme!));
 };
