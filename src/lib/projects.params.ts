@@ -151,6 +151,30 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'Web Application',
 		english: false,
 		japanese: true
+	},
+	{
+		slug: 'zacharyTStone',
+		color: generateRandomHexColor(),
+		description: 'Checkout my readme that is automatically generated every hour.',
+		shortDescription: 'Checkout my readme that is automatically generated every hour.',
+		links: [
+			{
+				to: 'https://github.com/ZacharyTStone/ZacharyTStone',
+				label: 'GitHub',
+				newTab: true
+			}
+		],
+		logo: Assets.Readme,
+		skills: getSkills('be', 'dev-tools'),
+		project_skills: [
+			{ label: 'cron', to: 'https://en.wikipedia.org/wiki/Cron' },
+			{ label: 'GitHub Actions', to: '' },
+			{ label: 'API', to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/' }
+		],
+		name: 'ZacharyTStone',
+		type: 'Github Readme',
+		english: true,
+		japanese: false
 	}
 ];
 

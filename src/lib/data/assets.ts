@@ -2,6 +2,7 @@ import type { Asset } from '$lib/types';
 import { theme } from '$lib/stores/theme';
 import Rapptr from '$lib/assets/images/rapptr.png';
 import Interac from '$lib/assets/images/interac.jpeg';
+import Readme from '$lib/assets/images/projects/Readme.png';
 import Github from '$lib/assets/images/github.svg';
 import Computer from '$lib/assets/images/computer.svg';
 import YouTube from '$lib/assets/images/youtube.svg';
@@ -99,7 +100,8 @@ export const COLOR_ASSETS = {
 	Riffs: { light: niceRiff, dark: niceRiff },
 	Prefecture: { light: prefecture, dark: prefecture },
 	Quote: { light: quote, dark: quote },
-	Security: { light: Security, dark: Security }
+	Security: { light: Security, dark: Security },
+	Readme: { light: Readme, dark: Readme }
 };
 
 let currentTheme: boolean;
