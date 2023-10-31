@@ -4,8 +4,9 @@
 	import { getAssetURL } from '$lib/data/assets';
 	import UIcon from '../Icon/UIcon.svelte';
 
+	import { base } from '$app/paths';
 	export let items: Array<Skill> = [];
-	const delay = 1750;
+	const delay = 2000;
 
 	let element: HTMLElement;
 
@@ -52,7 +53,7 @@
 
 		slide('left');
 		// always auto toggle right
-		autoToggle('right');
+		// autoToggle('right');
 	};
 
 	const toggleRight = () => {
@@ -60,12 +61,12 @@
 
 		slide('right');
 		// always auto toggle right
-		autoToggle('right');
+		// autoToggle('right');
 	};
 
-	onMount(() => {
-		autoToggle('right');
-	});
+	// onMount(() => {
+	// 	autoToggle('right');
+	// });
 </script>
 
 <div class="carrousel row-center">
@@ -82,7 +83,9 @@
 	<div bind:this={element} class="row overflow-hidden box-content w-150px">
 		{#each items as item}
 			<div class="box-content w-150px p-15px col-center">
-				<img class="w-120px h-120px aspect-square" src={getAssetURL(item.logo)} alt={item.name} />
+				<a href={`${base}/skills/${item.slug}`} rel="noreferrer">
+					<img class="w-120px h-120px aspect-square" src={getAssetURL(item.logo)} alt={item.name} />
+				</a>
 				<span class="text-center m-t-20px">{item.name}</span>
 			</div>
 		{/each}

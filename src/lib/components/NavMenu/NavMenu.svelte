@@ -70,10 +70,10 @@
 		padding: 0px 10px;
 		border-bottom: 1px solid var(--secondary);
 		background-color: var(--main);
+		height: 50px;
 
 		&-item {
 			text-decoration: none;
-			font-weight: 400;
 			padding: 10px 20px;
 			color: inherit;
 			display: flex;
