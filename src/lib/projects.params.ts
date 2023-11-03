@@ -38,7 +38,7 @@ const MY_PROJECTS: Array<Project> = [
 		english: true,
 		japanese: true,
 		featured: true,
-		featured_reason: 'Cleanest Code'
+		featured_reason: 'Best Overall'
 	},
 	{
 		slug: 'zach-in-japan',
