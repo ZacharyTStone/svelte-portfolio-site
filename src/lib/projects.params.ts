@@ -23,16 +23,17 @@ const MY_PROJECTS: Array<Project> = [
 		name: 'My Anime Collection',
 		skills: getSkills('fe', 'be', 'dev-tools', 'japanese'),
 		project_skills: [
-			{ label: 'React', to: 'https://reactjs.org/' },
-			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
-			{ label: 'Node', to: 'https://nodejs.org/' },
+			{ label: 'React', to: 'https://reactjs.org/', newTab: true },
+			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
+			{ label: 'Node', to: 'https://nodejs.org/', newTab: true },
 			{
 				label: 'API',
-				to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/'
+				to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/',
+				newTab: true
 			},
-			{ label: 'Authentication', to: 'https://auth0.com/' },
-			{ label: 'MongoDB', to: 'https://www.mongodb.com/' },
-			{ label: 'Heroku', to: 'https://www.heroku.com/' }
+			{ label: 'Authentication', to: 'https://auth0.com/', newTab: true },
+			{ label: 'MongoDB', to: 'https://www.mongodb.com/', newTab: true },
+			{ label: 'Heroku', to: 'https://www.heroku.com/', newTab: true }
 		],
 		type: 'Web Application',
 		english: true,
@@ -57,12 +58,12 @@ const MY_PROJECTS: Array<Project> = [
 
 		skills: getSkills('fe', 'dev-tools', 'japanese'),
 		project_skills: [
-			{ label: 'Gatsby', to: 'https://gatsby.dev/' },
-			{ label: 'React', to: 'https://reactjs.org/' },
-			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
-			{ label: 'Markdown', to: 'https://www.markdownguide.org/' },
-			{ label: 'GraphQL', to: 'https://graphql.org/' },
-			{ label: 'Gatsby Cloud', to: 'https://www.gatsbyjs.com/cloud/' }
+			{ label: 'Gatsby', to: 'https://gatsby.dev/', newTab: true },
+			{ label: 'React', to: 'https://reactjs.org/', newTab: true },
+			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
+			{ label: 'Markdown', to: 'https://www.markdownguide.org/', newTab: true },
+			{ label: 'GraphQL', to: 'https://graphql.org/', newTab: true },
+			{ label: 'Gatsby Cloud', to: 'https://www.gatsbyjs.com/cloud/', newTab: true }
 		],
 		type: 'Web Application',
 		english: true,
@@ -85,16 +86,17 @@ const MY_PROJECTS: Array<Project> = [
 
 		skills: getSkills('fe', 'be', 'dev-tools'),
 		project_skills: [
-			{ label: 'React', to: 'https://reactjs.org/' },
-			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
-			{ label: 'Node', to: 'https://nodejs.org/' },
+			{ label: 'React', to: 'https://reactjs.org/', newTab: true },
+			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
+			{ label: 'Node', to: 'https://nodejs.org/', newTab: true },
 			{
 				label: 'API',
-				to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/'
+				to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/',
+				newTab: true
 			},
-			{ label: 'Authentication', to: 'https://auth0.com/' },
-			{ label: 'MongoDB', to: 'https://www.mongodb.com/' },
-			{ label: 'Heroku', to: 'https://www.heroku.com/' }
+			{ label: 'Authentication', to: 'https://auth0.com/', newTab: true },
+			{ label: 'MongoDB', to: 'https://www.mongodb.com/', newTab: true },
+			{ label: 'Heroku', to: 'https://www.heroku.com/', newTab: true }
 		],
 		type: 'Web Application',
 		english: true,
@@ -116,11 +118,11 @@ const MY_PROJECTS: Array<Project> = [
 		name: 'Riffs!',
 		skills: getSkills('fe', 'dev-tools', 'japanese'),
 		project_skills: [
-			{ label: 'Vue', to: 'https://vuejs.org/' },
-			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
-			{ label: 'Firebase', to: 'https://firebase.google.com/' },
-			{ label: 'Authentication', to: 'https://firebase.google.com/docs/auth' },
-			{ label: 'Netlify', to: 'https://www.netlify.com/' }
+			{ label: 'Vue', to: 'https://vuejs.org/', newTab: true },
+			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
+			{ label: 'Firebase', to: 'https://firebase.google.com/', newTab: true },
+			{ label: 'Authentication', to: 'https://firebase.google.com/docs/auth', newTab: true },
+			{ label: 'Netlify', to: 'https://www.netlify.com/', newTab: true }
 		],
 		type: 'Web Application',
 		english: true,
@@ -142,10 +144,14 @@ const MY_PROJECTS: Array<Project> = [
 		logo: Assets.Prefecture,
 		skills: getSkills('fe', 'dev-tools', 'japanese'),
 		project_skills: [
-			{ label: 'React', to: 'https://reactjs.org/' },
-			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
-			{ label: 'JavaScript', to: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
-			{ label: 'Heroku', to: 'https://www.heroku.com/' }
+			{ label: 'React', to: 'https://reactjs.org/', newTab: true },
+			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
+			{
+				label: 'JavaScript',
+				to: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+				newTab: true
+			},
+			{ label: 'Heroku', to: 'https://www.heroku.com/', newTab: true }
 		],
 		name: 'Prefecture Quiz',
 		type: 'Web Application',
@@ -167,9 +173,13 @@ const MY_PROJECTS: Array<Project> = [
 		logo: Assets.Readme,
 		skills: getSkills('be', 'dev-tools'),
 		project_skills: [
-			{ label: 'cron', to: 'https://en.wikipedia.org/wiki/Cron' },
-			{ label: 'GitHub Actions', to: '' },
-			{ label: 'API', to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/' }
+			{ label: 'cron', to: 'https://en.wikipedia.org/wiki/Cron', newTab: true },
+			{ label: 'GitHub Actions', to: '', newTab: true },
+			{
+				label: 'API',
+				to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/',
+				newTab: true
+			}
 		],
 		name: 'ZacharyTStone',
 		type: 'Github Readme',
