@@ -30,13 +30,13 @@ const MY_EXPERIENCES: Array<Experience> = [
 		company: 'Rapptr Labs',
 
 		description:
-			"As a Software Engineer at Rapptr Labs, I primarily implement new features, fix bugs, and oversee OPSIQ's weekly front-end deployment. I have a proven track record of effectively communicating with clients about new features and implementing comprehensive site-wide improvements, such as updating our reusable library of components or performing security updates based on a third-party audit. While my primary responsibility is the front end, I also work on the back end.",
+			"As a Frontend Engineer at Rapptr Labs, I primarily implement new features, fix bugs, and oversee OPSIQ's weekly front-end deployment. I have a proven track record of effectively communicating with clients about new features and implementing comprehensive site-wide improvements, such as updating our reusable library of components or performing security updates based on a third-party audit. While my primary responsibility is the front end, I also work on the back end.",
 		contract: ContractType.FullTime,
 		type: 'Software Development',
 		location: 'New York, NY',
 		period: { from: new Date(2022, 7) },
 		skills: getSkills('fe', 'be', 'dev-tools', 'web-security'),
-		name: 'Software Engineer',
+		name: 'Frontend Engineer',
 		color: '#ffffff',
 		links: [
 			{
