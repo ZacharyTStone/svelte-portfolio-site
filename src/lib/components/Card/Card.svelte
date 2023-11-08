@@ -42,7 +42,7 @@
 	{href}
 	bind:this={el}
 	on:mousemove={handleHover}
-	class={`card text-inherit decoration-none inline-flex flex-col border-1px border-solid border-[var(--border)] rounded-15px duration relative fadeInFast ${classes.join(
+	class={`card text-inherit decoration-none inline-flex flex-col border-1px border-solid border-[var(--border)] rounded-15px duration relative ${classes.join(
 		' '
 	)}`}
 	style:bgColor={'red'}
