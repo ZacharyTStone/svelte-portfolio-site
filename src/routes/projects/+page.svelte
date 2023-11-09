@@ -66,11 +66,36 @@
 
 <SearchPage {title} on:search={onSearch}>
 	<div class="projects-filters">
-		{#each filters as tech}
-			<Chip active={tech.isSelected} classes={'text-0.8em'} on:click={() => onSelected(tech.slug)}>
-				{tech.name}
+		<div
+			class="flex-1 flex items-center overflow-y-auto max-w-[calc(100vw-100px)] max-w-[calc(100vw-100px)] max-h-[calc(100vh-100px)]"
+		>
+			<Chip
+				classes={'text-0.8em'}
+				on:click={() => {
+					// clear all
+					filters = filters.map((tech) => {
+						tech.isSelected = false;
+						return tech;
+					});
+				}}
+				active={filters.every((tech) => !tech.isSelected)}
+			>
+				All
 			</Chip>
-		{/each}
+			<!-- Vertical HR wrapped in a container with a fixed height -->
+			<div class="vertical-hr-container">
+				<div class="vertical-hr" />
+			</div>
+			{#each filters as tech}
+				<Chip
+					active={tech.isSelected}
+					classes={'text-0.8em'}
+					on:click={() => onSelected(tech.slug)}
+				>
+					{tech.name}
+				</Chip>
+			{/each}
+		</div>
 	</div>
 	{#if displayed.length === 0}
 		<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)] flex-1">
@@ -113,5 +138,17 @@
 		@media (max-width: 850px) {
 			grid-template-columns: repeat(1, 1fr);
 		}
+	}
+
+	.vertical-hr-container {
+		display: flex; /* Use flexbox to lay out children */
+		align-items: center; /* Center children vertically */
+		height: 50px; /* Set a fixed height for the container */
+	}
+
+	.vertical-hr {
+		border-left: 0.2px solid var(--accent-text); /* Adds the line to the left side */
+		margin: 0 10px; /* Adds margin to the left and right */
+		height: 30%; /* Makes the height of the line 80% of the parent */
 	}
 </style>
