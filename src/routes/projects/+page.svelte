@@ -66,11 +66,9 @@
 
 <SearchPage {title} on:search={onSearch}>
 	<div class="projects-filters">
-		<div
-			class="flex-1 flex items-center overflow-y-auto max-w-[calc(100vw-100px)] max-w-[calc(100vw-100px)] max-h-[calc(100vh-100px)]"
-		>
+		<div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-3 overflow-y-auto">
 			<Chip
-				classes={'text-0.8em'}
+				classes={'text-0.6em md:text-0.8em'}
 				on:click={() => {
 					// clear all
 					filters = filters.map((tech) => {
@@ -80,16 +78,12 @@
 				}}
 				active={filters.every((tech) => !tech.isSelected)}
 			>
-				All
+				No Filters
 			</Chip>
-			<!-- Vertical HR wrapped in a container with a fixed height -->
-			<div class="vertical-hr-container">
-				<div class="vertical-hr" />
-			</div>
 			{#each filters as tech}
 				<Chip
 					active={tech.isSelected}
-					classes={'text-0.8em'}
+					classes={'text-0.6em md:text-0.8em'}
 					on:click={() => onSelected(tech.slug)}
 				>
 					{tech.name}
@@ -144,6 +138,13 @@
 		display: flex; /* Use flexbox to lay out children */
 		align-items: center; /* Center children vertically */
 		height: 50px; /* Set a fixed height for the container */
+	}
+
+	// hide the hr on mobile
+	@media (max-width: 850px) {
+		.vertical-hr-container {
+			display: none;
+		}
 	}
 
 	.vertical-hr {
