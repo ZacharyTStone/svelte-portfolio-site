@@ -97,11 +97,7 @@
 			<p class="font-300">Could not find anything...</p>
 		</div>
 	{:else}
-		<h4
-			class="text-[var(--accent-text)] text-1.5em font-500 m-y-12 underline flex justify-center items-center"
-		>
-			Featured Projects
-		</h4>
+		<h4 class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto">Featured Projects</h4>
 		<div class="projects-list mt-5 mx-auto">
 			{#each displayed as project}
 				{#if project.featured}
