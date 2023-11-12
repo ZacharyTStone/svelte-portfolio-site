@@ -49,6 +49,7 @@
 	"type": "module",
 	"dependencies": {
 		"@vercel/analytics": "^1.1.0",
+		"svelte-i18n": "^4.0.0",
 		"svelte-icons-pack": "^2.1.0"
 	}
 }

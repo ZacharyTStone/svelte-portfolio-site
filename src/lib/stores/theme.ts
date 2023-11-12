@@ -1,6 +1,7 @@
 import { browser } from '$app/environment';
 import { writable } from 'svelte/store';
 import type { Writable } from 'svelte/store';
+import { locale } from 'svelte-i18n';
 
 interface ThemeStore extends Writable<boolean> {}
 
@@ -18,9 +19,9 @@ const prefersDarkMode: boolean =
 
 export const theme: ThemeStore = writable(false);
 
-export const toggleTheme = (value: boolean): void => {
+export const toggleTheme = (): void => {
 	theme.update((currentValue) => {
-		const newValue = typeof value === 'boolean' ? value : !currentValue;
+		const newValue = !currentValue;
 		updateLocalStorage(newValue);
 
 		if (browser) {
@@ -40,5 +41,5 @@ export const onHydrated = (): void => {
 		preferredTheme = prefersDarkMode.toString();
 	}
 
-	toggleTheme(JSON.parse(preferredTheme!));
+	toggleTheme();
 };

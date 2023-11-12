@@ -6,6 +6,18 @@
 	import { base } from '$app/paths';
 	import UIcon from '../Icon/UIcon.svelte';
 
+	import { locale } from 'svelte-i18n';
+
+	$: currentLocale = $locale; // Reactive declaration
+
+	function toggleLanguage() {
+		if (currentLocale === 'en') {
+			locale.set('ja');
+		} else {
+			locale.set('en');
+		}
+	}
+
 	let currentRoute = '/';
 
 	$: {
@@ -56,6 +68,16 @@
 					<UIcon icon="i-carbon-sun" />
 				{/if}
 			</button>
+			<!-- <button
+				class="bg-transparent text-1em border-none cursor-pointer hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
+				on:click={() => toggleLanguage()}
+			>
+				{#if $locale === 'en'}
+					<span class="text-xs">EN</span>
+				{:else}
+					<span class="text-xs">JA</span>
+				{/if}
+			</button> -->
 		</div>
 	</nav>
 </div>

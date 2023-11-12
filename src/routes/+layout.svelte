@@ -9,8 +9,6 @@
 
 	inject({ mode: dev ? 'development' : 'production' });
 
-	export const prerender = true;
-
 	onMount(() => onHydrated());
 </script>
 
