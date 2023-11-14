@@ -1,3 +1,26 @@
 {
-	"title": "The 10 Best Movies of 2016"
+	"HOME": {
+		"title": "Home",
+		"name": "Zach",
+		"lastName": "Stone",
+		"description": "a software engineer with professional experience in full-stack web developement."
+	},
+	"PROJECTS": {
+		"title": "Projects"
+	},
+	"EXPERIENCES": {
+		"title": "Experiences"
+	},
+	"SKILLS": {
+		"title": "Skills"
+	},
+	"RESUME": {
+		"title": "Resume",
+		"english": "English",
+		"japanese": "Japanese",
+		"japanese-work": "Japanese (Work)"
+	},
+	"SEARCH": {
+		"title": "Search"
+	}
 }

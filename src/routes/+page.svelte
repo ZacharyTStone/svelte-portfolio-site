@@ -6,7 +6,7 @@
 	import { HOME, getPlatfromIcon } from '$lib/params';
 	import MY_SKILLS from '$lib/skills.params';
 	import { useTitle, isEmail } from '$lib/utils/helpers';
-
+	import { _ } from 'svelte-i18n';
 	const { description, lastName, links, name, title, skills } = HOME;
 </script>
 
@@ -19,7 +19,10 @@
 	"
 >
 	<div class="md:flex-1 gap-10px fadeIn">
-		<MainTitle classes="md:text-left ">{name} {lastName},</MainTitle>
+		<MainTitle classes="md:text-left "
+			>{$_(name)}
+			{$_(lastName)},</MainTitle
+		>
 		<p
 			class="text-[var(--tertiary-text)]  text-center md:text-left text-[1.2em] font-extralight
 
@@ -27,7 +30,7 @@
 		
 		"
 		>
-			{description}
+			{$_(description)}
 		</p>
 		<div class="row justify-center md:justify-start p-y-15px p-x-0px gap-3">
 			{#each links as link}

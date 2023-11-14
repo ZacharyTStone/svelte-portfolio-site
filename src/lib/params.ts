@@ -15,11 +15,11 @@ import { Icons } from './utils';
 export const TITLE_SUFFIX = 'Zach Stone';
 
 export const NavBar = {
-	home: 'Home',
-	personal: 'Projects',
-	career: 'Experience',
-	resume: 'Resume',
-	skills: 'Skills'
+	home: 'NAVBAR.home',
+	personal: 'NAVBAR.personal',
+	career: 'NAVBAR.career',
+	resume: 'NAVBAR.resume',
+	skills: 'NAVBAR.skills'
 };
 
 export const getPlatfromIcon = (platform: Platform): Icons => {
@@ -42,10 +42,10 @@ export const getPlatfromIcon = (platform: Platform): Icons => {
 };
 
 export const HOME: HomePageParams = {
-	title: 'Home',
-	name: 'Zach',
-	lastName: 'Stone',
-	description: 'a software engineer with professional experience in full-stack web developement.',
+	title: 'HOME',
+	name: 'HOME.name',
+	lastName: 'HOME.lastName',
+	description: 'HOME.description',
 	links: [
 		{ platform: Platform.GitHub, link: 'https://github.com/ZacharyTStone', newTab: true },
 		{
@@ -57,41 +57,41 @@ export const HOME: HomePageParams = {
 };
 
 export const PROJECTS: ProjectPageParams = {
-	title: 'Personal Projects',
+	title: 'PROJECTS.title',
 	items: MY_PROJECTS
 };
 
 export const EXPERIENCES: ExperiencePageParams = {
-	title: 'Experience',
+	title: 'EXPERIENCES.title',
 	items: MY_EXPERIENCES
 };
 
 export const SKILLS: SkillsPageParams = {
-	title: 'Skills',
+	title: 'SKILLS.title',
 	items: MY_SKILLS
 };
 
 export const RESUME: ResumePageParams = {
-	title: 'Resumé',
+	title: 'RESUME.title',
 	links: [
 		{
 			to: 'https://drive.google.com/file/d/1WrIeOGQ86a2U0DSC8ay4g1NtUr9Ieygs/view?usp=sharing',
-			label: 'English Resume',
+			label: 'RESUME.english',
 			newTab: true
 		},
 		{
 			to: 'https://docs.google.com/spreadsheets/d/15MXDUEWai1SW2OZ6Nt8MbvfxRC8kAfCO/edit?usp=sharing&ouid=110021340560949770286&rtpof=true&sd=true',
-			label: 'Japanese Resume',
+			label: 'RESUME.japanese',
 			newTab: true
 		},
 		{
 			to: 'https://docs.google.com/document/d/1SFRXMNP7yeWrZRcPUAJX-_R28WVdn3w3V7w7fxJnn0w/edit?usp=sharing',
-			label: 'Japanese Work History Resume',
+			label: 'RESUME.japanese_work',
 			newTab: true
 		}
 	]
 };
 
 export const SEARCH: SearchPageParams = {
-	title: 'Search'
+	title: 'SEARCH.title'
 };

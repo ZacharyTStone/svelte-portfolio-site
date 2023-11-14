@@ -1,3 +1,26 @@
 {
-	"title": "コンプリート・チューン"
+	"HOME": {
+		"title": "ホーム",
+		"name": "ザック",
+		"lastName": "ストーン",
+		"description": "フルスタックWeb開発における専門的な経験を持つソフトウェアエンジニア。"
+	},
+	"PROJECTS": {
+		"title": "プロジェクト"
+	},
+	"EXPERIENCES": {
+		"title": "経験"
+	},
+	"SKILLS": {
+		"title": "スキル"
+	},
+	"RESUME": {
+		"title": "履歴書",
+		"english": "履歴書（英語）",
+		"japanese": "履歴書(日本語)",
+		"japanese-work": "職務経歴書（日本語）"
+	},
+	"SEARCH": {
+		"title": "検索"
+	}
 }
