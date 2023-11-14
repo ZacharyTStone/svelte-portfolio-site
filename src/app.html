@@ -60,6 +60,15 @@
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
+		<script>
+			// Immediately executed function to set the theme
+			(function () {
+				const storedTheme = localStorage.getItem('zach-stone-portfolio-theme');
+				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				const defaultTheme = storedTheme ?? (prefersDark ? 'dark' : 'light');
+				document.documentElement.setAttribute('data-theme', defaultTheme);
+			})();
+		</script>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
