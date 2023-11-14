@@ -67,7 +67,9 @@
 
 				// fix old cache of theme implementation
 				if (storedTheme !== 'dark' && storedTheme !== 'light') {
-					storedTheme = 'light';
+					// check system theme
+					const prefersDark = window?.matchMedia('(prefers-color-scheme: dark)')?.matches;
+					storedTheme = prefersDark ? 'dark' : 'light';
 				}
 				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 				const defaultTheme = storedTheme ?? (prefersDark ? 'dark' : 'light');
