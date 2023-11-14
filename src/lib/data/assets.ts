@@ -104,12 +104,12 @@ export const COLOR_ASSETS = {
 	Readme: { light: Readme, dark: Readme }
 };
 
-let currentTheme: boolean;
+let currentTheme: string;
 theme.subscribe((v) => (currentTheme = v));
 
 // assets.js
 export default COLOR_ASSETS;
 
 export const getAssetURL = (asset: Asset): string => {
-	return typeof asset === 'string' ? asset : currentTheme ? asset.dark : asset.light;
+	return typeof asset === 'string' ? asset : currentTheme === 'dark' ? asset.dark : asset.light;
 };

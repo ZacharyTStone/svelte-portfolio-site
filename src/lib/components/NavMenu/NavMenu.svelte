@@ -60,9 +60,9 @@
 			</a>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
-				on:click={() => toggleTheme()}
+				on:click={() => toggleTheme($theme === 'dark' ? 'light' : 'dark')}
 			>
-				{#if $theme}
+				{#if $theme === 'light'}
 					<UIcon icon="i-carbon-moon" />
 				{:else}
 					<UIcon icon="i-carbon-sun" />
