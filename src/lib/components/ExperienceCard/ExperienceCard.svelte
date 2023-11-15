@@ -8,6 +8,7 @@
 	import { getAssetURL } from '$lib/data/assets';
 	import { base } from '$app/paths';
 	import UIcon from '../Icon/UIcon.svelte';
+	import { _ } from 'svelte-i18n';
 
 	export let experience: Experience;
 
@@ -30,7 +31,7 @@
 			<h3
 				class="flex text-[0.9em] flex-col items-start sm:flex-row sm:items-center justify-between sm:gap-5 md:flex-col md:items-start md:gap-0 lg:flex-row lg:items-center"
 			>
-				<CardTitle title={experience.name} />
+				<CardTitle title={$_(experience.name)} />
 			</h3>
 			<div class="row flex-wrap m-b-2 gap-1 text-0.9em font-300">
 				<ChipIcon name={`Company: ${experience.company}`}>
@@ -51,7 +52,7 @@
 				{#each experience.skills as skill}
 					<ChipIcon
 						logo={getAssetURL(skill.logo)}
-						name={skill.name}
+						name={$_(skill.name)}
 						href={`${base}/skills/${skill.slug}`}
 					/>
 				{/each}

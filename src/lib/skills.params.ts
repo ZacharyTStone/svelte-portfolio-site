@@ -94,28 +94,25 @@ const MY_SKILLS = [
 	s({
 		slug: 'fe',
 		color: 'yellow',
-		description:
-			'I have experience using a variety of frontend frameworks and tools to create responsive and accessible web applications. I am also comfortable using CSS and CSS-in-JS tools, such as Styled Components and Tailwind. Crafting strong, reusable components is an art, and I am always looking to improve my skills in this area.',
+		description: 'SKILLS.fe.description',
 		logo: Assets.TypeScript,
-		name: 'Frontend Web',
+		name: 'SKILLS.fe.name',
 		extraInfo: FE_EXTRA_INFO
 	}),
 	s({
 		slug: 'be',
 		color: 'blue',
-		description:
-			'I have experience using a variety of backend technologies to create REST and GraphQL APIs. I also have experience working with databases in both SQL and NoSQL formats. At Rapptr Labs, I often work on backend tickets for a business-level application using Node.js and Express with a database in SQL, interacted with through Prisma.',
+		description: 'SKILLS.be.description',
 		logo: Assets.NodeJs,
-		name: 'Backend Web',
+		name: 'SKILLS.be.name',
 		extraInfo: BE_EXTRA_INFO
 	}),
 	s({
 		slug: 'web-security',
 		color: 'green',
-		description:
-			"My fascination with web security sparked when I implemented a comprehensive site overhaul according to a third-party audit at work. This experience exposed me to numerous web security concepts, and since then, I've been avidly seeking to deepen my understanding of this field. I am consistently exploring ways to increase the security of my applications.",
+		description: 'SKILLS.web-security.description',
 		logo: Assets.Security,
-		name: 'Web Security',
+		name: 'SKILLS.web-security.name',
 		extraInfo: SECURITY_EXTRA_INFO,
 		certifications: [
 			{
@@ -127,19 +124,17 @@ const MY_SKILLS = [
 	s({
 		slug: 'dev-tools',
 		color: 'red',
-		description:
-			'Whether it is fixing merge conflicts in Git, or updating tickets in Jira, I am comfortable using a variety of tools to get the job done.',
+		description: 'SKILLS.dev-tools.description',
 		logo: Assets.Slack,
-		name: 'Dev Tools',
+		name: 'SKILLS.dev-tools.name',
 		extraInfo: OTHER_EXTRA_INFO
 	}),
 	s({
 		slug: 'japanese',
 		color: 'orange',
-		description:
-			'Outside of coding this is my biggest passion. I hope to one day be fluent and spend some time every day studying.',
+		description: 'SKILLS.japanese.description',
 		logo: Assets.Japan,
-		name: 'Japanese',
+		name: 'SKILLS.japanese.name',
 		certifications: [
 			{
 				label: 'Japanese Language Proficiency Test level N2'

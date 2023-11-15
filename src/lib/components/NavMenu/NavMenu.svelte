@@ -5,7 +5,7 @@
 
 	import { base } from '$app/paths';
 	import UIcon from '../Icon/UIcon.svelte';
-
+	import { _ } from 'svelte-i18n';
 	import { locale } from 'svelte-i18n';
 
 	$: currentLocale = $locale; // Reactive declaration
@@ -41,13 +41,15 @@
 			class="nav-menu-left decoration-none flex flex-row items-center cursor-pointer px-4 text-[var(--secondary-text)] self-stretch hover:bg-[color:var(--main-hover)]"
 		>
 			<UIcon icon="i-carbon-code" classes="text-2em" />
-			<span class="ml-2 text-md font-bold hidden md:inline">{HOME.name} {HOME.lastName}</span>
+			<span class="ml-2 text-md font-bold hidden md:inline"
+				>{$_(HOME.name)} {$_(HOME.lastName)}</span
+			>
 		</a>
 		<div class="flex flex-row flex-1 self-center justify-center">
 			{#each items as item}
 				<a href={`${base}${item.to}`} class="nav-menu-item !text-[var(--secondary-text)]">
 					<UIcon icon={item.icon} classes="text-1.3em" />
-					<span class="nav-menu-item-label">{item.title}</span>
+					<span class="nav-menu-item-label">{$_(item.title)}</span>
 				</a>
 			{/each}
 		</div>
@@ -68,7 +70,7 @@
 					<UIcon icon="i-carbon-sun" />
 				{/if}
 			</button>
-			<!-- <button
+			<button
 				class="bg-transparent text-1em border-none cursor-pointer hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
 				on:click={() => toggleLanguage()}
 			>
@@ -77,7 +79,7 @@
 				{:else}
 					<span class="text-xs">JA</span>
 				{/if}
-			</button> -->
+			</button>
 		</div>
 	</nav>
 </div>

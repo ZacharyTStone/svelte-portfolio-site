@@ -5,14 +5,39 @@
 		"lastName": "Stone",
 		"description": "a software engineer with professional experience in full-stack web developement."
 	},
-	"PROJECTS": {
-		"title": "Projects"
+	"NAVBAR": {
+		"home": "Home",
+		"personal": "Projects",
+		"career": "Experience",
+		"skills": "Skills",
+		"resume": "Resume"
 	},
+
 	"EXPERIENCES": {
 		"title": "Experiences"
 	},
 	"SKILLS": {
-		"title": "Skills"
+		"title": "Skills",
+		"fe": {
+			"description": "I have experience using a variety of frontend frameworks and tools to create responsive and accessible web applications. I am also comfortable using CSS and CSS-in-JS tools, such as Styled Components and Tailwind. Crafting strong, reusable components is an art, and I am always looking to improve my skills in this area.",
+			"name": "Frontend Web"
+		},
+		"be": {
+			"description": "I have experience using a variety of backend technologies to create REST and GraphQL APIs. I also have experience working with databases in both SQL and NoSQL formats. At Rapptr Labs, I often work on backend tickets for a business-level application using Node.js and Express with a database in SQL, interacted with through Prisma.",
+			"name": "Backend Web"
+		},
+		"web-security": {
+			"description": "My fascination with web security sparked when I implemented a comprehensive site overhaul according to a third-party audit at work. This experience exposed me to numerous web security concepts, and since then, I've been avidly seeking to deepen my understanding of this field. I am consistently exploring ways to increase the security of my applications.",
+			"name": "Web Security"
+		},
+		"dev-tools": {
+			"description": "Whether it is fixing merge conflicts in Git, or updating tickets in Jira, I am comfortable using a variety of tools to get the job done.",
+			"name": "Dev Tools"
+		},
+		"japanese": {
+			"description": "Outside of coding this is my biggest passion. I hope to one day be fluent and spend some time every day studying.",
+			"name": "Japanese"
+		}
 	},
 	"RESUME": {
 		"title": "Resume",
@@ -22,5 +47,47 @@
 	},
 	"SEARCH": {
 		"title": "Search"
+	},
+	"PROJECTS": {
+		"title": "Projects",
+		"MY_ANIME_COLLECTION": {
+			"name": "My Anime Collection",
+			"description": "My Anime Collection is a free anime tracker where you can explore and create custom playlists of your favorite anime.",
+			"shortDescription": "Find and keep track of your favorite anime.",
+			"type": "Web Application",
+			"featured_reason": "Cleanest Code"
+		},
+		"ZACH_IN_JAPAN": {
+			"name": "Zach In Japan",
+			"description": "My blog. Read about coding concepts, Japan, and all things related to being a web developer.",
+			"shortDescription": "My blog. Read about coding concepts, Japan, and all things related to being a web developer.",
+			"type": "Web Application",
+			"featured_reason": "Most Personal"
+		},
+		"HAKU": {
+			"name": "HAKU",
+			"description": "Track and compare jobs during the interview process.",
+			"shortDescription": "Track and compare jobs during the interview process.",
+			"type": "Web Application",
+			"featured_reason": "Highest Business Value"
+		},
+		"RIFFS": {
+			"name": "Riffs!",
+			"description": "A place to share your new songs, covers, and musical ideas with the world.",
+			"shortDescription": "A place to share your new songs, covers, and musical ideas with the world.",
+			"type": "Web Application"
+		},
+		"JAPANESE_QUIZ": {
+			"name": "Prefecture Quiz",
+			"description": "Test your knowledge of Japanese prefectures with this fun quiz.",
+			"shortDescription": "Test your knowledge of Japanese prefectures with this fun quiz.",
+			"type": "Web Application"
+		},
+		"ZACHARYTSTONE": {
+			"name": "ZacharyTStone",
+			"description": "Checkout my readme that is automatically generated every hour.",
+			"shortDescription": "Checkout my readme that is automatically generated every hour.",
+			"type": "Github Readme"
+		}
 	}
 }

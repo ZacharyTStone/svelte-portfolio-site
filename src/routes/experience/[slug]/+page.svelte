@@ -11,12 +11,12 @@
 	import Banner from '$lib/components/Banner/Banner.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
-
+	import { _ } from 'svelte-i18n';
 	export let data: { experience?: Experience };
 
 	const { title } = EXPERIENCES;
 
-	$: computedTitle = data.experience ? `${data.experience.name} - ${title}` : title;
+	$: computedTitle = data.experience ? `${$_(data.experience.name)} - ${title}` : title;
 </script>
 
 <TabTitle title={computedTitle} />
@@ -31,10 +31,12 @@
 		<Banner img={getAssetURL(data.experience.logo)}>
 			<div class="col-center p-y-20">
 				<div class="text-0.9em">
-					<MainTitle>{data.experience.name}</MainTitle>
+					<MainTitle>{$_(data.experience.name)}</MainTitle>
 				</div>
 				<p class="font-300 text-[var(--tertiary-text)] m-y-2 text-center">
-					{data.experience.company} · {data.experience.location} · {data.experience.type}
+					{$_(data.experience.company)} · {$_(data.experience.location)} · {$_(
+						data.experience.type
+					)}
 				</p>
 				<div class="w-75%">
 					<CardDivider />
@@ -58,12 +60,12 @@
 						>
 							<CardLogo
 								src={getAssetURL(item.logo)}
-								alt={item.name}
+								alt={$_(item.name)}
 								radius={'0px'}
 								size={15}
 								classes="mr-2"
 							/>
-							<span class="text-[0.9em]">{item.name}</span>
+							<span class="text-[0.9em]">{$_(item.name)}</span>
 						</Chip>
 					{/each}
 				</div>
@@ -72,7 +74,9 @@
 		<div class="pt-3 pb-1 overflow-x-hidden w-full">
 			<div class="px-10px m-y-5">
 				{#if data.experience.description}
-					<Markdown content={data.experience.description ?? 'This place is yet to be filled...'} />
+					<Markdown
+						content={$_(data.experience.description) ?? 'This place is yet to be filled...'}
+					/>
 				{:else}
 					<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
 						<UIcon icon="i-carbon-text-font" classes="text-3.5em" />

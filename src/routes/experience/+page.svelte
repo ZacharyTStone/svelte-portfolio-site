@@ -5,6 +5,7 @@
 	import { EXPERIENCES } from '$lib/params';
 	import type { Experience } from '$lib/types';
 
+	import { _ } from 'svelte-i18n';
 	const { items, title } = EXPERIENCES;
 
 	let result: Array<Experience> = [...items];
@@ -18,7 +19,7 @@
 					(experience) =>
 						experience.name.toLowerCase().includes(query) ||
 						experience.company.toLowerCase().includes(query) ||
-						experience.description.toLowerCase().includes(query)
+						$_(experience.description).toLowerCase().includes(query)
 			  );
 	};
 </script>

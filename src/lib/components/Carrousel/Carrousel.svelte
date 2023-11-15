@@ -12,6 +12,7 @@
 
 	let timeout: unknown;
 	let index = 0;
+	import { _ } from 'svelte-i18n';
 
 	$: {
 		if (element) {
@@ -84,9 +85,13 @@
 		{#each items as item}
 			<div class="box-content w-150px p-15px col-center">
 				<a href={`${base}/skills/${item.slug}`} rel="noreferrer">
-					<img class="w-120px h-120px aspect-square" src={getAssetURL(item.logo)} alt={item.name} />
+					<img
+						class="w-120px h-120px aspect-square"
+						src={getAssetURL(item.logo)}
+						alt={$_(item.name)}
+					/>
 				</a>
-				<span class="text-center m-t-20px">{item.name}</span>
+				<span class="text-center m-t-20px">{$_(item.name)}</span>
 			</div>
 		{/each}
 	</div>

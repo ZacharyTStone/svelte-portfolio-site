@@ -15,6 +15,7 @@
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
 	import { Icons } from '$lib/utils/index';
 	import Icon from '$lib/components/Icon/Icon.svelte';
+	import { _ } from 'svelte-i18n';
 
 	// @ts-ignore
 	import { tooltip } from '@svelte-plugins/tooltips';
@@ -41,7 +42,7 @@
 			<Banner img={getAssetURL(data.project.logo)}>
 				<div class="col-center p-y-20">
 					<div class="text-0.9em">
-						<MainTitle>{data.project.name}</MainTitle>
+						<MainTitle>{$_(data.project.name)}</MainTitle>
 					</div>
 					<p class="font-300 text-center text-[var(--tertiary-text)] m-y-2">{data.project.type}</p>
 					<div class="w-75%">
@@ -69,7 +70,7 @@
 			<div class="pt-3 pb-1 overflow-x-hidden w-full">
 				<div class="px-10px m-y-5">
 					{#if data.project.description}
-						<Markdown content={data.project.description} />
+						<Markdown content={$_(data.project.description)} />
 					{:else}
 						<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
 							<UIcon icon="i-carbon-text-font" classes="text-3.5em" />
