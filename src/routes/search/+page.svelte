@@ -34,7 +34,7 @@
 			}
 
 			if (typeof value === 'string') {
-				return value.toLowerCase().includes(query.toLowerCase());
+				return $_(value.toLowerCase()).includes(query.toLowerCase());
 			} else if (Array.isArray(value)) {
 				return value.some((item) => containsQuery(item, depth + 1));
 			} else if (typeof value === 'object' && value !== null) {
@@ -119,7 +119,7 @@
 			{#each result as { data, icon, name, to }}
 				<Chip href={`${base}/${to}`} classes="flex flex-row items-center gap-2" newTab={false}>
 					<UIcon {icon} />
-					<span>{name}</span>
+					<span>{$_(name)}</span>
 				</Chip>
 
 				{#if data.extraInfo}
