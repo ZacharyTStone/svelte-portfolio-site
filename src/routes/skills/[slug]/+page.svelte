@@ -9,7 +9,7 @@
 	import type { Skill } from '$lib/types';
 	import { getAssetURL } from '$lib/data/assets';
 	import { SKILLS } from '$lib/params';
-	import Markdown from '$lib/components/Markdown.svelte';
+
 	import TabTitle from '$lib/components/TabTitle.svelte';
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import Banner from '$lib/components/Banner/Banner.svelte';
@@ -85,7 +85,7 @@
 			<div class="pt-3 pb-1 overflow-x-hidden w-full">
 				<div class="px-10px m-y-5">
 					{#if data.skill.description}
-						<Markdown content={$_(data.skill.description) ?? 'This place is yet to be filled...'} />
+						{$_(data.skill.description)}
 					{:else}
 						<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
 							<UIcon icon="i-carbon-text-font" classes="text-3.5em" />
