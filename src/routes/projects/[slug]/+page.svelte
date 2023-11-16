@@ -92,12 +92,12 @@
 								>
 									<CardLogo
 										src={getAssetURL(item.logo)}
-										alt={item.name}
+										alt={$_(item.name)}
 										radius={'0px'}
 										size={15}
 										classes="mr-2"
 									/>
-									<span class="text-[0.9em]">{item.name}</span>
+									<span class="text-[0.9em]">{$_(item.name)}</span>
 								</Chip>
 							{/each}
 						</div>

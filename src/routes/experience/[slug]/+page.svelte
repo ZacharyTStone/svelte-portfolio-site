@@ -76,6 +76,7 @@
 				{#if data.experience.description}
 					<Markdown
 						content={$_(data.experience.description) ?? 'This place is yet to be filled...'}
+						locale="en"
 					/>
 				{:else}
 					<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">

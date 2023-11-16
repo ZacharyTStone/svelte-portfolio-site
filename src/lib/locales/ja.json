@@ -15,18 +15,18 @@
 	},
 
 	"EXPERIENCES": {
-		"title": "仕事",
+		"title": "経験",
 		"interac": {
-			"name": "Assistant Language Teacher",
-			"description": "As an ALT (Assistant Language Teacher) at Interac, I taught English to Japanese students in public schools...",
-			"type": "Teaching",
-			"location": "Fukushima, Japan"
+			"name": "アシスタント言語教師",
+			"description": "インタラックのALT（アシスタント言語教師）として、公立学校の日本の学生に英語を教えました...",
+			"type": "教育",
+			"location": "日本、福島"
 		},
 		"rapptr": {
-			"name": "Frontend Engineer",
-			"description": "As a Frontend Engineer at Rapptr Labs, I primarily implement new features, fix bugs, and oversee OPSIQ's weekly front-end deployment...",
-			"type": "Software Development",
-			"location": "New York, NY"
+			"name": "フロントエンドエンジニア",
+			"description": "Rapptr Labsのフロントエンドエンジニアとして、主に新機能の実装、バグの修正、OPSIQの週間フロントエンド展開の監督を行っています...",
+			"type": "ソフトウェア開発",
+			"location": "ニューヨーク、NY"
 		}
 	},
 	"SKILLS": {
