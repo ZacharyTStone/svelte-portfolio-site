@@ -88,6 +88,7 @@ export interface PageParams {
 
 export interface PageWithSearchParams<T> extends PageParams {
 	items: Array<T>;
+	no_filter_option?: string;
 }
 
 export interface HomeLink {

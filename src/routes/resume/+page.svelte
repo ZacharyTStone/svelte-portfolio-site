@@ -4,6 +4,7 @@
 	import { RESUME } from '$lib/params';
 	import Card from '$lib/components/Card/Card.svelte';
 	const { links, title } = RESUME;
+	import { _ } from 'svelte-i18n';
 </script>
 
 <CommonPage {title}>
@@ -11,7 +12,7 @@
 		{#if links?.length}
 			{#each links as item}
 				<a href={item.to} target={item.newTab ? '_blank' : '_self'}>
-					<Card>{item?.label}</Card>
+					<Card>{$_(item?.label)}</Card>
 				</a>
 			{/each}
 		{:else}

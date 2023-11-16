@@ -75,9 +75,9 @@
 				on:click={() => toggleLanguage()}
 			>
 				{#if $locale === 'en'}
-					<span class="text-xs">EN</span>
-				{:else}
 					<span class="text-xs">JA</span>
+				{:else}
+					<span class="text-xs">EN</span>
 				{/if}
 			</button>
 		</div>

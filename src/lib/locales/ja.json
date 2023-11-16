@@ -16,6 +16,7 @@
 
 	"EXPERIENCES": {
 		"title": "経験",
+
 		"interac": {
 			"name": "アシスタント言語教師",
 			"description": "インタラックのALT（アシスタント言語教師）として、公立学校の日本の学生に英語を教えました...",
@@ -54,15 +55,16 @@
 	},
 	"RESUME": {
 		"title": "履歴書",
-		"english": "英語",
-		"japanese": "日本語",
-		"japanese-work": "日本語（業務用）"
+		"english": "暦書（英語）",
+		"japanese": "暦書",
+		"japanese_work": "職務経歴書"
 	},
 	"SEARCH": {
 		"title": "検索"
 	},
 	"PROJECTS": {
 		"title": "プロジェクト",
+		"no_filter_option": "フィルタ無し",
 		"MY_ANIME_COLLECTION": {
 			"name": "マイ・アニメ・コレクション",
 			"description": "マイ・アニメ・コレクションは、お気に入りのアニメを探索し、カスタムプレイリストを作成できる無料のアニメトラッカーです。",

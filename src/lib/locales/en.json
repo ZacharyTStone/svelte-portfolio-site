@@ -55,13 +55,14 @@
 		"title": "Resume",
 		"english": "English",
 		"japanese": "Japanese",
-		"japanese-work": "Japanese (Work)"
+		"japanese_work": "Japanese (Work)"
 	},
 	"SEARCH": {
 		"title": "Search"
 	},
 	"PROJECTS": {
 		"title": "Projects",
+		"no_filter_option": "No Filters",
 		"MY_ANIME_COLLECTION": {
 			"name": "My Anime Collection",
 			"description": "My Anime Collection is a free anime tracker where you can explore and create custom playlists of your favorite anime.",

@@ -67,9 +67,9 @@
 
 <SearchPage {title} on:search={onSearch}>
 	<div class="projects-filters">
-		<div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-3 overflow-y-auto">
+		<div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-3 overflow-y-auto">
 			<Chip
-				classes={'text-0.6em md:text-0.8em'}
+				classes={'text-1em md:text-0.8em'}
 				on:click={() => {
 					// clear all
 					filters = filters.map((tech) => {
@@ -79,12 +79,12 @@
 				}}
 				active={filters.every((tech) => !tech.isSelected)}
 			>
-				No Filters
+				{$_(PROJECTS.no_filter_option ?? 'N/A')}
 			</Chip>
 			{#each filters as tech}
 				<Chip
 					active={tech.isSelected}
-					classes={'text-0.6em md:text-0.8em min-w-max-content'}
+					classes={'text-1em md:text-0.8em min-w-max-content'}
 					on:click={() => onSelected(tech.slug)}
 				>
 					{$_(tech.name)}
@@ -129,24 +129,5 @@
 		@media (max-width: 850px) {
 			grid-template-columns: repeat(1, 1fr);
 		}
-	}
-
-	.vertical-hr-container {
-		display: flex; /* Use flexbox to lay out children */
-		align-items: center; /* Center children vertically */
-		height: 50px; /* Set a fixed height for the container */
-	}
-
-	// hide the hr on mobile
-	@media (max-width: 850px) {
-		.vertical-hr-container {
-			display: none;
-		}
-	}
-
-	.vertical-hr {
-		border-left: 0.2px solid var(--accent-text); /* Adds the line to the left side */
-		margin: 0 10px; /* Adds margin to the left and right */
-		height: 30%; /* Makes the height of the line 80% of the parent */
 	}
 </style>

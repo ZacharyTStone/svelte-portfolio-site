@@ -58,7 +58,8 @@ export const HOME: HomePageParams = {
 
 export const PROJECTS: ProjectPageParams = {
 	title: 'PROJECTS.title',
-	items: MY_PROJECTS
+	items: MY_PROJECTS,
+	no_filter_option: 'PROJECTS.no_filter_option'
 };
 
 export const EXPERIENCES: ExperiencePageParams = {
