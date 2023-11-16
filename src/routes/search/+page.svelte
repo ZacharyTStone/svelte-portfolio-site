@@ -34,7 +34,9 @@
 			}
 
 			if (typeof value === 'string') {
-				return $_(value.toLowerCase()).includes(query.toLowerCase());
+				// needs more work to get working in Japanese mode
+				const includesValue = $_(value.toLowerCase()).includes(query.toLowerCase());
+				return includesValue;
 			} else if (Array.isArray(value)) {
 				return value.some((item) => containsQuery(item, depth + 1));
 			} else if (typeof value === 'object' && value !== null) {
