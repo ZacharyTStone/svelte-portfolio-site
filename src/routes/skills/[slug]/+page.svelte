@@ -9,12 +9,13 @@
 	import type { Skill } from '$lib/types';
 	import { getAssetURL } from '$lib/data/assets';
 	import { SKILLS } from '$lib/params';
-	import Markdown from '$lib/components/Markdown.svelte';
+
 	import TabTitle from '$lib/components/TabTitle.svelte';
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import Banner from '$lib/components/Banner/Banner.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
+	import { _ } from 'svelte-i18n';
 
 	type Related = {
 		display: string;
@@ -41,8 +42,8 @@
 			if (item.skills.some((tech) => tech.slug === skill.slug)) {
 				out.push({
 					img: getAssetURL(item.logo),
-					display: `${item.name} (${item.type})`,
-					name: item.name,
+					display: `${item.name}`,
+					name: $_(item.name),
 					type: 'projects',
 					url: `/projects/${item.slug}`
 				});
@@ -52,8 +53,8 @@
 			if (item.skills.some((tech) => tech.slug === skill.slug)) {
 				out.push({
 					img: getAssetURL(item.logo),
-					display: `${item.name} @ ${item.company}`,
-					name: item.name,
+					display: `${$_(item.name)}`,
+					name: $_(item.name),
 					type: 'experience',
 					url: `/experience/${item.slug}`
 				});
@@ -63,7 +64,7 @@
 		return out;
 	};
 
-	$: computedTitle = data.skill ? `${data.skill.name} - ${title}` : title;
+	$: computedTitle = data.skill ? `${$_(data.skill.name)} - ${title}` : title;
 
 	$: related = data.skill ? getRelatedProjects() : [];
 </script>
@@ -79,12 +80,12 @@
 	{:else}
 		<div class="flex flex-col items-center overflow-x-hidden">
 			<Banner img={getAssetURL(data.skill.logo)}>
-				<MainTitle>{data.skill.name}</MainTitle>
+				<MainTitle>{$_(data.skill.name)}</MainTitle>
 			</Banner>
 			<div class="pt-3 pb-1 overflow-x-hidden w-full">
 				<div class="px-10px m-y-5">
 					{#if data.skill.description}
-						<Markdown content={data.skill.description ?? 'This place is yet to be filled...'} />
+						{$_(data.skill.description)}
 					{:else}
 						<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
 							<UIcon icon="i-carbon-text-font" classes="text-3.5em" />
@@ -100,7 +101,7 @@
 							"
 							>
 								<span class="text-[var(--accent-text)] text-[1.1em] font-500">
-									{any.title}
+									{$_(any.title)}
 								</span>
 								<div
 									class="px-10px
@@ -151,8 +152,14 @@
 							href={`${base}${item.url}`}
 							newTab={false}
 						>
-							<CardLogo src={item.img} alt={item.name} radius={'0px'} size={15} classes="mr-2" />
-							<span class="text-[0.9em]">{item.display}</span>
+							<CardLogo
+								src={item.img}
+								alt={$_(item.name)}
+								radius={'0px'}
+								size={15}
+								classes="mr-2"
+							/>
+							<span class="text-[0.9em]">{$_(item.display)}</span>
 						</Chip>
 					{/each}
 				</div>

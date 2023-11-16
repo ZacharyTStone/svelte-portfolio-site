@@ -7,7 +7,7 @@
 	import { type Project } from '$lib/types';
 	import { getAssetURL } from '$lib/data/assets';
 	import { PROJECTS } from '$lib/params';
-	import Markdown from '$lib/components/Markdown.svelte';
+
 	import TabTitle from '$lib/components/TabTitle.svelte';
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import Banner from '$lib/components/Banner/Banner.svelte';
@@ -15,6 +15,7 @@
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
 	import { Icons } from '$lib/utils/index';
 	import Icon from '$lib/components/Icon/Icon.svelte';
+	import { _ } from 'svelte-i18n';
 
 	// @ts-ignore
 	import { tooltip } from '@svelte-plugins/tooltips';
@@ -41,9 +42,11 @@
 			<Banner img={getAssetURL(data.project.logo)}>
 				<div class="col-center p-y-20">
 					<div class="text-0.9em">
-						<MainTitle>{data.project.name}</MainTitle>
+						<MainTitle>{$_(data.project.name)}</MainTitle>
 					</div>
-					<p class="font-300 text-center text-[var(--tertiary-text)] m-y-2">{data.project.type}</p>
+					<p class="font-300 text-center text-[var(--tertiary-text)] m-y-2">
+						{$_(data.project.type)}
+					</p>
 					<div class="w-75%">
 						<CardDivider />
 					</div>
@@ -69,7 +72,7 @@
 			<div class="pt-3 pb-1 overflow-x-hidden w-full">
 				<div class="px-10px m-y-5">
 					{#if data.project.description}
-						<Markdown content={data.project.description} />
+						{$_(data.project.description)}
 					{:else}
 						<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
 							<UIcon icon="i-carbon-text-font" classes="text-3.5em" />
@@ -89,12 +92,12 @@
 								>
 									<CardLogo
 										src={getAssetURL(item.logo)}
-										alt={item.name}
+										alt={$_(item.name)}
 										radius={'0px'}
 										size={15}
 										classes="mr-2"
 									/>
-									<span class="text-[0.9em]">{item.name}</span>
+									<span class="text-[0.9em]">{$_(item.name)}</span>
 								</Chip>
 							{/each}
 						</div>

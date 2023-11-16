@@ -10,7 +10,7 @@
 	import type { Project } from '$lib/types';
 	import Assets, { getAssetURL } from '$lib/data/assets';
 	import { base } from '$app/paths';
-
+	import { _ } from 'svelte-i18n';
 	export let project: Project;
 	import { Icons } from '$lib/utils/index';
 </script>
@@ -18,7 +18,7 @@
 <Card color={project.color} href={`${base}/projects/${project.slug}`}>
 	<!-- <CardLogo alt={project.name} src={getAssetURL(project.logo)} size={40} radius={'0'} /> -->
 	<div class="m-t-20px row justify-between items-center">
-		<CardTitle title={project.name} />
+		<CardTitle title={$_(project.name)} />
 		<div class="row">
 			{#each project.links as link}
 				<CardLink
@@ -40,10 +40,10 @@
 	<div
 		class="row m-b-15px justify-between text-[var(--secondary-text)] text-0.9em font-italic font-300"
 	>
-		<p>{project.type}</p>
+		<p>{$_(project.type)}</p>
 	</div>
 	<p class="text-[0.95em] text-[var(--secondary-text)] font-300 m-t-20px m-b-40px flex-1">
-		{project.shortDescription}
+		{$_(project.shortDescription)}
 	</p>
 	<CardDivider />
 	<div class="row justify-between items-center">
@@ -51,14 +51,14 @@
 			{#each project.skills as tech}
 				<ChipIcon
 					logo={getAssetURL(tech.logo)}
-					name={tech.name}
+					name={$_(tech.name)}
 					href={`${base}/skills/${tech.slug}`}
 				/>
 			{/each}
 		</div>
 		{#if project.featured_reason}
 			<span class="text-[0.95em] text-[var(--secondary-text)] font-300">
-				{project.featured_reason}
+				{$_(project.featured_reason)}
 			</span>
 		{/if}
 	</div>

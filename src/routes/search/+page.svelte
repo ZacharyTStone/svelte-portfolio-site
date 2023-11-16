@@ -8,6 +8,7 @@
 	import MY_SKILLS from '$lib/skills.params';
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
+	import { _ } from 'svelte-i18n';
 
 	const { title } = SEARCH;
 
@@ -33,7 +34,9 @@
 			}
 
 			if (typeof value === 'string') {
-				return value.toLowerCase().includes(query.toLowerCase());
+				// needs more work to get working in Japanese mode
+				const includesValue = $_(value.toLowerCase()).includes(query.toLowerCase());
+				return includesValue;
 			} else if (Array.isArray(value)) {
 				return value.some((item) => containsQuery(item, depth + 1));
 			} else if (typeof value === 'object' && value !== null) {
@@ -118,7 +121,7 @@
 			{#each result as { data, icon, name, to }}
 				<Chip href={`${base}/${to}`} classes="flex flex-row items-center gap-2" newTab={false}>
 					<UIcon {icon} />
-					<span>{name}</span>
+					<span>{$_(name)}</span>
 				</Chip>
 
 				{#if data.extraInfo}
@@ -131,7 +134,7 @@
 									newTab={false}
 								>
 									<UIcon {icon} />
-									<span>{label}</span>
+									<span>{$_(label)}</span>
 								</Chip>
 							{/if}
 						{/each}
