@@ -16,7 +16,7 @@
 
 	const { title } = EXPERIENCES;
 
-	$: computedTitle = data.experience ? `${$_(data.experience.name)} - ${title}` : $_(title);
+	$: computedTitle = data.experience ? `${$_(data.experience.name)} - ${$_(title)}` : $_(title);
 </script>
 
 <TabTitle title={computedTitle} />

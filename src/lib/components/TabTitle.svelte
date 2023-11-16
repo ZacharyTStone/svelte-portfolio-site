@@ -3,8 +3,9 @@
 	import { useTitle } from '$lib/utils/helpers';
 
 	export let title: string;
+	import { _ } from 'svelte-i18n';
 </script>
 
 <svelte:head>
-	<title>{useTitle(title, TITLE_SUFFIX)}</title>
+	<title>{useTitle($_(title), TITLE_SUFFIX)}</title>
 </svelte:head>
