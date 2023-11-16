@@ -3,11 +3,12 @@
 	import { base } from '$app/paths';
 	import { SEARCH } from '$lib/params';
 	import SearchPage from '$lib/components/SearchPage.svelte';
-	import MY_EXPERIENCES from '$lib/experiences.params';
+	import { MY_EXPERIENCES } from '$lib/experiences.params';
 	import MY_PROJECTS from '$lib/projects.params';
 	import MY_SKILLS from '$lib/skills.params';
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
+	import { _ } from 'svelte-i18n';
 
 	const { title } = SEARCH;
 
@@ -131,7 +132,7 @@
 									newTab={false}
 								>
 									<UIcon {icon} />
-									<span>{label}</span>
+									<span>{$_(label)}</span>
 								</Chip>
 							{/if}
 						{/each}

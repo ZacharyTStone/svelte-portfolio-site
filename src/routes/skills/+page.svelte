@@ -9,10 +9,12 @@
 
 	const { items } = SKILLS;
 
+	import { _ } from 'svelte-i18n';
+
 	let result: Array<Skill> = items;
 </script>
 
-<CommonPage title="Skills">
+<CommonPage title={SKILLS.title}>
 	{#if result.length === 0}
 		<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)] flex-1">
 			<UIcon icon="i-carbon-cube" classes="text-3.5em" />
@@ -27,7 +29,9 @@
 					href={`${base}/skills/${skill.slug}`}
 					bgImg={getAssetURL(skill.logo)}
 				>
-					<p class="text-[var(--tertiary-text)]">{skill.name}</p>
+					<p class="text-[var(--tertiary-text)] w-max">
+						{$_(skill.name)}
+					</p>
 				</Card>
 			{/each}
 		</div>

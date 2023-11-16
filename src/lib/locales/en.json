@@ -14,7 +14,19 @@
 	},
 
 	"EXPERIENCES": {
-		"title": "Experiences"
+		"title": "Experiences",
+		"interac": {
+			"name": "Assistant Language Teacher",
+			"description": "As an ALT (Assistant Language Teacher) at Interac, I taught English to Japanese students in public schools...",
+			"type": "Teaching",
+			"location": "Fukushima, Japan"
+		},
+		"rapptr": {
+			"name": "Frontend Engineer",
+			"description": "As a Frontend Engineer at Rapptr Labs, I primarily implement new features, fix bugs, and oversee OPSIQ's weekly front-end deployment...",
+			"type": "Software Development",
+			"location": "New York, NY"
+		}
 	},
 	"SKILLS": {
 		"title": "Skills",

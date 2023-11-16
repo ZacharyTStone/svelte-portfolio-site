@@ -31,16 +31,16 @@
 			<h3
 				class="flex text-[0.9em] flex-col items-start sm:flex-row sm:items-center justify-between sm:gap-5 md:flex-col md:items-start md:gap-0 lg:flex-row lg:items-center"
 			>
-				<CardTitle title={$_(experience.name)} />
+				<CardTitle title={experience.name} />
 			</h3>
 			<div class="row flex-wrap m-b-2 gap-1 text-0.9em font-300">
-				<ChipIcon name={`Company: ${experience.company}`}>
+				<ChipIcon name={`Company: ${$_(experience.company)}`}>
 					<UIcon icon="i-carbon-building" />
 				</ChipIcon>
-				<ChipIcon name={`Location: ${experience.location}`}>
+				<ChipIcon name={`Location: ${$_(experience.location)}`}>
 					<UIcon icon="i-carbon-location" />
 				</ChipIcon>
-				<ChipIcon name={`Contract: ${experience.contract}`}>
+				<ChipIcon name={`Contract: ${$_(experience.contract)}`}>
 					<UIcon icon="i-carbon-hourglass" />
 				</ChipIcon>
 			</div>

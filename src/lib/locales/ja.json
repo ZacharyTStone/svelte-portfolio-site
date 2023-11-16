@@ -15,7 +15,19 @@
 	},
 
 	"EXPERIENCES": {
-		"title": "経験"
+		"title": "仕事",
+		"interac": {
+			"name": "Assistant Language Teacher",
+			"description": "As an ALT (Assistant Language Teacher) at Interac, I taught English to Japanese students in public schools...",
+			"type": "Teaching",
+			"location": "Fukushima, Japan"
+		},
+		"rapptr": {
+			"name": "Frontend Engineer",
+			"description": "As a Frontend Engineer at Rapptr Labs, I primarily implement new features, fix bugs, and oversee OPSIQ's weekly front-end deployment...",
+			"type": "Software Development",
+			"location": "New York, NY"
+		}
 	},
 	"SKILLS": {
 		"title": "スキル",
@@ -56,7 +68,7 @@
 			"description": "マイ・アニメ・コレクションは、お気に入りのアニメを探索し、カスタムプレイリストを作成できる無料のアニメトラッカーです。",
 			"shortDescription": "お気に入りのアニメを見つけて追跡しましょう。",
 			"type": "ウェブアプリケーション",
-			"featured_reason": "最もクリーンなコード"
+			"featured_reason": "コードが綺麗"
 		},
 		"ZACH_IN_JAPAN": {
 			"name": "ザック・イン・ジャパン",
@@ -70,7 +82,7 @@
 			"description": "面接プロセス中のジョブを追跡し、比較します。",
 			"shortDescription": "面接プロセス中のジョブを追跡し、比較します。",
 			"type": "ウェブアプリケーション",
-			"featured_reason": "最高のビジネスバリュー"
+			"featured_reason": "最高のビジネス用"
 		},
 		"RIFFS": {
 			"name": "リフス！",

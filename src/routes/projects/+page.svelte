@@ -84,10 +84,10 @@
 			{#each filters as tech}
 				<Chip
 					active={tech.isSelected}
-					classes={'text-0.6em md:text-0.8em'}
+					classes={'text-0.6em md:text-0.8em min-w-max-content'}
 					on:click={() => onSelected(tech.slug)}
 				>
-					{tech.name}
+					{$_(tech.name)}
 				</Chip>
 			{/each}
 		</div>
