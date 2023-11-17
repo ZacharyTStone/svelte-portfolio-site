@@ -9,12 +9,12 @@ export enum Platform {
 }
 
 export enum ContractType {
-	FullTime = 'Full-time',
-	PartTime = 'Part-time',
-	SelfEmployed = 'Self-employed',
-	Freelance = 'Freelance',
-	Contract = 'Contract',
-	Internship = 'Internship'
+	FullTime = 'CONTRACT.FullTime',
+	PartTime = 'CONTRACT.PartTime',
+	SelfEmployed = 'CONTRACT.SelfEmployed',
+	Freelance = 'CONTRACT.Freelance',
+	Contract = 'CONTRACT.Contract',
+	Internship = 'CONTRACT.Internship'
 }
 
 export type Asset = string | { light: string; dark: string };

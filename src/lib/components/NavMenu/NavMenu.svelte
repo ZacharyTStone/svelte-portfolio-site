@@ -96,6 +96,17 @@
 		background-color: var(--main);
 		height: 50px;
 
+		// small mobile
+		&-left {
+			@media (max-width: 425px) {
+				display: none; // This hides the home icon on small screens
+			}
+		}
+
+		@media (max-width: 425px) {
+			padding: 0px 0px;
+		}
+
 		&-item {
 			text-decoration: none;
 			padding: 10px 20px;
@@ -103,6 +114,10 @@
 			display: flex;
 			align-items: center;
 			border-bottom: 3px solid transparent;
+
+			@media (max-width: 425px) {
+				padding: 5px 10px;
+			}
 
 			&-label {
 				margin-left: 10px;

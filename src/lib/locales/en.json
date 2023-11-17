@@ -60,6 +60,14 @@
 	"SEARCH": {
 		"title": "Search"
 	},
+	"CONTRACT": {
+		"FullTime": "Full-time",
+		"PartTime": "Part-time",
+		"SelfEmployed": "Self-employed",
+		"Freelance": "Freelance",
+		"Contract": "Contract",
+		"Internship": "Internship"
+	},
 	"PROJECTS": {
 		"title": "Projects",
 		"no_filter_option": "No Filters",

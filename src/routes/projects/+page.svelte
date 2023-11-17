@@ -8,6 +8,7 @@
 	import MY_SKILLS from '$lib/skills.params';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import { _ } from 'svelte-i18n';
+	import CommonPage from '$lib/components/CommonPage.svelte';
 
 	interface SkillFilter extends Skill {
 		isSelected?: boolean;
@@ -69,7 +70,7 @@
 	<div class="projects-filters">
 		<div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-3 overflow-y-auto">
 			<Chip
-				classes={'text-1em md:text-0.8em'}
+				classes={'text-0.9em md:text-0.8em'}
 				on:click={() => {
 					// clear all
 					filters = filters.map((tech) => {
@@ -84,7 +85,7 @@
 			{#each filters as tech}
 				<Chip
 					active={tech.isSelected}
-					classes={'text-1em md:text-0.8em min-w-max-content'}
+					classes={'text-0.9em md:text-0.8em min-w-max-content'}
 					on:click={() => onSelected(tech.slug)}
 				>
 					{$_(tech.name)}

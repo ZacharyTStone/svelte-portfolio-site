@@ -62,6 +62,14 @@
 	"SEARCH": {
 		"title": "検索"
 	},
+	"CONTRACT": {
+		"FullTime": "正規社員",
+		"PartTime": "パートタイム",
+		"SelfEmployed": "自営業",
+		"Freelance": "フリーランス",
+		"Contract": "派遣社員",
+		"Internship": "インターンシップ"
+	},
 	"PROJECTS": {
 		"title": "プロジェクト",
 		"no_filter_option": "フィルタ無し",
