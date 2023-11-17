@@ -97,11 +97,6 @@
 		height: 50px;
 
 		// small mobile
-		&-left {
-			@media (max-width: 425px) {
-				display: none; // This hides the home icon on small screens
-			}
-		}
 
 		@media (max-width: 425px) {
 			padding: 0px 0px;
