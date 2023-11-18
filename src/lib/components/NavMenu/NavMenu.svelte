@@ -11,7 +11,7 @@
 	$: currentLocale = $locale; // Reactive declaration
 
 	function toggleLanguage() {
-		if (currentLocale === 'en') {
+		if (currentLocale?.includes('en')) {
 			locale.set('ja');
 		} else {
 			locale.set('en');
@@ -74,7 +74,7 @@
 				class="bg-transparent text-1em border-none cursor-pointer hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
 				on:click={() => toggleLanguage()}
 			>
-				{#if $locale === 'en'}
+				{#if $locale?.includes('en')}
 					<span class="text-xs">JA</span>
 				{:else}
 					<span class="text-xs">EN</span>
