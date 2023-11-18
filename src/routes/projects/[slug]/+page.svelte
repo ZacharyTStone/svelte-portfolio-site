@@ -26,7 +26,7 @@
 
 	const screenshots = data.project?.screenshots ?? [];
 
-	$: computedTitle = data.project ? `${data.project.name} - ${title}` : title;
+	$: computedTitle = data.project ? `${$_(data.project.name ?? '')} - ${$_(title)}` : $_(title);
 </script>
 
 <TabTitle title={computedTitle} />
