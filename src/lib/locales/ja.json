@@ -73,6 +73,8 @@
 	"PROJECTS": {
 		"title": "プロジェクト",
 		"no_filter_option": "フィルタ無し",
+		"featured_projects": "おすすめのプロジェクト",
+		"other_projects": "その他のプロジェクト",
 		"MY_ANIME_COLLECTION": {
 			"name": "マイ・アニメ・コレクション",
 			"description": "マイ・アニメ・コレクションは、お気に入りのアニメを探索し、カスタムプレイリストを作成できる無料のアプリです。",

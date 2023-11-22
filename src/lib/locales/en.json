@@ -71,6 +71,8 @@
 	"PROJECTS": {
 		"title": "Projects",
 		"no_filter_option": "No Filters",
+		"featured_projects": "Featured Projects",
+		"other_projects": "Other Projects",
 		"MY_ANIME_COLLECTION": {
 			"name": "My Anime Collection",
 			"description": "My Anime Collection is a free anime tracker where you can explore and create custom playlists of your favorite anime.",
