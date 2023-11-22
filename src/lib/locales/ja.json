@@ -55,9 +55,9 @@
 	},
 	"RESUME": {
 		"title": "履歴書",
-		"english": "暦書（英語）",
-		"japanese": "暦書",
-		"japanese_work": "職務経歴書"
+		"english": "履歴書（英語）",
+		"japanese": "履歴書（日本語）",
+		"japanese_work": "職務経歴書 (日本語)"
 	},
 	"SEARCH": {
 		"title": "検索"
