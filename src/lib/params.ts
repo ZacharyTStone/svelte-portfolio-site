@@ -96,5 +96,6 @@ export const RESUME: ResumePageParams = {
 };
 
 export const SEARCH: SearchPageParams = {
-	title: 'SEARCH.title'
+	title: 'SEARCH.title',
+	prompt: 'SEARCH.prompt'
 };

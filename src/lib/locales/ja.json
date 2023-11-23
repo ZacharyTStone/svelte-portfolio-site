@@ -60,7 +60,8 @@
 		"japanese_work": "職務経歴書 (日本語)"
 	},
 	"SEARCH": {
-		"title": "検索"
+		"title": "検索",
+		"prompt": "スキル、プロジェクトの名前、またはツールを入力してみてください。"
 	},
 	"CONTRACT": {
 		"FullTime": "正規社員",

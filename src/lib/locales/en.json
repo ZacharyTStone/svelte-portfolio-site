@@ -58,7 +58,8 @@
 		"japanese_work": "Japanese (Work)"
 	},
 	"SEARCH": {
-		"title": "Search"
+		"title": "Search",
+		"prompt": "Try typing a skill, name, or tool."
 	},
 	"CONTRACT": {
 		"FullTime": "Full-time",

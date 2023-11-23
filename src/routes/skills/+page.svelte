@@ -14,7 +14,7 @@
 	let result: Array<Skill> = items;
 </script>
 
-<CommonPage title={SKILLS.title}>
+<CommonPage title={$_(SKILLS.title)}>
 	{#if result.length === 0}
 		<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)] flex-1">
 			<UIcon icon="i-carbon-cube" classes="text-3.5em" />

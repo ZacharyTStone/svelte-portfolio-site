@@ -107,7 +107,9 @@ export interface HomePageParams extends PageParams {
 	skills?: Array<Skill>;
 }
 
-export type SearchPageParams = PageParams;
+export interface SearchPageParams extends PageParams {
+	prompt: string;
+}
 
 export type ProjectPageParams = PageWithSearchParams<Project>;
 
