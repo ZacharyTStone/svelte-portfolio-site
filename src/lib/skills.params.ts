@@ -52,7 +52,13 @@ const Other: any[] = [
 	{ label: 'Chat GPT', link: 'https://chat.openai.com/chat' }
 ];
 
-const SECURITY_TOOLS: any[] = [{ label: 'OWASP ZAP', link: 'https://owasp.org/www-project-zap/' }];
+const SECURITY_TOOLS: any[] = [
+	{ label: 'OWASP ZAP', link: 'https://owasp.org/www-project-zap/' },
+	{
+		label: 'Kali Linux',
+		link: 'https://www.kali.org/'
+	}
+];
 
 const FE_EXTRA_INFO = [
 	{
