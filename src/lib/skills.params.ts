@@ -1,14 +1,25 @@
 import Assets from './data/assets';
-import type { Skill } from './types';
+import type { Asset, Skill } from './types';
 import svelte from './md/svelte.md?raw';
 import { COLOR_ASSETS } from './data/assets';
 
 const s = (skill: Skill) => skill;
 
+interface SkillExtraInfo {
+	title: string;
+	content: any[];
+}
+
+interface SkillInfoObject {
+	label: string;
+	link: string;
+	icon?: Asset;
+}
+
 export type ArrayElementType<ArrayType extends readonly unknown[]> =
 	ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
 
-const FRAMEWORKS: any[] = [
+const FRAMEWORKS: SkillInfoObject[] = [
 	{ label: 'React', link: 'https://reactjs.org/', icon: COLOR_ASSETS.React },
 	{ label: 'Gatsby', link: 'https://www.gatsbyjs.org/', icon: COLOR_ASSETS.Gatsby },
 	{ label: 'Vue', link: 'https://vuejs.org/', icon: COLOR_ASSETS.VueJs },
@@ -16,7 +27,7 @@ const FRAMEWORKS: any[] = [
 	{ label: 'Svelte', link: 'https://svelte.dev/', icon: COLOR_ASSETS.Svelte }
 ];
 
-const FE_TOOLS: any[] = [
+const FE_TOOLS: SkillInfoObject[] = [
 	{ label: 'HTML', link: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
 	{ label: 'CSS', link: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
 	{ label: 'JavaScript', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
@@ -29,7 +40,7 @@ const FE_TOOLS: any[] = [
 	{ label: 'Redux', link: 'https://redux.js.org/' }
 ];
 
-const Backend: any[] = [
+const Backend: SkillInfoObject[] = [
 	{ label: 'Node', link: 'https://nodejs.org/en/' },
 	{ label: 'REST', link: 'https://restfulapi.net/' },
 	{ label: 'GraphQL', link: 'https://graphql.org/' },
@@ -39,20 +50,20 @@ const Backend: any[] = [
 	{ label: 'Ably Web Sockets', link: 'https://www.ably.io/' }
 ];
 
-const Server: any[] = [
+const Server: SkillInfoObject[] = [
 	{ label: 'Heroku', link: 'https://www.heroku.com/' },
 	{ label: 'Netlify', link: 'https://www.netlify.com/' },
 	{ label: 'Vercel', link: 'https://vercel.com/' }
 ];
 
-const Other: any[] = [
+const Other: SkillInfoObject[] = [
 	{ label: 'Jira', link: 'https://www.atlassian.com/software/jira' },
 	{ label: 'Github', link: 'https://github.com/' },
 	{ label: 'Twilio', link: 'https://www.twilio.com/' },
 	{ label: 'Chat GPT', link: 'https://chat.openai.com/chat' }
 ];
 
-const SECURITY_TOOLS: any[] = [
+const SECURITY_TOOLS: SkillInfoObject[] = [
 	{ label: 'OWASP ZAP', link: 'https://owasp.org/www-project-zap/' },
 	{
 		label: 'Kali Linux',
@@ -60,7 +71,7 @@ const SECURITY_TOOLS: any[] = [
 	}
 ];
 
-const FE_EXTRA_INFO = [
+const FE_EXTRA_INFO: SkillExtraInfo[] = [
 	{
 		title: 'Frameworks',
 		content: FRAMEWORKS
@@ -71,7 +82,7 @@ const FE_EXTRA_INFO = [
 	}
 ];
 
-const BE_EXTRA_INFO = [
+const BE_EXTRA_INFO: SkillExtraInfo[] = [
 	{
 		title: 'Backend',
 		content: Backend
@@ -82,14 +93,14 @@ const BE_EXTRA_INFO = [
 	}
 ];
 
-const SECURITY_EXTRA_INFO = [
+const SECURITY_EXTRA_INFO: SkillExtraInfo[] = [
 	{
 		title: 'Tools',
 		content: SECURITY_TOOLS
 	}
 ];
 
-const OTHER_EXTRA_INFO = [
+const OTHER_EXTRA_INFO: SkillExtraInfo[] = [
 	{
 		title: 'Other',
 		content: Other
