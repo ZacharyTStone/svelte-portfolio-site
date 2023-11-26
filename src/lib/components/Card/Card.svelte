@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { changeColorOpacity } from '@riadh-adrani/utils';
 	import { onMount } from 'svelte';
 	import type { MouseEventHandler } from 'svelte/elements';
 	import { onHover } from '$lib/utils/helpers';
+	import { changeColorOpacity } from '$lib/utils/helpers';
 
 	let el: HTMLElement;
 

@@ -14,38 +14,7 @@ export const countMonths = (from: Date, to: Date = new Date()): number => {
 	return firstYear + wholeYears + newYear + 1;
 };
 
-export const getMonthName = (index: number): string => {
-	const monthNames = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-	];
-
-	return monthNames[index];
-};
-
-export const useImage = (url: string, base: string): string => `${base}${url}`;
-
-export const useTitle = (title: string, suffix: string) => `${title} | ${suffix}`;
-
-export const isEmail = (email: string): boolean => {
-	const reg =
-		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-	return reg.test(email ?? '');
-};
-
-export // svelte typing is broken...
-const onHover: any = (ev: any, el: HTMLElement, tiltDegree: number = 10) => {
+export const onHover: any = (ev: any, el: HTMLElement, tiltDegree: number = 10) => {
 	const target = ev.currentTarget;
 
 	if (!target) {
@@ -74,6 +43,85 @@ const onHover: any = (ev: any, el: HTMLElement, tiltDegree: number = 10) => {
 
 	el.style.setProperty('--rot-x', `${rX}deg`);
 	el.style.setProperty('--rot-y', `${rY}deg`);
+
+	// Dynamic color calculation based on mouse position
+	const dynamicColor = calculateColorBasedOnPosition(x, y, width, height);
+	const newColor = changeColorOpacity(dynamicColor, 0.5); // Customize opacity as needed
+
+	// Apply the new color
+	el.style.setProperty('--border-color', newColor);
+	el.style.setProperty('--drop-color', newColor);
+	el.style.setProperty('--bg-color', newColor);
+};
+
+// Example color calculation function
+function calculateColorBasedOnPosition(
+	x: number,
+	y: number,
+	width: number,
+	height: number
+): string {
+	// Example: Convert position to a color (you can customize this logic)
+	const r = Math.round((x / width) * 255);
+	const g = Math.round((y / height) * 255);
+	const b = 150; // Static value for blue component, can be dynamic too
+
+	return `rgb(${r},${g},${b})`;
+}
+
+export const changeColorOpacity = (color: string, opacity: number): string => {
+	let r: number, g: number, b: number;
+
+	if (color[0] !== '#' || (color.length !== 4 && color.length !== 7 && color.length !== 9)) {
+		throw new Error('Invalid hex color format');
+	}
+
+	if (color.length === 4) {
+		r = parseInt(color[1] + color[1], 16);
+		g = parseInt(color[2] + color[2], 16);
+		b = parseInt(color[3] + color[3], 16);
+	} else if (color.length === 7 || color.length === 9) {
+		r = parseInt(color.substring(1, 3), 16);
+		g = parseInt(color.substring(3, 5), 16);
+		b = parseInt(color.substring(5, 7), 16);
+	} else {
+		throw new Error('Invalid hex color format');
+	}
+
+	// Convert opacity to 0-1 range if it is not already
+	if (opacity > 1) opacity = opacity / 100;
+
+	return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+};
+
+export const getMonthName = (index: number): string => {
+	const monthNames = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December'
+	];
+
+	return monthNames[index];
+};
+
+export const useImage = (url: string, base: string): string => `${base}${url}`;
+
+export const useTitle = (title: string, suffix: string) => `${title} | ${suffix}`;
+
+export const isEmail = (email: string): boolean => {
+	const reg =
+		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+	return reg.test(email ?? '');
 };
 
 export const RANDOM_COLORS = [
