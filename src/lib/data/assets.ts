@@ -42,15 +42,10 @@ export const COLOR_ASSETS = {
 	Quote: { light: quote, dark: quote },
 	Security: { light: Security, dark: Security },
 	Readme: { light: Readme, dark: Readme },
-	// react
 	React: { light: React, dark: React },
-	// node
 	NodeJs: { light: Node, dark: Node },
-	// svelte
 	Svelte: { light: Svelte, dark: Svelte },
-	// vue
 	VueJs: { light: Vue, dark: Vue },
-	// typescript
 	TypeScript: { light: TypeScript, dark: TypeScript }
 };
 

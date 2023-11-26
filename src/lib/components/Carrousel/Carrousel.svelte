@@ -6,7 +6,6 @@
 
 	import { base } from '$app/paths';
 	export let items: Array<Skill> = [];
-	const delay = 2000;
 
 	let element: HTMLElement;
 
@@ -39,35 +38,17 @@
 		}
 	};
 
-	const autoToggle = (direction: 'left' | 'right') => {
-		clearTimeout(timeout as number);
-
-		timeout = setTimeout(() => {
-			slide(direction);
-
-			autoToggle(direction);
-		}, delay);
-	};
-
 	const toggleLeft = () => {
 		clearTimeout(timeout as number);
 
 		slide('left');
-		// always auto toggle right
-		// autoToggle('right');
 	};
 
 	const toggleRight = () => {
 		clearTimeout(timeout as number);
 
 		slide('right');
-		// always auto toggle right
-		// autoToggle('right');
 	};
-
-	// onMount(() => {
-	// 	autoToggle('right');
-	// });
 </script>
 
 <div class="carrousel row-center">
