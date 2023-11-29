@@ -68,6 +68,10 @@ const SECURITY_TOOLS: SkillInfoObject[] = [
 	{
 		label: 'Kali Linux',
 		link: 'https://www.kali.org/'
+	},
+	{
+		label: 'Burp Suite',
+		link: 'https://portswigger.net/burp'
 	}
 ];
 
