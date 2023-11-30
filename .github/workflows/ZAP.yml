@@ -9,12 +9,8 @@ jobs:
   zap_scan:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: OWASP ZAP Full Scan
-        uses: owasp/zap-full-scan@v1
-        with:
-          target: https://zstone.dev
-          report: true
+steps:
+  - name: ZAP Scan
+    uses: zaproxy/action-full-scan@v0.8.0
+    with:
+      target: 'https://www.zaproxy.org/'
