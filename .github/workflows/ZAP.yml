@@ -13,4 +13,4 @@ steps:
   - name: ZAP Scan
     uses: zaproxy/action-full-scan@v0.8.0
     with:
-      target: 'https://www.zaproxy.org/'
+      target: 'https://www.zstone.dev'
