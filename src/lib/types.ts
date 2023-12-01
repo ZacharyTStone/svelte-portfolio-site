@@ -34,6 +34,11 @@ interface certifcations {
 	link?: string;
 }
 
+interface courses {
+	label: string;
+	link?: string;
+}
+
 export interface Item {
 	slug: string;
 	name: string;
@@ -43,6 +48,7 @@ export interface Item {
 	screenshots?: Array<{ src: string; label: string }>;
 	extraInfo?: SkillInfoSection[];
 	certifications?: certifcations[];
+	courses?: courses[];
 }
 
 export interface Link {

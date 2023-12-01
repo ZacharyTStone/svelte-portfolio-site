@@ -135,7 +135,7 @@ const MY_SKILLS = [
 		logo: Assets.Security,
 		name: 'SKILLS.web-security.name',
 		extraInfo: SECURITY_EXTRA_INFO,
-		certifications: [
+		courses: [
 			{
 				label: 'Web Application Security Testing with OWASP ZAP',
 				link: 'https://coursera.org/share/6534ebedc75f9b25ca28b30aaf093435'

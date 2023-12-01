@@ -139,6 +139,24 @@
 							</div>
 						</div>
 					{/if}
+					{#if data?.skill?.courses?.length}
+						<div class="flex flex-row gap-1 self-stretch flex-wrap mb-5 items-center">
+							<span class="text-[var(--accent-text)] text-[1.1em] font-500"> Courses </span>
+							<div class="px-10px flex flex-row gap-3 self-stretch flex-wrap align-center">
+								<ul class="list-disc list-inside">
+									{#each data.skill.courses as info}
+										<div class="font-300">
+											<li class="text-[var(--accent-text)]">
+												{@html info.link
+													? `<a href="${info.link}" class="text-blue-500 hover:underline" target="_blank">${info.label}</a>`
+													: info.label}
+											</li>
+										</div>
+									{/each}
+								</ul>
+							</div>
+						</div>
+					{/if}
 				</div>
 			</div>
 			<div class="self-stretch mb-2">
