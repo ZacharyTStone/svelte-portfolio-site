@@ -139,6 +139,10 @@ const MY_SKILLS = [
 			{
 				label: 'Web Application Security Testing with OWASP ZAP',
 				link: 'https://coursera.org/share/6534ebedc75f9b25ca28b30aaf093435'
+			},
+			{
+				label: 'Hacking Web Applications & Penetration Testing: Web Hacking',
+				link: 'https://www.udemy.com/certificate/UC-518b49d7-8a75-43bd-ae87-1dd891aa2ff4/'
 			}
 		]
 	}),
