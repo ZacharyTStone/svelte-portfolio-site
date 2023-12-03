@@ -82,104 +82,112 @@
 			<Banner img={getAssetURL(data.skill.logo)}>
 				<MainTitle>{$_(data.skill.name)}</MainTitle>
 			</Banner>
-			<div class="pt-3 pb-1 overflow-x-hidden w-full">
-				<div class="px-10px m-y-5">
-					{#if data.skill.description}
-						{$_(data.skill.description)}
-					{:else}
-						<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
-							<UIcon icon="i-carbon-text-font" classes="text-3.5em" />
-							<p class="font-300">No description</p>
-						</div>
-					{/if}
-				</div>
-				<div class="px-10px m-y-5">
-					{#if data?.skill?.extraInfo?.length}
-						{#each data.skill.extraInfo as any}
-							<div
-								class="flex flex-row gap-1 self-stretch flex-wrap mb-5  items-center 
-							"
-							>
-								<span class="text-[var(--accent-text)] text-[1.1em] font-500">
-									{$_(any.title)}
-								</span>
+			<div class="p-5 md:p-0 flex flex-col items-center overflow-x-hidden">
+				<div class="pt-3 pb-1 overflow-x-hidden w-full">
+					<div class="px-10px m-y-5">
+						{#if data.skill.description}
+							{$_(data.skill.description)}
+						{:else}
+							<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
+								<UIcon icon="i-carbon-text-font" classes="text-3.5em" />
+								<p class="font-300">No description</p>
+							</div>
+						{/if}
+					</div>
+					<div class="px-10px m-y-5">
+						{#if data?.skill?.extraInfo?.length}
+							{#each data.skill.extraInfo as any}
 								<div
-									class="px-10px
+									class="flex flex-row gap-1 self-stretch flex-wrap mb-5  items-center 
+							"
+								>
+									<span class="text-[var(--accent-text)] text-[1.1em] font-500">
+										{$_(any.title)}
+									</span>
+									<div
+										class="px-10px
 								 flex flex-row gap-3 self-stretch flex-wrap align-center
 								"
-								>
-									{#each any.content as info}
-										{#if any.title === 'Frameworks'}
-											<ChipIcon logo={getAssetURL(info.icon)} name={info.label} href={info.link} />
-										{:else}
-											<a class="font-300" href={info.link}>
-												<span class="text-[var(--accent-text)]">{info.label},{' '}</span>
-											</a>
-										{/if}
-									{/each}
+									>
+										{#each any.content as info}
+											{#if any.title === 'Frameworks'}
+												<ChipIcon
+													logo={getAssetURL(info.icon)}
+													name={info.label}
+													href={info.link}
+												/>
+											{:else}
+												<a class="font-300" href={info.link}>
+													<span class="text-[var(--accent-text)]">{info.label},{' '}</span>
+												</a>
+											{/if}
+										{/each}
+									</div>
+								</div>
+							{/each}
+						{/if}
+						{#if data?.skill?.certifications?.length}
+							<div class="flex flex-row gap-1 self-stretch flex-wrap mb-5 items-center">
+								<span class="text-[var(--accent-text)] text-[1.1em] font-500">
+									Certifications
+								</span>
+								<div class="px-10px flex flex-row gap-3 self-stretch flex-wrap align-center">
+									<ul class="list-disc list-inside">
+										{#each data.skill.certifications as info}
+											<div class="font-300">
+												<li class="text-[var(--accent-text)]">
+													{@html info.link
+														? `<a href="${info.link}" class="text-blue-500 hover:underline" target="_blank">${info.label}</a>`
+														: info.label}
+												</li>
+											</div>
+										{/each}
+									</ul>
 								</div>
 							</div>
-						{/each}
-					{/if}
-					{#if data?.skill?.certifications?.length}
-						<div class="flex flex-row gap-1 self-stretch flex-wrap mb-5 items-center">
-							<span class="text-[var(--accent-text)] text-[1.1em] font-500"> Certifications </span>
-							<div class="px-10px flex flex-row gap-3 self-stretch flex-wrap align-center">
-								<ul class="list-disc list-inside">
-									{#each data.skill.certifications as info}
-										<div class="font-300">
-											<li class="text-[var(--accent-text)]">
-												{@html info.link
-													? `<a href="${info.link}" class="text-blue-500 hover:underline" target="_blank">${info.label}</a>`
-													: info.label}
-											</li>
-										</div>
-									{/each}
-								</ul>
+						{/if}
+						{#if data?.skill?.courses?.length}
+							<div class="flex flex-row gap-1 self-stretch flex-wrap mb-5 items-center">
+								<span class="text-[var(--accent-text)] text-[1.1em] font-500"> Courses </span>
+								<div class="px-10px flex flex-row gap-3 self-stretch flex-wrap align-center">
+									<ul class="list-disc list-inside">
+										{#each data.skill.courses as info}
+											<div class="font-300">
+												<li class="text-[var(--accent-text)]">
+													{@html info.link
+														? `<a href="${info.link}" class="text-blue-500 hover:underline" target="_blank">${info.label}</a>`
+														: info.label}
+												</li>
+											</div>
+										{/each}
+									</ul>
+								</div>
 							</div>
-						</div>
-					{/if}
-					{#if data?.skill?.courses?.length}
-						<div class="flex flex-row gap-1 self-stretch flex-wrap mb-5 items-center">
-							<span class="text-[var(--accent-text)] text-[1.1em] font-500"> Courses </span>
-							<div class="px-10px flex flex-row gap-3 self-stretch flex-wrap align-center">
-								<ul class="list-disc list-inside">
-									{#each data.skill.courses as info}
-										<div class="font-300">
-											<li class="text-[var(--accent-text)]">
-												{@html info.link
-													? `<a href="${info.link}" class="text-blue-500 hover:underline" target="_blank">${info.label}</a>`
-													: info.label}
-											</li>
-										</div>
-									{/each}
-								</ul>
-							</div>
-						</div>
-					{/if}
+						{/if}
+					</div>
 				</div>
-			</div>
-			<div class="self-stretch mb-2">
-				<CardDivider />
-			</div>
-			<div class="flex flex-row gap-1 self-stretch flex-wrap">
-				<div class="px-10px">
-					{#each related as item}
-						<Chip
-							classes="inline-flex flex-row items-center justify-center"
-							href={`${base}${item.url}`}
-							newTab={false}
-						>
-							<CardLogo
-								src={item.img}
-								alt={$_(item.name)}
-								radius={'0px'}
-								size={15}
-								classes="mr-2"
-							/>
-							<span class="text-[0.9em]">{$_(item.display)}</span>
-						</Chip>
-					{/each}
+				<div class="self-stretch mb-2">
+					<CardDivider />
+				</div>
+				<div class="flex flex-row gap-1 self-stretch flex-wrap">
+					<div class="px-10px">
+						{#each related as item}
+							<Chip
+								classes="inline-flex flex-row items-center justify-center"
+								href={`${base}${item.url}`}
+								newTab={false}
+							>
+								<CardLogo
+									src={item.img}
+									alt={$_(item.name)}
+									radius={'0px'}
+									size={15}
+									classes="mr-2"
+								/>
+								<span class="text-[0.9em]">{$_(item.display)}</span>
+							</Chip>
+						{/each}
+					</div>
 				</div>
 			</div>
 		</div>

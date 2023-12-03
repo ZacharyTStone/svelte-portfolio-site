@@ -27,7 +27,7 @@
 		<p class="font-300">Could not load experience data...</p>
 	</div>
 {:else}
-	<div class="flex flex-col items-center overflow-x-hidden">
+	<div class="flex flex-col items-center overflow-x-hidden p-5 md:p-0">
 		<Banner img={getAssetURL(data.experience.logo)}>
 			<div class="col-center p-y-20">
 				<div class="text-0.9em">
@@ -71,7 +71,7 @@
 				</div>
 			</div>
 		</Banner>
-		<div class="pt-3 pb-1 overflow-x-hidden w-full">
+		<div class="p-5 md:p-0  pt-3 pb-1 overflow-x-hidden w-full ">
 			<div class="px-10px m-y-5">
 				{#if data.experience.description}
 					{$_(data.experience.description)}

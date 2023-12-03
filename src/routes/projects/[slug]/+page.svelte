@@ -31,7 +31,7 @@
 
 <TabTitle title={computedTitle} />
 
-<div class="pb-10 overflow-x-hidden col flex-1">
+<div class="p-5 md:p-0 md:pb-10 overflow-x-hidden col flex-1">
 	{#if data.project === undefined}
 		<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)]">
 			<UIcon icon="i-carbon-cube" classes="text-3.5em" />
@@ -69,7 +69,11 @@
 					</div>
 				</div>
 			</Banner>
-			<div class="pt-3 pb-1 overflow-x-hidden w-full">
+			<div
+				class=" 
+			p-5 md:p-0 
+			pt-3 pb-1 overflow-x-hidden w-full"
+			>
 				<div class="px-10px m-y-5">
 					{#if data.project.description}
 						{$_(data.project.description)}
