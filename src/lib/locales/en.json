@@ -113,5 +113,15 @@
 			"shortDescription": "Checkout my readme that is automatically generated every hour.",
 			"type": "Github Readme"
 		}
+	},
+	"EXTRA_INFO_LABELS": {
+		"certifications": "Certifications",
+		"courses": "Courses",
+		"tools": "Tools",
+		"backend": "Backend",
+		"server": "Server",
+		"project_tech": "Project Tech",
+		"skills": "Skills",
+		"frameworks": "Frameworks"
 	}
 }

@@ -31,7 +31,7 @@
 
 <TabTitle title={computedTitle} />
 
-<div class="p-5 md:p-0 md:pb-10 overflow-x-hidden col flex-1">
+<div class="pb-10 overflow-x-hidden col flex-1">
 	{#if data.project === undefined}
 		<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)]">
 			<UIcon icon="i-carbon-cube" classes="text-3.5em" />
@@ -87,7 +87,9 @@
 				<div class="pt-3 pb-1 overflow-x-hidden w-full">
 					<div class="px-10px m-y-5">
 						<div class="flex flex-row gap-1 self-stretch flex-wrap">
-							<h4 class="mr-6">Skills</h4>
+							<h4 class="mr-6">
+								{$_('EXTRA_INFO_LABELS.skills')}
+							</h4>
 							{#each data.project.skills as item}
 								<Chip
 									classes="inline-flex flex-row items-center justify-center"
@@ -111,7 +113,9 @@
 					<div class="px-10px m-y-5">
 						{#if data.project.project_skills && data.project.project_skills.length > 0}
 							<div class="flex flex-row gap-1 self-stretch flex-wrap">
-								<h4 class="mr-6">Project Tech</h4>
+								<h4 class="mr-6">
+									{$_('EXTRA_INFO_LABELS.project_tech')}
+								</h4>
 								{#each data.project.project_skills as item}
 									<Chip
 										classes="inline-flex flex-row items-center justify-center"

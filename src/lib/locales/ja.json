@@ -112,5 +112,15 @@
 			"shortDescription": "毎時自動更新される私のリードミー。",
 			"type": "Github リードミー"
 		}
+	},
+	"EXTRA_INFO_LABELS": {
+		"certifications": "資格",
+		"courses": "コース",
+		"tools": "ツール",
+		"backend": "バックエンド",
+		"server": "サーバー",
+		"project_tech": "プロジェクト技術",
+		"skills": "スキル",
+		"frameworks": "フレームワーク"
 	}
 }

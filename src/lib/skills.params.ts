@@ -77,36 +77,36 @@ const SECURITY_TOOLS: SkillInfoObject[] = [
 
 const FE_EXTRA_INFO: SkillExtraInfo[] = [
 	{
-		title: 'Frameworks',
+		title: 'EXTRA_INFO_LABELS.frameworks',
 		content: FRAMEWORKS
 	},
 	{
-		title: 'Tools',
+		title: 'EXTRA_INFO_LABELS.tools',
 		content: FE_TOOLS
 	}
 ];
 
 const BE_EXTRA_INFO: SkillExtraInfo[] = [
 	{
-		title: 'Backend',
+		title: 'EXTRA_INFO_LABELS.backend',
 		content: Backend
 	},
 	{
-		title: 'Server',
+		title: 'EXTRA_INFO_LABELS.server',
 		content: Server
 	}
 ];
 
 const SECURITY_EXTRA_INFO: SkillExtraInfo[] = [
 	{
-		title: 'Tools',
+		title: 'EXTRA_INFO_LABELS.tools',
 		content: SECURITY_TOOLS
 	}
 ];
 
 const OTHER_EXTRA_INFO: SkillExtraInfo[] = [
 	{
-		title: 'Other',
+		title: 'EXTRA_INFO_LABELS.tools',
 		content: Other
 	}
 ];

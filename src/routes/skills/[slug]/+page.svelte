@@ -129,7 +129,7 @@
 						{#if data?.skill?.certifications?.length}
 							<div class="flex flex-row gap-1 self-stretch flex-wrap mb-5 items-center">
 								<span class="text-[var(--accent-text)] text-[1.1em] font-500">
-									Certifications
+									{$_('EXTRA_INFO_LABELS.certifications')}
 								</span>
 								<div class="px-10px flex flex-row gap-3 self-stretch flex-wrap align-center">
 									<ul class="list-disc list-inside">
@@ -148,7 +148,9 @@
 						{/if}
 						{#if data?.skill?.courses?.length}
 							<div class="flex flex-row gap-1 self-stretch flex-wrap mb-5 items-center">
-								<span class="text-[var(--accent-text)] text-[1.1em] font-500"> Courses </span>
+								<span class="text-[var(--accent-text)] text-[1.1em] font-500">
+									{$_('EXTRA_INFO_LABELS.courses')}
+								</span>
 								<div class="px-10px flex flex-row gap-3 self-stretch flex-wrap align-center">
 									<ul class="list-disc list-inside">
 										{#each data.skill.courses as info}
