@@ -98,7 +98,7 @@
 						{#if data?.skill?.extraInfo?.length}
 							{#each data.skill.extraInfo as any}
 								<div
-									class="flex flex-row gap-1 self-stretch flex-wrap mb-5  items-center 
+									class="flex flex-row gap-1  flex-wrap mb-5  items-center 
 							"
 								>
 									<span class="text-[var(--accent-text)] text-[1.1em] font-500">
@@ -106,7 +106,7 @@
 									</span>
 									<div
 										class="px-10px
-								 flex flex-row gap-3 self-stretch flex-wrap align-center
+								 flex flex-row gap-3  flex-wrap align-center
 								"
 									>
 										{#each any.content as info}
@@ -127,11 +127,11 @@
 							{/each}
 						{/if}
 						{#if data?.skill?.certifications?.length}
-							<div class="flex flex-row gap-1 self-stretch flex-wrap mb-5 items-center">
+							<div class="flex flex-row gap-1 self-s flex-wrap mb-5 items-center">
 								<span class="text-[var(--accent-text)] text-[1.1em] font-500">
 									{$_('EXTRA_INFO_LABELS.certifications')}
 								</span>
-								<div class="px-10px flex flex-row gap-3 self-stretch flex-wrap align-center">
+								<div class="px-10px flex flex-row gap-3  flex-wrap align-center">
 									<ul class="list-disc list-inside">
 										{#each data.skill.certifications as info}
 											<div class="font-300">
@@ -147,11 +147,11 @@
 							</div>
 						{/if}
 						{#if data?.skill?.courses?.length}
-							<div class="flex flex-row gap-1 self-stretch flex-wrap mb-5 items-center">
+							<div class="flex flex-row gap-1  flex-wrap mb-5 items-center">
 								<span class="text-[var(--accent-text)] text-[1.1em] font-500">
 									{$_('EXTRA_INFO_LABELS.courses')}
 								</span>
-								<div class="px-10px flex flex-row gap-3 self-stretch flex-wrap align-center">
+								<div class="px-10px flex flex-row gap-3  flex-wrap align-center">
 									<ul class="list-disc list-inside">
 										{#each data.skill.courses as info}
 											<div class="font-300">
@@ -168,10 +168,10 @@
 						{/if}
 					</div>
 				</div>
-				<div class="self-stretch mb-2">
+				<div class=" mb-2">
 					<CardDivider />
 				</div>
-				<div class="flex flex-row gap-1 self-stretch flex-wrap">
+				<div class="flex flex-row gap-1  flex-wrap">
 					<div class="px-10px">
 						{#each related as item}
 							<Chip

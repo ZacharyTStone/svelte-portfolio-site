@@ -38,7 +38,7 @@
 	<nav class="container !justify-between flex flex-row items-center text-sm">
 		<a
 			href={`${base}/`}
-			class="nav-menu-left decoration-none flex flex-row items-center cursor-pointer px-4 text-[var(--secondary-text)] self-stretch hover:bg-[color:var(--main-hover)]"
+			class="px-2 nav-menu-left decoration-none flex flex-row items-center cursor-pointer m:px-4 text-[var(--secondary-text)] self-stretch hover:bg-[color:var(--main-hover)]  "
 		>
 			<UIcon icon="i-carbon-code" classes="text-2em" />
 			<span class="ml-2 text-md font-bold hidden md:inline"
