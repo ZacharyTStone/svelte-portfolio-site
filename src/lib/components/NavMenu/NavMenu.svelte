@@ -38,7 +38,7 @@
 	<nav class="container !justify-between flex flex-row items-center text-sm">
 		<a
 			href={`${base}/`}
-			class="px-2 nav-menu-left decoration-none flex flex-row items-center cursor-pointer m:px-4 text-[var(--secondary-text)] self-stretch hover:bg-[color:var(--main-hover)]  "
+			class="nav-menu-left decoration-none flex flex-row items-center cursor-pointer s:px-2 md:px-4 text-[var(--secondary-text)] hover:bg-[color:var(--main-hover)]  "
 		>
 			<UIcon icon="i-carbon-code" classes="text-2em" />
 			<span class="ml-2 text-md font-bold hidden md:inline"
@@ -53,7 +53,7 @@
 				</a>
 			{/each}
 		</div>
-		<div class="flex flex-row self-stretch items-stretch gap-1 text-1.15em">
+		<div class="flex flex-row items-stretch gap-1 text-1.15em">
 			<a
 				href={`${base}/search`}
 				class="text-inherit col-center self-stretch px-2 hover:bg-[color:var(--main-hover)]"
