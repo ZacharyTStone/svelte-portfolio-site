@@ -42,8 +42,8 @@
 			if (item.skills.some((tech) => tech.slug === skill.slug)) {
 				out.push({
 					img: getAssetURL(item.logo),
-					display: `${item.name}`,
-					name: $_(item.name),
+					display: item.name,
+					name: item.name,
 					type: 'projects',
 					url: `/projects/${item.slug}`
 				});
@@ -53,8 +53,8 @@
 			if (item.skills.some((tech) => tech.slug === skill.slug)) {
 				out.push({
 					img: getAssetURL(item.logo),
-					display: `${$_(item.name)}`,
-					name: $_(item.name),
+					display: item.name,
+					name: item.name,
 					type: 'experience',
 					url: `/experience/${item.slug}`
 				});
@@ -64,7 +64,7 @@
 		return out;
 	};
 
-	$: computedTitle = data.skill ? `${$_(data.skill.name)} - ${title}` : title;
+	$: computedTitle = data.skill ? `${$_(data.skill.name)} - ${$_(title)}` : `${$_(title)}`;
 
 	$: related = data.skill ? getRelatedProjects() : [];
 </script>
