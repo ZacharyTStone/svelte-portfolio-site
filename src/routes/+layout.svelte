@@ -6,15 +6,19 @@
 	import { onMount } from 'svelte';
 	import { dev } from '$app/environment';
 	import { inject } from '@vercel/analytics';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 
 	inject({ mode: dev ? 'development' : 'production' });
+	injectSpeedInsights();
 
 	onMount(() => onHydrated());
 </script>
 
 <div class={`body contents ${$theme === 'dark' ? 'theme-dark' : 'theme-light'}`}>
 	<NavMenu />
-	<div class="content container"><slot /></div>
+	<div class="content container">
+		<slot />
+	</div>
 </div>
 
 <style lang="scss">
