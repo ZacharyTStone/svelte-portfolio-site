@@ -154,7 +154,8 @@ body {
 			max-width: -moz-available;
 			min-width: -moz-available;
 
-			padding: 0px 20px;
+			// todo fix this to be less hacky
+			padding: 0px 10px !important;
 		}
 	}
 }
