@@ -149,10 +149,7 @@ body {
 
 	@media (max-width: 850px) {
 		& {
-			max-width: -webkit-fill-available;
-			min-width: -webkit-fill-available;
-			max-width: -moz-available;
-			min-width: -moz-available;
+			margin: 0px auto;
 		}
 	}
 }
