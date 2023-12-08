@@ -49,7 +49,7 @@
 	<div class="row justify-between items-center">
 		<div class="row">
 			{#each project.skills as tech}
-				<ChipIcon
+				<Chip
 					logo={getAssetURL(tech.logo)}
 					name={$_(tech.name)}
 					href={`${base}/skills/${tech.slug}`}

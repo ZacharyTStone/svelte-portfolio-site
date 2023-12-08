@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Carrousel from '$lib/components/Carrousel/Carrousel.svelte';
+	import Chip from '$lib/components/Chip/Chip.svelte';
+	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
 	import Icon from '$lib/components/Icon/Icon.svelte';
 	import MainTitle from '$lib/components/MainTitle/MainTitle.svelte';
 	import { TITLE_SUFFIX } from '$lib/params';
@@ -34,14 +36,9 @@
 		</p>
 		<div class="row justify-center md:justify-start p-y-15px p-x-0px gap-3">
 			{#each links as link}
-				<a
-					class="decoration-none"
-					href={`${isEmail(link.link) ? 'mailto:' : ''}${link.link}`}
-					target="_blank"
-					rel="noreferrer"
-				>
-					<Icon icon={getPlatfromIcon(link.platform)} color={'var(--accent-text)'} size={'20px'} />
-				</a>
+				<ChipIcon name={link.platform} href={link.link} newtab>
+					<Icon icon={getPlatfromIcon(link.platform)} color={'var(--accent-text)'} size={'12px'} />
+				</ChipIcon>
 			{/each}
 		</div>
 	</div>

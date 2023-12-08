@@ -52,6 +52,11 @@ export const HOME: HomePageParams = {
 			platform: Platform.Linkedin,
 			link: 'https://www.linkedin.com/in/zacharystone42/',
 			newTab: true
+		},
+		{
+			platform: Platform.Email,
+			link: 'mailto: zach.stone.developer@gmail.com',
+			newTab: true
 		}
 	]
 };

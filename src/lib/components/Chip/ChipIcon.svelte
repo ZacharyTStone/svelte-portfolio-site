@@ -3,6 +3,7 @@
 
 	export let name = '';
 	export let logo = '';
+	export let newtab = false;
 	export let inverted = false;
 	export let grayscale = true;
 	import { _ } from 'svelte-i18n';
@@ -17,6 +18,7 @@
 		href ? 'cursor-pointer' : 'cursor-help'
 	} ${grayscale ? 'grayscale-65 hover:grayscale-0' : ''}`}
 	data-help={$_(name)}
+	target={href && newtab ? '_blank' : undefined}
 >
 	{#if $$slots.default}
 		<slot />
