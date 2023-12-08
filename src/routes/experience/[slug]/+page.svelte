@@ -51,36 +51,47 @@
 						</Chip>
 					{/each}
 				</div>
-				<div class="row-center flex-wrap m-b-2">
-					{#each data.experience.skills as item}
-						<Chip
-							classes="inline-flex flex-row items-center justify-center"
-							href={`${base}/skills/${item.slug}`}
-							newTab={false}
-						>
-							<CardLogo
-								src={getAssetURL(item.logo)}
-								alt={$_(item.name)}
-								radius={'0px'}
-								size={15}
-								classes="mr-2"
-							/>
-							<span class="text-[0.9em]">{$_(item.name)}</span>
-						</Chip>
-					{/each}
-				</div>
 			</div>
 		</Banner>
-		<div class="p-5 md:p-0  pt-3 pb-1 overflow-x-hidden w-full ">
+		<div
+			class=" 
+	p-5 md:p-0 
+	pt-3 pb-1 overflow-x-hidden w-full"
+		>
 			<div class="px-10px m-y-5">
 				{#if data.experience.description}
 					{$_(data.experience.description)}
 				{:else}
 					<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
 						<UIcon icon="i-carbon-text-font" classes="text-3.5em" />
-						<p class="font-300">No description...</p>
+						<p class="font-300">No description</p>
 					</div>
 				{/if}
+			</div>
+			<div class="pt-3 pb-1 overflow-x-hidden w-full">
+				<div class="px-10px m-y-5">
+					<div class="flex flex-row gap-1 self-stretch flex-wrap">
+						<h4 class="mr-6">
+							{$_('EXTRA_INFO_LABELS.skills')}
+						</h4>
+						{#each data.experience.skills as item}
+							<Chip
+								classes="inline-flex flex-row items-center justify-center"
+								href={`${base}/skills/${item.slug}`}
+								newTab={false}
+							>
+								<CardLogo
+									src={getAssetURL(item.logo)}
+									alt={$_(item.name)}
+									radius={'0px'}
+									size={15}
+									classes="mr-2"
+								/>
+								<span class="text-[0.9em]">{$_(item.name)}</span>
+							</Chip>
+						{/each}
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
