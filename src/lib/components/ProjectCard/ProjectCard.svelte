@@ -22,9 +22,9 @@
 		<div class="row">
 			{#each project.links as link}
 				<CardLink
-					label={link.label ?? ''}
+					label={$_(link.label)}
 					to={link.to}
-					icon_path={link.label == 'Live Demo'
+					icon_path={link.label == 'PROJECTS.live_site'
 						? Icons.Projects
 						: link.label == 'YouTube'
 						? Icons.Youtube
@@ -49,7 +49,7 @@
 	<div class="row justify-between items-center">
 		<div class="row">
 			{#each project.skills as tech}
-				<Chip
+				<ChipIcon
 					logo={getAssetURL(tech.logo)}
 					name={$_(tech.name)}
 					href={`${base}/skills/${tech.slug}`}

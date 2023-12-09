@@ -10,7 +10,11 @@ const MY_PROJECTS: Array<Project> = [
 		description: 'PROJECTS.MY_ANIME_COLLECTION.description',
 		shortDescription: 'PROJECTS.MY_ANIME_COLLECTION.shortDescription',
 		links: [
-			{ to: 'https://www.my-anime-collection.com/landing', label: 'Live Demo', newTab: true },
+			{
+				to: 'https://www.my-anime-collection.com/landing',
+				label: 'PROJECTS.live_site',
+				newTab: true
+			},
 			{ to: 'https://github.com/zachinjapan/my-anime-collection', label: 'GitHub', newTab: true },
 			{
 				to: 'https://www.youtube.com/embed/D_lXDfCJf6k',
@@ -46,7 +50,7 @@ const MY_PROJECTS: Array<Project> = [
 		description: 'PROJECTS.ZACH_IN_JAPAN.description',
 		shortDescription: 'PROJECTS.ZACH_IN_JAPAN.shortDescription',
 		links: [
-			{ to: 'https://zachinjapan.com', label: 'Live Demo', newTab: true },
+			{ to: 'https://zachinjapan.com', label: 'PROJECTS.live_site', newTab: true },
 			{ to: 'https://github.com/zachinjapan/my-gatsby-blog', label: 'GitHub', newTab: true },
 			{ to: 'https://www.youtube.com/embed/lt48zTXl6j0', label: 'YouTube', newTab: true }
 		],
@@ -73,7 +77,7 @@ const MY_PROJECTS: Array<Project> = [
 		description: 'PROJECTS.HAKU.description',
 		shortDescription: 'PROJECTS.HAKU.shortDescription',
 		links: [
-			{ to: 'https://www.hakujobs.com', label: 'Live Demo', newTab: true },
+			{ to: 'https://www.hakujobs.com', label: 'PROJECTS.live_site', newTab: true },
 			{ to: 'https://github.com/zachinjapan/haku', label: 'GitHub', newTab: true },
 			{ to: 'https://www.youtube.com/embed/q1rVbqMw0ug', label: 'YouTube', newTab: true }
 		],
@@ -105,7 +109,7 @@ const MY_PROJECTS: Array<Project> = [
 		description: 'PROJECTS.RIFFS.description',
 		shortDescription: 'PROJECTS.RIFFS.shortDescription',
 		links: [
-			{ to: 'https://riffs.netlify.app/', label: 'Live Demo', newTab: true },
+			{ to: 'https://riffs.netlify.app/', label: 'PROJECTS.live_site', newTab: true },
 			{ to: 'https://github.com/zachinjapan/vue-music-app', label: 'GitHub', newTab: true },
 			{ to: 'https://www.youtube.com/embed/gBIhz-0Jkg8', label: 'YouTube', newTab: true }
 		],
@@ -129,7 +133,7 @@ const MY_PROJECTS: Array<Project> = [
 		description: 'PROJECTS.JAPANESE_QUIZ.description',
 		shortDescription: 'PROJECTS.JAPANESE_QUIZ.shortDescription',
 		links: [
-			{ to: 'https://prefecture-match.herokuapp.com', label: 'Live Demo', newTab: true },
+			{ to: 'https://prefecture-match.herokuapp.com', label: 'PROJECTS.live_site', newTab: true },
 			{
 				to: 'https://github.com/zachinjapan/prefecture-match',
 				label: 'GitHub',

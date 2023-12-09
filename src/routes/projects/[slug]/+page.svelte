@@ -54,8 +54,8 @@
 						{#each data.project.links as item}
 							<Chip href={item.to}>
 								<div class="row-center gap-2">
-									<u title={item.label} use:tooltip>
-										{#if item.label === 'Live Demo'}
+									<u title={$_(item.label)} use:tooltip>
+										{#if item.label === 'PROJECTS.live_site'}
 											<Icon icon={Icons.Projects} color={'var(--accent-text)'} size={'20px'} />
 										{:else if item.label === 'YouTube'}
 											<Icon icon={Icons.Youtube} color={'var(--accent-text)'} size={'20px'} />
@@ -122,7 +122,7 @@
 										href={item.to}
 										newTab={false}
 									>
-										<span class="text-[0.9em]">{item.label}</span>
+										<span class="text-[0.9em]"> {$_(item.label)}</span>
 									</Chip>
 								{/each}
 							</div>
