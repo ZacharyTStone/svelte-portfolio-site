@@ -22,11 +22,11 @@
 			"location": "Fukushima, Japan"
 		},
 		"rapptr": {
-			"name": "フロントエンドエンジニア",
-			"quote": "アプリの戦略、デザイン、開発からローンチ、そして継続的なカスタマイズサポートまで、私たちは一緒にすべてのステップでサポートします。製品を継続的に洗練し進化させます。(Google翻訳)",
-			"description": "RapptrLabsは多くの有名なクライアントと協力し、さらに2023年のGoogleのアプリ・オブ・ザ・イヤーを開発しました。Rapptr Labsのフロントエンドエンジニアとして、主に新機能の実装、バグの修正、およびOPSIQの週次フロントエンドデプロイを監督しています。",
-			"type": "ソフトウェア開発",
-			"location": "ニューヨーク、NY"
+			"name": "Frontend Engineer",
+			"quote": "From app strategy, design and development to launch and ongoing tailored support, we are with you every step of the way – continuously refining and evolving your product.",
+			"description": "RapptrLabs has worked with many well known clients and even devloped Google's app of the year for 2023. As a Frontend Engineer at Rapptr Labs, I primarily implement new features, fix bugs, and oversee OPSIQ's weekly front-end deployment. ",
+			"type": "Software Development",
+			"location": "New York, NY"
 		}
 	},
 	"SKILLS": {

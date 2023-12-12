@@ -59,7 +59,13 @@
 					<div class="flex flex-row gap-1 self-stretch flex-wrap">
 						<div class="flex flex-col">
 							<p class="font-300 italic text-[var(--tertiary-text)] m-y-2 text-center">
-								{$_(data.experience.quote.text)} - {$_(data.experience.quote.link.label)}
+								{$_(data.experience.quote.text)} -
+								<a
+									href={data.experience.quote.link.to}
+									target={data.experience.quote.link.newTab ? '_blank' : '_self'}
+									class="text-[var(--accent-text)]"
+									referrerpolicy="no-referrer">{$_(data.experience.quote.link.label)}</a
+								>
 							</p>
 						</div>
 					</div>
