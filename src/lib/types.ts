@@ -86,6 +86,10 @@ export interface Experience extends Project {
 		from: Date;
 		to?: Date;
 	};
+	quote?: {
+		text: string;
+		link: Link;
+	};
 }
 
 export interface PageParams {

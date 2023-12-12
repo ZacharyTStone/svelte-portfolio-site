@@ -47,6 +47,14 @@ const MY_EXPERIENCES: Array<Experience> = [
 				newTab: true
 			}
 		],
+		quote: {
+			text: 'EXPERIENCES.rapptr.quote',
+			link: {
+				to: 'https://rapptrlabs.com/',
+				label: 'Rapptr Labs',
+				newTab: true
+			}
+		},
 		logo: Assets.Rapptr,
 		shortDescription: 'test'
 	}

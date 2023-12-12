@@ -53,6 +53,20 @@
 				</div>
 			</div>
 		</Banner>
+		{#if data?.experience?.quote?.text}
+			<div class="p-5 md:p-0 pt-3 pb-1 overflow-x-hidden w-full">
+				<div class="px-10px m-y-5">
+					<div class="flex flex-row gap-1 self-stretch flex-wrap">
+						<div class="flex flex-col">
+							<p class="font-300 italic text-[var(--tertiary-text)] m-y-2 text-center">
+								{$_(data.experience.quote.text)} - {$_(data.experience.quote.link.label)}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		{/if}
+
 		<div
 			class=" 
 	p-5 md:p-0 
