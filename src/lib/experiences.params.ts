@@ -32,7 +32,7 @@ const MY_EXPERIENCES: Array<Experience> = [
 		type: 'EXPERIENCES.rapptr.type',
 		location: 'EXPERIENCES.rapptr.location',
 		period: { from: new Date(2022, 7) },
-		skills: getSkills('fe', 'be', 'dev-tools', 'web-security'),
+		skills: getSkills('fe', 'be', 'dev-tools', 'cyber-security'),
 		name: 'EXPERIENCES.rapptr.name',
 		color: '#ffffff',
 		links: [

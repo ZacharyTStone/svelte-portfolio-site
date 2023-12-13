@@ -129,11 +129,11 @@ const MY_SKILLS = [
 		extraInfo: BE_EXTRA_INFO
 	}),
 	s({
-		slug: 'web-security',
+		slug: 'cyber-security',
 		color: 'green',
-		description: 'SKILLS.web-security.description',
+		description: 'SKILLS.cyber-security.description',
 		logo: Assets.Security,
-		name: 'SKILLS.web-security.name',
+		name: 'SKILLS.cyber-security.name',
 		extraInfo: SECURITY_EXTRA_INFO,
 		courses: [
 			{

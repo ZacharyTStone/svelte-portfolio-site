@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import type { Skill } from '$lib/types';
 	import { getAssetURL } from '$lib/data/assets';
 	import UIcon from '../Icon/UIcon.svelte';
@@ -12,6 +12,16 @@
 	let timeout: unknown;
 	let index = 0;
 	import { _ } from 'svelte-i18n';
+
+	onMount(() => {
+		timeout = setInterval(() => {
+			slide('right');
+		}, 3000); // Adjust the interval as needed (e.g., every 5 seconds)
+	});
+
+	onDestroy(() => {
+		clearInterval(timeout as number);
+	});
 
 	$: {
 		if (element) {
@@ -39,19 +49,17 @@
 	};
 
 	const toggleLeft = () => {
-		clearTimeout(timeout as number);
-
+		clearInterval(timeout as number);
 		slide('left');
 	};
 
 	const toggleRight = () => {
-		clearTimeout(timeout as number);
-
+		clearInterval(timeout as number);
 		slide('right');
 	};
 </script>
 
-<div class="carrousel row-center">
+<div class="carrousel row-center mb-5">
 	<button
 		class="row-center font-500 p-5px m-y-0px m-x-10px cursor-pointer border-1px border-solid border-[var(--border)] bg-transparent rounded-[50%] hover:border-[var(--border-hover)]"
 		on:click={toggleLeft}

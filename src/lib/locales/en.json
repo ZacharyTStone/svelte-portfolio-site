@@ -3,7 +3,7 @@
 		"title": "Home",
 		"name": "Zach",
 		"lastName": "Stone",
-		"description": "a software engineer specializing in front-end development with an interest in Japanese and web security."
+		"description": "a software engineer specializing in front-end web development with an interest in Japanese and cyber security."
 	},
 	"NAVBAR": {
 		"home": "Home",
@@ -39,9 +39,9 @@
 			"description": "I have experience using a variety of backend technologies to create REST and GraphQL APIs. I also have experience working with databases in both SQL and NoSQL formats. At Rapptr Labs, I often work on backend tickets for a business-level application using Node.js and Express with a database in SQL, interacted with through Prisma.",
 			"name": "Backend Web"
 		},
-		"web-security": {
-			"description": "My fascination with web security sparked when I implemented a comprehensive site overhaul according to a third-party audit at work. This experience exposed me to numerous web security concepts, and since then, I've been avidly seeking to deepen my understanding of this field. I am consistently exploring ways to increase the security of my applications.",
-			"name": "Web Security"
+		"cyber-security": {
+			"description": "My fascination with cyber security sparked when I implemented a comprehensive site overhaul according to a third-party audit at work. This experience exposed me to numerous cyber security concepts, and since then, I've been avidly seeking to deepen my understanding of this field. I am consistently exploring ways to increase the security of my applications.",
+			"name": "Cyber Security"
 		},
 		"dev-tools": {
 			"description": "Whether it is fixing merge conflicts in Git, or updating tickets in Jira, I am comfortable using a variety of tools to get the job done.",

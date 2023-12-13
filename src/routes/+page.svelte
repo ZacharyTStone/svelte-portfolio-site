@@ -43,7 +43,7 @@
 			{/each}
 		</div>
 	</div>
-	<div class="fadeIn mb-1">
+	<div class="fadeIn">
 		<Carrousel items={skills ?? MY_SKILLS} />
 	</div>
 </div>
