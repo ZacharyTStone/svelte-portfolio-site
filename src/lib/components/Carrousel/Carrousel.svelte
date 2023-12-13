@@ -16,7 +16,7 @@
 	onMount(() => {
 		timeout = setInterval(() => {
 			slide('right');
-		}, 3000); // Adjust the interval as needed (e.g., every 5 seconds)
+		}, 5000); // Adjust the interval as needed (e.g., every 5 seconds)
 	});
 
 	onDestroy(() => {
