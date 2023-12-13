@@ -80,7 +80,7 @@
 						alt={$_(item.name)}
 					/>
 				</a>
-				<span class="text-center m-t-20px">{$_(item.name)}</span>
+				<span class="text-center m-t-10px  sm:text-[1em]  min-h-48px">{$_(item.name)}</span>
 			</div>
 		{/each}
 	</div>
