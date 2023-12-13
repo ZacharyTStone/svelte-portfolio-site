@@ -21,14 +21,15 @@
 	"
 >
 	<div class="md:flex-1 gap-10px fadeIn">
-		<MainTitle classes="md:text-left "
-			>{$_(name)}
+		<MainTitle classes="md:text-left mb-10 md:mb-5">
+			{$_(name)}
 			{$_(lastName)},</MainTitle
 		>
 		<p
-			class="text-[var(--tertiary-text)]  text-center md:text-left text-[1.2em] font-extralight
+			class="text-[var(--tertiary-text)]  text-center md:text-left text-[1em] md:text-[1.2em] font-extralight
 
 		md:w-[80%]
+		 mb-10 md:mb-5
 		
 		"
 		>
@@ -42,7 +43,7 @@
 			{/each}
 		</div>
 	</div>
-	<div class="fadeIn">
+	<div class="fadeIn mb-1">
 		<Carrousel items={skills ?? MY_SKILLS} />
 	</div>
 </div>
