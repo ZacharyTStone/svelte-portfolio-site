@@ -40,7 +40,7 @@
 			href={`${base}/`}
 			class="nav-menu-left decoration-none flex flex-row items-center cursor-pointer s:px-2 md:px-4 text-[var(--secondary-text)] hover:bg-[color:var(--main-hover)]  "
 		>
-			<UIcon icon="i-carbon-code" classes="text-2em" />
+			<UIcon icon="i-carbon-code" classes="text-2em" alt="home" />
 			<span class="ml-2 text-md font-bold hidden md:inline"
 				>{$_(HOME.name)} {$_(HOME.lastName)}</span
 			>
@@ -48,7 +48,7 @@
 		<div class="flex flex-row flex-1 self-center justify-center">
 			{#each items as item}
 				<a href={`${base}${item.to}`} class="nav-menu-item !text-[var(--secondary-text)]">
-					<UIcon icon={item.icon} classes="text-1.3em" />
+					<UIcon icon={item.icon} classes="text-1.3em" alt={$_(item.title)} />
 					<span class="nav-menu-item-label">{$_(item.title)}</span>
 				</a>
 			{/each}
@@ -58,26 +58,27 @@
 				href={`${base}/search`}
 				class="text-inherit col-center self-stretch px-2 hover:bg-[color:var(--main-hover)]"
 			>
-				<UIcon icon="i-carbon-search" />
+				<UIcon icon="i-carbon-search" alt="search" />
 			</a>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
 				on:click={() => toggleTheme($theme === 'dark' ? 'light' : 'dark')}
 			>
 				{#if $theme === 'light'}
-					<UIcon icon="i-carbon-moon" />
+					<UIcon icon="i-carbon-moon" alt="light Theme" />
 				{:else}
-					<UIcon icon="i-carbon-sun" />
+					<UIcon icon="i-carbon-sun" alt="Dark Theme" />
 				{/if}
 			</button>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
 				on:click={() => toggleLanguage()}
+				aria-label="Change language"
 			>
 				{#if $locale?.includes('en')}
-					<span class="text-xs">JA</span>
+					<span class="text-xs" aria-label="Japanese">JA</span>
 				{:else}
-					<span class="text-xs">EN</span>
+					<span class="text-xs" aria-label="English">EN</span>
 				{/if}
 			</button>
 		</div>
