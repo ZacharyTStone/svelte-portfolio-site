@@ -3,7 +3,7 @@
 		"title": "Home",
 		"name": "Zach",
 		"lastName": "Stone",
-		"description": "a software engineer specializing in front-end web development with an interest in Japanese and cyber security."
+		"description": "a software engineer specializing in front-end web development with an interest in Japanese and cybersecurity."
 	},
 	"NAVBAR": {
 		"home": "Home",
@@ -40,8 +40,8 @@
 			"name": "Backend Web"
 		},
 		"cyber-security": {
-			"description": "My fascination with cyber security sparked when I implemented a comprehensive site overhaul according to a third-party audit at work. This experience exposed me to numerous cyber security concepts, and since then, I've been avidly seeking to deepen my understanding of this field. I am consistently exploring ways to increase the security of my applications.",
-			"name": "Cyber Security"
+			"description": "My fascination with cyberecurity sparked when I implemented a comprehensive site overhaul according to a third-party audit at work. This experience exposed me to numerous cybersecurity concepts, and since then, I've been avidly seeking to deepen my understanding of this field. I am consistently exploring ways to increase the security of my applications.",
+			"name": "Cybersecurity"
 		},
 		"dev-tools": {
 			"description": "Whether it is fixing merge conflicts in Git, or updating tickets in Jira, I am comfortable using a variety of tools to get the job done.",
