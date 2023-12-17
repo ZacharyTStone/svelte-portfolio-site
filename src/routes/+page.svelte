@@ -26,11 +26,9 @@
 			{$_(lastName)},</MainTitle
 		>
 		<p
-			class="text-[var(--tertiary-text)]  text-center md:text-left text-[1em] md:text-[1.2em] font-extralight
-
+			class="text-[var(--tertiary-text)]  text-center md:text-left text-[1em] md:text-[1.2em] font-extralight leading-relaxed
 		md:w-[80%]
 		 mb-10 md:mb-5
-		
 		"
 		>
 			{$_(description)}
