@@ -76,6 +76,7 @@ export interface Project extends Item {
 	japanese?: boolean;
 	featured?: boolean;
 	featured_reason?: string;
+	description_is_markdown?: boolean;
 }
 
 export interface Experience extends Project {

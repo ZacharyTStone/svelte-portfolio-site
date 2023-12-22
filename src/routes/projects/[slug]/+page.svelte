@@ -16,6 +16,7 @@
 	import { Icons } from '$lib/utils/index';
 	import Icon from '$lib/components/Icon/Icon.svelte';
 	import { _ } from 'svelte-i18n';
+	import SvelteMarkdown from 'svelte-markdown';
 
 	// @ts-ignore
 	import { tooltip } from '@svelte-plugins/tooltips';
@@ -25,6 +26,8 @@
 	const { title } = PROJECTS;
 
 	const screenshots = data.project?.screenshots ?? [];
+
+	const description = data.project?.description ?? '';
 
 	$: computedTitle = data.project ? `${$_(data.project.name ?? '')} - ${$_(title)}` : $_(title);
 </script>
@@ -76,7 +79,11 @@
 			>
 				<div class="px-10px m-y-5">
 					{#if data.project.description}
-						{$_(data.project.description)}
+						{#if data.project.description_is_markdown}
+							<SvelteMarkdown source={description} />
+						{:else}
+							{$_(description)}
+						{/if}
 					{:else}
 						<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
 							<UIcon icon="i-carbon-text-font" classes="text-3.5em" />
