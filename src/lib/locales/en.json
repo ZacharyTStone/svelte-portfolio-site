@@ -111,9 +111,10 @@
 		},
 		"ZACHARYTSTONE": {
 			"name": "ZacharyTStone",
-			"description": "Checkout my readme that is automatically generated every hour.",
+			"description": "This GitHub repository employs GitHub Actions to automatically update the README with dynamic content, including the current time, a random quote, a random Pokémon, a featured follower, and the latest GitHub activity. The workflow consists of scripts that execute tasks such as updating the time, fetching quotes and Pokémon information, selecting a featured follower, and retrieving the latest commit details. Additionally, there's a job to auto-merge 'please feature me' pull requests under specific conditions. These actions are triggered on every push to the `main` branch, pull requests targeting `main`, and can also be manually triggered or scheduled. Environment variables such as `GIT_USER_EMAIL`, `GIT_USER_NAME`, and `README_G_TOKEN` are used for configuring Git user details and GitHub token. Explore individual scripts in the `.github/scripts` directory for more details on each functionality.",
 			"shortDescription": "Checkout my readme that is automatically generated every hour.",
-			"type": "Github Readme"
+			"type": "Github Readme",
+			"featured_reason": "Most Creative"
 		}
 	},
 	"EXTRA_INFO_LABELS": {
