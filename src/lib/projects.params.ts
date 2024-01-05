@@ -68,7 +68,7 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.ZACH_IN_JAPAN.type',
 		english: true,
 		japanese: false,
-		featured: false,
+		featured: true,
 		featured_reason: 'PROJECTS.ZACH_IN_JAPAN.featured_reason'
 	},
 	{
@@ -100,7 +100,7 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.HAKU.type',
 		english: true,
 		japanese: false,
-		featured: false,
+		featured: true,
 		featured_reason: 'PROJECTS.HAKU.featured_reason'
 	},
 	{

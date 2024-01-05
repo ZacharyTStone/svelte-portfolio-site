@@ -20,21 +20,17 @@
 	};
 
 	let query = '';
-	let mounted = false;
 	let result: Array<Item> = [];
 
+	// Function to filter items based on query
 	function filterItems<T extends { name: string; label?: string; skills?: any }>(
 		items: T[],
 		query: string
 	): T[] {
-		console.log(items);
 		const containsQuery = (value: any, depth: number): boolean => {
-			if (depth > 8) {
-				return false; // Stop recursion if depth exceeds 3 levels
-			}
+			if (depth > 8) return false;
 
 			if (typeof value === 'string') {
-				// needs more work to get working in Japanese mode
 				const includesValue = $_(value.toLowerCase()).includes(query.toLowerCase());
 				return includesValue;
 			} else if (Array.isArray(value)) {
@@ -51,9 +47,8 @@
 		return items.filter((item: T) => !query || containsQuery(item, 1));
 	}
 
-	// Helper function to generate items for the result array
+	// Function to generate items for the result array
 	function generateItems<T>(items: T[], icon: string, toFn: (data: T) => string): Item<T>[] {
-		console.log(items);
 		return items.map<Item<T>>((data) => ({
 			data,
 			icon,
@@ -65,15 +60,12 @@
 	onMount(() => {
 		let searchParams = new URLSearchParams(window.location.search);
 		query = searchParams.get('q') ?? '';
-		mounted = true;
 	});
 
 	$: {
 		result = [];
 
-		// Include all items if there is no query
-
-		// Filter and generate items for projects by name or project skills
+		// Generate items for projects
 		result.push(
 			...generateItems(
 				filterItems(MY_PROJECTS, query),
@@ -82,7 +74,7 @@
 			)
 		);
 
-		// Filter and generate items for skills
+		// Generate items for skills
 		result.push(
 			...generateItems(
 				filterItems(MY_SKILLS, query),
@@ -91,7 +83,7 @@
 			)
 		);
 
-		// Filter and generate items for experiences by name or company
+		// Generate items for experiences
 		result.push(
 			...generateItems(
 				filterItems(MY_EXPERIENCES, query),
@@ -105,18 +97,20 @@
 </script>
 
 <SearchPage {title} on:search={(e) => (query = e.detail.search)}>
-	<div class="flex flex-col items-stretch gap-10 p-2" />
 	{#if !query}
+		<!-- Display prompt when no query -->
 		<div class="flex-1 self-center col-center m-t-10 gap-5 font-300 text-[var(--accent-text)]">
 			<UIcon icon="i-carbon-search-locate-mirror" classes="text-2em" />
 			<span>{$_(SEARCH.prompt)} </span>
 		</div>
 	{:else if result.length === 0}
+		<!-- Display message when no results -->
 		<div class="flex-1 self-center col-center m-t-10 gap-5 font-300 text-[var(--accent-text)]">
 			<UIcon icon="i-carbon-cube" classes="text-2em" />
 			<span> Oops! Nothing to show for '{query}' </span>
 		</div>
 	{:else}
+		<!-- Display search results -->
 		<div class="flex flex-row flex-wrap gap-1">
 			{#each result as { data, icon, name, to }}
 				<Chip href={`${base}/${to}`} classes="flex flex-row items-center gap-2" newTab={false}>
