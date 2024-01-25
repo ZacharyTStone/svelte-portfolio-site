@@ -110,7 +110,7 @@ de{
 		},
 		"ZACHARYTSTONE": {
 			"name": "ザカリー・ストーン",
-			"description": "このGitHubリポジトリはGitHub Actionsを使用して、READMEを動的なコンテンツで自動的に更新します。これには、現在の時刻、ランダムな引用文、ランダムなポケモン、注目のフォロワー、および最新のGitHubアクティビティなどの情報を更新するためのさまざまなスクリプトが含まれています。",
+			"description": "このGitHubリポジトリはGitHub Actionsを使用して、READMEを動的なコンテンツで自動的に更新します。",
 			"shortDescription": "毎時自動更新される私のリードミー。",
 			"type": "Github リードミー",
 			"featured_reason": "最もクリエイティブなプロジェクト"

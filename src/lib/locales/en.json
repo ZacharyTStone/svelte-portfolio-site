@@ -111,7 +111,7 @@
 		},
 		"ZACHARYTSTONE": {
 			"name": "ZacharyTStone",
-			"description": "This GitHub repository employs GitHub Actions to automatically update the README with dynamic content, including the current time, a random quote, a random Pokémon, a featured follower, and the latest GitHub activity.",
+			"description": "This GitHub repository employs GitHub Actions to automatically update the README with dynamic content.",
 			"shortDescription": "Checkout my readme that is automatically generated every hour.",
 			"type": "Github Readme",
 			"featured_reason": "Most Creative"
