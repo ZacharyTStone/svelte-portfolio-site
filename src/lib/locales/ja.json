@@ -1,4 +1,4 @@
-{
+de{
 	"HOME": {
 		"title": "ホーム",
 		"name": "ザック",
@@ -35,7 +35,7 @@
 			"name": "フロントエンド(ウェブ)"
 		},
 		"be": {
-			"description": "RESTおよびGraphQL APIの開発、SQLやNoSQLデータベースの使用経験が豊富です。Rapptr LabsではNode.jsとExpressを使用し、Prisma経由のSQLデータベースを備えたアプリケーションのバックエンド開発を担当しています。",
+			"description": "RESTおよびGraphQL APIの開発、SQLやNoSQLデータベースの使用経験が豊富です。Rapptr LabsではNode.jsとExpressを使用し、Prisma経由のSQLデータベースを備えたアプリケーションのバックエンド開発をしています。",
 			"name": "バックエンド(ウェブ)"
 		},
 		"cyber-security": {
