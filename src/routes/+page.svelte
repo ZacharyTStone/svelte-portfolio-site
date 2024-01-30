@@ -38,7 +38,7 @@
 		</p>
 		<div class="row justify-center md:justify-start p-y-15px p-x-0px gap-3">
 			{#each links as { platform, link }}
-				<ChipIcon name={platform} on:click={() => handleClick(link)}>
+				<ChipIcon name={platform} href={link} newtab>
 					<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'12px'} />
 				</ChipIcon>
 			{/each}
