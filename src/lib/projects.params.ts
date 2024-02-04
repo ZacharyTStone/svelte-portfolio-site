@@ -133,59 +133,86 @@ const MY_PROJECTS: Array<Project> = [
 		featured_reason: 'PROJECTS.ZACHARYTSTONE.featured_reason'
 	},
 	{
-		slug: 'riffs',
+		slug: 'ai-flashcards',
 		color: generateRandomHexColor(),
-		description: 'PROJECTS.RIFFS.description',
-		shortDescription: 'PROJECTS.RIFFS.shortDescription',
+		description: 'PROJECTS.AI_FLASHCARDS.description',
+		shortDescription: 'PROJECTS.AI_FLASHCARDS.shortDescription',
 		links: [
-			{ to: 'https://riffs.netlify.app/', label: 'PROJECTS.live_site', newTab: true },
-			{ to: 'https://github.com/zachinjapan/vue-music-app', label: 'GitHub', newTab: true },
-			{ to: 'https://www.youtube.com/embed/gBIhz-0Jkg8', label: 'YouTube', newTab: true }
-		],
-		logo: Assets.Riffs,
-		name: 'PROJECTS.RIFFS.name',
-		skills: getSkills('fe', 'dev-tools', 'japanese'),
-		project_skills: [
-			{ label: 'Vue', to: 'https://vuejs.org/', newTab: true },
-			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
-			{ label: 'Firebase', to: 'https://firebase.google.com/', newTab: true },
-			{ label: 'Authentication', to: 'https://firebase.google.com/docs/auth', newTab: true },
-			{ label: 'Netlify', to: 'https://www.netlify.com/', newTab: true }
-		],
-		type: 'PROJECTS.RIFFS.type',
-		english: true,
-		japanese: true
-	},
-	{
-		slug: 'japanese-quiz',
-		color: generateRandomHexColor(),
-		description: 'PROJECTS.JAPANESE_QUIZ.description',
-		shortDescription: 'PROJECTS.JAPANESE_QUIZ.shortDescription',
-		links: [
-			{ to: 'https://prefecture-match.herokuapp.com', label: 'PROJECTS.live_site', newTab: true },
 			{
-				to: 'https://github.com/zachinjapan/prefecture-match',
+				to: 'https://github.com/ZacharyTStone/AI-Language-Learning-Flashcards/blob/main/README.md',
 				label: 'GitHub',
 				newTab: true
 			}
 		],
-		logo: Assets.Prefecture,
-		name: 'PROJECTS.JAPANESE_QUIZ.name',
-		skills: getSkills('fe', 'dev-tools', 'japanese'),
+		logo: Assets.Flashcard,
+		name: 'PROJECTS.AI_FLASHCARDS.name',
+		skills: getSkills('be', 'dev-tools'),
 		project_skills: [
-			{ label: 'React', to: 'https://reactjs.org/', newTab: true },
-			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
-			{
-				label: 'JavaScript',
-				to: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
-				newTab: true
-			},
-			{ label: 'Heroku', to: 'https://www.heroku.com/', newTab: true }
+			{ label: 'Python', to: 'https://www.python.org/', newTab: true },
+			{ label: 'CSV', to: 'https://en.wikipedia.org/wiki/Comma-separated_values', newTab: true },
+			{ label: 'OpenAI', to: 'https://openai.com/', newTab: true }
 		],
-		type: 'PROJECTS.JAPANESE_QUIZ.type',
-		english: false,
-		japanese: true
+		type: 'PROJECTS.AI_FLASHCARDS.type',
+		english: true,
+		japanese: true,
+		featured_reason: 'PROJECTS.AI_FLASHCARDS.featured_reason'
 	}
+
+	// description: '
+	// {
+	// 	slug: 'riffs',
+	// 	color: generateRandomHexColor(),
+	// 	description: 'PROJECTS.RIFFS.description',
+	// 	shortDescription: 'PROJECTS.RIFFS.shortDescription',
+	// 	links: [
+	// 		{ to: 'https://riffs.netlify.app/', label: 'PROJECTS.live_site', newTab: true },
+	// 		{ to: 'https://github.com/zachinjapan/vue-music-app', label: 'GitHub', newTab: true },
+	// 		{ to: 'https://www.youtube.com/embed/gBIhz-0Jkg8', label: 'YouTube', newTab: true }
+	// 	],
+	// 	logo: Assets.Riffs,
+	// 	name: 'PROJECTS.RIFFS.name',
+	// 	skills: getSkills('fe', 'dev-tools', 'japanese'),
+	// 	project_skills: [
+	// 		{ label: 'Vue', to: 'https://vuejs.org/', newTab: true },
+	// 		{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
+	// 		{ label: 'Firebase', to: 'https://firebase.google.com/', newTab: true },
+	// 		{ label: 'Authentication', to: 'https://firebase.google.com/docs/auth', newTab: true },
+	// 		{ label: 'Netlify', to: 'https://www.netlify.com/', newTab: true }
+	// 	],
+	// 	type: 'PROJECTS.RIFFS.type',
+	// 	english: true,
+	// 	japanese: true
+	// },
+	// {
+	// 	slug: 'japanese-quiz',
+	// 	color: generateRandomHexColor(),
+	// 	description: 'PROJECTS.JAPANESE_QUIZ.description',
+	// 	shortDescription: 'PROJECTS.JAPANESE_QUIZ.shortDescription',
+	// 	links: [
+	// 		{ to: 'https://prefecture-match.herokuapp.com', label: 'PROJECTS.live_site', newTab: true },
+	// 		{
+	// 			to: 'https://github.com/zachinjapan/prefecture-match',
+	// 			label: 'GitHub',
+	// 			newTab: true
+	// 		}
+	// 	],
+	// 	logo: Assets.Prefecture,
+	// 	name: 'PROJECTS.JAPANESE_QUIZ.name',
+	// 	skills: getSkills('fe', 'dev-tools', 'japanese'),
+	// 	project_skills: [
+	// 		{ label: 'React', to: 'https://reactjs.org/', newTab: true },
+	// 		{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
+	// 		{
+	// 			label: 'JavaScript',
+	// 			to: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+	// 			newTab: true
+	// 		},
+	// 		{ label: 'Heroku', to: 'https://www.heroku.com/', newTab: true }
+	// 	],
+	// 	type: 'PROJECTS.JAPANESE_QUIZ.type',
+	// 	english: false,
+	// 	japanese: true
+	// }
 ];
 
 export default MY_PROJECTS;

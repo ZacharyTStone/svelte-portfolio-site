@@ -23,6 +23,7 @@ import haku from '$lib/assets/images/projects/haku.webp';
 import niceRiff from '$lib/assets/images/projects/niceRiff.jpeg';
 import prefecture from '$lib/assets/images/projects/prefecture.webp';
 import quote from '$lib/assets/images/projects/quote.webp';
+import flashcard from '$lib/assets/images/projects/flashcard.png';
 
 export const COLOR_ASSETS = {
 	Next: { light: Next, dark: Next },
@@ -39,6 +40,7 @@ export const COLOR_ASSETS = {
 	Haku: { light: haku, dark: haku },
 	Riffs: { light: niceRiff, dark: niceRiff },
 	Prefecture: { light: prefecture, dark: prefecture },
+	Flashcard: { light: flashcard, dark: flashcard },
 	Quote: { light: quote, dark: quote },
 	Security: { light: Security, dark: Security },
 	Readme: { light: Readme, dark: Readme },
