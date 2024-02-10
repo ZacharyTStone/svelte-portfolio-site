@@ -56,7 +56,6 @@
 				>
 					<UIcon icon={item.icon} classes="text-1.3em" alt={$_(item.title)} />
 					<span class="nav-menu-item-label">{$_(item.title)}</span>
-					<!-- Shimmer effect overlay -->
 					<div class="shimmer-overlay" />
 				</a>
 			{/each}
@@ -133,6 +132,12 @@
 		}
 	}
 
+	// no shimer on mobile
+	@media (max-width: 600px) {
+		.shimmer-overlay {
+			display: none;
+		}
+	}
 	.shimmer-overlay {
 		position: absolute;
 		top: 0;
