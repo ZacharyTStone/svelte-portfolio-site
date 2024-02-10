@@ -10,7 +10,8 @@
 		"personal": "プロジェクト",
 		"career": "経歴",
 		"skills": "スキル",
-		"resume": "履歴書"
+		"resume": "履歴書",
+		"about": "自己紹介"
 	},
 	"EXPERIENCES": {
 		"title": "経歴",
