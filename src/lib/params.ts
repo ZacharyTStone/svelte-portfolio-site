@@ -16,6 +16,7 @@ export const TITLE_SUFFIX = 'Zach Stone';
 
 export const NavBar = {
 	home: 'NAVBAR.home',
+	about: 'NAVBAR.about',
 	personal: 'NAVBAR.personal',
 	career: 'NAVBAR.career',
 	resume: 'NAVBAR.resume',

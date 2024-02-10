@@ -16,6 +16,7 @@ import Node from '$lib/assets/images/node.png';
 import Svelte from '$lib/assets/images/svelte.png';
 import Vue from '$lib/assets/images/vue.png';
 import TypeScript from '$lib/assets/images/ts.png';
+import Zach from '$lib/assets/images/ZacharyStone.png';
 
 import anime from '$lib/assets/images/projects/anime.webp';
 import blog from '$lib/assets/images/projects/blog.webp';
@@ -48,7 +49,8 @@ export const COLOR_ASSETS = {
 	NodeJs: { light: Node, dark: Node },
 	Svelte: { light: Svelte, dark: Svelte },
 	VueJs: { light: Vue, dark: Vue },
-	TypeScript: { light: TypeScript, dark: TypeScript }
+	TypeScript: { light: TypeScript, dark: TypeScript },
+	Zach: { light: Zach, dark: Zach }
 };
 
 let currentTheme: string;

@@ -10,9 +10,26 @@
 		"personal": "Projects",
 		"career": "Experience",
 		"skills": "Skills",
-		"resume": "Resume"
+		"resume": "Resume",
+		"about": "About"
 	},
-
+	"ABOUT": {
+		"title": "About",
+		"sub-title": "Zach Stone...",
+		"description1": "is self-taught and self-motivated,",
+		"description2": "loves improving processes and believes deeply in the power of habits and routines,",
+		"description3": "believes that kind and clear communication is the key to success as a team.",
+		"description4": "is better than he was yesterday, but not as good as he will be tomorrow.",
+		"quote1": {
+			"title": "Favorite Quote 1",
+			"text": "You can never cross the ocean unless you have the courage to lose sight of the shore."
+		},
+		"quote2": {
+			"title": "Favorite Quote 2",
+			"text": "Even dust, when piled up, can become a mountain."
+		},
+		"socials": "Socials"
+	},
 	"EXPERIENCES": {
 		"title": "Experiences",
 		"interac": {
