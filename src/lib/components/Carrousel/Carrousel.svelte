@@ -3,14 +3,14 @@
 	import type { Skill } from '$lib/types';
 	import { getAssetURL } from '$lib/data/assets';
 	import UIcon from '../Icon/UIcon.svelte';
-
 	import { base } from '$app/paths';
-	export let items: Array<Skill> = [];
 
+	export let items: Array<Skill> = [];
 	let element: HTMLElement;
 
-	let timeout: unknown;
+	let timeout: number;
 	let index = 0;
+
 	import { _ } from 'svelte-i18n';
 
 	onMount(() => {
@@ -20,7 +20,7 @@
 	});
 
 	onDestroy(() => {
-		clearInterval(timeout as number);
+		clearInterval(timeout);
 	});
 
 	$: {
@@ -34,43 +34,32 @@
 
 	const slide = (direction: 'left' | 'right') => {
 		if (direction == 'right') {
-			if (index < items.length - 1) {
-				index = index + 1;
-			} else {
-				index = 0;
-			}
+			index = index < items.length - 1 ? index + 1 : 0;
 		} else {
-			if (index > 0) {
-				index = index - 1;
-			} else {
-				index = items.length - 1;
-			}
+			index = index > 0 ? index - 1 : items.length - 1;
 		}
 	};
 
 	const toggleLeft = () => {
-		clearInterval(timeout as number);
+		clearInterval(timeout);
 		slide('left');
 	};
 
 	const toggleRight = () => {
-		clearInterval(timeout as number);
+		clearInterval(timeout);
 		slide('right');
 	};
 </script>
 
-<div class="carrousel row-center mb-5">
+<div class="carousel row-center mb-5">
 	<button
-		class="row-center font-500 p-5px m-y-0px m-x-10px cursor-pointer border-1px border-solid border-[var(--border)] bg-transparent rounded-[50%] hover:border-[var(--border-hover)]"
+		class="control-button font-500 p-5px m-y-0px m-x-10px cursor-pointer border-1px border-solid border-[var(--border)] bg-transparent rounded-[50%] hover:border-[var(--border-hover)]"
 		on:click={toggleLeft}
-		on:keyup
-		on:keydown
-		on:keypress
 	>
 		<UIcon icon="i-carbon-chevron-left" />
 	</button>
 
-	<div bind:this={element} class="row overflow-hidden box-content w-150px">
+	<div bind:this={element} class="carousel-content row overflow-hidden box-content w-150px">
 		{#each items as item}
 			<div class="box-content w-150px p-15px col-center">
 				<a href={`${base}/skills/${item.slug}`} rel="noreferrer">
@@ -80,17 +69,14 @@
 						alt={$_(item.name)}
 					/>
 				</a>
-				<span class="text-center m-t-10px  sm:text-[1em]  min-h-48px">{$_(item.name)}</span>
+				<span class="text-center m-t-10px sm:text-[1em] min-h-48px">{$_(item.name)}</span>
 			</div>
 		{/each}
 	</div>
 
 	<button
-		class="row-center font-500 p-5px m-y-0px m-x-10px cursor-pointer border-1px border-solid border-[var(--border)] bg-transparent rounded-[50%] hover:border-[var(--border-hover)]"
+		class="control-button font-500 p-5px m-y-0px m-x-10px cursor-pointer border-1px border-solid border-[var(--border)] bg-transparent rounded-[50%] hover:border-[var(--border-hover)]"
 		on:click={toggleRight}
-		on:keyup
-		on:keydown
-		on:keypress
 	>
 		<UIcon icon="i-carbon-chevron-right" />
 	</button>

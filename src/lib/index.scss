@@ -195,3 +195,12 @@ body {
 .fadeInFast {
 	animation: fadeIn 0.2s ease-in-out;
 }
+
+@keyframes rainbow-move {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 200% 0;
+	}
+}

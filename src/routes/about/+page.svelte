@@ -17,23 +17,19 @@
 <CommonPage title={$_('ABOUT.title')}>
 	<div class="container">
 		<main>
-			<h2>{$_('ABOUT.sub-title')}</h2>
-			<ul>
-				<li>{$_('ABOUT.description1')}</li>
-				<li>{$_('ABOUT.description2')}</li>
-				<li>{$_('ABOUT.description3')}</li>
-				<li>{$_('ABOUT.description4')}</li>
+			<h2 class="text-lg md:text-xl font-semibold mb-4">{$_('ABOUT.sub-title')}</h2>
+			<ul class="mb-6">
+				<li class="mb-2">{$_('ABOUT.description1')}</li>
+				<li class="mb-2">{$_('ABOUT.description2')}</li>
+				<li class="mb-2">{$_('ABOUT.description3')}</li>
+				<li class="mb-2">{$_('ABOUT.description4')}</li>
 			</ul>
-			<h2>{$_('ABOUT.quote1.title')}</h2>
-			<p>
-				{$_('ABOUT.quote1.text')}
-			</p>
-			<h2>{$_('ABOUT.quote2.title')}</h2>
-			<p>
-				{$_('ABOUT.quote2.text')}
-			</p>
-			<hr />
-			<div class="row justify-center md:justify-start p-y-15px p-x-0px gap-3">
+			<h2 class="text-lg md:text-xl font-semibold mb-2">{$_('ABOUT.quote1.title')}</h2>
+			<p class="mb-6">{$_('ABOUT.quote1.text')}</p>
+			<h2 class="text-lg md:text-xl font-semibold mb-2">{$_('ABOUT.quote2.title')}</h2>
+			<p class="mb-6">{$_('ABOUT.quote2.text')}</p>
+			<hr class="border-t border-accent-text mb-6" />
+			<div class="flex flex-wrap gap-3">
 				{#each links as { platform, link }}
 					<ChipIcon name={platform} href={link} newtab>
 						<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'28px'} />
@@ -46,49 +42,31 @@
 
 <style>
 	.container {
-		max-width: 1200px;
+		max-width: 800px;
 		margin: 0 auto;
-		padding: 0 20px; /* Add padding to container for better mobile layout */
-		display: flex;
-		justify-content: center; /* Center content horizontally */
-	}
-
-	hr {
-		margin: 40px 0px 20px 0px;
-		border: 0;
-		border-top: 1px solid var(--accent-text);
+		padding: 0 20px;
 	}
 
 	main {
 		text-align: left;
-		box-sizing: border-box;
 	}
 
 	h2 {
 		margin-top: 30px;
-		font-size: 20px;
-
 		margin-bottom: 15px;
 	}
 
 	ul {
 		padding: 0;
 		list-style: none;
-		padding-left: 20px; /* Adjusted padding */
 	}
 
-	p {
-		margin-bottom: 15px;
-		font-style: italic;
-	}
-
-	ul li {
-		margin-bottom: 10px;
+	li {
 		position: relative;
 		padding-left: 20px; /* Adjusted padding */
 	}
 
-	ul li:before {
+	li:before {
 		content: '';
 		position: absolute;
 		left: 0;
@@ -99,14 +77,9 @@
 		border-radius: 50%; /* Make bullet round */
 	}
 
-	/* Media query for mobile devices */
 	@media screen and (max-width: 768px) {
 		h2 {
 			font-size: 18px;
-		}
-
-		ul li {
-			padding-left: 15px; /* Further adjust padding for smaller screens */
 		}
 	}
 </style>
