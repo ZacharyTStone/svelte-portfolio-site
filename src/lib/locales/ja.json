@@ -128,6 +128,18 @@
 			"shortDescription": "毎時自動更新される私のリードミー。",
 			"type": "Github リードミー",
 			"featured_reason": "最もクリエイティブなプロジェクト"
+		},
+		"RIFFS": {
+			"name": "リフス！",
+			"description": "新しい曲やカバー、音楽的なアイデアを世界と共有するための場です。",
+			"shortDescription": "新しい曲やカバー、音楽的なアイデアを共有するための場。",
+			"type": "ウェブアプリケーション"
+		},
+		"JAPANESE_QUIZ": {
+			"name": "都道府県クイズ",
+			"description": "この楽しいクイズで日本の都道府県に関する知識をテストしましょう。",
+			"shortDescription": "日本の都道府県についての知識をテストする楽しいクイズ。",
+			"type": "ウェブアプリケーション"
 		}
 	},
 	"EXTRA_INFO_LABELS": {

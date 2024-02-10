@@ -127,6 +127,18 @@
 			"shortDescription": "Checkout my readme that is automatically generated every hour.",
 			"type": "Github Readme",
 			"featured_reason": "Most Creative"
+		},
+		"RIFFS": {
+			"name": "Riffs!",
+			"description": "A place to share your new songs, covers, and musical ideas with the world.",
+			"shortDescription": "A place to share your new songs, covers, and musical ideas with the world.",
+			"type": "Web Application"
+		},
+		"JAPANESE_QUIZ": {
+			"name": "Prefecture Quiz",
+			"description": "Test your knowledge of Japanese prefectures with this fun quiz.",
+			"shortDescription": "Test your knowledge of Japanese prefectures with this fun quiz.",
+			"type": "Web Application"
 		}
 	},
 	"EXTRA_INFO_LABELS": {
