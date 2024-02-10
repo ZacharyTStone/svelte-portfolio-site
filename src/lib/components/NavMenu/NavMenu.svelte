@@ -62,16 +62,16 @@
 		</div>
 		<div class="flex flex-row items-stretch gap-1 text-1.15em">
 			<a href={`${base}/search`} class="text-inherit col-center self-stretch px-2">
-				<UIcon icon="i-carbon-search" alt="search" classes="hover:rainbow-hover" />
+				<UIcon icon="i-carbon-search" alt="search" />
 			</a>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer text-[var(--secondary-text)] px-2"
 				on:click={() => toggleTheme($theme === 'dark' ? 'light' : 'dark')}
 			>
 				{#if $theme === 'light'}
-					<UIcon icon="i-carbon-moon" alt="light Theme" classes="hover:rainbow-hover" />
+					<UIcon icon="i-carbon-moon" alt="light Theme" />
 				{:else}
-					<UIcon icon="i-carbon-sun" alt="Dark Theme" classes="hover:rainbow-hover" />
+					<UIcon icon="i-carbon-sun" alt="Dark Theme" />
 				{/if}
 			</button>
 			<button
@@ -90,49 +90,6 @@
 </div>
 
 <style lang="scss">
-	@keyframes rainbow {
-		0% {
-			color: #ff0000;
-		}
-		8.33% {
-			color: #ff8000;
-		}
-		16.66% {
-			color: #ffff00;
-		}
-		25% {
-			color: #80ff00;
-		}
-		33.33% {
-			color: #00ff00;
-		}
-		41.66% {
-			color: #00ff80;
-		}
-		50% {
-			color: #00ffff;
-		}
-		58.33% {
-			color: #0080ff;
-		}
-		66.66% {
-			color: #0000ff;
-		}
-		75% {
-			color: #8000ff;
-		}
-		83.33% {
-			color: #ff00ff;
-		}
-		91.66% {
-			color: #ff0080;
-		}
-		100% {
-			color: #ff0000;
-		}
-	}
-
-	// no shimer on mobile
 	@media (max-width: 600px) {
 		.shimmer-overlay {
 			display: none;

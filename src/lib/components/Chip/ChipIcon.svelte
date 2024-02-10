@@ -80,22 +80,4 @@
 			}
 		}
 	}
-
-	@keyframes shimmer {
-		0% {
-			border-color: rgba(255, 0, 0, 0.5);
-		}
-		25% {
-			border-color: rgba(255, 255, 0, 0.5);
-		}
-		50% {
-			border-color: rgba(0, 255, 0, 0.5);
-		}
-		75% {
-			border-color: rgba(0, 0, 255, 0.5);
-		}
-		100% {
-			border-color: rgba(255, 0, 255, 0.5);
-		}
-	}
 </style>

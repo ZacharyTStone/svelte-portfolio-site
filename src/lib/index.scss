@@ -205,9 +205,59 @@ body {
 	}
 }
 
+@keyframes rainbow {
+	0% {
+		color: #ff0000;
+	}
+	8.33% {
+		color: #ff8000;
+	}
+	16.66% {
+		color: #ffff00;
+	}
+	25% {
+		color: #80ff00;
+	}
+	33.33% {
+		color: #00ff00;
+	}
+	41.66% {
+		color: #00ff80;
+	}
+	50% {
+		color: #00ffff;
+	}
+	58.33% {
+		color: #0080ff;
+	}
+	66.66% {
+		color: #0000ff;
+	}
+	75% {
+		color: #8000ff;
+	}
+	83.33% {
+		color: #ff00ff;
+	}
+	91.66% {
+		color: #ff0080;
+	}
+	100% {
+		color: #ff0000;
+	}
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: -300%;
+	}
+	100% {
+		background-position: 300%;
+	}
+}
+
 /* Global CSS or style section */
-.shimmer-on-hover:hover,
-.icon:hover {
+.shimmer-on-hover:hover {
 	background: linear-gradient(
 		90deg,
 		#ff0000,
@@ -231,9 +281,32 @@ body {
 
 @keyframes shimmer {
 	0% {
-		background-position: -300%;
+		background-position: 100% 0;
 	}
 	100% {
-		background-position: 300%;
+		background-position: -100% 0;
+	}
+}
+
+@keyframes card_shimmer {
+	0% {
+		box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.2), 5px 0px 5px rgba(255, 255, 0, 0.2),
+			5px 5px 5px rgba(0, 255, 0, 0.2), 0px 5px 5px rgba(0, 0, 255, 0.2);
+	}
+	25% {
+		box-shadow: 5px 0px 5px rgba(255, 0, 0, 0.2), 5px 5px 5px rgba(255, 255, 0, 0.2),
+			0px 5px 5px rgba(0, 255, 0, 0.2), 0px 0px 5px rgba(0, 0, 255, 0.2);
+	}
+	50% {
+		box-shadow: 5px 5px 5px rgba(255, 0, 0, 0.2), 0px 5px 5px rgba(255, 255, 0, 0.2),
+			0px 0px 5px rgba(0, 255, 0, 0.2), 5px 0px 5px rgba(0, 0, 255, 0.2);
+	}
+	75% {
+		box-shadow: 0px 5px 5px rgba(255, 0, 0, 0.2), 0px 0px 5px rgba(255, 255, 0, 0.2),
+			5px 0px 5px rgba(0, 255, 0, 0.2), 5px 5px 5px rgba(0, 0, 255, 0.2);
+	}
+	100% {
+		box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.2), 5px 0px 5px rgba(255, 255, 0, 0.2),
+			5px 5px 5px rgba(0, 255, 0, 0.2), 0px 5px 5px rgba(0, 0, 255, 0.2);
 	}
 }

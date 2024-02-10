@@ -103,35 +103,35 @@ const MY_PROJECTS: Array<Project> = [
 		featured: true,
 		featured_reason: 'PROJECTS.HAKU.featured_reason'
 	},
-	{
-		slug: 'zacharyTStone',
-		color: generateRandomHexColor(),
-		description: 'PROJECTS.ZACHARYTSTONE.description',
-		shortDescription: 'PROJECTS.ZACHARYTSTONE.shortDescription',
-		links: [
-			{
-				to: 'https://github.com/ZacharyTStone/ZacharyTStone',
-				label: 'GitHub',
-				newTab: true
-			}
-		],
-		logo: Assets.Readme,
-		name: 'PROJECTS.ZACHARYTSTONE.name',
-		skills: getSkills('be', 'dev-tools'),
-		project_skills: [
-			{ label: 'cron', to: 'https://en.wikipedia.org/wiki/Cron', newTab: true },
-			{ label: 'GitHub Actions', to: '', newTab: true },
-			{
-				label: 'API',
-				to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/',
-				newTab: true
-			}
-		],
-		type: 'PROJECTS.ZACHARYTSTONE.type',
-		english: true,
-		japanese: false,
-		featured_reason: 'PROJECTS.ZACHARYTSTONE.featured_reason'
-	},
+	// {
+	// 	slug: 'zacharyTStone',
+	// 	color: generateRandomHexColor(),
+	// 	description: 'PROJECTS.ZACHARYTSTONE.description',
+	// 	shortDescription: 'PROJECTS.ZACHARYTSTONE.shortDescription',
+	// 	links: [
+	// 		{
+	// 			to: 'https://github.com/ZacharyTStone/ZacharyTStone',
+	// 			label: 'GitHub',
+	// 			newTab: true
+	// 		}
+	// 	],
+	// 	logo: Assets.Readme,
+	// 	name: 'PROJECTS.ZACHARYTSTONE.name',
+	// 	skills: getSkills('be', 'dev-tools'),
+	// 	project_skills: [
+	// 		{ label: 'cron', to: 'https://en.wikipedia.org/wiki/Cron', newTab: true },
+	// 		{ label: 'GitHub Actions', to: '', newTab: true },
+	// 		{
+	// 			label: 'API',
+	// 			to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/',
+	// 			newTab: true
+	// 		}
+	// 	],
+	// 	type: 'PROJECTS.ZACHARYTSTONE.type',
+	// 	english: true,
+	// 	japanese: false,
+	// 	featured_reason: 'PROJECTS.ZACHARYTSTONE.featured_reason'
+	// },
 	{
 		slug: 'ai-flashcards',
 		color: generateRandomHexColor(),
@@ -156,7 +156,7 @@ const MY_PROJECTS: Array<Project> = [
 		english: true,
 		japanese: true,
 		featured_reason: 'PROJECTS.AI_FLASHCARDS.featured_reason'
-	}
+	},
 
 	// description: '
 	// {
@@ -183,36 +183,36 @@ const MY_PROJECTS: Array<Project> = [
 	// 	english: true,
 	// 	japanese: true
 	// },
-	// {
-	// 	slug: 'japanese-quiz',
-	// 	color: generateRandomHexColor(),
-	// 	description: 'PROJECTS.JAPANESE_QUIZ.description',
-	// 	shortDescription: 'PROJECTS.JAPANESE_QUIZ.shortDescription',
-	// 	links: [
-	// 		{ to: 'https://prefecture-match.herokuapp.com', label: 'PROJECTS.live_site', newTab: true },
-	// 		{
-	// 			to: 'https://github.com/zachinjapan/prefecture-match',
-	// 			label: 'GitHub',
-	// 			newTab: true
-	// 		}
-	// 	],
-	// 	logo: Assets.Prefecture,
-	// 	name: 'PROJECTS.JAPANESE_QUIZ.name',
-	// 	skills: getSkills('fe', 'dev-tools', 'japanese'),
-	// 	project_skills: [
-	// 		{ label: 'React', to: 'https://reactjs.org/', newTab: true },
-	// 		{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
-	// 		{
-	// 			label: 'JavaScript',
-	// 			to: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
-	// 			newTab: true
-	// 		},
-	// 		{ label: 'Heroku', to: 'https://www.heroku.com/', newTab: true }
-	// 	],
-	// 	type: 'PROJECTS.JAPANESE_QUIZ.type',
-	// 	english: false,
-	// 	japanese: true
-	// }
+	{
+		slug: 'japanese-quiz',
+		color: generateRandomHexColor(),
+		description: 'PROJECTS.JAPANESE_QUIZ.description',
+		shortDescription: 'PROJECTS.JAPANESE_QUIZ.shortDescription',
+		links: [
+			{ to: 'https://prefecture-match.herokuapp.com', label: 'PROJECTS.live_site', newTab: true },
+			{
+				to: 'https://github.com/zachinjapan/prefecture-match',
+				label: 'GitHub',
+				newTab: true
+			}
+		],
+		logo: Assets.Prefecture,
+		name: 'PROJECTS.JAPANESE_QUIZ.name',
+		skills: getSkills('fe', 'dev-tools', 'japanese'),
+		project_skills: [
+			{ label: 'React', to: 'https://reactjs.org/', newTab: true },
+			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
+			{
+				label: 'JavaScript',
+				to: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+				newTab: true
+			},
+			{ label: 'Heroku', to: 'https://www.heroku.com/', newTab: true }
+		],
+		type: 'PROJECTS.JAPANESE_QUIZ.type',
+		english: false,
+		japanese: true
+	}
 ];
 
 export default MY_PROJECTS;

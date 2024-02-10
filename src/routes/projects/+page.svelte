@@ -20,6 +20,7 @@
 	);
 
 	let search = '';
+
 	let displayed: Array<Project> = [];
 
 	const isSelected = (slug: string): boolean =>

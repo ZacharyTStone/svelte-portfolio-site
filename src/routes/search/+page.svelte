@@ -22,7 +22,6 @@
 	let query = '';
 	let result: Array<Item> = [];
 
-	// Function to filter items based on query
 	function filterItems<T extends { name: string; label?: string; skills?: any }>(
 		items: T[],
 		query: string
@@ -47,7 +46,6 @@
 		return items.filter((item: T) => !query || containsQuery(item, 1));
 	}
 
-	// Function to generate items for the result array
 	function generateItems<T>(items: T[], icon: string, toFn: (data: T) => string): Item<T>[] {
 		return items.map<Item<T>>((data) => ({
 			data,

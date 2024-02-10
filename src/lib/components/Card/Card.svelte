@@ -78,30 +78,7 @@
 		&:hover {
 			transform: perspective(1000px) rotateX(var(--rot-x)) rotateY(var(--rot-y)) scale(1.01);
 			border-color: var(--border-hover);
-			animation: shimmer 2s infinite;
-		}
-	}
-
-	@keyframes shimmer {
-		0% {
-			box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.2), 5px 0px 5px rgba(255, 255, 0, 0.2),
-				5px 5px 5px rgba(0, 255, 0, 0.2), 0px 5px 5px rgba(0, 0, 255, 0.2);
-		}
-		25% {
-			box-shadow: 5px 0px 5px rgba(255, 0, 0, 0.2), 5px 5px 5px rgba(255, 255, 0, 0.2),
-				0px 5px 5px rgba(0, 255, 0, 0.2), 0px 0px 5px rgba(0, 0, 255, 0.2);
-		}
-		50% {
-			box-shadow: 5px 5px 5px rgba(255, 0, 0, 0.2), 0px 5px 5px rgba(255, 255, 0, 0.2),
-				0px 0px 5px rgba(0, 255, 0, 0.2), 5px 0px 5px rgba(0, 0, 255, 0.2);
-		}
-		75% {
-			box-shadow: 0px 5px 5px rgba(255, 0, 0, 0.2), 0px 0px 5px rgba(255, 255, 0, 0.2),
-				5px 0px 5px rgba(0, 255, 0, 0.2), 5px 5px 5px rgba(0, 0, 255, 0.2);
-		}
-		100% {
-			box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.2), 5px 0px 5px rgba(255, 255, 0, 0.2),
-				5px 5px 5px rgba(0, 255, 0, 0.2), 0px 5px 5px rgba(0, 0, 255, 0.2);
+			animation: card_shimmer 2s infinite;
 		}
 	}
 </style>

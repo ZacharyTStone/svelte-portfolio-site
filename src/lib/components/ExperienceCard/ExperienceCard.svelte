@@ -13,10 +13,15 @@
 	export let experience: Experience;
 
 	const start_year = new Date(experience.period.from).getFullYear();
+
 	const end_year = new Date(experience.period.to ?? new Date().toISOString()).getFullYear();
+
 	const months = countMonths(experience.period.from, experience.period.to);
+
 	const years = Math.floor(months / 12);
+
 	const remainingMonths = months % 12;
+
 	const period = `${years > 0 ? `${years} year${years > 1 ? 's' : ''}` : ''} ${
 		years > 0 && remainingMonths > 0 ? 'and ' : ''
 	}${remainingMonths > 0 ? `${remainingMonths} month${remainingMonths > 1 ? 's' : ''}` : ''}`;
