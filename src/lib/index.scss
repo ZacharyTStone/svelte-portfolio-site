@@ -204,3 +204,36 @@ body {
 		background-position: 200% 0;
 	}
 }
+
+/* Global CSS or style section */
+.shimmer-on-hover:hover,
+.icon:hover {
+	background: linear-gradient(
+		90deg,
+		#ff0000,
+		#ff8000,
+		#ffff00,
+		#80ff00,
+		#00ff00,
+		#00ff80,
+		#00ffff,
+		#0080ff,
+		#0000ff,
+		#8000ff,
+		#ff00ff,
+		#ff0080
+	);
+	background-size: 400%;
+	animation: shimmer 8s infinite;
+	// reduce opacity to make it look better
+	opacity: 0.3;
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: -300%;
+	}
+	100% {
+		background-position: 300%;
+	}
+}

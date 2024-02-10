@@ -46,33 +46,37 @@
 				>{$_(HOME.name)} {$_(HOME.lastName)}</span
 			>
 		</a>
-		<div class="flex flex-row flex-1 self-center justify-center">
+
+		<div class="flex flex-row flex-1 self-center justify-center md:gap-2">
 			{#each items as item}
-				<a href={`${base}${item.to}`} class="nav-menu-item !text-[var(--secondary-text)]">
+				<a
+					href={`${base}${item.to}`}
+					class="nav-menu-item !text-[var(--secondary-text)]"
+					style="position: relative;"
+				>
 					<UIcon icon={item.icon} classes="text-1.3em" alt={$_(item.title)} />
 					<span class="nav-menu-item-label">{$_(item.title)}</span>
+					<!-- Shimmer effect overlay -->
+					<div class="shimmer-overlay" />
 				</a>
 			{/each}
 		</div>
 		<div class="flex flex-row items-stretch gap-1 text-1.15em">
-			<a
-				href={`${base}/search`}
-				class="text-inherit col-center self-stretch px-2 hover:bg-[color:var(--main-hover)]"
-			>
-				<UIcon icon="i-carbon-search" alt="search" />
+			<a href={`${base}/search`} class="text-inherit col-center self-stretch px-2">
+				<UIcon icon="i-carbon-search" alt="search" classes="hover:rainbow-hover" />
 			</a>
 			<button
-				class="bg-transparent text-1em border-none cursor-pointer hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
+				class="bg-transparent text-1em border-none cursor-pointer text-[var(--secondary-text)] px-2"
 				on:click={() => toggleTheme($theme === 'dark' ? 'light' : 'dark')}
 			>
 				{#if $theme === 'light'}
-					<UIcon icon="i-carbon-moon" alt="light Theme" />
+					<UIcon icon="i-carbon-moon" alt="light Theme" classes="hover:rainbow-hover" />
 				{:else}
-					<UIcon icon="i-carbon-sun" alt="Dark Theme" />
+					<UIcon icon="i-carbon-sun" alt="Dark Theme" classes="hover:rainbow-hover" />
 				{/if}
 			</button>
 			<button
-				class="bg-transparent text-1em border-none cursor-pointer hover:bg-[color:var(--main-hover)] text-[var(--secondary-text)] px-2"
+				class="bg-transparent text-1em border-none cursor-pointer text-[var(--secondary-text)] px-2"
 				on:click={() => toggleLanguage()}
 				aria-label="Change language"
 			>
@@ -87,6 +91,96 @@
 </div>
 
 <style lang="scss">
+	@keyframes rainbow {
+		0% {
+			color: #ff0000;
+		}
+		8.33% {
+			color: #ff8000;
+		}
+		16.66% {
+			color: #ffff00;
+		}
+		25% {
+			color: #80ff00;
+		}
+		33.33% {
+			color: #00ff00;
+		}
+		41.66% {
+			color: #00ff80;
+		}
+		50% {
+			color: #00ffff;
+		}
+		58.33% {
+			color: #0080ff;
+		}
+		66.66% {
+			color: #0000ff;
+		}
+		75% {
+			color: #8000ff;
+		}
+		83.33% {
+			color: #ff00ff;
+		}
+		91.66% {
+			color: #ff0080;
+		}
+		100% {
+			color: #ff0000;
+		}
+	}
+
+	.shimmer-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(
+			to right,
+			#ff0000,
+			#ff8000,
+			#ffff00,
+			#80ff00,
+			#00ff00,
+			#00ff80,
+			#00ffff,
+			#0080ff,
+			#0000ff,
+			#8000ff,
+			#ff00ff,
+			#ff0080
+		);
+		border-radius: 10px;
+		background-size: 300% 100%;
+		animation: shimmer 4s infinite;
+		opacity: 0; /* Initially hidden */
+		pointer-events: none; /* Allow hover events to pass through */
+		transition: opacity 0.6s ease-in-out; /* Smooth transition */
+	}
+
+	/* Shimmer animation */
+	@keyframes shimmer {
+		0% {
+			background-position: 100% 0;
+		}
+		100% {
+			background-position: -100% 0;
+		}
+	}
+
+	/* Show shimmer overlay on hover */
+	.nav-menu-item:hover .shimmer-overlay {
+		opacity: 0.5;
+	}
+
+	.nav-menu-item {
+		border-radius: 10px;
+	}
+
 	.nav-menu {
 		display: flex;
 		justify-content: center;
@@ -110,7 +204,6 @@
 			color: inherit;
 			display: flex;
 			align-items: center;
-			border-bottom: 3px solid transparent;
 
 			@media (max-width: 425px) {
 				padding: 5px 10px;
