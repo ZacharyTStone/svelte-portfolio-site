@@ -17,7 +17,6 @@
 <CommonPage title={$_('ABOUT.title')}>
 	<div class="max-w-screen-md mx-auto px-4 py-8">
 		<main class="text-left">
-			<h2 class="text-xl md:text-2xl font-semibold mb-4">{$_('ABOUT.sub-title')}</h2>
 			<p class="mb-6">{$_('ABOUT.full_about')}</p>
 			<h2 class="text-xl md:text-2xl font-semibold mb-2">{$_('ABOUT.quote1.title')}</h2>
 			<p class="mb-6">{$_('ABOUT.quote1.text')}</p>
