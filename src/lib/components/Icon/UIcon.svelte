@@ -30,7 +30,7 @@
 		padding: 5px;
 		position: absolute;
 		z-index: 1;
-		top: 20px;
+		top: 30px;
 		left: 50%;
 		margin-left: -60px;
 		opacity: 0;
