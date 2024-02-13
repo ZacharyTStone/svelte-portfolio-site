@@ -18,11 +18,7 @@
 	<div class="max-w-screen-md mx-auto px-4 py-8">
 		<main class="text-left">
 			<h2 class="text-xl md:text-2xl font-semibold mb-4">{$_('ABOUT.sub-title')}</h2>
-			<ul class="mb-6 list-disc list-inside">
-				{#each [$_('ABOUT.title_variation'), $_('ABOUT.description1'), $_('ABOUT.description2'), $_('ABOUT.description3'), $_('ABOUT.description4')] as item}
-					<li class="mb-2">{item}</li>
-				{/each}
-			</ul>
+			<p class="mb-6">{$_('ABOUT.full_about')}</p>
 			<h2 class="text-xl md:text-2xl font-semibold mb-2">{$_('ABOUT.quote1.title')}</h2>
 			<p class="mb-6">{$_('ABOUT.quote1.text')}</p>
 			<h2 class="text-xl md:text-2xl font-semibold mb-2">{$_('ABOUT.quote2.title')}</h2>
