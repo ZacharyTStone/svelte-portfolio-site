@@ -19,7 +19,7 @@
 		<main class="text-left">
 			<h2 class="text-xl md:text-2xl font-semibold mb-4">{$_('ABOUT.sub-title')}</h2>
 			<ul class="mb-6 list-disc list-inside">
-				{#each [$_('ABOUT.description1'), $_('ABOUT.description2'), $_('ABOUT.description3'), $_('ABOUT.description4')] as item}
+				{#each [$_('AOUT.title_variation'), $_('ABOUT.description1'), $_('ABOUT.description2'), $_('ABOUT.description3'), $_('ABOUT.description4')] as item}
 					<li class="mb-2">{item}</li>
 				{/each}
 			</ul>
