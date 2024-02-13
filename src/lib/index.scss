@@ -256,29 +256,6 @@ body {
 	}
 }
 
-/* Global CSS or style section */
-.shimmer-on-hover:hover {
-	background: linear-gradient(
-		90deg,
-		#ff0000,
-		#ff8000,
-		#ffff00,
-		#80ff00,
-		#00ff00,
-		#00ff80,
-		#00ffff,
-		#0080ff,
-		#0000ff,
-		#8000ff,
-		#ff00ff,
-		#ff0080
-	);
-	background-size: 400%;
-	animation: shimmer 8s infinite;
-	// reduce opacity to make it look better
-	opacity: 0.3;
-}
-
 @keyframes shimmer {
 	0% {
 		background-position: 100% 0;
@@ -308,5 +285,35 @@ body {
 	100% {
 		box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.2), 5px 0px 5px rgba(255, 255, 0, 0.2),
 			5px 5px 5px rgba(0, 255, 0, 0.2), 0px 5px 5px rgba(0, 0, 255, 0.2);
+	}
+}
+
+@keyframes card_shimmer_even {
+	0% {
+		box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.2), 5px 0px 5px rgba(255, 255, 0, 0.2),
+			5px 5px 5px rgba(0, 255, 0, 0.2), 0px 5px 5px rgba(0, 0, 255, 0.2);
+	}
+	25% {
+		box-shadow: 5px 0px 5px rgba(255, 0, 0, 0.2), 5px 5px 5px rgba(255, 255, 0, 0.2),
+			0px 5px 5px rgba(0, 255, 0, 0.2), 0px 0px 5px rgba(0, 0, 255, 0.2);
+	}
+	50% {
+		box-shadow: 5px 5px 5px rgba(255, 0, 0, 0.2), 0px 5px 5px rgba(255, 255, 0, 0.2),
+			0px 0px 5px rgba(0, 255, 0, 0.2), 5px 0px 5px rgba(0, 0, 255, 0.2);
+	}
+	75% {
+		box-shadow: 0px 5px 5px rgba(255, 0, 0, 0.2), 0px 0px 5px rgba(255, 255, 0, 0.2),
+			5px 0px 5px rgba(0, 255, 0, 0.2), 5px 5px 5px rgba(0, 0, 255, 0.2);
+	}
+	100% {
+		box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.2), 5px 0px 5px rgba(255, 255, 0, 0.2),
+			5px 5px 5px rgba(0, 255, 0, 0.2), 0px 5px 5px rgba(0, 0, 255, 0.2);
+	}
+}
+
+.rainbow-hover {
+	&:hover {
+		border-color: var(--border-hover);
+		animation: card_shimmer 2s infinite;
 	}
 }
