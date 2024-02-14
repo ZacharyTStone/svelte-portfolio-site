@@ -11,7 +11,8 @@
 		"career": "Experience",
 		"skills": "Skills",
 		"resume": "Resume",
-		"about": "About"
+		"about": "About",
+		"blog": "Blog"
 	},
 	"ABOUT": {
 		"title": "About",
@@ -140,7 +141,8 @@
 			"name": "Prefecture Quiz",
 			"description": "Test your knowledge of Japanese prefectures with this fun quiz.",
 			"shortDescription": "Test your knowledge of Japanese prefectures with this fun quiz.",
-			"type": "Web Application"
+			"type": "Web Application",
+			"featured_reason": "Most Fun"
 		}
 	},
 	"EXTRA_INFO_LABELS": {

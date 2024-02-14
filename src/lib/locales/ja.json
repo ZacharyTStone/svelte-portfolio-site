@@ -11,7 +11,8 @@
 		"career": "経歴",
 		"skills": "スキル",
 		"resume": "履歴書",
-		"about": "自己紹介"
+		"about": "自己紹介",
+		"blog": "ブログ"
 	},
 	"EXPERIENCES": {
 		"title": "経歴",
@@ -141,7 +142,8 @@
 			"name": "都道府県クイズ",
 			"description": "この楽しいクイズで日本の都道府県に関する知識をテストしましょう。",
 			"shortDescription": "日本の都道府県についての知識をテストする楽しいクイズ。",
-			"type": "ウェブアプリケーション"
+			"type": "ウェブアプリケーション",
+			"featured_reason": "最も楽しいプロジェクト"
 		}
 	},
 	"EXTRA_INFO_LABELS": {

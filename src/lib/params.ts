@@ -20,7 +20,8 @@ export const NavBar = {
 	personal: 'NAVBAR.personal',
 	career: 'NAVBAR.career',
 	resume: 'NAVBAR.resume',
-	skills: 'NAVBAR.skills'
+	skills: 'NAVBAR.skills',
+	blog: 'NAVBAR.blog'
 };
 
 export const getPlatfromIcon = (platform: Platform): Icons => {

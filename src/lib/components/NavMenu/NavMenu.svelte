@@ -27,12 +27,18 @@
 		}
 	}
 
-	const items = [
+	interface NavItem {
+		title: string;
+		to: string;
+		icon: string;
+		external?: boolean;
+	}
+	const items: NavItem[] = [
 		{ title: NavBar.about, to: '/about', icon: 'i-carbon-user' },
 		{ title: NavBar.skills, to: '/skills', icon: 'i-carbon-software-resource-cluster' },
 		{ title: NavBar.personal, to: '/projects', icon: 'i-carbon-cube' },
-		{ title: NavBar.career, to: '/experience', icon: 'i-carbon-development' }
-		// { title: NavBar.resume, to: '/resume', icon: 'i-carbon-result' }
+		{ title: NavBar.career, to: '/experience', icon: 'i-carbon-development' },
+		{ title: NavBar.blog, to: 'https://www.zachinjapan.com', icon: 'i-carbon-blog', external: true }
 	];
 </script>
 
@@ -51,7 +57,8 @@
 		<div class="flex flex-row flex-1 self-center justify-center md:gap-2">
 			{#each items as item}
 				<a
-					href={`${base}${item.to}`}
+					href={item?.external ? item.to : `${base}${item.to}`}
+					target={item?.external ? '_blank' : '_self'}
 					class="nav-menu-item !text-[var(--secondary-text)] rainbow-hover"
 					style="position: relative;"
 				>
