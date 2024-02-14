@@ -25,7 +25,7 @@
 			<h2 class="text-xl md:text-2xl font-semibold mb-2">{$_('ABOUT.quote2.title')}</h2>
 			<p class="mb-6">{$_('ABOUT.quote2.text')}</p>
 			<hr class="border-t border-gray-300 mb-6" />
-			<div class="flex flex-wrap justify-center align-center gap-4">
+			<div class="flex flex-wrap justify-center align-center gap-6">
 				<div class="flex gap-3">
 					{#each links as { platform, link }}
 						<ChipIcon name={platform} href={link} newtab>
