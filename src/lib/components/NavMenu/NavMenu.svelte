@@ -31,8 +31,8 @@
 		{ title: NavBar.about, to: '/about', icon: 'i-carbon-user' },
 		{ title: NavBar.skills, to: '/skills', icon: 'i-carbon-software-resource-cluster' },
 		{ title: NavBar.personal, to: '/projects', icon: 'i-carbon-cube' },
-		{ title: NavBar.career, to: '/experience', icon: 'i-carbon-development' },
-		{ title: NavBar.resume, to: '/resume', icon: 'i-carbon-result' }
+		{ title: NavBar.career, to: '/experience', icon: 'i-carbon-development' }
+		// { title: NavBar.resume, to: '/resume', icon: 'i-carbon-result' }
 	];
 </script>
 
