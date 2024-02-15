@@ -74,7 +74,7 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.HAKU.type',
 		english: true,
 		japanese: false,
-		featured: false,
+		featured: true,
 		featured_reason: 'PROJECTS.HAKU.featured_reason'
 	},
 	{
@@ -157,7 +157,8 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.AI_FLASHCARDS.type',
 		english: true,
 		japanese: true,
-		featured_reason: 'PROJECTS.AI_FLASHCARDS.featured_reason'
+		featured_reason: 'PROJECTS.AI_FLASHCARDS.featured_reason',
+		featured: true
 	},
 
 	// description: '
