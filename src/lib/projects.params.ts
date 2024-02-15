@@ -101,9 +101,9 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.ZACH_IN_JAPAN.type',
 		english: true,
 		japanese: false,
-		featured: true,
-		featured_reason: 'PROJECTS.ZACH_IN_JAPAN.featured_reason',
-		dont_show: true
+		// featured: true,
+		featured_reason: 'PROJECTS.ZACH_IN_JAPAN.featured_reason'
+		// dont_show: true
 	},
 	// {
 	// 	slug: 'zacharyTStone',
