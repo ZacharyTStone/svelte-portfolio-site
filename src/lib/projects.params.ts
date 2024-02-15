@@ -77,33 +77,34 @@ const MY_PROJECTS: Array<Project> = [
 		featured: false,
 		featured_reason: 'PROJECTS.HAKU.featured_reason'
 	},
-	// {
-	// 	slug: 'zach-in-japan',
-	// 	color: generateRandomHexColor(),
-	// 	description: 'PROJECTS.ZACH_IN_JAPAN.description',
-	// 	shortDescription: 'PROJECTS.ZACH_IN_JAPAN.shortDescription',
-	// 	links: [
-	// 		{ to: 'https://zachinjapan.com', label: 'PROJECTS.live_site', newTab: true },
-	// 		{ to: 'https://github.com/zachinjapan/my-gatsby-blog', label: 'GitHub', newTab: true },
-	// 		{ to: 'https://www.youtube.com/embed/lt48zTXl6j0', label: 'YouTube', newTab: true }
-	// 	],
-	// 	logo: Assets.Blog,
-	// 	name: 'PROJECTS.ZACH_IN_JAPAN.name',
-	// 	skills: getSkills('fe', 'dev-tools', 'japanese'),
-	// 	project_skills: [
-	// 		{ label: 'Gatsby', to: 'https://gatsby.dev/', newTab: true },
-	// 		{ label: 'React', to: 'https://reactjs.org/', newTab: true },
-	// 		{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
-	// 		{ label: 'Markdown', to: 'https://www.markdownguide.org/', newTab: true },
-	// 		{ label: 'GraphQL', to: 'https://graphql.org/', newTab: true },
-	// 		{ label: 'Gatsby Cloud', to: 'https://www.gatsbyjs.com/cloud/', newTab: true }
-	// 	],
-	// 	type: 'PROJECTS.ZACH_IN_JAPAN.type',
-	// 	english: true,
-	// 	japanese: false,
-	// 	featured: true,
-	// 	featured_reason: 'PROJECTS.ZACH_IN_JAPAN.featured_reason'
-	// },
+	{
+		slug: 'zach-in-japan',
+		color: generateRandomHexColor(),
+		description: 'PROJECTS.ZACH_IN_JAPAN.description',
+		shortDescription: 'PROJECTS.ZACH_IN_JAPAN.shortDescription',
+		links: [
+			{ to: 'https://zachinjapan.com', label: 'PROJECTS.live_site', newTab: true },
+			{ to: 'https://github.com/zachinjapan/my-gatsby-blog', label: 'GitHub', newTab: true },
+			{ to: 'https://www.youtube.com/embed/lt48zTXl6j0', label: 'YouTube', newTab: true }
+		],
+		logo: Assets.Blog,
+		name: 'PROJECTS.ZACH_IN_JAPAN.name',
+		skills: getSkills('fe', 'dev-tools', 'japanese'),
+		project_skills: [
+			{ label: 'Gatsby', to: 'https://gatsby.dev/', newTab: true },
+			{ label: 'React', to: 'https://reactjs.org/', newTab: true },
+			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
+			{ label: 'Markdown', to: 'https://www.markdownguide.org/', newTab: true },
+			{ label: 'GraphQL', to: 'https://graphql.org/', newTab: true },
+			{ label: 'Gatsby Cloud', to: 'https://www.gatsbyjs.com/cloud/', newTab: true }
+		],
+		type: 'PROJECTS.ZACH_IN_JAPAN.type',
+		english: true,
+		japanese: false,
+		featured: true,
+		featured_reason: 'PROJECTS.ZACH_IN_JAPAN.featured_reason',
+		dont_show: true
+	},
 	// {
 	// 	slug: 'zacharyTStone',
 	// 	color: generateRandomHexColor(),

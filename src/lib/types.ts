@@ -77,6 +77,7 @@ export interface Project extends Item {
 	featured?: boolean;
 	featured_reason?: string;
 	description_is_markdown?: boolean;
+	dont_show?: boolean;
 }
 
 export interface Experience extends Project {

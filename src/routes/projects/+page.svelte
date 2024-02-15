@@ -46,7 +46,7 @@
 			const isSearched =
 				search.trim().length === 0 ||
 				$_(project.name).trim().toLowerCase().includes(search.trim().toLowerCase());
-			return isFiltered && isSearched;
+			return isFiltered && isSearched && !project.dont_show;
 		});
 	}
 

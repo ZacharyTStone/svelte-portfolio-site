@@ -27,18 +27,12 @@
 		}
 	}
 
-	interface NavItem {
-		title: string;
-		to: string;
-		icon: string;
-		external?: boolean;
-	}
-	const items: NavItem[] = [
+	const items = [
 		{ title: NavBar.about, to: '/about', icon: 'i-carbon-user' },
 		{ title: NavBar.skills, to: '/skills', icon: 'i-carbon-software-resource-cluster' },
 		{ title: NavBar.personal, to: '/projects', icon: 'i-carbon-cube' },
 		{ title: NavBar.career, to: '/experience', icon: 'i-carbon-development' },
-		{ title: NavBar.blog, to: 'https://www.zachinjapan.com', icon: 'i-carbon-blog', external: true }
+		{ title: NavBar.blog, to: '/projects/zach-in-japan', icon: 'i-carbon-blog' }
 	];
 </script>
 
@@ -57,8 +51,7 @@
 		<div class="flex flex-row flex-1 self-center justify-center md:gap-2">
 			{#each items as item}
 				<a
-					href={item?.external ? item.to : `${base}${item.to}`}
-					target={item?.external ? '_blank' : '_self'}
+					href={`${base}${item.to}`}
 					class="nav-menu-item !text-[var(--secondary-text)] rainbow-hover"
 					style="position: relative;"
 				>
