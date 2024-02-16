@@ -19,21 +19,21 @@
 <CommonPage title={$_('ABOUT.title')}>
 	<div class="max-w-screen-md mx-auto px-4 py-8">
 		<main class="text-left">
-			<p class="mb-6">{$_('ABOUT.full_about')}</p>
-			<h2 class="text-xl md:text-2xl font-semibold mb-2">{$_('ABOUT.quote1.title')}</h2>
-			<p class="mb-6">{$_('ABOUT.quote1.text')}</p>
-			<h2 class="text-xl md:text-2xl font-semibold mb-2">{$_('ABOUT.quote2.title')}</h2>
-			<p class="mb-6">{$_('ABOUT.quote2.text')}</p>
+			<p class="mb-4 md:mb-6">{$_('ABOUT.full_about')}</p>
+			<h2 class="text-lg md:text-xl font-semibold mb-2">{$_('ABOUT.quote1.title')}</h2>
+			<p class="mb-4 md:mb-6">{$_('ABOUT.quote1.text')}</p>
+			<h2 class="text-lg md:text-xl font-semibold mb-2">{$_('ABOUT.quote2.title')}</h2>
+			<p class="mb-4 md:mb-6">{$_('ABOUT.quote2.text')}</p>
 			<hr class="border-t border-gray-300 mb-6" />
 			<div class="flex flex-wrap justify-center align-center gap-6">
-				<div class="flex gap-3">
+				<div class="flex flex-wrap gap-3">
 					{#each links as { platform, link }}
 						<ChipIcon name={platform} href={link} newtab>
 							<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'28px'} />
 						</ChipIcon>
 					{/each}
 				</div>
-				<div class="flex gap-3">
+				<div class="flex flex-wrap gap-3">
 					{#each RESUME?.links as item}
 						<Card href={item?.to}>{$_(item?.label)}</Card>
 					{/each}
