@@ -192,7 +192,7 @@ const MY_PROJECTS: Array<Project> = [
 		description: 'PROJECTS.JAPANESE_QUIZ.description',
 		shortDescription: 'PROJECTS.JAPANESE_QUIZ.shortDescription',
 		links: [
-			{ to: 'https://prefecture-match.herokuapp.com', label: 'PROJECTS.live_site', newTab: true },
+			{ to: 'https://prefecture.onrender.com', label: 'PROJECTS.live_site', newTab: true },
 			{
 				to: 'https://github.com/zachinjapan/prefecture-match',
 				label: 'GitHub',
