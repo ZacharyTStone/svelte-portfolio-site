@@ -51,7 +51,7 @@ const MY_PROJECTS: Array<Project> = [
 		description: 'PROJECTS.HAKU.description',
 		shortDescription: 'PROJECTS.HAKU.shortDescription',
 		links: [
-			{ to: 'https://www.hakujobs.com', label: 'PROJECTS.live_site', newTab: true },
+			{ to: 'https://haku.onrender.com', label: 'PROJECTS.live_site', newTab: true },
 			{ to: 'https://github.com/zachinjapan/haku', label: 'GitHub', newTab: true },
 			{ to: 'https://www.youtube.com/embed/q1rVbqMw0ug', label: 'YouTube', newTab: true }
 		],
