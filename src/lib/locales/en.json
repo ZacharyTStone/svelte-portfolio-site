@@ -3,7 +3,7 @@
 		"title": "Home",
 		"name": "Zach",
 		"lastName": "Stone",
-		"description": "a software engineer specializing in front-end web development studying Japanese and cybersecurity."
+		"description": "a software engineer specializing in front-end web development studying Japanese."
 	},
 	"NAVBAR": {
 		"home": "Home",
@@ -17,7 +17,7 @@
 	"ABOUT": {
 		"title": "About",
 		"sub-title": "Zach Stone...",
-		"full_about": "I'm a software engineer focusing on front-end web development. During my free time, I like to study cybersecurity and Japanese. I have personal and professional experience creating responsive and cleanly coded UIs using various front-end frameworks and tools. Additionally, I possess solid knowledge of back-end web development. Apart from my technical skills, I am recognized for my love of self-improvement and collaborative spirit. My self-improvement journey has led to teaching myself Japanese and programming. Regarding working with others, kind and clear communication is key. I always try to make a positive impact on both a professional and personal level with my coworkers.",
+		"full_about": "I'm a software engineer focusing on front-end web development. During my free time, I like to study Japanese. I have both personal and professional experience creating responsive and cleanly coded front ends using various frameworks and tools. Additionally, I possess solid knowledge of back-end web development. Apart from my technical skills, I am recognized for my love of self-improvement and collaborative spirit. I believe that kind and clear communication is key to a healthy team. I always try to make a positive impact on both a professional and personal level with my coworkers.",
 		"title_variation": "is a software engineer specializing in front-end web development studying Japanese and cybersecurity.",
 		"description1": "is self-taught and self-motivated.",
 		"description2": "loves improving processes and believes in the power of habits and routines.",
