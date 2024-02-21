@@ -80,9 +80,14 @@
 				on:click={toggleLanguage}
 			>
 				{#if $locale?.includes('en')}
-					<UIcon icon="i-flag-jp-4x3" classes="text-1.3em" alt="JA" tooltip="Japanese" />
+					<UIcon icon="i-flag-jp-4x3" classes="text-1.3em mt-0.5" alt="JA" tooltip="Japanese" />
 				{:else}
-					<UIcon icon={'i-flag-us-4x3'} classes="text-1.3em" alt="English" tooltip="English" />
+					<UIcon
+						icon={'i-flag-us-4x3'}
+						classes="text-1.3em mt-0.5"
+						alt="English"
+						tooltip="English"
+					/>
 				{/if}
 			</button>
 		</div>
