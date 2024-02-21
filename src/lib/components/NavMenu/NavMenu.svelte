@@ -77,13 +77,12 @@
 			</button>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer text-[var(--secondary-text)] px-2 rainbow-hover"
-				on:click={() => toggleLanguage()}
-				aria-label="Change language"
+				on:click={toggleLanguage}
 			>
 				{#if $locale?.includes('en')}
-					<span class="text-xs" aria-label="Japanese">JA</span>
+					<UIcon icon="i-flag-jp-4x3" classes="text-1.3em" alt="JA" tooltip="Japanese" />
 				{:else}
-					<span class="text-xs" aria-label="English">EN</span>
+					<UIcon icon={'i-flag-us-4x3'} classes="text-1.3em" alt="English" tooltip="English" />
 				{/if}
 			</button>
 		</div>
