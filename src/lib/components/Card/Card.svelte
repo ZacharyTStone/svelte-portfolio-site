@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { MouseEventHandler } from 'svelte/elements';
 	import { onHover } from '$lib/utils/helpers';
 	import { changeColorOpacity } from '$lib/utils/helpers';
 
@@ -8,19 +7,17 @@
 
 	export let color = '#ffffff00';
 	export let margin = '0px';
-	export let tiltDegree = 5;
+	export let tiltDegree = 3;
 	export let classes: Array<string> = [];
 	export let href: undefined | string = undefined;
 	export let bgImg: string | undefined = undefined;
 
-	// Calculating color shades
-	$: borderColor = changeColorOpacity(color, 0.5);
-	$: dropColor = changeColorOpacity(color, 0.15);
-	$: bgColor = changeColorOpacity(color, 0.01);
-
-	// Applying styles on mount
 	onMount(() => {
 		if (el) {
+			const borderColor = changeColorOpacity(color, 0.5);
+			const dropColor = changeColorOpacity(color, 0.15);
+			const bgColor = changeColorOpacity(color, 0.01);
+
 			el.style.setProperty('--border-color', borderColor);
 			el.style.setProperty('--drop-color', dropColor);
 			el.style.setProperty('--bg-color', bgColor);
@@ -29,7 +26,6 @@
 		}
 	});
 
-	// Handling hover event
 	const handleHover: any = (e: any) => {
 		onHover(e, el, tiltDegree);
 	};
@@ -44,7 +40,7 @@
 	class={`card text-inherit decoration-none inline-flex flex-col border-1px border-solid border-[var(--border)] rounded-15px duration relative ${classes.join(
 		' '
 	)}`}
-	style={bgColor}
+	style={color}
 >
 	<div class="card-bg-img flex-1 flex flex-col p-25px rounded-15px">
 		<slot />

@@ -43,31 +43,7 @@ export const onHover: any = (ev: any, el: HTMLElement, tiltDegree: number = 10) 
 
 	el.style.setProperty('--rot-x', `${rX}deg`);
 	el.style.setProperty('--rot-y', `${rY}deg`);
-
-	// Dynamic color calculation based on mouse position
-	const dynamicColor = calculateColorBasedOnPosition(x, y, width, height);
-	const newColor = changeColorOpacity(dynamicColor, 0.5); // Customize opacity as needed
-
-	// Apply the new color
-	el.style.setProperty('--border-color', newColor);
-	el.style.setProperty('--drop-color', newColor);
-	el.style.setProperty('--bg-color', newColor);
 };
-
-// Example color calculation function
-function calculateColorBasedOnPosition(
-	x: number,
-	y: number,
-	width: number,
-	height: number
-): string {
-	// Example: Convert position to a color (you can customize this logic)
-	const r = Math.round((x / width) * 255);
-	const g = Math.round((y / height) * 255);
-	const b = 150; // Static value for blue component, can be dynamic too
-
-	return `rgb(${r},${g},${b})`;
-}
 
 export const changeColorOpacity = (color: string, opacity: number): string => {
 	let r: number, g: number, b: number;

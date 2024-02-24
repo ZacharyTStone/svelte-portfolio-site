@@ -11,11 +11,6 @@
 
 	let { description, lastName, links, name, title, skills } = HOME;
 
-	// Function to handle link clicks
-	function handleClick(link: string) {
-		window.open(link, '_blank');
-	}
-
 	// Set page title
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);

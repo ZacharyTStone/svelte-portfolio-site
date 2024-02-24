@@ -7,7 +7,6 @@
 	import UIcon from '../Icon/UIcon.svelte';
 	import { _ } from 'svelte-i18n';
 	import { locale } from 'svelte-i18n';
-	import ChipIcon from '../Chip/ChipIcon.svelte';
 
 	$: currentLocale = $locale; // Reactive declaration
 

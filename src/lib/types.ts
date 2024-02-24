@@ -67,7 +67,7 @@ export interface Skill extends Omit<Item, 'shortDescription'> {
 
 export interface Project extends Item {
 	links: Array<Link>;
-	color: string;
+	color: string; // hex color
 	type: string;
 	skills: Array<Skill>;
 	project_skills?: Array<Link>;
