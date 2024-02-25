@@ -17,7 +17,7 @@
 	"ABOUT": {
 		"title": "About",
 		"sub-title": "Zach Stone...",
-		"full_about": "I'm a software engineer focusing on front-end web development fluent in Japanese. I have both personal and professional experience creating responsive and cleanly coded front ends using various frameworks and tools. Additionally, I possess solid knowledge of back-end web development. Apart from my technical skills, I am recognized for my love of self-improvement and collaborative spirit. I believe that kind and clear communication is key to a healthy team. I always try to make a positive impact on both a professional and personal level with my coworkers.",
+		"full_about": "I'm a software engineer focusing on front-end web development. I have personal and professional experience creating responsive and cleanly coded front ends using various frameworks and tools. Additionally, I possess solid knowledge of back-end web development. This experience spawns from working on personal apps to BnB applications used by companies across America. Apart from my technical skills, I am recognized for my love of self-improvement and collaborative spirit. Kind and clear communication is vital to a healthy team. I always make a positive impact on both a professional and personal level with my coworkers.",
 		"title_variation": "is a software engineer specializing in front-end web development studying Japanese and cybersecurity.",
 		"description1": "is self-taught and self-motivated.",
 		"description2": "loves improving processes and believes in the power of habits and routines.",
@@ -119,10 +119,10 @@
 		},
 		"AI_FLASHCARDS": {
 			"name": "AI Language Flashcards",
-			"description": "Utilizing OpenAI technology, this script generates Anki flashcards effortlessly from either a word list or essay. The cards feature hiragana, example sentences, and basic Japanese definitions. Please note that currently, only Japanese cards are supported, but I plan to expand this to other languages in the future!",
+			"description": "Utilizing OpenAI technology, this script generates Anki flashcards effortlessly from a word list, sentance list, or essay. The cards feature hiragana, example sentences, and basic Japanese definitions. Please note that currently, only Japanese cards are supported, but I plan to expand this to other languages in the future!",
 			"shortDescription": "Generate Anki flashcards from a word list or essay using OpenAI.",
 			"type": "Python Script",
-			"featured_reason": "Most Practical"
+			"featured_reason": "Most Usefull"
 		},
 		"ZACHARYTSTONE": {
 			"name": "ZacharyTStone",

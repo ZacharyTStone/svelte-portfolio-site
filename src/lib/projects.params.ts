@@ -74,7 +74,7 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.HAKU.type',
 		english: true,
 		japanese: false,
-		featured: true,
+		featured: false,
 		featured_reason: 'PROJECTS.HAKU.featured_reason'
 	},
 	{
