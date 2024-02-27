@@ -138,3 +138,31 @@ export const generateRandomHexColor = (): string => {
 
 	return RANDOM_COLORS[randomIndex];
 };
+
+export function calculateExperiencePeriod(fromDate: Date, toDate: Date, language: string = 'en') {
+	const startYear = new Date(fromDate).getFullYear();
+	const endYear = new Date(toDate ?? new Date().toISOString()).getFullYear();
+	const months = countMonths(fromDate, toDate);
+	const years = Math.floor(months / 12);
+	const remainingMonths = months % 12;
+	let period: string;
+
+	if (language.slice(0, 2) === 'ja') {
+		period = `${years > 0 ? `${years}年間` : ''}${
+			remainingMonths > 0 ? `${remainingMonths}ヶ月` : ''
+		}`;
+	} else {
+		period = `${years > 0 ? `${years} year${years > 1 ? 's' : ''}` : ''} ${
+			years > 0 && remainingMonths > 0 ? 'and ' : ''
+		}${remainingMonths > 0 ? `${remainingMonths} month${remainingMonths > 1 ? 's' : ''}` : ''}`;
+	}
+
+	return {
+		startYear,
+		endYear,
+		months,
+		years,
+		remainingMonths,
+		period
+	};
+}

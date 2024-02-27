@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Experience } from '$lib/types';
-	import { countMonths } from '$lib/utils/helpers';
+	import { calculateExperiencePeriod } from '$lib/utils/helpers';
 	import Card from '../Card/Card.svelte';
 	import CardLogo from '../Card/CardLogo.svelte';
 	import CardTitle from '../Card/CardTitle.svelte';
@@ -9,22 +9,29 @@
 	import { base } from '$app/paths';
 	import UIcon from '../Icon/UIcon.svelte';
 	import { _ } from 'svelte-i18n';
+	import { locale } from 'svelte-i18n';
 
 	export let experience: Experience;
 
-	const start_year = new Date(experience.period.from).getFullYear();
+	let period = '';
+	let startYear: any = '';
+	let endYear: any = '';
 
-	const end_year = new Date(experience.period.to ?? new Date().toISOString()).getFullYear();
-
-	const months = countMonths(experience.period.from, experience.period.to);
-
-	const years = Math.floor(months / 12);
-
-	const remainingMonths = months % 12;
-
-	const period = `${years > 0 ? `${years} year${years > 1 ? 's' : ''}` : ''} ${
-		years > 0 && remainingMonths > 0 ? 'and ' : ''
-	}${remainingMonths > 0 ? `${remainingMonths} month${remainingMonths > 1 ? 's' : ''}` : ''}`;
+	// on mount recalculate the period
+	$: {
+		const {
+			period: p,
+			startYear: sYear,
+			endYear: eYear
+		} = calculateExperiencePeriod(
+			experience?.period?.from,
+			experience?.period?.to ?? new Date(),
+			$locale ?? 'en'
+		);
+		period = p;
+		startYear = sYear;
+		endYear = eYear;
+	}
 </script>
 
 <Card margin="0px 0px 20px 0px" tiltDegree={2} href={`${base}/experience/${experience.slug}`}>
@@ -49,7 +56,7 @@
 			</div>
 			<div class="text-[var(--accent-text)] text-[1em] font-400">{period}</div>
 			<div class="text-[var(--accent-text)] text-[0.8em] font-200">
-				({start_year} - {end_year})
+				({startYear} - {endYear})
 			</div>
 			<div class="flex flex-row flex-wrap mt-5">
 				{#each experience.skills as skill}
