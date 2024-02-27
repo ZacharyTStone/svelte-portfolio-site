@@ -119,7 +119,7 @@
 		},
 		"AI_FLASHCARDS": {
 			"name": "AI Language Flashcards",
-			"description": "Utilizing OpenAI technology, this script generates Anki flashcards effortlessly from a word list, sentance list, or essay. The cards feature hiragana, example sentences, and basic Japanese definitions. Please note that currently, only Japanese cards are supported, but I plan to expand this to other languages in the future!",
+			"description": "Utilizing OpenAI technology, this script generates Anki flashcards from a word list, sentance list, or essay. The cards feature hiragana, example sentences, and basic Japanese definitions. Please note that currently, only Japanese cards are supported, but I plan to expand this to other languages in the future!",
 			"shortDescription": "Generate Anki flashcards from a word list or essay using OpenAI.",
 			"type": "Python Script",
 			"featured_reason": "Most Usefull"

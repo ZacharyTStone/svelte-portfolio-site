@@ -141,7 +141,7 @@ const MY_PROJECTS: Array<Project> = [
 		shortDescription: 'PROJECTS.AI_FLASHCARDS.shortDescription',
 		links: [
 			{
-				to: 'https://github.com/ZacharyTStone/AI-Language-Learning-Flashcards/blob/main/README.md',
+				to: 'https://github.com/ZacharyTStone/AI-Language-Learning-Flashcards',
 				label: 'GitHub',
 				newTab: true
 			}
