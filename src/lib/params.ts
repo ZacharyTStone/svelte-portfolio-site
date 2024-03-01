@@ -21,7 +21,12 @@ export const NavBar = {
 	career: 'NAVBAR.career',
 	resume: 'NAVBAR.resume',
 	skills: 'NAVBAR.skills',
-	blog: 'NAVBAR.blog'
+	blog: 'NAVBAR.blog',
+	search: 'NAVBAR.search',
+	japanese: 'NAVBAR.japanese',
+	english: 'NAVBAR.english',
+	lightMode: 'NAVBAR.lightMode',
+	darkMode: 'NAVBAR.darkMode'
 };
 
 export const getPlatfromIcon = (platform: Platform): Icons => {

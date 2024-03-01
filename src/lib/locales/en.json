@@ -12,12 +12,17 @@
 		"skills": "Skills",
 		"resume": "Resume",
 		"about": "About",
-		"blog": "Blog"
+		"blog": "Blog",
+		"search": "Search",
+		"japanese": "日本語",
+		"english": "英語",
+		"lightMode": "Light Mode",
+		"darkMode": "Dark Mode"
 	},
 	"ABOUT": {
 		"title": "About",
 		"sub-title": "Zach Stone...",
-		"full_about": "I'm a software engineer focusing on front-end web development with Japanese language skills. I have professional experience creating responsive and cleanly coded front ends using various frameworks and tools. Additionally, I possess solid knowledge of back-end web development. Apart from my technical skills, I am recognized for my love of self-improvement and collaborative spirit. Kind and clear communication is vital to a healthy team so I always try to make a positive impact on both a professional and personal level with my coworkers.",
+		"full_about": "I'm a software engineer focusing on front-end web development with Japanese language skills. I have professional experience creating responsive and cleanly coded front ends using various frameworks and tools. Additionally, I possess solid knowledge of back-end web development. Apart from my technical skills, I am recognized for my love of self-improvement and collaborative spirit. I believe kind and clear communication is vital to a healthy team and I always try to make a positive impact on both a professional and personal level with my coworkers.",
 		"title_variation": "is a software engineer specializing in front-end web development studying Japanese and cybersecurity.",
 		"description1": "is self-taught and self-motivated.",
 		"description2": "loves improving processes and believes in the power of habits and routines.",

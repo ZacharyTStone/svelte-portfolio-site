@@ -62,16 +62,16 @@
 		</div>
 		<div class="flex flex-row items-stretch gap-1 text-1.15em">
 			<a href={`${base}/search`} class="text-inherit col-center self-stretch px-2 rainbow-hover">
-				<UIcon icon="i-carbon-search" alt="search" tooltip="Search" />
+				<UIcon icon="i-carbon-search" alt="search" tooltip={$_(NavBar.search)} />
 			</a>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer text-[var(--secondary-text)] px-2 rainbow-hover"
 				on:click={() => toggleTheme($theme === 'dark' ? 'light' : 'dark')}
 			>
 				{#if $theme === 'light'}
-					<UIcon icon="i-carbon-moon" alt="light Theme" tooltip="Light Mode" />
+					<UIcon icon="i-carbon-moon" alt="light Theme" tooltip={$_(NavBar.lightMode)} />
 				{:else}
-					<UIcon icon="i-carbon-sun" alt="Dark Theme" tooltip="Dark Mode" />
+					<UIcon icon="i-carbon-sun" alt="Dark Theme" tooltip={$_(NavBar.darkMode)} />
 				{/if}
 			</button>
 			<button
@@ -79,13 +79,18 @@
 				on:click={toggleLanguage}
 			>
 				{#if $locale?.includes('en')}
-					<UIcon icon="i-flag-jp-4x3" classes="text-1.3em mt-0.5" alt="JA" tooltip="Japanese" />
+					<UIcon
+						icon="i-flag-jp-4x3"
+						classes="text-1.3em mt-0.5"
+						alt="JA"
+						tooltip={$_(NavBar.japanese)}
+					/>
 				{:else}
 					<UIcon
 						icon={'i-flag-us-4x3'}
 						classes="text-1.3em mt-0.5"
 						alt="English"
-						tooltip="English"
+						tooltip={$_(NavBar.english)}
 					/>
 				{/if}
 			</button>
