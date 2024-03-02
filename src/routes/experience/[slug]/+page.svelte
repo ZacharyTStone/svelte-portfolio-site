@@ -74,7 +74,7 @@
 		{/if}
 
 		<div class="p-5 md:p-0 pt-3 pb-1 overflow-x-hidden w-full">
-			<div class="px-10px m-y-5">
+			<div class="px-10px m-y-5" style="white-space: pre-line;">
 				{#if data.experience.description}
 					{$_(data.experience.description)}
 				{:else}
