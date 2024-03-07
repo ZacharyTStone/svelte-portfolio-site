@@ -10,7 +10,7 @@
 </script>
 
 <a
-	class="card-link row-center relative m-x-2.5px border-1px border-solid border-[var(--border)] p-5px rounded-10px text-inherit"
+	class="card-link row-center relative m-x-2.5px border-1px border-solid border-[var(--border)] p-5px text-inherit"
 	href={to}
 	title={label}
 	target="_blank"
@@ -39,7 +39,7 @@
 				right: 40%;
 				top: calc(100% + 5px);
 				border: 1px solid var(--border);
-				border-radius: 15px;
+				/* border-radius: 15px; */
 				z-index: 10;
 			}
 		}

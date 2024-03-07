@@ -38,12 +38,12 @@
 	{href}
 	bind:this={el}
 	on:mousemove={handleHover}
-	class={`card text-inherit decoration-none inline-flex flex-col border-1px border-solid border-[var(--border)] rounded-15px duration relative ${classes.join(
+	class={`card text-inherit decoration-none inline-flex flex-col border-1px border-solid border-[var(--border)] duration relative ${classes.join(
 		' '
 	)}`}
 	style={color}
 >
-	<div class="card-bg-img flex-1 flex flex-col p-25px rounded-15px" style={`${style}`}>
+	<div class="card-bg-img flex-1 flex flex-col p-25px" style={`${style}`}>
 		<slot />
 	</div>
 </svelte:element>

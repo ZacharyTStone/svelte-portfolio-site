@@ -26,7 +26,7 @@
 		background-color: black;
 		color: white;
 		text-align: center;
-		border-radius: 6px;
+		/* border-radius: 6px; */
 		padding: 5px;
 		position: absolute;
 		z-index: 1;

@@ -100,9 +100,6 @@
 
 <style lang="scss">
 	/* Show shimmer overlay on hover */
-	.nav-menu-item {
-		border-radius: 10px;
-	}
 
 	.nav-menu {
 		display: flex;

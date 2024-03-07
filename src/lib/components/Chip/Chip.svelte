@@ -10,7 +10,7 @@
 	export let newTab = true;
 
 	import { _ } from 'svelte-i18n';
-	$: className = `row-center cursor-pointer py-[5px] px-[15px] m-[2.5px] decoration-none inline-block border-[1px] border-solid border-[var(--border)] rounded-[20px] tracking-wider text-[0.9em] text-[var(--tertiary-text)] duration-[150ms] font-light rainbow-hover  ${
+	$: className = `row-center cursor-pointer py-[5px] px-[15px] m-[2.5px] decoration-none inline-block border-[1px] border-solid border-[var(--border)] tracking-wider text-[0.9em] text-[var(--tertiary-text)] duration-[150ms] font-light rainbow-hover  ${
 		active ? '' : 'bg-transparent hover:border-[var(--border-hover)]'
 	} ${classes}`;
 

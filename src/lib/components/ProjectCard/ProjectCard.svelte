@@ -31,7 +31,7 @@
 			/>
 		</div>
 		<div
-			class="bg-[var(--main)] text-[var(--main-text)] rounded-15px p-10px
+			class="bg-[var(--main)] text-[var(--main-text)] p-10px
 			 border-1px border-solid border-[var(--border)] shadow-1 z-10 absolute bottom-0 right-0"
 			style="position: absolute; bottom: 0; right: 0;  padding: 10px;  transform: translateY(50%) translateX(10%);  background-color: var(--main);  border-color: var(--border-color);  color: var(--main-text);   z-index: 1;  box-shadow: 0 0 10px 0 var(--drop-color);"
 		>

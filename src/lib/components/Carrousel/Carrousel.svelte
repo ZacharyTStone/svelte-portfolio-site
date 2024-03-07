@@ -53,7 +53,7 @@
 
 <div class="carousel row-center mb-5">
 	<button
-		class="control-button font-500 p-5px m-y-0px m-x-10px cursor-pointer border-1px border-solid border-[var(--border)] bg-transparent rounded-[50%] hover:border-[var(--border-hover)]"
+		class="control-button font-500 p-5px m-y-0px m-x-10px cursor-pointer border-1px border-solid border-[var(--border)] bg-transparent hover:border-[var(--border-hover)]"
 		on:click={toggleLeft}
 	>
 		<UIcon icon="i-carbon-chevron-left" />
@@ -75,7 +75,7 @@
 	</div>
 
 	<button
-		class="control-button font-500 p-5px m-y-0px m-x-10px cursor-pointer border-1px border-solid border-[var(--border)] bg-transparent rounded-[50%] hover:border-[var(--border-hover)]"
+		class="control-button font-500 p-5px m-y-0px m-x-10px cursor-pointer border-1px border-solid border-[var(--border)] bg-transparent  hover:border-[var(--border-hover)]"
 		on:click={toggleRight}
 	>
 		<UIcon icon="i-carbon-chevron-right" />
