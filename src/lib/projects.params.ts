@@ -3,10 +3,13 @@ import { getSkills } from './skills.params';
 import type { Project } from './types';
 import { generateRandomHexColor } from './utils';
 
+// Generate a single random color to be used for all projects
+const randomColor = generateRandomHexColor();
+
 const MY_PROJECTS: Array<Project> = [
 	{
 		slug: 'my-anime-collection',
-		color: generateRandomHexColor(),
+		color: randomColor,
 		description: 'PROJECTS.MY_ANIME_COLLECTION.description',
 		shortDescription: 'PROJECTS.MY_ANIME_COLLECTION.shortDescription',
 		links: [
@@ -47,7 +50,7 @@ const MY_PROJECTS: Array<Project> = [
 
 	{
 		slug: 'haku',
-		color: generateRandomHexColor(),
+		color: randomColor,
 		description: 'PROJECTS.HAKU.description',
 		shortDescription: 'PROJECTS.HAKU.shortDescription',
 		links: [
@@ -79,7 +82,7 @@ const MY_PROJECTS: Array<Project> = [
 	},
 	{
 		slug: 'zach-in-japan',
-		color: generateRandomHexColor(),
+		color: randomColor,
 		description: 'PROJECTS.ZACH_IN_JAPAN.description',
 		shortDescription: 'PROJECTS.ZACH_IN_JAPAN.shortDescription',
 		links: [
@@ -136,7 +139,7 @@ const MY_PROJECTS: Array<Project> = [
 	// },
 	{
 		slug: 'ai-flashcards',
-		color: generateRandomHexColor(),
+		color: randomColor,
 		description: 'PROJECTS.AI_FLASHCARDS.description',
 		shortDescription: 'PROJECTS.AI_FLASHCARDS.shortDescription',
 		links: [
@@ -188,7 +191,7 @@ const MY_PROJECTS: Array<Project> = [
 	// },
 	{
 		slug: 'japanese-quiz',
-		color: generateRandomHexColor(),
+		color: randomColor,
 		description: 'PROJECTS.JAPANESE_QUIZ.description',
 		shortDescription: 'PROJECTS.JAPANESE_QUIZ.shortDescription',
 		links: [

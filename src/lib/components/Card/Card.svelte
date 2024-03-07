@@ -6,11 +6,12 @@
 	let el: HTMLElement;
 
 	export let color = '#ffffff00';
-	export let margin = '0px';
+	export let margin = '8px';
 	export let tiltDegree = 3;
 	export let classes: Array<string> = [];
 	export let href: undefined | string = undefined;
 	export let bgImg: string | undefined = undefined;
+	export let style: string = '';
 
 	onMount(() => {
 		if (el) {
@@ -42,7 +43,7 @@
 	)}`}
 	style={color}
 >
-	<div class="card-bg-img flex-1 flex flex-col p-25px rounded-15px">
+	<div class="card-bg-img flex-1 flex flex-col p-25px rounded-15px" style={`${style}`}>
 		<slot />
 	</div>
 </svelte:element>

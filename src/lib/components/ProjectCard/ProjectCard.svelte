@@ -15,51 +15,27 @@
 	import { Icons } from '$lib/utils/index';
 </script>
 
-<Card color={project.color} href={`${base}/projects/${project.slug}`}>
-	<!-- <CardLogo alt={project.name} src={getAssetURL(project.logo)} size={40} radius={'0'} /> -->
-	<div class="m-t-20px row justify-between items-center">
-		<CardTitle title={$_(project.name)} />
-		<div class="row">
-			{#each project.links as link}
-				<CardLink
-					label={$_(link.label)}
-					to={link.to}
-					icon_path={link.label == 'PROJECTS.live_site'
-						? Icons.Projects
-						: link.label == 'YouTube'
-						? Icons.Youtube
-						: link.label == 'GitHub'
-						? Icons.GitHub
-						: ''}
-					icon_color={'var(--accent-text)'}
-				/>
-			{/each}
-		</div>
-	</div>
-	<CardDivider />
-	<div
-		class="row m-b-15px justify-between text-[var(--secondary-text)] text-0.9em font-italic font-300"
+<div class="card-container">
+	<Card
+		color={project.color}
+		href={`${base}/projects/${project.slug}`}
+		classes={['card']}
+		style="position: relative; overflow: visible; height: 100%; max-width: 90vw; max-height: 90vh;"
 	>
-		<p>{$_(project.type)}</p>
-	</div>
-	<p class="text-[0.95em] text-[var(--secondary-text)] font-300 m-t-20px m-b-40px flex-1">
-		{$_(project.shortDescription)}
-	</p>
-	<CardDivider />
-	<div class="row justify-between items-center">
-		<div class="row">
-			{#each project.skills as tech}
-				<ChipIcon
-					logo={getAssetURL(tech.logo)}
-					name={$_(tech.name)}
-					href={`${base}/skills/${tech.slug}`}
-				/>
-			{/each}
+		<div class="project-image" style=" width: 100%; height: 100%">
+			<!-- Adjusting object-fit to cover the entire card -->
+			<img
+				src={getAssetURL(project.logo)}
+				alt={project.name}
+				style="width: 100%; height: 100%; object-fit: cover;"
+			/>
 		</div>
-		{#if project.featured_reason}
-			<span class="text-[0.95em] text-[var(--secondary-text)] font-300">
-				{$_(project.featured_reason)}
-			</span>
-		{/if}
-	</div>
-</Card>
+		<div
+			class="bg-[var(--main)] text-[var(--main-text)] rounded-15px p-10px
+			 border-1px border-solid border-[var(--border)] shadow-1 z-10 absolute bottom-0 right-0"
+			style="position: absolute; bottom: 0; right: 0;  padding: 10px;  transform: translateY(50%) translateX(10%);  background-color: var(--main);  border-color: var(--border-color);  color: var(--main-text);   z-index: 1;  box-shadow: 0 0 10px 0 var(--drop-color);"
+		>
+			<div class="title" style="font-size: 1.2em; color: var(--main-text)">{$_(project.name)}</div>
+		</div>
+	</Card>
+</div>
