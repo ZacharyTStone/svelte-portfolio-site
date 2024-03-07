@@ -70,7 +70,7 @@
 	<div class="projects-filters">
 		<div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-3 overflow-y-auto">
 			<Chip
-				classes={'text-0.9em md:text-0.8em'}
+				classes={'text-0.9em md:text-0.8em bg-[var(--accent)] text-[var(--accent-text)] hover:bg-[var(--accent-hover)] hover:text-[var(--accent-text-hover)]'}
 				on:click={() => {
 					// clear all
 					filters = filters.map((tech) => {

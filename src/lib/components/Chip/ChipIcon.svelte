@@ -16,7 +16,7 @@
 	this={href ? 'a' : 'div'}
 	{href}
 	class={`
-					chip-icon row-center relative text-inherit decoration-none p-10px m-r-5px m-b-5px border-1px border-solid border-[var(--border)] hover:border-[var(--border-hover)] rounded-10px
+					chip-icon row-center relative text-inherit decoration-none p-10px m-r-5px m-b-5px border-1px border-solid border-[var(--border)] hover:border-[var(--border-hover)]
 					${href ? 'cursor-pointer' : 'cursor-help'}
 					${grayscale ? 'grayscale-65 hover:grayscale-0' : ''}
 			`}
@@ -67,7 +67,7 @@
 				left: 10px;
 				top: calc(100% + 0px);
 				border: 1px solid var(--border);
-				border-radius: 15px;
+				/* border-radius: 15px; */
 			}
 		}
 
