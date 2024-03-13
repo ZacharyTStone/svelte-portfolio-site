@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
+	import { writable } from 'svelte/store'; // Importing writable store
+	import { fade } from 'svelte/transition'; // Importing fade transition
+	import { quintInOut } from 'svelte/easing'; // Importing quintInOut easing
 	import Carrousel from '$lib/components/Carrousel/Carrousel.svelte';
 	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
 	import Icon from '$lib/components/Icon/Icon.svelte';
@@ -8,13 +11,25 @@
 	import MY_SKILLS from '$lib/skills.params';
 	import { useTitle } from '$lib/utils/helpers';
 	import { _ } from 'svelte-i18n';
+	import { base } from '$app/paths';
+	import { getAssetURL } from '$lib/data/assets';
 
 	let { description, lastName, links, name, title, skills } = HOME;
 
 	// Set page title
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
+		const interval = setInterval(cycleSkills, 5000); // Cycle every 5 seconds
+		return () => clearInterval(interval);
 	});
+
+	// Store to hold the index of the currently displayed skill
+	const currentIndex = writable(0);
+
+	// Function to cycle through skills
+	function cycleSkills() {
+		currentIndex.update((value) => (value + 1) % MY_SKILLS.length);
+	}
 </script>
 
 <svelte:head>
@@ -32,15 +47,35 @@
 		>
 			{$_(description)}
 		</p>
-		<div class="flex flex-wrap justify-center md:justify-start gap-3">
+		<div
+			class="hidden md:fixed bottom-0 left-0 lg:right-auto lg:left-0 flex justify-center gap-5 pb-15 px-15"
+		>
 			{#each links as { platform, link }}
 				<ChipIcon name={platform} href={link} newtab>
-					<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'12px'} />
+					<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'24px'} />
 				</ChipIcon>
 			{/each}
 		</div>
 	</div>
-	<div class="fadeIn">
-		<Carrousel items={skills ?? MY_SKILLS} />
+	<div class="fixed bottom--10 right--20 z-10 fade-in">
+		{#if MY_SKILLS.length > 0}
+			{#key currentIndex}
+				<a href={`${base}/skills/${MY_SKILLS[$currentIndex].slug}`} rel="noreferrer">
+					<img
+						src={getAssetURL(MY_SKILLS[$currentIndex].logo)}
+						alt="Skill Logo"
+						class="opacity-20 w-100 h-100 aspect-square md:w-200 md:h-200 skill-logo"
+						style="object-fit: contain;"
+						transition:fade={{ duration: 5000, delay: 0, easing: quintInOut }}
+					/>
+				</a>
+			{/key}
+		{/if}
 	</div>
 </div>
+
+<style>
+	.skill-logo {
+		opacity: 0.2; /* Start with 0.2 opacity */
+	}
+</style>
