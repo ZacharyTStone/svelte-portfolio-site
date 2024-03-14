@@ -62,21 +62,21 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		border-top-left-radius: 8px;
-		border-top-right-radius: 8px;
+		border-bottom-right-radius: 14px;
+		border-bottom-right-radius: 14px;
 	}
 
 	.project-title {
 		position: absolute;
 		bottom: 0;
-		left: 4px;
+		left: 0;
 		right: 0;
 		background-color: var(--dark-0-60);
 		color: var(--light-1);
 		padding: 10px;
 		margin: 0;
-		border-bottom-left-radius: 8px;
-		border-bottom-right-radius: 8px;
+		border-bottom-right-radius: 14px;
+		border-bottom-right-radius: 14px;
 	}
 
 	.project-video {
