@@ -62,7 +62,7 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		border-bottom-right-radius: 14px;
+		border-bottom-left-radius: 14px;
 		border-bottom-right-radius: 14px;
 	}
 
@@ -75,7 +75,7 @@
 		color: var(--light-1);
 		padding: 10px;
 		margin: 0;
-		border-bottom-right-radius: 14px;
+		border-bottom-left-radius: 14px;
 		border-bottom-right-radius: 14px;
 	}
 
