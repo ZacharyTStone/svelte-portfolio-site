@@ -11,55 +11,87 @@
 	import Assets, { getAssetURL } from '$lib/data/assets';
 	import { base } from '$app/paths';
 	import { _ } from 'svelte-i18n';
-	export let project: Project;
 	import { Icons } from '$lib/utils/index';
+
+	export let project: Project;
+
+	console.log(project);
+
+	let isHovered = false;
+
+	function handleMouseEnter() {
+		isHovered = true;
+	}
+
+	function handleMouseLeave() {
+		isHovered = false;
+	}
 </script>
 
 <Card color={project.color} href={`${base}/projects/${project.slug}`}>
-	<!-- <CardLogo alt={project.name} src={getAssetURL(project.logo)} size={40} radius={'0'} /> -->
-	<div class="m-t-20px row justify-between items-center">
-		<CardTitle title={$_(project.name)} />
-		<div class="row">
-			{#each project.links as link}
-				<CardLink
-					label={$_(link.label)}
-					to={link.to}
-					icon_path={link.label == 'PROJECTS.live_site'
-						? Icons.Projects
-						: link.label == 'YouTube'
-						? Icons.Youtube
-						: link.label == 'GitHub'
-						? Icons.GitHub
-						: ''}
-					icon_color={'var(--accent-text)'}
-				/>
-			{/each}
-		</div>
-	</div>
-	<CardDivider />
-	<div
-		class="row m-b-15px justify-between text-[var(--secondary-text)] text-0.9em font-italic font-300"
-	>
-		<p>{$_(project.type)}</p>
-	</div>
-	<p class="text-[0.95em] text-[var(--secondary-text)] font-300 m-t-20px m-b-40px flex-1">
-		{$_(project.shortDescription)}
-	</p>
-	<CardDivider />
-	<div class="row justify-between items-center">
-		<div class="row">
-			{#each project.skills as tech}
-				<ChipIcon
-					logo={getAssetURL(tech.logo)}
-					name={$_(tech.name)}
-					href={`${base}/skills/${tech.slug}`}
-				/>
-			{/each}
-		</div>
-		{#if project.featured_reason}
-			<span class="text-[0.95em] text-[var(--secondary-text)] font-300">
-				{$_(project.featured_reason)}
-			</span>
-		{/if}
-	</div>
+	{#if !project.video || !isHovered}
+		<a data-sveltekit-preload-data="tap" href={`${base}/projects/${project.slug}`}>
+			<img
+				src={getAssetURL(project.logo)}
+				alt={$_(project.name)}
+				class="project-image"
+				on:mouseenter={handleMouseEnter}
+				on:mouseleave={handleMouseLeave}
+			/>
+		</a>
+	{/if}
+
+	{#if project.links && project.links.length > 0 && isHovered}
+		<video
+			src={project.links.find((link) => link.label === 'YouTube')?.to}
+			autoplay
+			loop
+			muted
+			class="project-video"
+			on:mouseenter={handleMouseEnter}
+			on:mouseleave={handleMouseLeave}
+		/>
+	{/if}
+
+	<h2 class="project-title">{$_(project.name)}</h2>
 </Card>
+
+<style>
+	.project-image,
+	.project-video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
+	}
+
+	.project-title {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: var(--dark-0-60);
+		color: var(--light-1);
+		padding: 10px;
+		margin: 0;
+		border-bottom-left-radius: 8px;
+		border-bottom-right-radius: 8px;
+	}
+
+	.project-video {
+		display: none; /* initially hide video */
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
+	}
+
+	.project-video[src] {
+		display: block; /* display video when src is available */
+	}
+</style>
