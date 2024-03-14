@@ -19,7 +19,7 @@
 	// Set page title
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
-		const interval = setInterval(cycleSkills, 5000); // Cycle every 5 seconds
+		const interval = setInterval(cycleSkills, 10000); // Cycle every 10 seconds
 		return () => clearInterval(interval);
 	});
 
