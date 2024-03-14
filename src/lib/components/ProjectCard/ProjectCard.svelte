@@ -69,7 +69,7 @@
 	.project-title {
 		position: absolute;
 		bottom: 0;
-		left: 0;
+		left: 4px;
 		right: 0;
 		background-color: var(--dark-0-60);
 		color: var(--light-1);
