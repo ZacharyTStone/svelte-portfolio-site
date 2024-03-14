@@ -57,7 +57,10 @@
 			{/each}
 		</div>
 	</div>
-	<div class="fixed bottom--10 right--20 z-10 fade-in">
+	<div class="fadeIn block md:hidden">
+		<Carrousel items={skills ?? MY_SKILLS} />
+	</div>
+	<div class="fixed bottom--10 right--20 z-10 fade-in hidden md:block">
 		{#if MY_SKILLS.length > 0}
 			{#key currentIndex}
 				<a href={`${base}/skills/${MY_SKILLS[$currentIndex].slug}`} rel="noreferrer">
@@ -77,5 +80,10 @@
 <style>
 	.skill-logo {
 		opacity: 0.2; /* Start with 0.2 opacity */
+	}
+	:global(body) {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
 	}
 </style>
