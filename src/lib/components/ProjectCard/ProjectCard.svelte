@@ -16,49 +16,15 @@
 	export let project: Project;
 
 	console.log(project);
-
-	let isHovered = false;
-
-	function handleMouseEnter() {
-		isHovered = true;
-	}
-
-	function handleMouseLeave() {
-		isHovered = false;
-	}
 </script>
 
 <Card color={project.color} href={`${base}/projects/${project.slug}`}>
-	{#if !project.video || !isHovered}
-		<a data-sveltekit-preload-data="tap" href={`${base}/projects/${project.slug}`}>
-			<img
-				src={getAssetURL(project.logo)}
-				alt={$_(project.name)}
-				class="project-image"
-				on:mouseenter={handleMouseEnter}
-				on:mouseleave={handleMouseLeave}
-			/>
-		</a>
-	{/if}
-
-	{#if project.links && project.links.length > 0 && isHovered}
-		<video
-			src={project.links.find((link) => link.label === 'YouTube')?.to}
-			autoplay
-			loop
-			muted
-			class="project-video"
-			on:mouseenter={handleMouseEnter}
-			on:mouseleave={handleMouseLeave}
-		/>
-	{/if}
-
+	<img src={getAssetURL(project.logo)} alt={$_(project.name)} class="project-image" />
 	<h2 class="project-title">{$_(project.name)}</h2>
 </Card>
 
 <style>
-	.project-image,
-	.project-video {
+	.project-image {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
@@ -77,21 +43,5 @@
 		margin: 0;
 		border-bottom-left-radius: 14px;
 		border-bottom-right-radius: 14px;
-	}
-
-	.project-video {
-		display: none; /* initially hide video */
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		border-top-left-radius: 8px;
-		border-top-right-radius: 8px;
-	}
-
-	.project-video[src] {
-		display: block; /* display video when src is available */
 	}
 </style>

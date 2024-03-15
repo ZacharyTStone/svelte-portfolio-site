@@ -77,4 +77,8 @@
 			animation: card_shimmer 2s infinite;
 		}
 	}
+
+	:global(.card:hover .quote-text) {
+		filter: blur(0) !important; /* ホバー時にぼかしを解除 */
+	}
 </style>

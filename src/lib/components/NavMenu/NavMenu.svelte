@@ -41,7 +41,7 @@
 			href={`${base}/`}
 			class="nav-menu-left decoration-none flex flex-row items-center cursor-pointer s:px-2 md:px-8 text-[var(--secondary-text)]  rainbow-hover  "
 		>
-			<UIcon icon="i-carbon-code" classes="text-2em" alt="home" tooltip="Home" />
+			<UIcon icon="i-carbon-code" classes="text-2em" alt="home" />
 			<span class="ml-2 text-md font-bold hidden md:inline"
 				>{$_(HOME.name)} {$_(HOME.lastName)}</span
 			>

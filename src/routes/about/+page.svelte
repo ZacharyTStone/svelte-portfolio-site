@@ -34,19 +34,18 @@
 			<div
 				class="flex-1 flex flex-col gap-4 		 md:max-h-[80vh] lg:max-h-[80vh] 
 			 px-4 py-4 md:px-6 md:py-6 lg:px-8 lg:py-8
-			 bg-[var(--bg-secondary)] rounded-lg shadow-lg
 			 overflow-y-auto
 			 overflow-x-visible
 			"
 			>
 				<p class="mb-4 md:mb-6 full-about">{$_('ABOUT.full_about')}</p>
-				<Card>
+				<Card classes={['unblur-quote-text']}>
 					<h2 class="text-lg md:text-xl font-semibold mb-2">{$_('ABOUT.quote1.title')}</h2>
-					<p>{$_('ABOUT.quote1.text')}</p>
+					<p class="blur-on-hover quote-text">{$_('ABOUT.quote1.text')}</p>
 				</Card>
-				<Card>
+				<Card classes={['unblur-quote-text']}>
 					<h2 class="text-lg md:text-xl font-semibold mb-2">{$_('ABOUT.quote2.title')}</h2>
-					<p>{$_('ABOUT.quote2.text')}</p>
+					<p class="blur-on-hover quote-text">{$_('ABOUT.quote2.text')}</p>
 				</Card>
 				<div class="flex flex-wrap justify-center align-center gap-6 mt-6">
 					<div
@@ -90,9 +89,12 @@
 		font-family: 'Noto Sans JP', sans-serif; /* フォントを変更 */
 		line-height: 1.5; /* 行の高さを調整 */
 	}
-	:global(body) {
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
+
+	@media (min-width: 1024px) {
+		.quote-text {
+			filter: blur(4px); /* 初期状態でのぼかし効果 */
+			transition: filter 0.3s; /* ぼかし効果の変化を滑らかに */
+			cursor: default; /* カーソルをデフォルトに */
+		}
 	}
 </style>
