@@ -1,27 +1,37 @@
 <script lang="ts">
-	import { countMonths, getMonthName } from '$lib/utils/helpers';
-	import Chip from '../Chip/Chip.svelte';
-	import Card from '../Card/Card.svelte';
-	import CardTitle from '../Card/CardTitle.svelte';
-	import CardLink from '../Card/CardLink.svelte';
-	import CardDivider from '../Card/CardDivider.svelte';
-	import ChipIcon from '../Chip/ChipIcon.svelte';
-	import CardLogo from '../Card/CardLogo.svelte';
-	import type { Project } from '$lib/types';
-	import Assets, { getAssetURL } from '$lib/data/assets';
 	import { base } from '$app/paths';
+	import { getAssetURL } from '$lib/data/assets';
+	import type { Project } from '$lib/types';
 	import { _ } from 'svelte-i18n';
-	import { Icons } from '$lib/utils/index';
+	import { writable } from 'svelte/store';
+	import Card from '../Card/Card.svelte';
 
 	export let project: Project;
+	let isImageLoaded = writable(false);
 
-	console.log(project);
+	// Subscribe to changes in the store for debugging purposes
+	isImageLoaded.subscribe((value) => console.log('Image loaded:', value));
+
+	// Load the image only once
+	let loadImage = () => {
+		isImageLoaded.set(true);
+	};
+
+	let imageSrc = getAssetURL(project.logo);
+	$: imageSrc, loadImage();
 </script>
 
-<Card color={project.color} href={`${base}/projects/${project.slug}`}>
-	<img src={getAssetURL(project.logo)} alt={$_(project.name)} class="project-image" />
-	<h2 class="project-title">{$_(project.name)}</h2>
-</Card>
+{#if $isImageLoaded}
+	<Card color={project.color} href={`${base}/projects/${project.slug}`}>
+		<img src={imageSrc} alt={$_(project.name)} class="project-image" />
+		<h2 class="project-title">{$_(project.name)}</h2>
+	</Card>
+{:else}
+	<Card color={project.color} href={`${base}/projects/${project.slug}`}>
+		<div class="loading-placeholder" />
+		<h2 class="project-title">{$_(project.name)}</h2>
+	</Card>
+{/if}
 
 <style>
 	.project-image {
@@ -43,5 +53,24 @@
 		margin: 0;
 		border-bottom-left-radius: 14px;
 		border-bottom-right-radius: 14px;
+	}
+
+	@keyframes loading {
+		0% {
+			background-color: #f0f0f0;
+		}
+		50% {
+			background-color: #e0e0e0;
+		}
+		100% {
+			background-color: #f0f0f0;
+		}
+	}
+
+	.loading-placeholder {
+		animation: loading 1.5s infinite;
+		width: 100%;
+		height: 200px;
+		border-radius: 14px;
 	}
 </style>
