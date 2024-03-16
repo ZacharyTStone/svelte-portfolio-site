@@ -5,41 +5,27 @@
 	import { _ } from 'svelte-i18n';
 	import { writable } from 'svelte/store';
 	import Card from '../Card/Card.svelte';
+	import Image from '../../components/Image.svelte';
 
 	export let project: Project;
-	let isImageLoaded = writable(false);
-
-	// Subscribe to changes in the store for debugging purposes
-	isImageLoaded.subscribe((value) => console.log('Image loaded:', value));
-
-	// Load the image only once
-	let loadImage = () => {
-		isImageLoaded.set(true);
-	};
 
 	let imageSrc = getAssetURL(project.logo);
-	$: imageSrc, loadImage();
 </script>
 
-{#if $isImageLoaded}
-	<Card color={project.color} href={`${base}/projects/${project.slug}`}>
-		<img src={imageSrc} alt={$_(project.name)} class="project-image" />
-		<h2 class="project-title">{$_(project.name)}</h2>
-	</Card>
-{:else}
-	<Card color={project.color} href={`${base}/projects/${project.slug}`}>
-		<div class="loading-placeholder" />
-		<h2 class="project-title">{$_(project.name)}</h2>
-	</Card>
-{/if}
+<Card color={project.color} href={`${base}/projects/${project.slug}`}>
+	<Image src={imageSrc} alt={$_(project.name)} classes="project-image" />
+	<h2 class="project-title">{$_(project.name)}</h2>
+</Card>
 
 <style>
-	.project-image {
+	:global(.project-image) {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		border-bottom-left-radius: 14px;
-		border-bottom-right-radius: 14px;
+		border-radius: 14px;
+
+		min-height: 200px;
+		min-width: '100%';
 	}
 
 	.project-title {
@@ -53,24 +39,14 @@
 		margin: 0;
 		border-bottom-left-radius: 14px;
 		border-bottom-right-radius: 14px;
+		opacity: 0; /* 初期状態では非表示 */
+		transition: opacity 0.3s; /* 透明度の変化を滑らかに */
 	}
 
-	@keyframes loading {
-		0% {
-			background-color: #f0f0f0;
+	/* ホバー時にタイトルを表示 */
+	@media (hover: hover) {
+		:global(.card:hover .project-title) {
+			opacity: 1;
 		}
-		50% {
-			background-color: #e0e0e0;
-		}
-		100% {
-			background-color: #f0f0f0;
-		}
-	}
-
-	.loading-placeholder {
-		animation: loading 1.5s infinite;
-		width: 100%;
-		height: 200px;
-		border-radius: 14px;
 	}
 </style>
