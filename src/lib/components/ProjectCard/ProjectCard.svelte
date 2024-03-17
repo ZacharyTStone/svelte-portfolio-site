@@ -43,6 +43,12 @@
 		transition: opacity 0.3s; /* 透明度の変化を滑らかに */
 	}
 
+	@media (max-width: 1024px) {
+		:global(.project-title) {
+			opacity: 1 !important; /* モバイルでは常に表示 */
+		}
+	}
+
 	/* ホバー時にタイトルを表示 */
 	@media (hover: hover) {
 		:global(.card:hover .project-title) {
