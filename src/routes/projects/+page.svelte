@@ -103,7 +103,7 @@
 			{$_(PROJECTS.featured_projects ?? 'Featured Projects')}
 		</h4>
 		<div class="projects-list mt-5 mx-auto">
-			{#each displayed as project}
+			{#each displayed as project (project.slug)}
 				{#if project.featured}
 					<ProjectCard {project} />
 				{/if}
@@ -113,7 +113,7 @@
 			{$_(PROJECTS.other_projects ?? 'Other Projects')}
 		</h4>
 		<div class="projects-list mt-5 mx-auto">
-			{#each displayed as project}
+			{#each displayed as project (project.slug)}
 				{#if !project.featured}
 					<ProjectCard {project} />
 				{/if}
