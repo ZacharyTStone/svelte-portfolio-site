@@ -8,13 +8,17 @@
 	import Image from '../../components/Image.svelte';
 
 	export let project: Project;
+	export let noPadding: boolean = false;
 
 	let imageSrc = getAssetURL(project.logo);
 </script>
 
 <Card color={project.color} href={`${base}/projects/${project.slug}`}>
 	<Image src={imageSrc} alt={$_(project.name)} classes="project-image" />
-	<h2 class="project-title">{$_(project.name)}</h2>
+	<h2 class={noPadding ? 'project-title-no-padding' : 'project-title'}>
+		&nbsp;
+		{$_(project.name)}
+	</h2>
 </Card>
 
 <style>
@@ -28,9 +32,10 @@
 		min-width: '100%';
 	}
 
-	.project-title {
+	.project-title,
+	.project-title-no-padding {
 		position: absolute;
-		bottom: 0;
+		bottom: 0px;
 		left: 0;
 		right: 0;
 		background-color: var(--dark-0-60);
@@ -43,15 +48,21 @@
 		transition: opacity 0.3s; /* 透明度の変化を滑らかに */
 	}
 
+	.project-title-no-padding {
+		padding: 0;
+	}
+
 	@media (max-width: 1024px) {
-		:global(.project-title) {
+		:global(.project-title),
+		:global(.project-title-no-padding) {
 			opacity: 1 !important; /* モバイルでは常に表示 */
 		}
 	}
 
 	/* ホバー時にタイトルを表示 */
 	@media (hover: hover) {
-		:global(.card:hover .project-title) {
+		:global(.card:hover .project-title),
+		:global(.card:hover .project-title-no-padding) {
 			opacity: 1;
 		}
 	}

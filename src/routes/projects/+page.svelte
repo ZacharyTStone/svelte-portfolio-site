@@ -105,7 +105,7 @@
 		<div class="projects-list mt-5 mx-auto">
 			{#each displayed as project (project.slug)}
 				{#if project.featured}
-					<ProjectCard {project} />
+					<ProjectCard {project} noPadding />
 				{/if}
 			{/each}
 		</div>
@@ -115,7 +115,7 @@
 		<div class="projects-list mt-5 mx-auto">
 			{#each displayed as project (project.slug)}
 				{#if !project.featured}
-					<ProjectCard {project} />
+					<ProjectCard {project} noPadding />
 				{/if}
 			{/each}
 		</div>
