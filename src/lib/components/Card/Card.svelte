@@ -42,13 +42,41 @@
 	)}`}
 	style={color}
 >
-	<div class="card-bg-img flex-1 flex flex-col p-15px rounded-15px">
-		<slot />
+	<div>
+		{#if bgImg}
+			<img src={bgImg} class="hover-img " alt="hover image" aria-hidden="true" />
+		{/if}
+
+		<div class="card-bg-img flex-1 flex flex-col p-15px rounded-15px relative">
+			<slot />
+		</div>
 	</div>
 </svelte:element>
 
 <style lang="scss">
+	.hover-img {
+		position: absolute;
+		opacity: 0;
+		transition: opacity 0.5s ease-in;
+		top: -40px;
+		right: -5px;
+		width: 150px;
+		height: 150px;
+		z-index: 9999 !important;
+		pointer-events: none;
+		border-radius: 10px;
+	}
+	// make all text twci as big on hover
+
+	// only apply the below to desktop and larger
+	@media (min-width: 1024px) {
+		.card:hover .hover-img {
+			opacity: 1;
+		}
+	}
 	.card {
+		position: relative;
+		overflow: visible;
 		--border-color: transparent;
 		--bg-color: transparent;
 		--drop-color: transparent;
@@ -59,6 +87,8 @@
 		--rot-y: 0;
 		background: linear-gradient(90deg, var(--main) 0%, var(--main) 60%, var(--main-60) 100%),
 			no-repeat right 40% / 40% var(--bg-img);
+
+		height: max-content;
 
 		&-bg-img {
 			&:hover {
