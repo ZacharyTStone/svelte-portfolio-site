@@ -21,9 +21,7 @@
 			<p class="font-300">Could not find anything...</p>
 		</div>
 	{:else}
-		<div
-			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-20 lg:gap-20 mt-10 min-h-[200px]"
-		>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-5 mt-10">
 			{#each result as skill (skill.slug)}
 				<Card
 					classes={['cursor-pointer decoration-none']}

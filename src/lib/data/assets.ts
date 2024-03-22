@@ -9,7 +9,7 @@ import YouTube from '$lib/assets/images/youtube.svg';
 import Gatsby from '$lib/assets/images/gatsby.svg';
 import Next from '$lib/assets/images/next.svg';
 import Slack from '$lib/assets/images/slack.svg';
-import Japan from '$lib/assets/images/japan.png';
+import Japan from '$lib/assets/images/japan.jpeg';
 import Security from '$lib/assets/images/Security.svg';
 import React from '$lib/assets/images/react.svg';
 import Node from '$lib/assets/images/node.png';
