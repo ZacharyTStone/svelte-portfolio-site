@@ -148,7 +148,7 @@ const MY_PROJECTS: Array<Project> = [
 		],
 		logo: Assets.Flashcard,
 		name: 'PROJECTS.AI_FLASHCARDS.name',
-		skills: getSkills('be', 'dev-tools'),
+		skills: getSkills('dev-tools'),
 		project_skills: [
 			{ label: 'Python', to: 'https://www.python.org/', newTab: true },
 			{ label: 'CSV', to: 'https://en.wikipedia.org/wiki/Comma-separated_values', newTab: true },

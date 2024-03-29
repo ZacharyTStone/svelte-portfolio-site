@@ -10,6 +10,7 @@
 	import { HOME, RESUME } from '$lib/params';
 
 	import Zach from '$lib/assets/images/zach.jpeg';
+	import Image from '$lib/components/Image.svelte';
 
 	let { description, lastName, links, name, title, skills } = HOME;
 </script>
@@ -24,15 +25,15 @@
 	"
 	>
 		<main
-			class="text-left flex flex-col 
+			class="text-left flex flex-col
 		 gap-6 md:gap-6 lg:gap-12 md:flex-row
 		lg:flex-row"
 		>
 			<div class="flex-1">
-				<img src={Zach} alt="Zach Stone" class="rounded-full" />
+				<Image src={Zach} alt="Zach Stone" classes="rounded-full zach" />
 			</div>
 			<div
-				class="flex-1 flex flex-col gap-4 		 md:max-h-[80vh] lg:max-h-[80vh] 
+				class="flex-1 flex flex-col gap-4 md:max-h-[80vh] lg:max-h-[80vh]
 			 px-4 py-4 md:px-6 md:py-6 lg:px-8 lg:py-8
 			 overflow-y-auto
 			 overflow-x-visible
@@ -69,7 +70,7 @@
 </CommonPage>
 
 <style>
-	img {
+	:global(.zach) {
 		display: block;
 		margin: 0 auto; /* 中央揃えに変更 */
 		object-fit: cover;
