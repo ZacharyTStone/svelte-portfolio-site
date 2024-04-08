@@ -35,6 +35,12 @@ import mac6 from '$lib/assets/images/projects/screenshots/mac6.png';
 import mac7 from '$lib/assets/images/projects/screenshots/mac7.png';
 import mac8 from '$lib/assets/images/projects/screenshots/mac8.png';
 
+import haku1 from '$lib/assets/images/projects/screenshots/haku1.png';
+import haku2 from '$lib/assets/images/projects/screenshots/haku2.png';
+import haku3 from '$lib/assets/images/projects/screenshots/haku3.png';
+import haku4 from '$lib/assets/images/projects/screenshots/haku4.png';
+import haku5 from '$lib/assets/images/projects/screenshots/haku5.png';
+
 export const COLOR_ASSETS = {
 	Next: { light: Next, dark: Next },
 	Gatsby: { light: Gatsby, dark: Gatsby },
@@ -59,6 +65,7 @@ export const COLOR_ASSETS = {
 	Svelte: { light: Svelte, dark: Svelte },
 	VueJs: { light: Vue, dark: Vue },
 	TypeScript: { light: TypeScript, dark: TypeScript },
+	// start of screenshots
 	Mac1: { light: mac1, dark: mac1 },
 	Mac2: { light: mac2, dark: mac2 },
 	Mac3: { light: mac3, dark: mac3 },
@@ -66,7 +73,13 @@ export const COLOR_ASSETS = {
 	Mac5: { light: mac5, dark: mac5 },
 	Mac6: { light: mac6, dark: mac6 },
 	Mac7: { light: mac7, dark: mac7 },
-	Mac8: { light: mac8, dark: mac8 }
+	Mac8: { light: mac8, dark: mac8 },
+
+	Haku1: { light: haku1, dark: haku1 },
+	Haku2: { light: haku2, dark: haku2 },
+	Haku3: { light: haku3, dark: haku3 },
+	Haku4: { light: haku4, dark: haku4 },
+	Haku5: { light: haku5, dark: haku5 }
 };
 
 let currentTheme: string;

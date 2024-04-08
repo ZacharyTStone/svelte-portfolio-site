@@ -85,7 +85,14 @@ const MY_PROJECTS: Array<Project> = [
 		english: true,
 		japanese: false,
 		featured: false,
-		featured_reason: 'PROJECTS.HAKU.featured_reason'
+		featured_reason: 'PROJECTS.HAKU.featured_reason',
+		screenshots: [
+			{ src: getAssetURL(Assets.Haku1), label: '' },
+			{ src: getAssetURL(Assets.Haku2), label: '' },
+			{ src: getAssetURL(Assets.Haku3), label: '' },
+			{ src: getAssetURL(Assets.Haku4), label: '' },
+			{ src: getAssetURL(Assets.Haku5), label: '' }
+		]
 	},
 	{
 		slug: 'zach-in-japan',
