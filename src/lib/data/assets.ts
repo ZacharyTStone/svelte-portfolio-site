@@ -25,6 +25,16 @@ import prefecture from '$lib/assets/images/projects/prefecture.webp';
 import quote from '$lib/assets/images/projects/quote.webp';
 import flashcard from '$lib/assets/images/projects/flashcard.png';
 
+// screenshots
+import mac1 from '$lib/assets/images/projects/screenshots/mac1.png';
+import mac2 from '$lib/assets/images/projects/screenshots/mac2.png';
+import mac3 from '$lib/assets/images/projects/screenshots/mac3.png';
+import mac4 from '$lib/assets/images/projects/screenshots/mac4.png';
+import mac5 from '$lib/assets/images/projects/screenshots/mac5.png';
+import mac6 from '$lib/assets/images/projects/screenshots/mac6.png';
+import mac7 from '$lib/assets/images/projects/screenshots/mac7.png';
+import mac8 from '$lib/assets/images/projects/screenshots/mac8.png';
+
 export const COLOR_ASSETS = {
 	Next: { light: Next, dark: Next },
 	Gatsby: { light: Gatsby, dark: Gatsby },
@@ -48,7 +58,15 @@ export const COLOR_ASSETS = {
 	NodeJs: { light: Node, dark: Node },
 	Svelte: { light: Svelte, dark: Svelte },
 	VueJs: { light: Vue, dark: Vue },
-	TypeScript: { light: TypeScript, dark: TypeScript }
+	TypeScript: { light: TypeScript, dark: TypeScript },
+	Mac1: { light: mac1, dark: mac1 },
+	Mac2: { light: mac2, dark: mac2 },
+	Mac3: { light: mac3, dark: mac3 },
+	Mac4: { light: mac4, dark: mac4 },
+	Mac5: { light: mac5, dark: mac5 },
+	Mac6: { light: mac6, dark: mac6 },
+	Mac7: { light: mac7, dark: mac7 },
+	Mac8: { light: mac8, dark: mac8 }
 };
 
 let currentTheme: string;

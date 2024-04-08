@@ -1,4 +1,4 @@
-import Assets from './data/assets';
+import Assets, { getAssetURL } from './data/assets';
 import { getSkills } from './skills.params';
 import type { Project } from './types';
 import { generateRandomHexColor } from './utils';
@@ -42,7 +42,17 @@ const MY_PROJECTS: Array<Project> = [
 		english: true,
 		japanese: true,
 		featured: true,
-		featured_reason: 'PROJECTS.MY_ANIME_COLLECTION.featured_reason'
+		featured_reason: 'PROJECTS.MY_ANIME_COLLECTION.featured_reason',
+		screenshots: [
+			{ src: getAssetURL(Assets.Mac1), label: '' },
+			{ src: getAssetURL(Assets.Mac2), label: '' },
+			{ src: getAssetURL(Assets.Mac3), label: '' },
+			{ src: getAssetURL(Assets.Mac4), label: '' },
+			{ src: getAssetURL(Assets.Mac5), label: '' },
+			{ src: getAssetURL(Assets.Mac6), label: '' },
+			{ src: getAssetURL(Assets.Mac7), label: '' },
+			{ src: getAssetURL(Assets.Mac8), label: '' }
+		]
 	},
 
 	{
