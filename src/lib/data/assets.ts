@@ -41,6 +41,11 @@ import haku3 from '$lib/assets/images/projects/screenshots/haku3.png';
 import haku4 from '$lib/assets/images/projects/screenshots/haku4.png';
 import haku5 from '$lib/assets/images/projects/screenshots/haku5.png';
 
+import blog1 from '$lib/assets/images/projects/screenshots/blog1.png';
+import blog2 from '$lib/assets/images/projects/screenshots/blog2.png';
+import blog3 from '$lib/assets/images/projects/screenshots/blog3.png';
+import blog4 from '$lib/assets/images/projects/screenshots/blog4.png';
+
 export const COLOR_ASSETS = {
 	Next: { light: Next, dark: Next },
 	Gatsby: { light: Gatsby, dark: Gatsby },
@@ -79,7 +84,12 @@ export const COLOR_ASSETS = {
 	Haku2: { light: haku2, dark: haku2 },
 	Haku3: { light: haku3, dark: haku3 },
 	Haku4: { light: haku4, dark: haku4 },
-	Haku5: { light: haku5, dark: haku5 }
+	Haku5: { light: haku5, dark: haku5 },
+
+	Blog1: { light: blog1, dark: blog1 },
+	Blog2: { light: blog2, dark: blog2 },
+	Blog3: { light: blog3, dark: blog3 },
+	Blog4: { light: blog4, dark: blog4 }
 };
 
 let currentTheme: string;

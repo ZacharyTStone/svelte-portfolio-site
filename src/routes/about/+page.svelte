@@ -30,7 +30,13 @@
 		lg:flex-row"
 		>
 			<div class="flex-1">
-				<Image src={Zach} alt="Zach Stone" classes="rounded-full zach" />
+				<Image
+					src={Zach}
+					alt="Zach Stone"
+					classes="zach rounded-full"
+					loadingHeight="200px"
+					loadingWidth="200px"
+				/>
 			</div>
 			<div
 				class="flex-1 flex flex-col gap-4 md:max-h-[80vh] lg:max-h-[80vh]

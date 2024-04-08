@@ -3,6 +3,8 @@
 	export let src: string = '';
 	export let alt: string = '';
 	export let classes: string = '';
+	export let loadingHeight: string = '200px'; // 追加
+	export let loadingWidth: string = '100%'; // 追加
 
 	let loaded = false;
 	let failed = false;
@@ -33,7 +35,10 @@
 		class={classes}
 	/>
 {:else if loading}
-	<div class={classes + ' skeleton'} style="min-height: 200px; min-width: 100%;" />
+	<div
+		class={classes + ' skeleton'}
+		style={`min-height: ${loadingHeight}; min-width: ${loadingWidth}`}
+	/>
 {/if}
 
 <style>

@@ -168,18 +168,16 @@
 					>
 						{#each screenshots as item}
 							<div
-								class="col-center gap-3 overflow-hidden w-100% h-100% rounded-10px cursor-pointer"
+								class="col-center gap-3 w-99% h-99% rounded-10px cursor-pointer rainbow-hover"
 								on:click={() => openModal(item.src)}
 								on:keydown={() => {}}
 								role="button"
 								tabindex="0"
 							>
-								<Image
-									src={item.src}
-									alt={item.label}
-									classes="aspect-video w-100% rainbow-hover"
-								/>
-								<p class="text-[var(--tertiary-text)] font-300">{item.label}</p>
+								<Image src={item.src} alt={item.label} classes=" w-100% h-100%" />
+								{#if item.label}
+									<p class="text-[var(--tertiary-text)] font-300">{item.label}</p>
+								{/if}
 							</div>
 						{/each}
 					</div>

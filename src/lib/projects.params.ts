@@ -119,8 +119,14 @@ const MY_PROJECTS: Array<Project> = [
 		english: true,
 		japanese: false,
 		// featured: true,
-		featured_reason: 'PROJECTS.ZACH_IN_JAPAN.featured_reason'
+		featured_reason: 'PROJECTS.ZACH_IN_JAPAN.featured_reason',
 		// dont_show: true
+		screenshots: [
+			{ src: getAssetURL(Assets.Blog1), label: '' },
+			{ src: getAssetURL(Assets.Blog2), label: '' },
+			{ src: getAssetURL(Assets.Blog3), label: '' },
+			{ src: getAssetURL(Assets.Blog4), label: '' }
+		]
 	},
 	// {
 	// 	slug: 'zacharyTStone',
