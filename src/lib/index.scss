@@ -318,3 +318,8 @@ body {
 		animation: card_shimmer 2s infinite;
 	}
 }
+.modal-open {
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+}
