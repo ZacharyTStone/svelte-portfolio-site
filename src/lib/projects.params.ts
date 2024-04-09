@@ -242,7 +242,11 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.JAPANESE_QUIZ.type',
 		english: false,
 		japanese: true,
-		featured_reason: 'PROJECTS.JAPANESE_QUIZ.featured_reason'
+		featured_reason: 'PROJECTS.JAPANESE_QUIZ.featured_reason',
+		screenshots: [
+			{ src: getAssetURL(Assets.Prefecture1), label: '' },
+			{ src: getAssetURL(Assets.Prefecture2), label: '' }
+		]
 	}
 ];
 
