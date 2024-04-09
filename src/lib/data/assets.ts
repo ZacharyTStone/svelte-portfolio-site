@@ -96,8 +96,6 @@ export const COLOR_ASSETS = {
 	Blog4: { light: blog4, dark: blog4 },
 
 	Anki1: { light: anki1, dark: anki1 },
-	Anki2: { light: anki2, dark: anki2 },
-	Anki3: { light: anki3, dark: anki3 },
 	Anki4: { light: anki4, dark: anki4 }
 };
 
