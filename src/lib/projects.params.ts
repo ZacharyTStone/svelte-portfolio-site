@@ -181,7 +181,13 @@ const MY_PROJECTS: Array<Project> = [
 		english: true,
 		japanese: true,
 		featured_reason: 'PROJECTS.AI_FLASHCARDS.featured_reason',
-		featured: true
+		featured: true,
+		screenshots: [
+			{ src: getAssetURL(Assets.Anki1), label: '' },
+			{ src: getAssetURL(Assets.Anki2), label: '' },
+			{ src: getAssetURL(Assets.Anki3), label: '' },
+			{ src: getAssetURL(Assets.Anki4), label: '' }
+		]
 	},
 
 	// description: '

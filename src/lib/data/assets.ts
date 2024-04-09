@@ -46,6 +46,10 @@ import blog2 from '$lib/assets/images/projects/screenshots/blog2.png';
 import blog3 from '$lib/assets/images/projects/screenshots/blog3.png';
 import blog4 from '$lib/assets/images/projects/screenshots/blog4.png';
 
+import anki1 from '$lib/assets/images/projects/screenshots/anki1.png';
+import anki2 from '$lib/assets/images/projects/screenshots/anki2.png';
+import anki3 from '$lib/assets/images/projects/screenshots/anki3.png';
+import anki4 from '$lib/assets/images/projects/screenshots/anki4.png';
 export const COLOR_ASSETS = {
 	Next: { light: Next, dark: Next },
 	Gatsby: { light: Gatsby, dark: Gatsby },
@@ -89,7 +93,12 @@ export const COLOR_ASSETS = {
 	Blog1: { light: blog1, dark: blog1 },
 	Blog2: { light: blog2, dark: blog2 },
 	Blog3: { light: blog3, dark: blog3 },
-	Blog4: { light: blog4, dark: blog4 }
+	Blog4: { light: blog4, dark: blog4 },
+
+	Anki1: { light: anki1, dark: anki1 },
+	Anki2: { light: anki2, dark: anki2 },
+	Anki3: { light: anki3, dark: anki3 },
+	Anki4: { light: anki4, dark: anki4 }
 };
 
 let currentTheme: string;
