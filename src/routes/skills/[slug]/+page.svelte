@@ -16,6 +16,7 @@
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
 	import { _ } from 'svelte-i18n';
+	import Image from '$lib/components/Image.svelte';
 
 	type Related = {
 		display: string;
@@ -29,6 +30,28 @@
 
 	const { title } = SKILLS;
 
+	const screenshots = data.skill?.screenshots ?? [];
+
+	let isModalOpen = false; // モーダルの状態を管理する変数
+	let selectedImage = ''; // 選択された画像のURLを保持する変数
+
+	function openModal(imageSrc: string) {
+		selectedImage = imageSrc;
+		isModalOpen = true;
+		document.body.classList.add('modal-open'); // スクロールをロックする
+	}
+
+	function closeModal() {
+		isModalOpen = false;
+		document.body.classList.remove('modal-open'); // スクロールロックを解除する
+	}
+
+	// モーダルの外側をクリックしたときにモーダルを閉じる
+	function handleModalClick(event: MouseEvent) {
+		if (event.target === event.currentTarget) {
+			closeModal();
+		}
+	}
 	const getRelatedProjects = (): Array<Related> => {
 		const out: Array<Related> = [];
 
@@ -98,7 +121,7 @@
 						{#if data?.skill?.extraInfo?.length}
 							{#each data.skill.extraInfo as any}
 								<div
-									class="flex flex-row gap-1  flex-wrap mb-5  items-center 
+									class="flex flex-row gap-1 flex-wrap mb-5 items-center
 							"
 								>
 									<span class="text-[var(--accent-text)] text-[1.1em] font-500">
@@ -106,7 +129,7 @@
 									</span>
 									<div
 										class="px-10px
-								 flex flex-row gap-3  flex-wrap align-center
+								 flex flex-row gap-3 flex-wrap align-center
 								"
 									>
 										{#each any.content as info}
@@ -131,7 +154,7 @@
 								<span class="text-[var(--accent-text)] text-[1.1em] font-500">
 									{$_('EXTRA_INFO_LABELS.certifications')}
 								</span>
-								<div class="px-10px flex flex-row gap-3  flex-wrap align-center">
+								<div class="px-10px flex flex-row gap-3 flex-wrap align-center">
 									<ul class="list-disc list-inside">
 										{#each data.skill.certifications as info}
 											<div class="font-300">
@@ -147,11 +170,11 @@
 							</div>
 						{/if}
 						{#if data?.skill?.courses?.length}
-							<div class="flex flex-row gap-1  flex-wrap mb-5 items-center">
+							<div class="flex flex-row gap-1 flex-wrap mb-5 items-center">
 								<span class="text-[var(--accent-text)] text-[1.1em] font-500">
 									{$_('EXTRA_INFO_LABELS.courses')}
 								</span>
-								<div class="px-10px flex flex-row gap-3  flex-wrap align-center">
+								<div class="px-10px flex flex-row gap-3 flex-wrap align-center">
 									<ul class="list-disc list-inside">
 										{#each data.skill.courses as info}
 											<div class="font-300">
@@ -171,7 +194,8 @@
 				<div class=" mb-2">
 					<CardDivider />
 				</div>
-				<div class="flex flex-row gap-1  flex-wrap">
+
+				<div class="flex flex-row gap-1 flex-wrap">
 					<div class="px-10px">
 						{#each related as item}
 							<Chip
@@ -191,7 +215,53 @@
 						{/each}
 					</div>
 				</div>
+				{#if screenshots.length > 0}
+					<div
+						class="px-10px grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 m-t-10"
+					>
+						{#each screenshots as item}
+							<div
+								class="col-center gap-3 w-99% h-99% rounded-10px cursor-pointer rainbow-hover"
+								on:click={() => openModal(item.src)}
+								on:keydown={() => {}}
+								role="button"
+								tabindex="0"
+							>
+								<Image src={item.src} alt={item.label} classes=" w-100% h-100%" />
+								{#if item.label}
+									<p class="text-[var(--tertiary-text)] font-300">{item.label}</p>
+								{/if}
+							</div>
+						{/each}
+					</div>
+				{/if}
 			</div>
 		</div>
 	{/if}
 </div>
+
+{#if isModalOpen}
+	<div
+		class="fixed inset-0 bg-black bg-opacity-75 z-50 flex justify-center items-center backdrop-blur-md"
+		on:click={handleModalClick}
+		on:keydown={() => {}}
+		role="button"
+		aria-label="Selected Image"
+		tabindex={0}
+	>
+		<img
+			src={selectedImage}
+			alt="Selected Image"
+			class="max-w-full max-h-full w-auto h-auto object-cover border border-solid border-gray-300"
+			style="max-width: 90vw; max-height: 90vh;"
+			aria-hidden="true"
+		/>
+		<button
+			on:click={closeModal}
+			aria-label="Close Modal"
+			tabIndex={0}
+			class="absolute top-0 right-0 m-4 text-black text-3xl bg-white p-2 rounded-full"
+			style="width: 50px; height: 50px;">X</button
+		>
+	</div>
+{/if}

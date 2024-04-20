@@ -1,4 +1,4 @@
-import Assets from './data/assets';
+import Assets, { getAssetURL } from './data/assets';
 import type { Asset, Skill } from './types';
 import svelte from './md/svelte.md?raw';
 import { COLOR_ASSETS } from './data/assets';
@@ -167,7 +167,8 @@ const MY_SKILLS = [
 			{
 				label: 'Kanji Kentei Level 10 (Perfect Score)'
 			}
-		]
+		],
+		screenshots: [{ src: getAssetURL(Assets.Japanese1), label: '' }]
 	})
 ];
 

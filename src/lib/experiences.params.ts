@@ -1,4 +1,4 @@
-import Assets from './data/assets';
+import Assets, { getAssetURL } from './data/assets';
 import { getSkills } from './skills.params';
 import { ContractType, type Experience } from './types';
 
@@ -22,7 +22,8 @@ const MY_EXPERIENCES: Array<Experience> = [
 			}
 		],
 		logo: Assets.Interac,
-		shortDescription: 'test'
+		shortDescription: 'test',
+		screenshots: [{ src: getAssetURL(Assets.Alt1), label: '' }]
 	},
 	{
 		slug: 'rapptr',
@@ -56,7 +57,13 @@ const MY_EXPERIENCES: Array<Experience> = [
 			}
 		},
 		logo: Assets.Rapptr,
-		shortDescription: 'test'
+		shortDescription: 'test',
+
+		screenshots: [
+			{ src: getAssetURL(Assets.Rapptr1), label: '' },
+			{ src: getAssetURL(Assets.Rapptr2), label: '' },
+			{ src: getAssetURL(Assets.Rapptr3), label: '' }
+		]
 	}
 ];
 

@@ -52,6 +52,15 @@ import anki4 from '$lib/assets/images/projects/screenshots/anki4.png';
 import prefecture1 from '$lib/assets/images/projects/screenshots/prefecture1.png';
 import prefecture2 from '$lib/assets/images/projects/screenshots/prefecture2.png';
 
+// skill images
+import japanese1 from '$lib/assets/images/skills/japanese1.jpeg';
+
+// experience images
+import alt1 from '$lib/assets/images/experiences/alt1.jpeg';
+import rapptr1 from '$lib/assets/images/experiences/rapptr1.png';
+import rapptr2 from '$lib/assets/images/experiences/rapptr2.jpeg';
+import rapptr3 from '$lib/assets/images/experiences/rapptr3.jpeg';
+
 export const COLOR_ASSETS = {
 	Next: { light: Next, dark: Next },
 	Gatsby: { light: Gatsby, dark: Gatsby },
@@ -101,7 +110,17 @@ export const COLOR_ASSETS = {
 	Anki4: { light: anki4, dark: anki4 },
 
 	Prefecture1: { light: prefecture1, dark: prefecture1 },
-	Prefecture2: { light: prefecture2, dark: prefecture2 }
+	Prefecture2: { light: prefecture2, dark: prefecture2 },
+
+	// skill images
+	Japanese1: { light: japanese1, dark: japanese1 },
+
+	// experience images
+	Alt1: { light: alt1, dark: alt1 },
+
+	Rapptr1: { light: rapptr1, dark: rapptr1 },
+	Rapptr2: { light: rapptr2, dark: rapptr2 },
+	Rapptr3: { light: rapptr3, dark: rapptr3 }
 };
 
 let currentTheme: string;
