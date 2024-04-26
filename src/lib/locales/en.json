@@ -61,7 +61,7 @@
 			"name": "Frontend Web"
 		},
 		"be": {
-			"description": "I have experience using a variety of backend technologies to create REST and GraphQL APIs. I also have experience working with databases in both SQL and NoSQL formats. At Rapptr Labs, I often work on backend tickets for a business-level application using Node.js and Express with a database in SQL, interacted with through Prisma.",
+			"description": "I have experience working with REST and GraphQL APIs. I also have experience working with databases in both SQL and NoSQL formats. At Rapptr Labs, I sometimes work on backend tickets for a business-level application using Node.js and Express with a database in SQL, interacted with through Prisma.",
 			"name": "Backend Web"
 		},
 		"cyber-security": {

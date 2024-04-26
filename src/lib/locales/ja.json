@@ -62,7 +62,7 @@
 			"name": "フロントエンド(ウェブ)"
 		},
 		"be": {
-			"description": "RESTおよびGraphQL APIの開発、SQLやNoSQLデータベースの使用経験が豊富です。Rapptr LabsではNode.jsとExpressを使用し、Prisma経由のSQLデータベースを備えたアプリケーションのバックエンド開発をしています。",
+			"description": "私はRESTとGraphQL APIを使用した経験があります。また、SQLおよびNoSQL形式の両方のデータベースでの作業経験もあります。Rapptr Labsでは、Node.jsとExpressを使用し、Prismaを介してSQLデータベースとやり取りしながら、ビジネスレベルのアプリケーションのバックエンドチケットに取り組んでいます。",
 			"name": "バックエンド(ウェブ)"
 		},
 		"cyber-security": {
