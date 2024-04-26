@@ -63,6 +63,12 @@ const Other: SkillInfoObject[] = [
 	{ label: 'Chat GPT', link: 'https://chat.openai.com/chat' }
 ];
 
+const Mobile: SkillInfoObject[] = [
+	{ label: 'React Native', link: 'https://reactnative.dev/' },
+	{ label: 'Expo', link: 'https://expo.io/' },
+	{ label: 'React Navigation', link: 'https://reactnavigation.org/' }
+];
+
 const SECURITY_TOOLS: SkillInfoObject[] = [
 	{ label: 'OWASP ZAP', link: 'https://owasp.org/www-project-zap/' },
 	{
@@ -111,6 +117,13 @@ const OTHER_EXTRA_INFO: SkillExtraInfo[] = [
 	}
 ];
 
+const MOBILE_EXTRA_INFO: SkillExtraInfo[] = [
+	{
+		title: 'EXTRA_INFO_LABELS.tools',
+		content: Mobile
+	}
+];
+
 const MY_SKILLS = [
 	s({
 		slug: 'fe',
@@ -145,6 +158,14 @@ const MY_SKILLS = [
 				link: 'https://www.udemy.com/certificate/UC-518b49d7-8a75-43bd-ae87-1dd891aa2ff4/'
 			}
 		]
+	}),
+	s({
+		slug: 'mobile',
+		color: 'purple',
+		description: 'SKILLS.mobile.description',
+		logo: Assets.Mobile,
+		name: 'SKILLS.mobile.name',
+		extraInfo: MOBILE_EXTRA_INFO
 	}),
 	s({
 		slug: 'dev-tools',

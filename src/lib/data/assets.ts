@@ -16,6 +16,7 @@ import Node from '$lib/assets/images/node.png';
 import Svelte from '$lib/assets/images/svelte.png';
 import Vue from '$lib/assets/images/vue.png';
 import TypeScript from '$lib/assets/images/ts.png';
+import Mobile from '$lib/assets/images/react-native.png';
 
 import anime from '$lib/assets/images/projects/anime.webp';
 import blog from '$lib/assets/images/projects/blog.webp';
@@ -85,6 +86,7 @@ export const COLOR_ASSETS = {
 	Svelte: { light: Svelte, dark: Svelte },
 	VueJs: { light: Vue, dark: Vue },
 	TypeScript: { light: TypeScript, dark: TypeScript },
+	Mobile: { light: Mobile, dark: Mobile },
 	// start of screenshots
 	Mac1: { light: mac1, dark: mac1 },
 	Mac2: { light: mac2, dark: mac2 },

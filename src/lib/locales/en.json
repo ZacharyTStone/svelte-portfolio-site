@@ -65,7 +65,7 @@
 			"name": "Backend Web"
 		},
 		"cyber-security": {
-			"description": "My fascination with cybersecurity sparked when I implemented a comprehensive site overhaul according to a third-party audit at work. This experience exposed me to numerous cybersecurity concepts, and since then, I've been avidly seeking to deepen my understanding of this field. I am consistently exploring ways to increase the security of my applications.",
+			"description": "My fascination with cybersecurity sparked when I implemented a comprehensive site overhaul according to a third-party audit at work. This experience exposed me to numerous cybersecurity concepts. While I am not pursuing a career in cybersecurity, I hope to continue to learn and apply these concepts in my work.",
 			"name": "Cybersecurity"
 		},
 		"dev-tools": {
@@ -75,6 +75,10 @@
 		"japanese": {
 			"description": "Outside of coding this is my biggest passion. I hope to one day be fluent and spend some time every day studying.",
 			"name": "Japanese"
+		},
+		"mobile": {
+			"description": "I am currently studying mobile development using React Native and use it on an active side project. I hope to increase my skills in this area and eventually work on a web/mobile cross development team.",
+			"name": "Mobile Development"
 		}
 	},
 	"RESUME": {
@@ -152,7 +156,7 @@
 	},
 	"EXTRA_INFO_LABELS": {
 		"certifications": "Certifications",
-		"courses": "Courses",
+		"courses": "Completed Courses",
 		"tools": "Tools",
 		"backend": "Backend",
 		"server": "Server",

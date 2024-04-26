@@ -1,18 +1,18 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import CardLogo from '$lib/components/Card/CardLogo.svelte';
 	import MainTitle from '$lib/components/MainTitle/MainTitle.svelte';
-	import { base } from '$app/paths';
-	import type { Experience } from '$lib/types';
 	import { getAssetURL } from '$lib/data/assets';
 	import { EXPERIENCES } from '$lib/params';
+	import type { Experience } from '$lib/types';
 
-	import TabTitle from '$lib/components/TabTitle.svelte';
-	import Chip from '$lib/components/Chip/Chip.svelte';
 	import Banner from '$lib/components/Banner/Banner.svelte';
-	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
+	import Chip from '$lib/components/Chip/Chip.svelte';
+	import UIcon from '$lib/components/Icon/UIcon.svelte';
+	import Screenshots from '$lib/components/Screenshots.svelte';
+	import TabTitle from '$lib/components/TabTitle.svelte';
 	import { _ } from 'svelte-i18n';
-	import Image from '$lib/components/Image.svelte';
 	export let data: { experience?: Experience };
 
 	const { title } = EXPERIENCES;
@@ -20,27 +20,6 @@
 	$: computedTitle = data.experience ? `${$_(data.experience.name)} - ${$_(title)}` : $_(title);
 
 	const screenshots = data.experience?.screenshots ?? [];
-
-	let isModalOpen = false; // モーダルの状態を管理する変数
-	let selectedImage = ''; // 選択された画像のURLを保持する変数
-
-	function openModal(imageSrc: string) {
-		selectedImage = imageSrc;
-		isModalOpen = true;
-		document.body.classList.add('modal-open'); // スクロールをロックする
-	}
-
-	function closeModal() {
-		isModalOpen = false;
-		document.body.classList.remove('modal-open'); // スクロールロックを解除する
-	}
-
-	// モーダルの外側をクリックしたときにモーダルを閉じる
-	function handleModalClick(event: MouseEvent) {
-		if (event.target === event.currentTarget) {
-			closeModal();
-		}
-	}
 </script>
 
 <TabTitle title={computedTitle} />
@@ -134,51 +113,8 @@
 				</div>
 			</div>
 			{#if screenshots.length > 0}
-				<div
-					class="px-10px grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 m-t-10"
-				>
-					{#each screenshots as item}
-						<div
-							class="col-center gap-3 w-99% h-99% rounded-10px cursor-pointer rainbow-hover"
-							on:click={() => openModal(item.src)}
-							on:keydown={() => {}}
-							role="button"
-							tabindex="0"
-						>
-							<Image src={item.src} alt={item.label} classes=" w-100% h-100%" />
-							{#if item.label}
-								<p class="text-[var(--tertiary-text)] font-300">{item.label}</p>
-							{/if}
-						</div>
-					{/each}
-				</div>
+				<Screenshots {screenshots} />
 			{/if}
 		</div>
-	</div>
-{/if}
-
-{#if isModalOpen}
-	<div
-		class="fixed inset-0 bg-black bg-opacity-75 z-50 flex justify-center items-center backdrop-blur-md"
-		on:click={handleModalClick}
-		on:keydown={() => {}}
-		role="button"
-		aria-label="Selected Image"
-		tabindex={0}
-	>
-		<img
-			src={selectedImage}
-			alt="Selected Image"
-			class="max-w-full max-h-full w-auto h-auto object-cover border border-solid border-gray-300"
-			style="max-width: 90vw; max-height: 90vh;"
-			aria-hidden="true"
-		/>
-		<button
-			on:click={closeModal}
-			aria-label="Close Modal"
-			tabIndex={0}
-			class="absolute top-0 right-0 m-4 text-black text-3xl bg-white p-2 rounded-full"
-			style="width: 50px; height: 50px;">X</button
-		>
 	</div>
 {/if}
