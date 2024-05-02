@@ -167,6 +167,11 @@ const MY_PROJECTS: Array<Project> = [
 				to: 'https://github.com/ZacharyTStone/AI-Language-Learning-Flashcards',
 				label: 'GitHub',
 				newTab: true
+			},
+			{
+				to: 'https://www.youtube.com/watch?v=0x1Rrz2ddjI',
+				label: 'YouTube',
+				newTab: true
 			}
 		],
 		logo: Assets.Flashcard,
@@ -184,7 +189,7 @@ const MY_PROJECTS: Array<Project> = [
 		featured: true,
 		screenshots: [
 			{ src: getAssetURL(Assets.Anki1), label: '' },
-			{ src: getAssetURL(Assets.Anki4), label: '' }
+			{ src: getAssetURL(Assets.Anki2), label: '' }
 		]
 	},
 
