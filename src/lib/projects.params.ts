@@ -189,7 +189,9 @@ const MY_PROJECTS: Array<Project> = [
 		featured: true,
 		screenshots: [
 			{ src: getAssetURL(Assets.Anki1), label: '' },
-			{ src: getAssetURL(Assets.Anki2), label: '' }
+			{ src: getAssetURL(Assets.Anki2), label: '' },
+			{ src: getAssetURL(Assets.Anki3), label: '' },
+			{ src: getAssetURL(Assets.Anki4), label: '' }
 		]
 	},
 

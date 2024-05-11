@@ -49,6 +49,8 @@ import blog4 from '$lib/assets/images/projects/screenshots/blog4.png';
 
 import anki1 from '$lib/assets/images/projects/screenshots/anki1.png';
 import anki2 from '$lib/assets/images/projects/screenshots/anki2.png';
+import anki3 from '$lib/assets/images/projects/screenshots/anki3.png';
+import anki4 from '$lib/assets/images/projects/screenshots/anki4.png';
 
 import prefecture1 from '$lib/assets/images/projects/screenshots/prefecture1.png';
 import prefecture2 from '$lib/assets/images/projects/screenshots/prefecture2.png';
@@ -110,6 +112,8 @@ export const COLOR_ASSETS = {
 
 	Anki1: { light: anki1, dark: anki1 },
 	Anki2: { light: anki2, dark: anki2 },
+	Anki3: { light: anki3, dark: anki3 },
+	Anki4: { light: anki4, dark: anki4 },
 
 	Prefecture1: { light: prefecture1, dark: prefecture1 },
 	Prefecture2: { light: prefecture2, dark: prefecture2 },
