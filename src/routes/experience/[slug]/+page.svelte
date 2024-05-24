@@ -13,6 +13,9 @@
 	import Screenshots from '$lib/components/Screenshots.svelte';
 	import TabTitle from '$lib/components/TabTitle.svelte';
 	import { _ } from 'svelte-i18n';
+	import { marked } from 'marked';
+	import { locale } from 'svelte-i18n';
+
 	export let data: { experience?: Experience };
 
 	const { title } = EXPERIENCES;
@@ -77,9 +80,20 @@
 		{/if}
 
 		<div class="p-5 md:p-0 pt-3 pb-1 overflow-x-hidden w-full">
-			<div class="px-10px m-y-5" style="white-space: pre-line;">
+			<div class="px-10px m-y-5">
 				{#if data.experience.description}
-					{$_(data.experience.description)}
+					{#if data.experience.description_is_markdown}
+						// manually check for language and use marked() function on japanese or english
+						{#if $locale === 'ja'}
+							{@html marked(data?.experience?.markdown_description?.ja_markdown ?? '')}
+						{:else if $locale === 'en'}
+							{@html marked(data?.experience?.markdown_description?.en_markdown ?? '')}
+						{:else}
+							{$_(data.experience.description)}
+						{/if}
+					{:else}
+						{$_(data.experience.description)}
+					{/if}
 				{:else}
 					<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
 						<UIcon icon="i-carbon-text-font" classes="text-3.5em" />

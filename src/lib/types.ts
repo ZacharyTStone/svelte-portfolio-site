@@ -45,6 +45,10 @@ export interface Item {
 	logo: Asset;
 	shortDescription: string;
 	description: string;
+	description_markdown?: {
+		ja_markdown?: any;
+		en_markdown?: any;
+	};
 	screenshots?: Array<{ src: string; label: string }>;
 	extraInfo?: SkillInfoSection[];
 	certifications?: certifcations[];
@@ -77,6 +81,10 @@ export interface Project extends Item {
 	featured?: boolean;
 	featured_reason?: string;
 	description_is_markdown?: boolean;
+	markdown_description?: {
+		ja_markdown?: any;
+		en_markdown?: any;
+	};
 	dont_show?: boolean;
 }
 
