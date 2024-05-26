@@ -64,7 +64,7 @@ import rapptr1 from '$lib/assets/images/experiences/rapptr1.png';
 import rapptr2 from '$lib/assets/images/experiences/rapptr2.jpeg';
 import rapptr3 from '$lib/assets/images/experiences/rapptr3.jpeg';
 
-import immerse from '$lib/assets/images/projects/immerse.webp';
+import immerse from '$lib/assets/images/projects/immerse.png';
 
 import imerse1 from '$lib/assets/images/projects/screenshots/immerse1.png';
 import imerse2 from '$lib/assets/images/projects/screenshots/immerse2.png';
