@@ -153,6 +153,13 @@
 			"shortDescription": "日本の都道府県についての知識をテストする楽しいクイズ。",
 			"type": "ウェブアプリケーション",
 			"featured_reason": "最も楽しいプロジェクト"
+		},
+		"IMMERSE_IN_JAPAN": {
+			"name": "Immerse in Japan",
+			"description": "日本語学習者が自分のレベルに合った新しい学習ツールやコンテンツを見つけるためのウェブサイトです。",
+			"shortDescription": "日本語学習者が自分のレベルに合った新しい学習ツールやコンテンツを見つけるためのウェブサイトです。",
+			"type": "ウェブアプリケーション",
+			"featured_reason": "最も役に立つプロジェクト"
 		}
 	},
 	"EXTRA_INFO_LABELS": {

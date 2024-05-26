@@ -254,6 +254,33 @@ const MY_PROJECTS: Array<Project> = [
 			{ src: getAssetURL(Assets.Prefecture1), label: '' },
 			{ src: getAssetURL(Assets.Prefecture2), label: '' }
 		]
+	},
+	{
+		slug: 'immerse-in-japan',
+		color: generateRandomHexColor(),
+		description: 'PROJECTS.IMMERSE_IN_JAPAN.description',
+		shortDescription: 'PROJECTS.IMMERSE_IN_JAPAN.shortDescription',
+		links: [{ to: 'https://www.immerseinjapan.com', label: 'PROJECTS.live_site', newTab: true }],
+		logo: Assets.Immerse,
+		name: 'PROJECTS.IMMERSE_IN_JAPAN.name',
+		skills: getSkills('fe', 'dev-tools', 'japanese'),
+		project_skills: [
+			{ label: 'Next.js', to: 'https://nextjs.org/', newTab: true },
+			{ label: 'CSS', to: 'https://developer.mozilla.org/en-US/docs/Web/CSS', newTab: true },
+			{ label: 'Markdown', to: 'https://www.markdownguide.org/', newTab: true },
+			{ label: 'Vercel', to: 'https://vercel.com/', newTab: true },
+			{ label: 'sanity.io', to: 'https://www.sanity.io/', newTab: true },
+			{ label: 'Tailwind CSS', to: 'https://tailwindcss.com/', newTab: true }
+		],
+		type: 'PROJECTS.IMMERSE_IN_JAPAN.type',
+		english: true,
+		japanese: false,
+		featured: true,
+		featured_reason: 'PROJECTS.IMMERSE_IN_JAPAN.featured_reason',
+		screenshots: [
+			{ src: getAssetURL(Assets.Immerse1), label: '' },
+			{ src: getAssetURL(Assets.Immerse2), label: '' }
+		]
 	}
 ];
 

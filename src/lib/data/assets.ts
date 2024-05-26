@@ -64,6 +64,11 @@ import rapptr1 from '$lib/assets/images/experiences/rapptr1.png';
 import rapptr2 from '$lib/assets/images/experiences/rapptr2.jpeg';
 import rapptr3 from '$lib/assets/images/experiences/rapptr3.jpeg';
 
+import immerse from '$lib/assets/images/projects/immerse.webp';
+
+import imerse1 from '$lib/assets/images/projects/screenshots/immerse1.png';
+import imerse2 from '$lib/assets/images/projects/screenshots/immerse2.png';
+
 export const COLOR_ASSETS = {
 	Next: { light: Next, dark: Next },
 	Gatsby: { light: Gatsby, dark: Gatsby },
@@ -89,6 +94,7 @@ export const COLOR_ASSETS = {
 	VueJs: { light: Vue, dark: Vue },
 	TypeScript: { light: TypeScript, dark: TypeScript },
 	Mobile: { light: Mobile, dark: Mobile },
+	Immerse: { light: immerse, dark: immerse },
 	// start of screenshots
 	Mac1: { light: mac1, dark: mac1 },
 	Mac2: { light: mac2, dark: mac2 },
@@ -117,6 +123,9 @@ export const COLOR_ASSETS = {
 
 	Prefecture1: { light: prefecture1, dark: prefecture1 },
 	Prefecture2: { light: prefecture2, dark: prefecture2 },
+
+	Immerse1: { light: imerse1, dark: imerse1 },
+	Immerse2: { light: imerse2, dark: imerse2 },
 
 	// skill images
 	Japanese1: { light: japanese1, dark: japanese1 },

@@ -152,6 +152,13 @@
 			"shortDescription": "Test your knowledge of Japanese prefectures with this fun quiz.",
 			"type": "Web Application",
 			"featured_reason": "Most Fun"
+		},
+		"IMMERSE_IN_JAPAN": {
+			"name": "Immerse In Japan",
+			"description": "A website to help Japanese learners find new language-learning tools and content tailored to their skill level.",
+			"shortDescription": "A website to help Japanese learners find new language-learning tools and content tailored to their skill level.",
+			"type": "Web Application",
+			"featured_reason": "Most Useful"
 		}
 	},
 	"EXTRA_INFO_LABELS": {
