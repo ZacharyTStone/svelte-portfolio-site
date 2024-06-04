@@ -52,6 +52,12 @@
 			"description": "Main Tasks:\n\n- Managed bug tickets, support tasks, and new feature development.\n\n- Collaborated with clients on BRDs, feature briefs, tech specs, and documentation.\n\n- Coordinated with design, engineering, and product teams.\n\n- Conducted first-round interviews and reviewed candidates' applications.\n\nNotable Accomplishments:\n\n- Implemented a reusable project component library update based on a Figma file.\n\n- Developed an embeddable widget, involving extensive research and coordination with various companies' engineering teams.\n\n- Enhanced QA processes, including improved instructions, weekly code reviews, and a dedicated testing environment.\n\n- Significantly refactored the codebase, reducing tech debt. While this was not the goal, it lead to the removal of over 50,000 lines of code.",
 			"type": "Software Development",
 			"location": "New York, NY"
+		},
+		"opsiq": {
+			"name": "OPSIQ",
+			"description": "OPSIQ is a startup that has developed an app for companies' inside sales teams.",
+			"type": "Software Development",
+			"location": "Austin, TX"
 		}
 	},
 	"SKILLS": {

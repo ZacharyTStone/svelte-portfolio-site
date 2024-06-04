@@ -32,7 +32,7 @@ const MY_EXPERIENCES: Array<Experience> = [
 		contract: ContractType.FullTime,
 		type: 'EXPERIENCES.rapptr.type',
 		location: 'EXPERIENCES.rapptr.location',
-		period: { from: new Date(2022, 7) },
+		period: { from: new Date(2022, 7), to: new Date(2024, 5) },
 		skills: getSkills('fe', 'be', 'dev-tools'),
 		name: 'EXPERIENCES.rapptr.name',
 		color: '#ffffff',
@@ -64,6 +64,22 @@ const MY_EXPERIENCES: Array<Experience> = [
 			{ src: getAssetURL(Assets.Rapptr2), label: '' },
 			{ src: getAssetURL(Assets.Rapptr3), label: '' }
 		]
+	},
+	{
+		slug: 'opsiq',
+		company: 'OPSIQ',
+		description: 'EXPERIENCES.opsiq.description',
+		contract: ContractType.PartTime,
+		type: 'EXPERIENCES.opsiq.type',
+		location: 'EXPERIENCES.opsiq.location',
+		period: { from: new Date(2024, 6) },
+		skills: getSkills('fe', 'be', 'dev-tools'),
+		name: 'EXPERIENCES.opsiq.name',
+		color: '#ffffff',
+		links: [{ to: 'https://opsiq.ai/', label: 'OPSIQ', newTab: true }],
+		logo: Assets.Opsiq,
+		shortDescription: 'test'
+		// screenshots: [{ src: getAssetURL(Assets.Opsiq1), label: '' }]
 	}
 ];
 

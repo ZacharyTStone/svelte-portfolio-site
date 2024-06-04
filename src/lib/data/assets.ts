@@ -1,6 +1,7 @@
 import type { Asset } from '$lib/types';
 import { theme } from '$lib/stores/theme';
 import Rapptr from '$lib/assets/images/rapptr.png';
+import Opsiq from '$lib/assets/images/OPSIQ.jpeg';
 import Interac from '$lib/assets/images/interac.jpeg';
 import Readme from '$lib/assets/images/projects/Readme.png';
 import Github from '$lib/assets/images/github.svg';
@@ -74,6 +75,7 @@ export const COLOR_ASSETS = {
 	Gatsby: { light: Gatsby, dark: Gatsby },
 	Japan: { light: Japan, dark: Japan },
 	Rapptr: { light: Rapptr, dark: Rapptr },
+	Opsiq: { light: Opsiq, dark: Opsiq },
 	Interac: { light: Interac, dark: Interac },
 	GitHub: { light: Github, dark: Github },
 	Computer: { light: Computer, dark: Computer },
