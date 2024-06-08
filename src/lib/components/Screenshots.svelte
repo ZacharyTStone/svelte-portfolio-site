@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import Image from './Image.svelte';
 
 	export let screenshots = [] as { src: string; label?: string }[];
@@ -10,12 +9,10 @@
 	function openModal(imageSrc: string) {
 		selectedImage = imageSrc;
 		isModalOpen = true;
-		document.body.classList.add('modal-open'); // Lock scroll
 	}
 
 	function closeModal() {
 		isModalOpen = false;
-		document.body.classList.remove('modal-open'); // Unlock scroll
 	}
 
 	// モーダルの外側をクリックしたときにモーダルを閉じる
@@ -31,16 +28,6 @@
 			closeModal();
 		}
 	}
-
-	// Lock scroll on modal open
-	onMount(() => {
-		const body = document.body;
-		const originalStyle = body.style.overflow;
-
-		return () => {
-			body.style.overflow = originalStyle;
-		};
-	});
 </script>
 
 <div class="px-10px grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 m-t-10">
@@ -89,9 +76,3 @@
 		>
 	</div>
 {/if}
-
-<style>
-	.modal-open {
-		overflow: hidden;
-	}
-</style>
