@@ -52,7 +52,12 @@
 			role="button"
 			tabindex="0"
 		>
-			<Image src={item.src} alt={item.label} classes="w-100% h-100% rounded-md" />
+			<Image
+				src={item.src}
+				alt={item.label}
+				classes="w-100% h-100% rounded-md"
+				loadingHeight="150px"
+			/>
 			{#if item.label}
 				<p class="text-[var(--tertiary-text)] font-300">{item.label}</p>
 			{/if}

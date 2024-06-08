@@ -44,17 +44,51 @@
 <style>
 	.skeleton {
 		background: #eee;
-		animation: pulse 1.5s infinite ease-in-out;
+		border: 4px solid;
+		border-radius: 10px;
+		border-color: #ff0000;
+		animation: pulse 1.5s ease-in-out infinite, rainbow-border 1.5s linear infinite;
 	}
+
 	@keyframes pulse {
 		0% {
-			background-color: #cfcece;
+			background-color: #eee;
 		}
 		50% {
-			background-color: #9e9c9c;
+			background-color: #ddd;
 		}
 		100% {
-			background-color: #cfcece;
+			background-color: #eee;
+		}
+	}
+
+	@keyframes rainbow-border {
+		0% {
+			border-color: #ff0000;
+		}
+		12.5% {
+			border-color: #ff8000;
+		}
+		25% {
+			border-color: #ffff00;
+		}
+		37.5% {
+			border-color: #00ff00;
+		}
+		50% {
+			border-color: #0000ff;
+		}
+		62.5% {
+			border-color: #4b0082;
+		}
+		75% {
+			border-color: #9400d3;
+		}
+		87.5% {
+			border-color: #ff0000;
+		}
+		100% {
+			border-color: #ff8000;
 		}
 	}
 </style>
