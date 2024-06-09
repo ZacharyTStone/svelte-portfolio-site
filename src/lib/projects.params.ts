@@ -169,7 +169,7 @@ const MY_PROJECTS: Array<Project> = [
 				newTab: true
 			},
 			{
-				to: 'https://www.youtube.com/watch?v=0x1Rrz2ddjI',
+				to: 'https://youtu.be/I_Bqdwrua2s',
 				label: 'YouTube',
 				newTab: true
 			}
@@ -190,8 +190,7 @@ const MY_PROJECTS: Array<Project> = [
 		screenshots: [
 			{ src: getAssetURL(Assets.Anki1), label: '' },
 			{ src: getAssetURL(Assets.Anki2), label: '' },
-			{ src: getAssetURL(Assets.Anki3), label: '' },
-			{ src: getAssetURL(Assets.Anki4), label: '' }
+			{ src: getAssetURL(Assets.Anki3), label: '' }
 		]
 	},
 
