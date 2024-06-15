@@ -101,7 +101,7 @@ const MY_PROJECTS: Array<Project> = [
 		shortDescription: 'PROJECTS.ZACH_IN_JAPAN.shortDescription',
 		links: [
 			{
-				to: 'https://https://zach-in-japan.netlify.app',
+				to: 'https://zach-in-japan.netlify.app',
 				label: 'PROJECTS.live_site',
 				newTab: true
 			},
