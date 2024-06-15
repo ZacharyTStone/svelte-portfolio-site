@@ -100,7 +100,11 @@ const MY_PROJECTS: Array<Project> = [
 		description: 'PROJECTS.ZACH_IN_JAPAN.description',
 		shortDescription: 'PROJECTS.ZACH_IN_JAPAN.shortDescription',
 		links: [
-			{ to: 'https://zachinjapan.com', label: 'PROJECTS.live_site', newTab: true },
+			{
+				to: 'https://https://zach-in-japan.netlify.app',
+				label: 'PROJECTS.live_site',
+				newTab: true
+			},
 			{ to: 'https://github.com/zachinjapan/my-gatsby-blog', label: 'GitHub', newTab: true },
 			{ to: 'https://www.youtube.com/embed/lt48zTXl6j0', label: 'YouTube', newTab: true }
 		],
