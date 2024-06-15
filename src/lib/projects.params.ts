@@ -97,11 +97,11 @@ const MY_PROJECTS: Array<Project> = [
 	{
 		slug: 'zach-in-japan',
 		color: generateRandomHexColor(),
-		description: 'PROJECTS.ZACH_IN_JAPAN.description',
-		shortDescription: 'PROJECTS.ZACH_IN_JAPAN.shortDescription',
+		description: 'PROJECTS.ZACH_STONE.description',
+		shortDescription: 'PROJECTS.ZACH_STONE.shortDescription',
 		links: [
 			{
-				to: 'https://zach-in-japan.netlify.app',
+				to: 'https://zach-stone.netlify.app/',
 				label: 'PROJECTS.live_site',
 				newTab: true
 			},
@@ -109,7 +109,7 @@ const MY_PROJECTS: Array<Project> = [
 			{ to: 'https://www.youtube.com/embed/lt48zTXl6j0', label: 'YouTube', newTab: true }
 		],
 		logo: Assets.Blog,
-		name: 'PROJECTS.ZACH_IN_JAPAN.name',
+		name: 'PROJECTS.ZACH_STONE.name',
 		skills: getSkills('fe', 'dev-tools', 'japanese'),
 		project_skills: [
 			{ label: 'Gatsby', to: 'https://gatsby.dev/', newTab: true },
@@ -119,11 +119,11 @@ const MY_PROJECTS: Array<Project> = [
 			{ label: 'GraphQL', to: 'https://graphql.org/', newTab: true },
 			{ label: 'Gatsby Cloud', to: 'https://www.gatsbyjs.com/cloud/', newTab: true }
 		],
-		type: 'PROJECTS.ZACH_IN_JAPAN.type',
+		type: 'PROJECTS.ZACH_STONE.type',
 		english: true,
 		japanese: false,
 		// featured: true,
-		featured_reason: 'PROJECTS.ZACH_IN_JAPAN.featured_reason',
+		featured_reason: 'PROJECTS.ZACH_STONE.featured_reason',
 		// dont_show: true
 		screenshots: [
 			{ src: getAssetURL(Assets.Blog1), label: '' },
