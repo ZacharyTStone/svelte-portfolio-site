@@ -11,41 +11,42 @@
 	const imageSrc = getAssetURL(project.logo);
 </script>
 
-<Card color={project.color} href={`${base}/projects/${project.slug}`}>
-	<div class="project-container">
-		<h2 class="project-title-no-padding">
+<div class="project-container">
+	<Card color={project.color} href={`${base}/projects/${project.slug}`}>
+		<h2 class="project-title">
 			{$_(project.name)}
 		</h2>
 		<Image src={imageSrc} alt={$_(project.name)} classes="project-image" />
-	</div>
-</Card>
+	</Card>
+</div>
 
 <style>
 	.project-container {
-		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
-	:global(.project-image) {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		border-radius: 14px;
-		min-height: 200px;
-		min-width: 100%;
-	}
-
-	.project-title-no-padding {
-		position: absolute;
-		top: -60px;
-		left: 0;
-		color: var(--light-1);
+	.project-title {
+		color: var(--light-6);
 		margin: 0;
 		border-radius: 8px;
-		opacity: 0;
+		opacity: 1;
 		transition: opacity 0.3s;
-		font-size: 2rem; /* Default font size for large viewports */
+		font-size: 1.5rem; /* Default font size for large viewports */
 		font-weight: bold;
-		white-space: nowrap;
+		max-width: 100%;
+		min-height: 50px;
+		background: none;
+		-webkit-background-clip: unset;
+		-webkit-text-fill-color: unset;
+		animation: none;
+		padding: 0;
+		text-align: center;
+		width: 100%;
+	}
+
+	.project-container:hover .project-title {
 		background: linear-gradient(
 			90deg,
 			#ff0000,
@@ -60,11 +61,24 @@
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		animation: rainbow 5s linear infinite;
-		padding: 0;
+	}
+
+	:global(.project-image) {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 14px;
+		min-height: 200px;
+	}
+
+	@media (min-width: 768px) {
+		:global(.project-image) {
+			height: 200px;
+		}
 	}
 
 	@media (hover: hover) {
-		.project-container:hover .project-title-no-padding {
+		.project-container:hover .project-title {
 			opacity: 1;
 		}
 	}
