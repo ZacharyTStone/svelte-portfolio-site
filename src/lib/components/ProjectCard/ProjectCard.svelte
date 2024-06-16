@@ -43,7 +43,7 @@
 		border-radius: 8px;
 		opacity: 0;
 		transition: opacity 0.3s;
-		font-size: 2rem;
+		font-size: 2rem; /* Default font size for large viewports */
 		font-weight: bold;
 		white-space: nowrap;
 		background: linear-gradient(
@@ -72,6 +72,7 @@
 	@media (max-width: 768px) {
 		.project-title-no-padding {
 			opacity: 1;
+			font-size: 1.5rem; /* Font size for mobile viewports */
 		}
 	}
 
