@@ -45,6 +45,7 @@
 		transition: opacity 0.3s;
 		font-size: 2rem;
 		font-weight: bold;
+		white-space: nowrap;
 		background: linear-gradient(
 			90deg,
 			#ff0000,
