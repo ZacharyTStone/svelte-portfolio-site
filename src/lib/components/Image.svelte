@@ -44,10 +44,10 @@
 <style>
 	.skeleton {
 		background: #eee;
-		border: 4px solid;
+		border: 2px solid;
 		border-radius: 10px;
 		border-color: #ff0000;
-		animation: pulse 1.5s ease-in-out infinite, rainbow-border 1.5s linear infinite;
+		animation: pulse 1.5s ease-in-out infinite, rainbow-border 3s linear infinite;
 	}
 
 	@keyframes pulse {
@@ -64,31 +64,31 @@
 
 	@keyframes rainbow-border {
 		0% {
-			border-color: #ff0000;
+			border-color: #ff8080;
 		}
 		12.5% {
-			border-color: #ff8000;
+			border-color: #ffc080;
 		}
 		25% {
-			border-color: #ffff00;
+			border-color: #ffff80;
 		}
 		37.5% {
-			border-color: #00ff00;
+			border-color: #80ff80;
 		}
 		50% {
-			border-color: #0000ff;
+			border-color: #8080ff;
 		}
 		62.5% {
-			border-color: #4b0082;
+			border-color: #c080ff;
 		}
 		75% {
-			border-color: #9400d3;
+			border-color: #ff80ff;
 		}
 		87.5% {
-			border-color: #ff0000;
+			border-color: #ff8080;
 		}
 		100% {
-			border-color: #ff8000;
+			border-color: #ffc080;
 		}
 	}
 </style>

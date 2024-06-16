@@ -21,10 +21,12 @@
 			<p class="font-300">Could not find anything...</p>
 		</div>
 	{:else}
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-5 mt-10">
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mt-10">
 			{#each result as skill (skill.slug)}
 				<Card
-					classes={['cursor-pointer decoration-none']}
+					classes={[
+						'cursor-pointer decoration-none rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg'
+					]}
 					tiltDegree={1}
 					href={`${base}/skills/${skill.slug}`}
 					bgImg={getAssetURL(skill.logo)}

@@ -105,7 +105,7 @@
 		<div class="projects-list mt-5 mx-auto">
 			{#each displayed as project (project.slug)}
 				{#if project.featured}
-					<ProjectCard {project} noPadding />
+					<ProjectCard {project} />
 				{/if}
 			{/each}
 		</div>
@@ -115,7 +115,7 @@
 		<div class="projects-list mt-5 mx-auto">
 			{#each displayed as project (project.slug)}
 				{#if !project.featured}
-					<ProjectCard {project} noPadding />
+					<ProjectCard {project} />
 				{/if}
 			{/each}
 		</div>
@@ -134,6 +134,7 @@
 		}
 		@media (max-width: 850px) {
 			grid-template-columns: repeat(1, 1fr);
+			gap: 70px; // Increase the gap for mobile screens
 		}
 	}
 </style>
