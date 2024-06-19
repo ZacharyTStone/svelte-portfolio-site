@@ -12,11 +12,17 @@
 </script>
 
 <div class="project-container">
-	<Card color={project.color} href={`${base}/projects/${project.slug}`}>
+	<Card color={project.color} href="{base}/projects/{project.slug}">
 		<h2 class="project-title">
 			{$_(project.name)}
 		</h2>
-		<Image src={imageSrc} alt={$_(project.name)} classes="project-image" />
+		<Image
+			src={imageSrc}
+			alt={$_(project.name)}
+			classes="project-image"
+			loadingHeight="200px"
+			loadingWidth="320px"
+		/>
 	</Card>
 </div>
 
@@ -33,15 +39,10 @@
 		border-radius: 8px;
 		opacity: 1;
 		transition: opacity 0.3s;
-		font-size: 1.5rem; /* Default font size for large viewports */
+		font-size: 1.5rem;
 		font-weight: bold;
 		max-width: 100%;
 		min-height: 50px;
-		background: none;
-		-webkit-background-clip: unset;
-		-webkit-text-fill-color: unset;
-		animation: none;
-		padding: 0;
 		text-align: center;
 		width: 100%;
 	}
@@ -65,28 +66,15 @@
 
 	:global(.project-image) {
 		width: 100%;
-		height: 100%;
+		height: 200px;
 		object-fit: cover;
 		border-radius: 14px;
-		min-height: 200px;
 	}
 
-	@media (min-width: 768px) {
+	@media (max-width: 767px) {
 		:global(.project-image) {
-			height: 200px;
-		}
-	}
-
-	@media (hover: hover) {
-		.project-container:hover .project-title {
-			opacity: 1;
-		}
-	}
-
-	@media (max-width: 768px) {
-		.project-title-no-padding {
-			opacity: 1;
-			font-size: 1.5rem; /* Font size for mobile viewports */
+			height: auto;
+			min-height: 200px;
 		}
 	}
 

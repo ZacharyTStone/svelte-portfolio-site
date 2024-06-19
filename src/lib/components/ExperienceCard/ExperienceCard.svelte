@@ -13,28 +13,14 @@
 
 	export let experience: Experience;
 
-	let period = '';
-	let startYear: any = '';
-	let endYear: any = '';
-
-	// on mount recalculate the period
-	$: {
-		const {
-			period: p,
-			startYear: sYear,
-			endYear: eYear
-		} = calculateExperiencePeriod(
-			experience?.period?.from,
-			experience?.period?.to ?? new Date(),
-			$locale ?? 'en'
-		);
-		period = p;
-		startYear = sYear;
-		endYear = eYear;
-	}
+	$: ({ period, startYear, endYear } = calculateExperiencePeriod(
+		experience?.period?.from,
+		experience?.period?.to ?? new Date(),
+		$locale ?? 'en'
+	));
 </script>
 
-<Card margin="0px 0px 20px 0px" tiltDegree={2} href={`${base}/experience/${experience.slug}`}>
+<Card margin="0px 0px 20px 0px" tiltDegree={2} href="{base}/experience/{experience.slug}">
 	<div class="col md:flex-row items-start gap-5 md:gap-1">
 		<CardLogo src={getAssetURL(experience.logo)} alt={experience.company} size={75} />
 		<div class="col ml-0 md:ml-[20px] gap-3 w-full">
@@ -44,13 +30,13 @@
 				<CardTitle title={experience.name} />
 			</h3>
 			<div class="row flex-wrap m-b-2 gap-1 text-0.9em font-300">
-				<ChipIcon name={`Company: ${$_(experience.company)}`}>
+				<ChipIcon name="Company: {$_(experience.company)}">
 					<UIcon icon="i-carbon-building" />
 				</ChipIcon>
-				<ChipIcon name={`Location: ${$_(experience.location)}`}>
+				<ChipIcon name="Location: {$_(experience.location)}">
 					<UIcon icon="i-carbon-location" />
 				</ChipIcon>
-				<ChipIcon name={`Contract: ${$_(experience.contract)}`}>
+				<ChipIcon name="Contract: {$_(experience.contract)}">
 					<UIcon icon="i-carbon-hourglass" />
 				</ChipIcon>
 			</div>
@@ -63,7 +49,7 @@
 					<ChipIcon
 						logo={getAssetURL(skill.logo)}
 						name={$_(skill.name)}
-						href={`${base}/skills/${skill.slug}`}
+						href="{base}/skills/{skill.slug}"
 					/>
 				{/each}
 			</div>
