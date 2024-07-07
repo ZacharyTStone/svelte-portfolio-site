@@ -41,11 +41,6 @@ const MY_EXPERIENCES: Array<Experience> = [
 				to: 'https://rapptrlabs.com/',
 				label: 'Rapptr Labs',
 				newTab: true
-			},
-			{
-				to: 'https://opsiq.ai/',
-				label: 'OPSIQ',
-				newTab: true
 			}
 		],
 		quote: {
@@ -77,9 +72,12 @@ const MY_EXPERIENCES: Array<Experience> = [
 		name: 'EXPERIENCES.opsiq.name',
 		color: '#ffffff',
 		links: [{ to: 'https://opsiq.ai/', label: 'OPSIQ', newTab: true }],
+		quote: {
+			text: 'EXPERIENCES.opsiq.quote',
+			link: { to: 'https://opsiq.ai/', label: 'OPSIQ', newTab: true }
+		},
 		logo: Assets.Opsiq,
 		shortDescription: 'test'
-		// screenshots: [{ src: getAssetURL(Assets.Opsiq1), label: '' }]
 	}
 ];
 
