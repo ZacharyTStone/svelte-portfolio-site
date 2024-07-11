@@ -4,7 +4,7 @@
 	import type { Project } from '$lib/types';
 	import { _ } from 'svelte-i18n';
 	import Card from '../Card/Card.svelte';
-	import Image from '../../components/Image.svelte';
+	import Image from '../Image/Image.svelte';
 
 	export let project: Project;
 

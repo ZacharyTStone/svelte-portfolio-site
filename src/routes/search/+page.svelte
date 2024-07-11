@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
 	import { SEARCH } from '$lib/params';
-	import SearchPage from '$lib/components/SearchPage.svelte';
+	import SearchPage from '$lib/components/Page/SearchPage.svelte';
 	import MY_EXPERIENCES from '$lib/experiences.params';
 	import MY_PROJECTS from '$lib/projects.params';
 	import MY_SKILLS from '$lib/skills.params';

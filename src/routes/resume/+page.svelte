@@ -1,6 +1,6 @@
 <script>
 	import Chip from '$lib/components/Chip/Chip.svelte';
-	import CommonPage from '$lib/components/CommonPage.svelte';
+	import CommonPage from '$lib/components/Page/CommonPage.svelte';
 	import { RESUME } from '$lib/params';
 	import Card from '$lib/components/Card/Card.svelte';
 	const { links, title } = RESUME;

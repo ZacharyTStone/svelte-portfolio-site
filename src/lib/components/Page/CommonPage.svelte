@@ -1,5 +1,5 @@
 <script>
-	import MainTitle from './MainTitle/MainTitle.svelte';
+	import MainTitle from '../MainTitle/MainTitle.svelte';
 	import TabTitle from './TabTitle.svelte';
 
 	export let title = 'Title';

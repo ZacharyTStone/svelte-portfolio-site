@@ -10,8 +10,8 @@
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
-	import Screenshots from '$lib/components/Screenshots.svelte';
-	import TabTitle from '$lib/components/TabTitle.svelte';
+	import Screenshots from '$lib/components/Screenshots/Screenshots.svelte';
+	import TabTitle from '$lib/components/Page/TabTitle.svelte';
 	import { _ } from 'svelte-i18n';
 	export let data: { experience?: Experience };
 

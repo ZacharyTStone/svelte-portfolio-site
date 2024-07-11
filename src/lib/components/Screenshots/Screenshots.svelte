@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Image from './Image.svelte';
+	import Image from '../Image/Image.svelte';
 
 	export let screenshots = [] as { src: string; label?: string }[];
 

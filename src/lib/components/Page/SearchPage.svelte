@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount } from 'svelte';
 	import CommonPage from './CommonPage.svelte';
-	import Input from './Input/Input.svelte';
+	import Input from '../Input/Input.svelte';
 	import { browser } from '$app/environment';
 
 	export let title = 'Title';

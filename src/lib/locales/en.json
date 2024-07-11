@@ -64,11 +64,11 @@
 	"SKILLS": {
 		"title": "Skills",
 		"fe": {
-			"description": "I have experience using a variety of frontend frameworks and tools to create responsive and accessible web applications. I am also comfortable using CSS and CSS-in-JS tools, such as Styled Components and Tailwind. Crafting strong, reusable components is an art, and I am always looking to improve my skills in this area.",
+			"description": "I have extensive experience using a variety of frontend frameworks and tools to create responsive and accessible web applications. My work includes managing bug tickets, support tasks, and new feature development. I am proficient with CSS and CSS-in-JS tools like Styled Components and Tailwind. Crafting strong, reusable components is an art I continually strive to perfect. I have implemented reusable project component libraries and developed advanced features, such as embeddable widgets for third-party websites, while significantly refactoring codebases to reduce tech debt.",
 			"name": "Frontend Web"
 		},
 		"be": {
-			"description": "I have experience working with REST and GraphQL APIs. I also have experience working with databases in both SQL and NoSQL formats. At Rapptr Labs, I sometimes work on backend tickets for a business-level application using Node.js and Express with a database in SQL, interacted with through Prisma.",
+			"description": "I have experience working with REST and GraphQL APIs on Node JS backends in Typescript. I also have experience working with databases in both SQL and NoSQL formats. At Rapptr Labs I worked on backend tickets for a business-level application using Node.js and Express with a database in SQL, interacted with through Prisma. In addition I am comfortable writing unit tests with Jest.",
 			"name": "Backend Web"
 		},
 		"cyber-security": {

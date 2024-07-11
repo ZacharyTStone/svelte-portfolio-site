@@ -1,6 +1,6 @@
 <script>
 	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
-	import CommonPage from '$lib/components/CommonPage.svelte';
+	import CommonPage from '$lib/components/Page/CommonPage.svelte';
 	import Icon from '$lib/components/Icon/Icon.svelte';
 	import { getPlatfromIcon } from '$lib/params';
 	import { _ } from 'svelte-i18n';
@@ -10,7 +10,7 @@
 	import { HOME, RESUME } from '$lib/params';
 
 	import Zach from '$lib/assets/images/zach.jpeg';
-	import Image from '$lib/components/Image.svelte';
+	import Image from '$lib/components/Image/Image.svelte';
 
 	let { description, lastName, links, name, title, skills } = HOME;
 </script>

@@ -5,7 +5,7 @@
 	import type { Skill } from '$lib/types';
 	import { getAssetURL } from '$lib/data/assets';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
-	import CommonPage from '$lib/components/CommonPage.svelte';
+	import CommonPage from '$lib/components/Page/CommonPage.svelte';
 
 	const { items } = SKILLS;
 

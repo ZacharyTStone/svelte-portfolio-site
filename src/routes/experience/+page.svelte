@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ExperienceCard from '$lib/components/ExperienceCard/ExperienceCard.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
-	import CommonPage from '$lib/components/CommonPage.svelte';
+	import CommonPage from '$lib/components/Page/CommonPage.svelte';
 	import { EXPERIENCES } from '$lib/params';
 	import type { Experience } from '$lib/types';
 

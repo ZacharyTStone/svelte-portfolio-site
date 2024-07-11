@@ -2,7 +2,7 @@
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import ProjectCard from '$lib/components/ProjectCard/ProjectCard.svelte';
-	import SearchPage from '$lib/components/SearchPage.svelte';
+	import SearchPage from '$lib/components/Page/SearchPage.svelte';
 	import { PROJECTS } from '$lib/params';
 	import MY_SKILLS from '$lib/skills.params';
 	import type { Project, Skill } from '$lib/types';
