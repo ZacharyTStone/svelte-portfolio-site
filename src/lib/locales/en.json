@@ -59,7 +59,7 @@
 	"SKILLS": {
 		"title": "Skills",
 		"fe": {
-			"description": "I have extensive experience using a variety of frontend frameworks and tools to create responsive and accessible web applications. My work includes managing bug tickets, support tasks, and new feature development. I am proficient with CSS and CSS-in-JS tools like Styled Components and Tailwind. Crafting strong, reusable components is an art I continually strive to perfect. I have implemented reusable project component libraries and developed advanced features, such as embeddable widgets for third-party websites, while significantly refactoring codebases to reduce tech debt.",
+			"description": "I have extensive experience using a variety of frontend frameworks and tools to create responsive and accessible web applications. My work includes managing bug tickets, support tasks, and new feature development. I am proficient with CSS and CSS-in-JS tools like Styled Components and Tailwind. Crafting strong, reusable components is an art I continually strive to perfect. I am comfortable working in large code bases and understand the importance of refactoring code to reduce technical debt.",
 			"name": "Frontend Web"
 		},
 		"be": {
