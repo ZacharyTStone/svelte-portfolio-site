@@ -5,6 +5,8 @@
 	export let classes: string = '';
 	export let loadingHeight: string = '200px'; // 追加
 	export let loadingWidth: string = '100%'; // 追加
+	export let style: string = '';
+	export let onClick: () => void = () => {};
 
 	let loaded = false;
 	let failed = false;
@@ -27,7 +29,8 @@
 </script>
 
 {#if loaded}
-	<img {src} {alt} class={classes} />
+	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+	<img {src} {alt} class={classes} {style} on:click={onClick} on:keydown={onClick} />
 {:else if failed}
 	<img
 		src="https://icon-library.com/images/not-found-icon/not-found-icon-20.jpg"
