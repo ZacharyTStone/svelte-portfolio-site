@@ -21,16 +21,6 @@
 	const spinDuration = 4000; // Reduced duration for faster animation
 	const reappearDelay = 100; // Significantly reduced delay for quicker reappearance
 
-	const spinTween = tweened(0, {
-		duration: spinDuration,
-		easing: cubicOut
-	});
-
-	const translateTween = tweened(0, {
-		duration: spinDuration,
-		easing: cubicOut
-	});
-
 	let imageContainer: HTMLDivElement | null = null;
 
 	onMount(() => {
@@ -38,7 +28,6 @@
 	});
 
 	function handleClick() {
-		console.log('Image clicked!');
 		if (spinning || !imageContainer) return;
 		spinning = true;
 
@@ -69,7 +58,7 @@
 				// Re-enable transition for future animations
 				imageContainer.style.transition = `transform ${spinDuration}ms cubic-bezier(0.215, 0.61, 0.355, 1)`;
 			}, spinDuration);
-		}, spinDuration + reappearDelay);
+		}, spinDuration / 2 + reappearDelay);
 	}
 </script>
 
@@ -95,9 +84,9 @@
 						alt="Zach Stone"
 						classes="zach rounded-full cursor-pointer"
 						onClick={handleClick}
-						style="width: 200px; height: 200px; object-fit: cover;"
-						loadingHeight="200px"
-						loadingWidth="200px"
+						style="width: 250px; height: 250px; object-fit: cover;"
+						loadingHeight="250px"
+						loadingWidth="250px"
 					/>
 				</div>
 			</div>
@@ -143,8 +132,8 @@
 		display: block;
 		margin: 0 auto; /* 央揃えに変更 */
 		object-fit: cover;
-		width: 200px; /* 画像の幅を調整 */
-		height: 200px; /* 画像の高さを調整 */
+		width: 250px; /* 画像の幅を調整 */
+		height: 250px; /* 画像の高さを調整 */
 		@media (min-width: 640px) {
 			/* タブレットと大きなューート用 */
 			width: 300px; /* 画像の幅を大く */
