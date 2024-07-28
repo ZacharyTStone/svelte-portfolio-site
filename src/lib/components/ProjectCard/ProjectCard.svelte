@@ -31,6 +31,11 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		transition: transform 0.3s ease-in-out;
+	}
+
+	.project-container:hover {
+		transform: scale(1.02);
 	}
 
 	.project-title {

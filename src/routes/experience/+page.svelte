@@ -4,29 +4,43 @@
 	import CommonPage from '$lib/components/Page/CommonPage.svelte';
 	import { EXPERIENCES } from '$lib/params';
 	import type { Experience } from '$lib/types';
+	import { fly } from 'svelte/transition';
+	import { onMount } from 'svelte';
+	import { writable } from 'svelte/store';
 
 	import { _ } from 'svelte-i18n';
 	const { items, title } = EXPERIENCES;
 
-	let result: Array<Experience> = [...items];
+	const visibleItems = writable(new Set());
+
+	onMount(() => {
+		let index = 0;
+		const interval = setInterval(() => {
+			if (index < items.length) {
+				visibleItems.update((set) => {
+					set.add(index);
+					return set;
+				});
+				index++;
+			} else {
+				clearInterval(interval);
+			}
+		}, 300);
+	});
 </script>
 
 <CommonPage {title}>
 	<div class="col items-center relative mt-10 flex-1">
-		{#if result.length === 0}
-			<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)] flex-1">
-				<UIcon icon="i-carbon-development" classes="text-3.5em" />
-				<p class="font-300">Could not find anything...</p>
-			</div>
-		{:else}
-			<div
-				class="w-[0.5px] hidden lg:flex top-0 bottom-0 py-50px bg-[var(--border)] absolute rounded"
-			/>
-			{#each result as job, index}
+		<div
+			class="w-[0.5px] hidden lg:flex top-0 bottom-0 py-50px bg-[var(--border)] absolute rounded"
+		/>
+		{#each items as job, index (job.company)}
+			{#if $visibleItems.has(index)}
 				<div
 					class={`flex ${
-						index % 2 !== 0 ? 'flex-row' : 'flex-row-reverse'
+						index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
 					} relative items-center w-full my-[10px]`}
+					in:fly={{ x: index % 2 === 0 ? -100 : 100, duration: 800 }}
 				>
 					<div class="flex-1 hidden lg:flex" />
 					<div class="hidden lg:inline p-15px bg-[var(--main)] rounded">
@@ -36,7 +50,7 @@
 						<ExperienceCard experience={job} />
 					</div>
 				</div>
-			{/each}
-		{/if}
+			{/if}
+		{/each}
 	</div>
 </CommonPage>

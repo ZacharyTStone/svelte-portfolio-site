@@ -2714,6 +2714,11 @@ svelte-icons-pack@^2.1.0:
   resolved "https://registry.yarnpkg.com/svelte-icons-pack/-/svelte-icons-pack-2.1.0.tgz#2ae00346fb1de033ed31cb146b61cf975eeec6e1"
   integrity sha512-6Il0vWi/6MW3wXSorZhCqhkJGH4Pcg1WTcdlfFMPXfJqafZVQgmKdhVFS1c2hXGvs4byttpLC9XmI3okV1uMWA==
 
+svelte-inview@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/svelte-inview/-/svelte-inview-4.0.2.tgz#bbf503cd9ad6645a54f280fe83b3282c48c34d34"
+  integrity sha512-saJp2QRCUEBletGPnI3utxROHqruDGRPfPhtdpNYQwD97P2oCKiVIlZE3tFNEiC7h3nCvU+8czaKWcH1o/axrA==
+
 svelte-markdown@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/svelte-markdown/-/svelte-markdown-0.4.0.tgz#372e2db47b2c1bbf5295dfdecb86c566a51a5184"

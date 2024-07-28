@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { onHover } from '$lib/utils/helpers';
 	import { changeColorOpacity } from '$lib/utils/helpers';
+	import { fade } from 'svelte/transition';
 
 	let el: HTMLElement;
 
@@ -11,6 +12,7 @@
 	export let classes: Array<string> = [];
 	export let href: undefined | string = undefined;
 	export let bgImg: string | undefined = undefined;
+	export let fadeDelay = 0; // New prop for fade delay
 
 	onMount(() => {
 		if (el) {
@@ -41,6 +43,7 @@
 		' '
 	)}`}
 	style={color}
+	transition:fade={{ delay: fadeDelay, duration: 300 }}
 >
 	<div class="card-bg-img flex-1 flex flex-col p-15px rounded-15px">
 		<slot />

@@ -6,12 +6,19 @@
 	import { getAssetURL } from '$lib/data/assets';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CommonPage from '$lib/components/Page/CommonPage.svelte';
+	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 
 	const { items } = SKILLS;
 
 	import { _ } from 'svelte-i18n';
 
 	let result: Array<Skill> = items;
+	let mounted = false;
+
+	onMount(() => {
+		mounted = true;
+	});
 </script>
 
 <CommonPage title={$_(SKILLS.title)}>
@@ -20,8 +27,11 @@
 			<UIcon icon="i-carbon-cube" classes="text-3.5em" />
 			<p class="font-300">Could not find anything...</p>
 		</div>
-	{:else}
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mt-10">
+	{:else if mounted}
+		<div
+			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mt-10"
+			in:fade={{ duration: 300 }}
+		>
 			{#each result as skill (skill.slug)}
 				<Card
 					classes={[

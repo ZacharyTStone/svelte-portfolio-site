@@ -8,6 +8,8 @@
 	import type { Project, Skill } from '$lib/types';
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
+	import { fade } from 'svelte/transition';
+	import { writable } from 'svelte/store';
 
 	interface SkillFilter extends Skill {
 		isSelected?: boolean;
@@ -54,6 +56,14 @@
 		search = e.detail.search;
 	};
 
+	const visibleItems = writable(new Set());
+
+	let isInitialized = false;
+	const staggerDelay = 100; // milliseconds between each project's fade-in
+
+	let featuredTitleVisible = false;
+	let otherTitleVisible = false;
+
 	onMount(() => {
 		const query = location.search;
 		if (query) {
@@ -63,6 +73,31 @@
 				search = item;
 			}
 		}
+
+		// Set isInitialized to true immediately
+		isInitialized = true;
+
+		// Fade in projects gradually
+		let index = 0;
+		const interval = setInterval(() => {
+			if (index < displayed.length) {
+				visibleItems.update((set) => {
+					set.add(index);
+					return set;
+				});
+				index++;
+			} else {
+				clearInterval(interval);
+			}
+		}, staggerDelay);
+
+		// Set titles visible after a short delay
+		setTimeout(() => {
+			featuredTitleVisible = true;
+			setTimeout(() => {
+				otherTitleVisible = true;
+			}, 300); // Delay for the second title
+		}, 200); // Delay for the first title
 	});
 </script>
 
@@ -98,24 +133,38 @@
 			<UIcon icon="i-carbon-cube" classes="text-3.5em" />
 			<p class="font-300">Could not find anything...</p>
 		</div>
-	{:else}
-		<h4 class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto">
-			{$_(PROJECTS.featured_projects ?? 'Featured Projects')}
-		</h4>
+	{:else if isInitialized}
+		{#if featuredTitleVisible}
+			<h4
+				class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto"
+				in:fade={{ duration: 300 }}
+			>
+				{$_(PROJECTS.featured_projects ?? 'Featured Projects')}
+			</h4>
+		{/if}
 		<div class="projects-list mt-5 mx-auto">
-			{#each displayed as project (project.slug)}
-				{#if project.featured}
-					<ProjectCard {project} />
+			{#each displayed.filter((project) => project.featured) as project, index (project.slug)}
+				{#if $visibleItems.has(index)}
+					<div in:fade={{ duration: 300 }}>
+						<ProjectCard {project} />
+					</div>
 				{/if}
 			{/each}
 		</div>
-		<h4 class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto">
-			{$_(PROJECTS.other_projects ?? 'Other Projects')}
-		</h4>
+		{#if otherTitleVisible}
+			<h4
+				class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto"
+				in:fade={{ duration: 300 }}
+			>
+				{$_(PROJECTS.other_projects ?? 'Other Projects')}
+			</h4>
+		{/if}
 		<div class="projects-list mt-5 mx-auto">
-			{#each displayed as project (project.slug)}
-				{#if !project.featured}
-					<ProjectCard {project} />
+			{#each displayed.filter((project) => !project.featured) as project, index (project.slug)}
+				{#if $visibleItems.has(index + displayed.filter((p) => p.featured).length)}
+					<div in:fade={{ duration: 300 }}>
+						<ProjectCard {project} />
+					</div>
 				{/if}
 			{/each}
 		</div>
