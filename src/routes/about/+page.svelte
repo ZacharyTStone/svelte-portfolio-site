@@ -48,12 +48,12 @@
 			style="z-index: 0;"
 		>
 			{#if visible}
-				<div class="flex-1 relative z-10" transition:fade>
+				<div class="flex-1 relative" transition:fade>
 					<div class="image-container">
 						<Image
 							src={Zach}
 							alt="Zach Stone"
-							classes="zach rounded-full cursor-pointer"
+							classes="zach rounded-full"
 							style="width: 250px; height: 250px; object-fit: cover;"
 							loadingHeight="250px"
 							loadingWidth="250px"
