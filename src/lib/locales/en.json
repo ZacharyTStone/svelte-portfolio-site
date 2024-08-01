@@ -23,13 +23,13 @@
 		"title": "About",
 		"sub-title": "Zach Stone...",
 		"full_about": "As a self-taught and highly motivated individual, I am passionate about improving processes in both my personal and professional life. I strive to foster a positive working environment through clear and kind communication. Alongside my coding endeavors, I am dedicated to enhancing my Japanese language skills and thoroughly enjoy the language-learning journey.",
-		"quote1": {
-			"title": "Favorite Quote 1",
-			"text": "You can never cross the ocean unless you have the courage to lose sight of the shore."
-		},
-		"quote2": {
-			"title": "Favorite Quote 2",
+		"blurb1": {
+			"title": "Favorite Quote",
 			"text": "Even dust, when piled up, can become a mountain."
+		},
+		"blurb2": {
+			"title": "Coding Philosophy",
+			"text": "I try to write code that is maintainable, readable, and scalable. I also am a strong believer in improvement through consistent refactoring."
 		},
 		"socials": "Socials"
 	},

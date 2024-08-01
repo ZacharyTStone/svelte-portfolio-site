@@ -59,15 +59,15 @@
 				{#if itemsVisible[0]}
 					<p class="mb-4 md:mb-6 full-about" transition:fade>{$_('ABOUT.full_about')}</p>
 				{/if}
-				{#each [$_('ABOUT.quote1'), $_('ABOUT.quote2')] as quote, index}
+				{#each [$_('ABOUT.blurb1'), $_('ABOUT.blurb2')] as blurb, index}
 					{#if itemsVisible[index + 1]}
 						<!-- Adjusted index for visibility -->
 						<div transition:fade class="w-full">
-							<Card classes={['unblur-quote-text', 'w-full']}>
+							<Card classes={['unblur-blurb-text', 'w-full']}>
 								<h2 class="text-lg md:text-xl font-semibold mb-2">
-									{$_(`ABOUT.quote${index + 1}.title`)}
+									{$_(`ABOUT.blurb${index + 1}.title`)}
 								</h2>
-								<p class="blur-on-hover quote-text">{$_(`ABOUT.quote${index + 1}.text`)}</p>
+								<p class="blur-on-hover blurb-text">{$_(`ABOUT.blurb${index + 1}.text`)}</p>
 							</Card>
 						</div>
 					{/if}
@@ -130,7 +130,7 @@
 		line-height: 1.5;
 	}
 	@media (min-width: 1024px) {
-		.quote-text {
+		.blurb-text {
 			filter: blur(4px);
 			transition: filter 0.2s;
 			cursor: default;
