@@ -5,7 +5,6 @@ import Opsiq from '$lib/assets/images/OPSIQ.jpeg';
 import Interac from '$lib/assets/images/interac.jpeg';
 import Readme from '$lib/assets/images/projects/Readme.png';
 import Github from '$lib/assets/images/github.svg';
-import Computer from '$lib/assets/images/computer.svg';
 import YouTube from '$lib/assets/images/youtube.svg';
 import Gatsby from '$lib/assets/images/gatsby.svg';
 import Next from '$lib/assets/images/next.svg';
@@ -77,7 +76,6 @@ export const COLOR_ASSETS = {
 	Opsiq: { light: Opsiq, dark: Opsiq },
 	Interac: { light: Interac, dark: Interac },
 	GitHub: { light: Github, dark: Github },
-	Computer: { light: Computer, dark: Computer },
 	Youtube: { light: YouTube, dark: YouTube },
 	Slack: { light: Slack, dark: Slack },
 	Anime: { light: anime, dark: anime },
