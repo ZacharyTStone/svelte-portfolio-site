@@ -81,7 +81,7 @@
 		}
 	}
 
-	:global(.card:hover .quote-text) {
+	:global(.card:hover .blurb-text) {
 		filter: blur(0) !important; /* ホバー時にぼかしを解除 */
 	}
 </style>
