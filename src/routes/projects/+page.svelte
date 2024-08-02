@@ -10,7 +10,6 @@
 	import { _ } from 'svelte-i18n';
 	import { fade } from 'svelte/transition';
 	import { writable } from 'svelte/store';
-
 	interface SkillFilter extends Skill {
 		isSelected?: boolean;
 	}
@@ -177,6 +176,7 @@
 		grid-template-columns: repeat(3, 1fr);
 		gap: 20px;
 		width: 100%;
+		min-height: 200px; // Add a minimum height to prevent collapsing
 
 		@media (max-width: 1350px) {
 			grid-template-columns: repeat(2, 1fr);

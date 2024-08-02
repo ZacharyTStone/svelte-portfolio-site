@@ -3,7 +3,6 @@
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CommonPage from '$lib/components/Page/CommonPage.svelte';
 	import { EXPERIENCES } from '$lib/params';
-	import type { Experience } from '$lib/types';
 	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';

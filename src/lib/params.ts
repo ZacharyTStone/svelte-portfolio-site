@@ -100,7 +100,7 @@ export const RESUME: ResumePageParams = {
 			newTab: true
 		},
 		{
-			to: 'https://docs.google.com/document/d/1SFRXMNP7yeWrZRcPUAJX-_R28WVdn3w3V7w7fxJnn0w/edit?usp=sharing',
+			to: 'https://docs.google.com/spreadsheets/d/1PfDypNRzmBTzJRFwEfF_dDX6QDFeGyUnf3xjk_mnsFo/edit?usp=sharing',
 			label: 'RESUME.japanese_work',
 			newTab: true
 		}

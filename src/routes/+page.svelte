@@ -19,7 +19,7 @@
 	// Set page title
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
-		const interval = setInterval(cycleSkills, 10000); // Cycle every 10 seconds
+		const interval = setInterval(cycleSkills, 5000); // Cycle every 5 seconds
 		return () => clearInterval(interval);
 	});
 
@@ -51,7 +51,7 @@
 			class="hidden md:fixed bottom-0 left-0 lg:right-auto lg:left-0 flex justify-center gap-5 pb-15 px-15"
 		>
 			{#each links as { platform, link }}
-				<ChipIcon name={platform} href={link} newtab alwaysRainbow>
+				<ChipIcon name={platform} href={link} newtab>
 					<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'24px'} />
 				</ChipIcon>
 			{/each}
@@ -63,15 +63,16 @@
 	<div class="fixed bottom--10 right--20 z-10 fade-in hidden md:block">
 		{#if MY_SKILLS.length > 0}
 			{#key currentIndex}
-				<a href={`${base}/skills/${MY_SKILLS[$currentIndex].slug}`} rel="noreferrer">
-					<img
-						src={getAssetURL(MY_SKILLS[$currentIndex].logo)}
-						alt="Skill Logo"
-						class="opacity-20 w-100 h-100 aspect-square md:w-200 md:h-200 skill-logo"
-						style="object-fit: contain;"
-						transition:fade={{ duration: 5000, delay: 0, easing: quintInOut }}
-					/>
-				</a>
+				<div in:fade={{ duration: 1000 }} out:fade={{ duration: 1000 }}>
+					<a href={`${base}/skills/${MY_SKILLS[$currentIndex].slug}`} rel="noreferrer">
+						<img
+							src={getAssetURL(MY_SKILLS[$currentIndex].logo)}
+							alt="Skill Logo"
+							class="opacity-20 w-100 h-100 aspect-square md:w-200 md:h-200 skill-logo"
+							style="object-fit: contain;"
+						/>
+					</a>
+				</div>
 			{/key}
 		{/if}
 	</div>

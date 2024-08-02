@@ -1,6 +1,5 @@
 import Assets, { getAssetURL } from './data/assets';
 import type { Asset, Skill } from './types';
-import svelte from './md/svelte.md?raw';
 import { COLOR_ASSETS } from './data/assets';
 
 const s = (skill: Skill) => skill;
@@ -69,18 +68,6 @@ const Mobile: SkillInfoObject[] = [
 	{ label: 'React Navigation', link: 'https://reactnavigation.org/' }
 ];
 
-const SECURITY_TOOLS: SkillInfoObject[] = [
-	{ label: 'OWASP ZAP', link: 'https://owasp.org/www-project-zap/' },
-	{
-		label: 'Kali Linux',
-		link: 'https://www.kali.org/'
-	},
-	{
-		label: 'Burp Suite',
-		link: 'https://portswigger.net/burp'
-	}
-];
-
 const FE_EXTRA_INFO: SkillExtraInfo[] = [
 	{
 		title: 'EXTRA_INFO_LABELS.frameworks',
@@ -100,13 +87,6 @@ const BE_EXTRA_INFO: SkillExtraInfo[] = [
 	{
 		title: 'EXTRA_INFO_LABELS.server',
 		content: Server
-	}
-];
-
-const SECURITY_EXTRA_INFO: SkillExtraInfo[] = [
-	{
-		title: 'EXTRA_INFO_LABELS.tools',
-		content: SECURITY_TOOLS
 	}
 ];
 
