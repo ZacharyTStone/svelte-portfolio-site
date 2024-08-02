@@ -8,6 +8,7 @@
 	import CommonPage from '$lib/components/Page/CommonPage.svelte';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
+	import { writable } from 'svelte/store';
 
 	const { items } = SKILLS;
 
@@ -15,9 +16,25 @@
 
 	let result: Array<Skill> = items;
 	let mounted = false;
+	const visibleItems = writable(new Set());
+	const staggerDelay = 100; // milliseconds between each skill's fade-in
 
 	onMount(() => {
 		mounted = true;
+
+		// Fade in skills gradually
+		let index = 0;
+		const interval = setInterval(() => {
+			if (index < result.length) {
+				visibleItems.update((set) => {
+					set.add(index);
+					return set;
+				});
+				index++;
+			} else {
+				clearInterval(interval);
+			}
+		}, staggerDelay);
 	});
 </script>
 
@@ -28,23 +45,24 @@
 			<p class="font-300">Could not find anything...</p>
 		</div>
 	{:else if mounted}
-		<div
-			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mt-10"
-			in:fade={{ duration: 300 }}
-		>
-			{#each result as skill (skill.slug)}
-				<Card
-					classes={[
-						'cursor-pointer decoration-none rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg'
-					]}
-					tiltDegree={1}
-					href={`${base}/skills/${skill.slug}`}
-					bgImg={getAssetURL(skill.logo)}
-				>
-					<p class="text-[var(--tertiary-text)] w-max">
-						{$_(skill.name)}
-					</p>
-				</Card>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mt-10">
+			{#each result as skill, index (skill.slug)}
+				{#if $visibleItems.has(index)}
+					<div in:fade={{ duration: 300 }} style="display: contents;">
+						<Card
+							classes={[
+								'cursor-pointer decoration-none rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg'
+							]}
+							tiltDegree={1}
+							href={`${base}/skills/${skill.slug}`}
+							bgImg={getAssetURL(skill.logo)}
+						>
+							<p class="text-[var(--tertiary-text)] w-max">
+								{$_(skill.name)}
+							</p>
+						</Card>
+					</div>
+				{/if}
 			{/each}
 		</div>
 	{/if}
