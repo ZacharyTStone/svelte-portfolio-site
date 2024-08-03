@@ -18,6 +18,9 @@
 	import { _ } from 'svelte-i18n';
 	import Image from '$lib/components/Image/Image.svelte';
 	import Screenshots from '$lib/components/Screenshots/Screenshots.svelte';
+	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
+	import { writable } from 'svelte/store';
 
 	type Related = {
 		display: string;
@@ -71,6 +74,39 @@
 	$: computedTitle = data.skill ? `${$_(data.skill.name)} - ${$_(title)}` : `${$_(title)}`;
 
 	$: related = data.skill ? getRelatedProjects() : [];
+
+	const visibleItems = writable(new Set());
+	const visibleSections = writable(new Set());
+
+	onMount(() => {
+		let index = 0;
+		const interval = setInterval(() => {
+			if (index < related.length) {
+				visibleItems.update((set) => {
+					set.add(index);
+					return set;
+				});
+				index++;
+			} else {
+				clearInterval(interval);
+			}
+		}, 100);
+
+		// Fade in main sections
+		let sectionIndex = 0;
+		const sectionInterval = setInterval(() => {
+			if (sectionIndex < 3) {
+				// Assuming 3 main sections
+				visibleSections.update((set) => {
+					set.add(sectionIndex);
+					return set;
+				});
+				sectionIndex++;
+			} else {
+				clearInterval(sectionInterval);
+			}
+		}, 200);
+	});
 </script>
 
 <TabTitle title={computedTitle} />
@@ -87,117 +123,127 @@
 				<MainTitle>{$_(data.skill.name)}</MainTitle>
 			</Banner>
 			<div class="p-5 md:p-0 flex flex-col items-center overflow-x-hidden">
-				<div class="pt-3 pb-1 overflow-x-hidden w-full">
-					<div class="px-10px m-y-5">
-						{#if data.skill.description}
-							{$_(data.skill.description)}
-						{:else}
-							<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
-								<UIcon icon="i-carbon-text-font" classes="text-3.5em" />
-								<p class="font-300">No description</p>
-							</div>
-						{/if}
-					</div>
-					<div class="px-10px m-y-5">
-						{#if data?.skill?.extraInfo?.length}
-							{#each data.skill.extraInfo as any}
-								<div
-									class="flex flex-row gap-1 flex-wrap mb-5 items-center
-							"
-								>
-									<span class="text-[var(--accent-text)] text-[1.1em] font-500">
-										{$_(any.title)}
-									</span>
+				{#if $visibleSections.has(0)}
+					<div in:fade={{ duration: 300 }} class="pt-3 pb-1 overflow-x-hidden w-full">
+						<div class="px-10px m-y-5">
+							{#if data.skill.description}
+								{$_(data.skill.description)}
+							{:else}
+								<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
+									<UIcon icon="i-carbon-text-font" classes="text-3.5em" />
+									<p class="font-300">No description</p>
+								</div>
+							{/if}
+						</div>
+						<div class="px-10px m-y-5">
+							{#if data?.skill?.extraInfo?.length}
+								{#each data.skill.extraInfo as any}
 									<div
-										class="px-10px
-								 flex flex-row gap-3 flex-wrap align-center
-								"
+										class="flex flex-row gap-1 flex-wrap mb-5 items-center
+									"
 									>
-										{#each any.content as info}
-											{#if any.title === 'Frameworks'}
-												<ChipIcon
-													logo={getAssetURL(info.icon)}
-													name={info.label}
-													href={info.link}
-												/>
-											{:else}
-												<a class="font-300" href={info.link}>
-													<span class="text-[var(--accent-text)]">{info.label},{' '}</span>
-												</a>
-											{/if}
-										{/each}
+										<span class="text-[var(--accent-text)] text-[1.1em] font-500">
+											{$_(any.title)}
+										</span>
+										<div
+											class="px-10px
+										flex flex-row gap-3 flex-wrap align-center
+									"
+										>
+											{#each any.content as info}
+												{#if any.title === 'Frameworks'}
+													<ChipIcon
+														logo={getAssetURL(info.icon)}
+														name={info.label}
+														href={info.link}
+													/>
+												{:else}
+													<a class="font-300" href={info.link}>
+														<span class="text-[var(--accent-text)]">{info.label},{' '}</span>
+													</a>
+												{/if}
+											{/each}
+										</div>
+									</div>
+								{/each}
+							{/if}
+							{#if data?.skill?.certifications?.length}
+								<div class="flex flex-row gap-1 self-s flex-wrap mb-5 items-center">
+									<span class="text-[var(--accent-text)] text-[1.1em] font-500">
+										{$_('EXTRA_INFO_LABELS.certifications')}
+									</span>
+									<div class="px-10px flex flex-row gap-3 flex-wrap align-center">
+										<ul class="list-disc list-inside">
+											{#each data.skill.certifications as info}
+												<div class="font-300">
+													<li class="text-[var(--accent-text)]">
+														{@html info.link
+															? `<a href="${info.link}" class="text-blue-500 hover:underline" target="_blank">${info.label}</a>`
+															: info.label}
+													</li>
+												</div>
+											{/each}
+										</ul>
 									</div>
 								</div>
-							{/each}
-						{/if}
-						{#if data?.skill?.certifications?.length}
-							<div class="flex flex-row gap-1 self-s flex-wrap mb-5 items-center">
-								<span class="text-[var(--accent-text)] text-[1.1em] font-500">
-									{$_('EXTRA_INFO_LABELS.certifications')}
-								</span>
-								<div class="px-10px flex flex-row gap-3 flex-wrap align-center">
-									<ul class="list-disc list-inside">
-										{#each data.skill.certifications as info}
-											<div class="font-300">
-												<li class="text-[var(--accent-text)]">
-													{@html info.link
-														? `<a href="${info.link}" class="text-blue-500 hover:underline" target="_blank">${info.label}</a>`
-														: info.label}
-												</li>
-											</div>
-										{/each}
-									</ul>
+							{/if}
+							{#if data?.skill?.courses?.length}
+								<div class="flex flex-row gap-1 flex-wrap mb-5 items-center">
+									<span class="text-[var(--accent-text)] text-[1.1em] font-500">
+										{$_('EXTRA_INFO_LABELS.courses')}
+									</span>
+									<div class="px-10px flex flex-row gap-3 flex-wrap align-center">
+										<ul class="list-disc list-inside">
+											{#each data.skill.courses as info}
+												<div class="font-300">
+													<li class="text-[var(--accent-text)]">
+														{@html info.link
+															? `<a href="${info.link}" class="text-blue-500 hover:underline" target="_blank">${info.label}</a>`
+															: info.label}
+													</li>
+												</div>
+											{/each}
+										</ul>
+									</div>
 								</div>
-							</div>
-						{/if}
-						{#if data?.skill?.courses?.length}
-							<div class="flex flex-row gap-1 flex-wrap mb-5 items-center">
-								<span class="text-[var(--accent-text)] text-[1.1em] font-500">
-									{$_('EXTRA_INFO_LABELS.courses')}
-								</span>
-								<div class="px-10px flex flex-row gap-3 flex-wrap align-center">
-									<ul class="list-disc list-inside">
-										{#each data.skill.courses as info}
-											<div class="font-300">
-												<li class="text-[var(--accent-text)]">
-													{@html info.link
-														? `<a href="${info.link}" class="text-blue-500 hover:underline" target="_blank">${info.label}</a>`
-														: info.label}
-												</li>
-											</div>
-										{/each}
-									</ul>
-								</div>
-							</div>
-						{/if}
+							{/if}
+						</div>
 					</div>
-				</div>
+				{/if}
+
 				<div class=" mb-2">
 					<CardDivider />
 				</div>
 
-				<div class="flex flex-row gap-1 flex-wrap">
-					<div class="px-10px">
-						{#each related as item}
-							<Chip
-								classes="inline-flex flex-row items-center justify-center"
-								href={`${base}${item.url}`}
-								newTab={false}
-							>
-								<CardLogo
-									src={item.img}
-									alt={$_(item.name)}
-									radius={'0px'}
-									size={15}
-									classes="mr-2"
-								/>
-								<span class="text-[0.9em]">{$_(item.display)}</span>
-							</Chip>
+				{#if $visibleSections.has(1)}
+					<div in:fade={{ duration: 300 }} class="flex flex-wrap gap-2 px-10px w-full">
+						{#each related as item, index}
+							{#if $visibleItems.has(index)}
+								<div in:fade={{ duration: 300 }}>
+									<Chip
+										classes="inline-flex items-center"
+										href={`${base}${item.url}`}
+										newTab={false}
+									>
+										<CardLogo
+											src={item.img}
+											alt={$_(item.name)}
+											radius={'0px'}
+											size={15}
+											classes="mr-2"
+										/>
+										<span class="text-[0.9em]">{$_(item.display)}</span>
+									</Chip>
+								</div>
+							{/if}
 						{/each}
 					</div>
-				</div>
-				{#if screenshots.length > 0}
-					<Screenshots {screenshots} />
+				{/if}
+
+				{#if $visibleSections.has(2) && screenshots.length > 0}
+					<div in:fade={{ duration: 300 }}>
+						<Screenshots {screenshots} />
+					</div>
 				{/if}
 			</div>
 		</div>

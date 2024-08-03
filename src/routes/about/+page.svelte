@@ -40,7 +40,7 @@
 			style="z-index: 0;"
 		>
 			{#if visible}
-				<div class="flex-1 relative" transition:fade>
+				<div class="flex-1 relative" transition:fade={{ duration: 1500 }}>
 					<div class="image-container">
 						<Image
 							src={Zach}
@@ -119,7 +119,7 @@
 			height: 300px;
 			margin-top: 100px;
 		}
-		transition: transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.5s;
+		transition: transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.5s;
 		z-index: 10;
 	}
 	.full-about {
