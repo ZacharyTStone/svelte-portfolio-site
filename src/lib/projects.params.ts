@@ -168,7 +168,7 @@ const MY_PROJECTS: Array<Project> = [
 		shortDescription: 'PROJECTS.AI_FLASHCARDS.shortDescription',
 		links: [
 			{
-				to: 'https://github.com/ZacharyTStone/Endless-Flashcards',
+				to: 'https://github.com/ZacharyTStone/Infinite-Flashcards',
 				label: 'GitHub',
 				newTab: true
 			},
