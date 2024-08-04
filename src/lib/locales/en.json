@@ -128,7 +128,7 @@
 			"featured_reason": "Highest Business Value"
 		},
 		"AI_FLASHCARDS": {
-			"name": "Endless Flashcards",
+			"name": "Infinite Flashcards",
 			"description": "This project is a Python script that generates Anki flashcards from a word list using OpenAI. \n The generated cards include word readings, example sentences, and basic definitions. \n This Python script significantly simplifies the process of creating new cards, allowing learners to focus on studying rather than card creation.",
 			"shortDescription": "Generate Anki flashcards from a word list or essay using OpenAI.",
 			"type": "Python Script",
