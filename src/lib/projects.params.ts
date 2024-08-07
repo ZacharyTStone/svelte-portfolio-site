@@ -132,35 +132,6 @@ const MY_PROJECTS: Array<Project> = [
 			{ src: getAssetURL(Assets.Blog4), label: '' }
 		]
 	},
-	// {
-	// 	slug: 'zacharyTStone',
-	// 	color: generateRandomHexColor(),
-	// 	description: 'PROJECTS.ZACHARYTSTONE.description',
-	// 	shortDescription: 'PROJECTS.ZACHARYTSTONE.shortDescription',
-	// 	links: [
-	// 		{
-	// 			to: 'https://github.com/ZacharyTStone/ZacharyTStone',
-	// 			label: 'GitHub',
-	// 			newTab: true
-	// 		}
-	// 	],
-	// 	logo: Assets.Readme,
-	// 	name: 'PROJECTS.ZACHARYTSTONE.name',
-	// 	skills: getSkills('be', 'dev-tools'),
-	// 	project_skills: [
-	// 		{ label: 'cron', to: 'https://en.wikipedia.org/wiki/Cron', newTab: true },
-	// 		{ label: 'GitHub Actions', to: '', newTab: true },
-	// 		{
-	// 			label: 'API',
-	// 			to: 'https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/',
-	// 			newTab: true
-	// 		}
-	// 	],
-	// 	type: 'PROJECTS.ZACHARYTSTONE.type',
-	// 	english: true,
-	// 	japanese: false,
-	// 	featured_reason: 'PROJECTS.ZACHARYTSTONE.featured_reason'
-	// },
 	{
 		slug: 'ai-flashcards',
 		color: generateRandomHexColor(),

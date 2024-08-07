@@ -135,13 +135,7 @@
 			"type": "Pythonスクリプト",
 			"featured_reason": "最も便利"
 		},
-		"ZACHARYTSTONE": {
-			"name": "ザカリー・ストーン",
-			"description": "このGitHubリポジトリはGitHub Actionsを使用して、READMEを動的なコンテンツで自動的に更新します。",
-			"shortDescription": "毎時自動更新される私のリードミー。",
-			"type": "Github リードミー",
-			"featured_reason": "最もクリエイティブなプロジェクト"
-		},
+
 		"RIFFS": {
 			"name": "リフス！",
 			"description": "新しい曲やカバー、音楽的なアイデアを世界と共有するための場です。",

@@ -3,7 +3,6 @@ import { theme } from '$lib/stores/theme';
 import Rapptr from '$lib/assets/images/rapptr.png';
 import Opsiq from '$lib/assets/images/OPSIQ.jpeg';
 import Interac from '$lib/assets/images/interac.jpeg';
-import Readme from '$lib/assets/images/projects/Readme.png';
 import Github from '$lib/assets/images/github.svg';
 import YouTube from '$lib/assets/images/youtube.svg';
 import Gatsby from '$lib/assets/images/gatsby.svg';
@@ -21,10 +20,10 @@ import Mobile from '$lib/assets/images/react-native.png';
 import anime from '$lib/assets/images/projects/anime.webp';
 import blog from '$lib/assets/images/projects/blog.webp';
 import haku from '$lib/assets/images/projects/haku.webp';
-import niceRiff from '$lib/assets/images/projects/niceRiff.jpeg';
+import niceRiff from '$lib/assets/images/projects/niceRiff.webp';
 import prefecture from '$lib/assets/images/projects/prefecture.webp';
 import quote from '$lib/assets/images/projects/quote.webp';
-import flashcard from '$lib/assets/images/projects/flashcard.png';
+import flashcard from '$lib/assets/images/projects/flashcard.webp';
 
 // screenshots
 import mac1 from '$lib/assets/images/projects/screenshots/mac1.png';
@@ -63,7 +62,7 @@ import rapptr1 from '$lib/assets/images/experiences/rapptr1.png';
 import rapptr2 from '$lib/assets/images/experiences/rapptr2.jpeg';
 import rapptr3 from '$lib/assets/images/experiences/rapptr3.jpeg';
 
-import immerse from '$lib/assets/images/projects/immerse.png';
+import immerse from '$lib/assets/images/projects/immerse.webp';
 
 import imerse1 from '$lib/assets/images/projects/screenshots/immerse1.png';
 import imerse2 from '$lib/assets/images/projects/screenshots/immerse2.png';
@@ -86,7 +85,7 @@ export const COLOR_ASSETS = {
 	Flashcard: { light: flashcard, dark: flashcard },
 	Quote: { light: quote, dark: quote },
 	Security: { light: Security, dark: Security },
-	Readme: { light: Readme, dark: Readme },
+
 	React: { light: React, dark: React },
 	NodeJs: { light: Node, dark: Node },
 	Svelte: { light: Svelte, dark: Svelte },

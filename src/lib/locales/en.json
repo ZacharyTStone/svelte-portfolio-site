@@ -134,13 +134,6 @@
 			"type": "Python Script",
 			"featured_reason": "Most Useful"
 		},
-		"ZACHARYTSTONE": {
-			"name": "ZacharyTStone",
-			"description": "This GitHub repository employs GitHub Actions to automatically update the README with dynamic content.",
-			"shortDescription": "Checkout my readme that is automatically generated every hour.",
-			"type": "Github Readme",
-			"featured_reason": "Most Creative"
-		},
 		"RIFFS": {
 			"name": "Riffs!",
 			"description": "A place to share your new songs, covers, and musical ideas with the world.",
