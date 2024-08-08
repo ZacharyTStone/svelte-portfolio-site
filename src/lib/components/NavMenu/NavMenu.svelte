@@ -38,9 +38,10 @@
 	<nav class="container !justify-between flex flex-row items-center text-sm">
 		<a
 			href={`${base}/`}
-			class="nav-menu-left decoration-none flex flex-row items-center cursor-pointer s:px-2 md:px-8 text-[var(--secondary-text)]  rainbow-hover  "
+			class="nav-menu-left decoration-none flex flex-row items-center cursor-pointer s:px-2 md:px-8 text-[var(--secondary-text)]  rainbow-hover"
+			aria-label={$_(HOME.title)}
 		>
-			<UIcon icon="i-carbon-code" classes="text-2em" alt="home" />
+			<UIcon icon="i-carbon-code" classes="text-2em" alt="home" ariaHidden={true} />
 			<span class="ml-2 text-md font-bold hidden md:inline"
 				>{$_(HOME.name)} {$_(HOME.lastName)}</span
 			>
@@ -53,7 +54,7 @@
 					class="nav-menu-item !text-[var(--secondary-text)] rainbow-hover"
 					style="position: relative;"
 				>
-					<UIcon icon={item.icon} classes="text-1.3em" alt={$_(item.title)} />
+					<UIcon icon={item.icon} classes="text-1.3em" alt={$_(item.title)} ariaHidden={true} />
 					<span class="nav-menu-item-label">{$_(item.title)}</span>
 					<div class="shimmer-overlay" />
 				</a>
@@ -61,21 +62,33 @@
 		</div>
 		<div class="flex flex-row items-stretch gap-1 text-1.15em">
 			<a href={`${base}/search`} class="text-inherit col-center self-stretch px-2 rainbow-hover">
-				<UIcon icon="i-carbon-search" alt="search" tooltip={$_(NavBar.search)} />
+				<UIcon icon="i-carbon-search" alt="search" tooltip={$_(NavBar.search)} ariaHidden={true} />
 			</a>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer text-[var(--secondary-text)] px-2 rainbow-hover"
 				on:click={() => toggleTheme($theme === 'dark' ? 'light' : 'dark')}
+				aria-label={$_($theme === 'light' ? NavBar.lightMode : NavBar.darkMode)}
 			>
 				{#if $theme === 'light'}
-					<UIcon icon="i-carbon-moon" alt="light Theme" tooltip={$_(NavBar.lightMode)} />
+					<UIcon
+						icon="i-carbon-moon"
+						alt="light Theme"
+						tooltip={$_(NavBar.lightMode)}
+						ariaHidden={true}
+					/>
 				{:else}
-					<UIcon icon="i-carbon-sun" alt="Dark Theme" tooltip={$_(NavBar.darkMode)} />
+					<UIcon
+						icon="i-carbon-sun"
+						alt="Dark Theme"
+						tooltip={$_(NavBar.darkMode)}
+						ariaHidden={true}
+					/>
 				{/if}
 			</button>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer text-[var(--secondary-text)] px-2 rainbow-hover"
 				on:click={toggleLanguage}
+				aria-label={$_($locale?.includes('en') ? NavBar.japanese : NavBar.english)}
 			>
 				{#if $locale?.includes('en')}
 					<UIcon
@@ -83,6 +96,7 @@
 						classes="text-1.3em mt-0.5"
 						alt="JA"
 						tooltip={$_(NavBar.japanese)}
+						ariaHidden={true}
 					/>
 				{:else}
 					<UIcon
@@ -90,6 +104,7 @@
 						classes="text-1.3em mt-0.5"
 						alt="English"
 						tooltip={$_(NavBar.english)}
+						ariaHidden={true}
 					/>
 				{/if}
 			</button>
