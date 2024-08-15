@@ -13,10 +13,9 @@
 
 	let { description, lastName, links, name, title, skills } = HOME;
 	let visible = false;
-	let itemsVisible = Array(4 + RESUME?.links.length).fill(false);
+	let itemsVisible = Array(5 + RESUME?.links.length).fill(false); // Increased array size by 1
 
 	onMount(() => {
-		visible = true;
 		fadeInItems();
 	});
 
@@ -24,7 +23,10 @@
 		itemsVisible.forEach((_, index) => {
 			setTimeout(() => {
 				itemsVisible[index] = true;
-			}, index * 200); // Changed delay from 300ms to 200ms
+				if (index === itemsVisible.length - 1) {
+					visible = true; // Set visible to true for the Zach image
+				}
+			}, index * 200);
 		});
 	}
 </script>
@@ -39,20 +41,24 @@
 			class="text-left flex flex-col gap-6 md:gap-6 lg:gap-12 md:flex-row lg:flex-row"
 			style="z-index: 0;"
 		>
-			{#if visible}
-				<div class="flex-1 relative" transition:fade={{ duration: 1500 }}>
-					<div class="image-container">
-						<Image
-							src={Zach}
-							alt="Zach Stone"
-							classes="zach rounded-full"
-							style="width: 250px; height: 250px; object-fit: cover;"
-							loadingHeight="250px"
-							loadingWidth="250px"
-						/>
+			<div class="flex-1 relative">
+				{#if visible}
+					<div transition:fade={{ duration: 500 }}>
+						<div class="image-container">
+							<Image
+								src={Zach}
+								alt="Zach Stone"
+								classes="zach rounded-full"
+								style="width: 250px; height: 250px; object-fit: cover;"
+								loadingHeight="250px"
+								loadingWidth="250px"
+							/>
+						</div>
 					</div>
-				</div>
-			{/if}
+				{:else}
+					<div class="zach-placeholder" />
+				{/if}
+			</div>
 			<div
 				class="flex-1 flex flex-col gap-4 md:max-h-[80vh] lg:max-h-[80vh] px-4 py-4 md:px-6 md:py-6 lg:px-8 lg:py-8 overflow-y-auto overflow-x-visible"
 			>
@@ -134,6 +140,22 @@
 			filter: blur(4px);
 			transition: filter 0.2s;
 			cursor: default;
+		}
+	}
+
+	.zach-placeholder {
+		width: 250px;
+		height: 250px;
+		border-radius: 50%;
+		background-color: var(--secondary-color);
+		margin: 0 auto;
+	}
+
+	@media (min-width: 640px) {
+		.zach-placeholder {
+			width: 300px;
+			height: 300px;
+			margin-top: 100px;
 		}
 	}
 </style>
