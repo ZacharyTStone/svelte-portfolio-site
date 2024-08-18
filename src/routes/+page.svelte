@@ -72,7 +72,6 @@
 		/>
 	</div>
 </div>
-http://localhost:5173/src/lib/assets/images/zach_large_3.png
 
 <style>
 	:global(body) {
