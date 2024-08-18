@@ -67,6 +67,8 @@ import immerse from '$lib/assets/images/projects/immerse.webp';
 import imerse1 from '$lib/assets/images/projects/screenshots/immerse1.png';
 import imerse2 from '$lib/assets/images/projects/screenshots/immerse2.png';
 
+import zach_large from '$lib/assets/images/skills/zach_large.png';
+
 export const COLOR_ASSETS = {
 	Next: { light: Next, dark: Next },
 	Gatsby: { light: Gatsby, dark: Gatsby },
@@ -132,7 +134,8 @@ export const COLOR_ASSETS = {
 
 	Rapptr1: { light: rapptr1, dark: rapptr1 },
 	Rapptr2: { light: rapptr2, dark: rapptr2 },
-	Rapptr3: { light: rapptr3, dark: rapptr3 }
+	Rapptr3: { light: rapptr3, dark: rapptr3 },
+	ZachLarge: { light: zach_large, dark: zach_large }
 };
 
 let currentTheme: string;

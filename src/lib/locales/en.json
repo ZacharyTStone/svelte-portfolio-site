@@ -27,8 +27,8 @@
 			"text": "Even dust, when piled up, can become a mountain."
 		},
 		"blurb2": {
-			"title": "Coding Philosophy",
-			"text": "I try to write code that is maintainable, readable, and scalable. I also am a strong believer in improvement through consistent refactoring."
+			"title": "Working Philosophy",
+			"text": "Code is a tool to solve problems. The best solution often requires no code at all. When code is necessary, it should be clean, expandable, and easy for future developers to understand."
 		},
 		"socials": "Socials"
 	},
