@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { writable } from 'svelte/store';
-	// Importing writable store
-	// Importing fade transition
-	// Importing quintInOut easing
-	import zach_large_3 from '$lib/assets/images/zach_large_3.png';
+	import { onMount, onDestroy } from 'svelte';
+	import { writable } from 'svelte/store'; // Importing writable store
+	import { fade } from 'svelte/transition'; // Importing fade transition
+	import { quintInOut } from 'svelte/easing'; // Importing quintInOut easing
 	import Carrousel from '$lib/components/Carrousel/Carrousel.svelte';
 	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
 	import Icon from '$lib/components/Icon/Icon.svelte';
@@ -13,6 +11,8 @@
 	import MY_SKILLS from '$lib/skills.params';
 	import { useTitle } from '$lib/utils/helpers';
 	import { _ } from 'svelte-i18n';
+	import { base } from '$app/paths';
+	import { getAssetURL } from '$lib/data/assets';
 
 	let { description, lastName, links, name, title, skills } = HOME;
 
@@ -37,21 +37,18 @@
 </svelte:head>
 
 <div
-	class="col self-center flex-1 lg:flex-row lg:self-stretch justify-center lg:justify-between items-center p-0 gap-10"
+	class="col self-center flex-1 md:flex-row md:self-stretch justify-center lg:justify-between items-center p-0 gap-10"
 >
-	<div class="lg:flex-1 flex flex-col items-center lg:items-start gap-5 fadeIn">
-		<MainTitle classes="text-center lg:text-left mb-5 lg:mb-3">{$_(name)} {$_(lastName)},</MainTitle
+	<div class="md:flex-1 flex flex-col items-center md:items-start gap-5 fadeIn">
+		<MainTitle classes="text-center md:text-left mb-5 md:mb-3">{$_(name)} {$_(lastName)},</MainTitle
 		>
 		<p
-			class="text-[var(--tertiary-text)] text-center lg:text-left text-lg lg:text-xl font-extralight leading-relaxed max-w-prose mb-5 lg:mb-3 z-10 
-
-			bg-opacity-50			
-			description-background"
+			class="text-[var(--tertiary-text)] text-center md:text-left text-lg md:text-xl font-extralight leading-relaxed max-w-prose mb-5 md:mb-3"
 		>
 			{$_(description)}
 		</p>
 		<div
-			class="hidden lg:fixed bottom-0 left-0 lg:right-auto lg:left-0 flex justify-center gap-5 pb-15 px-15"
+			class="hidden md:fixed bottom-0 left-0 lg:right-auto lg:left-0 flex justify-center gap-5 pb-15 px-15"
 		>
 			{#each links as { platform, link }}
 				<ChipIcon name={platform} href={link} newtab>
@@ -60,30 +57,34 @@
 			{/each}
 		</div>
 	</div>
-	<div class="fadeIn block lg:hidden">
+	<div class="fadeIn block md:hidden">
 		<Carrousel items={skills ?? MY_SKILLS} />
 	</div>
-	<div class="fixed bottom--0 right--0 fade-in hidden lg:block">
-		<img
-			src={zach_large_3}
-			alt="Zach Large"
-			class="w-200 h-200 aspect-square"
-			style="object-fit: contain;"
-		/>
+	<div class="fixed bottom--10 right--20 z-10 fade-in hidden md:block">
+		{#if MY_SKILLS.length > 0}
+			{#key currentIndex}
+				<div in:fade={{ duration: 1000 }} out:fade={{ duration: 1000 }}>
+					<a href={`${base}/skills/${MY_SKILLS[$currentIndex].slug}`} rel="noreferrer">
+						<img
+							src={getAssetURL(MY_SKILLS[$currentIndex].logo)}
+							alt="Skill Logo"
+							class="opacity-20 w-100 h-100 aspect-square md:w-200 md:h-200 skill-logo"
+							style="object-fit: contain;"
+						/>
+					</a>
+				</div>
+			{/key}
+		{/if}
 	</div>
 </div>
 
 <style>
+	.skill-logo {
+		opacity: 0.2; /* Start with 0.2 opacity */
+	}
 	:global(body) {
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
-	}
-
-	.description-background {
-		background-color: var(--main);
-		opacity: 0.8;
-		backdrop-filter: blur(10px);
-		border-radius: 10px;
 	}
 </style>
