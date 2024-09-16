@@ -46,11 +46,11 @@
 			>
 				{#if itemsVisible[0]}
 					<div transition:fade class="w-full">
-						<Card classes={['unblur-blurb-text', 'w-full', 'main-about-card']}>
-							<h2 class="text-xl md:text-2xl font-semibold mb-3">
+						<Card classes={['unblur-blurb-text', 'w-full']}>
+							<h2 class="text-lg md:text-xl font-semibold mb-2">
 								{$_('ABOUT.title')}
 							</h2>
-							<p class="blur-on-hover blurb-text main-about-text">
+							<p class="blur-on-hover blurb-text">
 								{$_('ABOUT.full_about')}
 							</p>
 						</Card>
@@ -144,16 +144,6 @@
 
 	.stylized-vr:hover {
 		animation: card_shimmer 2s infinite;
-	}
-
-	:global(.main-about-card) {
-		font-size: 1.125rem; /* 18px */
-		line-height: 1.75rem; /* 28px */
-	}
-
-	:global(.main-about-card h2) {
-		font-size: 1.5rem; /* 24px */
-		line-height: 2rem; /* 32px */
 	}
 
 	@media (min-width: 768px) {
