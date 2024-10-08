@@ -72,8 +72,8 @@
 			{#if MY_SKILLS.length > 0}
 				{#key $currentIndex}
 					<div
-						in:fly={{ y: 50, duration: 600, easing: cubicOut }}
-						out:fade={{ duration: 200 }}
+						in:fade={{ duration: 600 }}
+						out:fade={{ duration: 600 }}
 						class="absolute inset-0 flex items-center justify-center"
 						on:mouseenter={() => isHovering.set(true)}
 						on:mouseleave={() => isHovering.set(false)}
@@ -85,9 +85,9 @@
 							<img
 								src={getAssetURL(MY_SKILLS[$currentIndex].logo)}
 								alt={$_(MY_SKILLS[$currentIndex].name)}
-								class="w-32 h-32 md:w-48 md:h-48 object-contain duration-600"
+								class="w-32 h-32 md:w-48 md:h-48 object-contain "
 							/>
-							<p class="mt-4 text-center text-gray-400 duration-600 text-lg md:text-xl">
+							<p class="mt-4 text-center text-gray-400 text-lg md:text-xl fadeInFast">
 								{$_(MY_SKILLS[$currentIndex].name)}
 							</p>
 						</a>
