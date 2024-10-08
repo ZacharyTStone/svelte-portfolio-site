@@ -26,10 +26,11 @@
         "title": "Core Values",
         "text": "Collaboration, clarity in communication, and continuous daily improvement."
     },
-    "blurb2": {
-        "title": "Why Me?",
-        "text": "I bring a mix of practical experience and continuous self-improvement, with a deep passion for coding and a growing interest in cross-disciplinary skills, including language learning. I thrive in environments where learning is valued and growth is encouraged."
-    },
+   "blurb3": {
+    "title": "Why Me?",
+    "text": "I am a self-taught, self-motivated developer who constantly strives to improve. I bring a possitve influence to any team and always work hard to ensure that both the product and myself are getting better everyday."
+}
+,
     "socials": "Connect with me"
 },
 	"EXPERIENCES": {
