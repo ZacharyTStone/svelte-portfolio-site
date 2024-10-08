@@ -21,16 +21,12 @@
 	},
 "ABOUT": {
     "title": "About",
-	"full_about": "I'm Zach Stone, a self-taught software engineer specializing in front-end web development. I have extensive experience working with modern JavaScript frameworks like React, as well as CSS-in-JS libraries such as Styled Components and Tailwind. My focus is on creating clean, efficient, and scalable web applications that prioritize user experience. I’m comfortable working in large codebases, and I have a strong background in reducing technical debt and improving overall code quality. Currently, I'm honing my skills while studying Japanese in Japan, and I'm always seeking opportunities to grow as both a developer and an individual.",
-	 "blurb1": {
+    "full_about": "I'm Zach Stone, a self-taught software engineer specializing in front-end web development. I have extensive experience working with modern JavaScript frameworks like React, as well as CSS-in-JS libraries such as Styled Components and Tailwind. My focus is on creating clean, efficient, and scalable web applications that prioritize user experience. I’m comfortable working in large codebases, and I have a strong background in reducing technical debt and improving overall code quality. Currently, I'm honing my skills while studying Japanese in Japan, and I'm always seeking opportunities to grow as both a developer and an individual.",
+    "blurb1": {
         "title": "Core Values",
-        "text": "Collaboration, clarity in communication, and the pursuit of excellence through thoughtful problem-solving."
+        "text": "Collaboration, clarity in communication, and continuous daily improvement."
     },
     "blurb2": {
-        "title": "Technical Approach",
-        "text": "I believe code should be a tool for solving problems, and the best solutions are often the simplest. When coding, I prioritize clean, maintainable, and future-proof solutions that are easy to scale and understand by other developers."
-    },
-    "blurb3": {
         "title": "Why Me?",
         "text": "I bring a mix of practical experience and continuous self-improvement, with a deep passion for coding and a growing interest in cross-disciplinary skills, including language learning. I thrive in environments where learning is valued and growth is encouraged."
     },

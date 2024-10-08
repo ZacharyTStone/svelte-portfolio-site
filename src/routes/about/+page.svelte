@@ -63,7 +63,7 @@
 			<div
 				class="flex-1 flex flex-col gap-4 md:max-h-[80vh] lg:max-h-[80vh] px-4 py-4 md:px-6 md:py-6 lg:px-8 lg:py-8 overflow-y-auto overflow-x-visible"
 			>
-				{#each [$_('ABOUT.blurb1'), $_('ABOUT.blurb2'), $_('ABOUT.blurb3')] as blurb, index}
+				{#each [$_('ABOUT.blurb1'), $_('ABOUT.blurb2')] as blurb, index}
 					{#if itemsVisible[index + 1]}
 						<!-- Adjusted index for visibility -->
 						<div transition:fade class="w-full">
