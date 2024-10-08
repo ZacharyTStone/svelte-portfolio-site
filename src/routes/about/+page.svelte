@@ -157,4 +157,16 @@
 			line-height: 2.25rem; /* 36px */
 		}
 	}
+
+	/* Updated styles for blurb text */
+	:global(.blurb-text) {
+		line-height: 1.5;
+		margin-bottom: 0.75rem;
+	}
+
+	@media (min-width: 768px) {
+		:global(.blurb-text) {
+			line-height: 1.6;
+		}
+	}
 </style>

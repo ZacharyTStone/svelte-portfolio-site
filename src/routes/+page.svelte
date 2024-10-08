@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store'; // Importing writable store
-	import { fade } from 'svelte/transition'; // Importing fade transition
-	import { quintInOut } from 'svelte/easing'; // Importing quintInOut easing
+	import { fade, fly } from 'svelte/transition'; // Importing fade and fly transitions
+	import { cubicOut } from 'svelte/easing'; // Importing cubicOut easing
 	import Carrousel from '$lib/components/Carrousel/Carrousel.svelte';
 	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
 	import Icon from '$lib/components/Icon/Icon.svelte';
@@ -19,16 +19,19 @@
 	// Set page title
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
-		const interval = setInterval(cycleSkills, 5000); // Cycle every 5 seconds
+		const interval = setInterval(cycleSkills, 3000); // Cycle every 3 seconds
 		return () => clearInterval(interval);
 	});
 
 	// Store to hold the index of the currently displayed skill
 	const currentIndex = writable(0);
+	let isHovering = writable(false);
 
 	// Function to cycle through skills
 	function cycleSkills() {
-		currentIndex.update((value) => (value + 1) % MY_SKILLS.length);
+		if (!$isHovering) {
+			currentIndex.update((value) => (value + 1) % MY_SKILLS.length);
+		}
 	}
 </script>
 
@@ -36,55 +39,68 @@
 	<title>{useTitle(title, TITLE_SUFFIX)}</title>
 </svelte:head>
 
-<div
-	class="col self-center flex-1 md:flex-row md:self-stretch justify-center lg:justify-between items-center p-0 gap-10"
->
-	<div class="md:flex-1 flex flex-col items-center md:items-start gap-5 fadeIn">
-		<MainTitle classes="text-center md:text-left mb-5 md:mb-3">{$_(name)} {$_(lastName)},</MainTitle
-		>
-		<p
-			class="text-[var(--tertiary-text)] text-center md:text-left text-lg md:text-xl font-extralight leading-relaxed max-w-prose mb-5 md:mb-3"
-		>
-			{$_(description)}
-		</p>
-		<div
-			class="hidden md:fixed bottom-0 left-0 lg:right-auto lg:left-0 flex justify-center gap-5 pb-15 px-15"
-		>
+<div class="min-h-screen flex flex-col justify-center items-center p-4 md:p-8 fadeIn">
+	<div class="max-w-4xl w-full space-y-8">
+		<div class="text-center md:text-left space-y-4">
+			<h1 class="text-4xl md:text-6xl font-bold tracking-tight">
+				<span class="text-gray-400">
+					{$_(name)}
+					{$_(lastName)}
+				</span>
+			</h1>
+			<p class="text-xl md:text-2xl text-gray-600 font-light leading-relaxed">
+				{$_(description)}
+			</p>
+		</div>
+
+		<div class="flex flex-wrap justify-center md:justify-start gap-4">
 			{#each links as { platform, link }}
-				<ChipIcon name={platform} href={link} newtab>
-					<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'24px'} />
-				</ChipIcon>
+				<a
+					href={link}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="transform hover:scale-110 transition-transform duration-200"
+				>
+					<ChipIcon name={platform}>
+						<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'24px'} />
+					</ChipIcon>
+				</a>
 			{/each}
 		</div>
-	</div>
-	<div class="fadeIn block md:hidden">
-		<Carrousel items={skills ?? MY_SKILLS} />
-	</div>
-	<div class="fixed bottom--10 right--20 z-10 fade-in hidden md:block">
-		{#if MY_SKILLS.length > 0}
-			{#key currentIndex}
-				<div in:fade={{ duration: 1000 }} out:fade={{ duration: 1000 }}>
-					<a href={`${base}/skills/${MY_SKILLS[$currentIndex].slug}`} rel="noreferrer">
-						<img
-							src={getAssetURL(MY_SKILLS[$currentIndex].logo)}
-							alt="Skill Logo"
-							class="opacity-20 w-100 h-100 aspect-square md:w-200 md:h-200 skill-logo"
-							style="object-fit: contain;"
-						/>
-					</a>
-				</div>
-			{/key}
-		{/if}
+
+		<div class="mt-12 relative h-64 md:h-96">
+			{#if MY_SKILLS.length > 0}
+				{#key $currentIndex}
+					<div
+						in:fly={{ y: 50, duration: 600, easing: cubicOut }}
+						out:fade={{ duration: 200 }}
+						class="absolute inset-0 flex items-center justify-center"
+						on:mouseenter={() => isHovering.set(true)}
+						on:mouseleave={() => isHovering.set(false)}
+						role="button"
+						tabindex="0"
+						aria-label={MY_SKILLS[$currentIndex].name}
+					>
+						<a href={`${base}/skills/${MY_SKILLS[$currentIndex].slug}`} class="group no-underline">
+							<img
+								src={getAssetURL(MY_SKILLS[$currentIndex].logo)}
+								alt={$_(MY_SKILLS[$currentIndex].name)}
+								class="w-32 h-32 md:w-48 md:h-48 object-contain duration-600"
+							/>
+							<p class="mt-4 text-center text-gray-400 duration-600 text-lg md:text-xl">
+								{$_(MY_SKILLS[$currentIndex].name)}
+							</p>
+						</a>
+					</div>
+				{/key}
+			{/if}
+		</div>
 	</div>
 </div>
 
 <style>
-	.skill-logo {
-		opacity: 0.2; /* Start with 0.2 opacity */
-	}
 	:global(body) {
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
+		background-color: #1a202c;
+		color: white;
 	}
 </style>
