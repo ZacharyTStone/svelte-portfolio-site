@@ -19,7 +19,7 @@
 	// Set page title
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
-		const interval = setInterval(cycleSkills, 3000); // Cycle every 3 seconds
+		const interval = setInterval(cycleSkills, 2000); // Cycle every 2 seconds
 		return () => clearInterval(interval);
 	});
 
@@ -72,8 +72,8 @@
 			{#if MY_SKILLS.length > 0}
 				{#key $currentIndex}
 					<div
-						in:fade={{ duration: 600 }}
-						out:fade={{ duration: 600 }}
+						in:fade={{ duration: 400 }}
+						out:fade={{ duration: 400 }}
 						class="absolute inset-0 flex items-center justify-center"
 						on:mouseenter={() => isHovering.set(true)}
 						on:mouseleave={() => isHovering.set(false)}
