@@ -71,17 +71,17 @@
 		<div class="mt-12 relative h-64 md:h-96">
 			{#if MY_SKILLS.length > 0}
 				{#key $currentIndex}
-					<div
-						in:fade={{ duration: 400 }}
-						out:fade={{ duration: 400 }}
-						class="absolute inset-0 flex items-center justify-center"
-						on:mouseenter={() => isHovering.set(true)}
-						on:mouseleave={() => isHovering.set(false)}
-						role="button"
-						tabindex="0"
-						aria-label={MY_SKILLS[$currentIndex].name}
-					>
-						<a href={`${base}/skills/${MY_SKILLS[$currentIndex].slug}`} class="group no-underline">
+					<a href={`${base}/skills/${MY_SKILLS[$currentIndex].slug}`} class="group no-underline">
+						<div
+							in:fade={{ duration: 400 }}
+							out:fade={{ duration: 400 }}
+							class="absolute inset-0 flex items-center justify-center flex-col"
+							on:mouseenter={() => isHovering.set(true)}
+							on:mouseleave={() => isHovering.set(false)}
+							role="button"
+							tabindex="0"
+							aria-label={MY_SKILLS[$currentIndex].name}
+						>
 							<img
 								src={getAssetURL(MY_SKILLS[$currentIndex].logo)}
 								alt={$_(MY_SKILLS[$currentIndex].name)}
@@ -90,8 +90,8 @@
 							<p class="mt-4 text-center text-gray-400 text-lg md:text-xl fadeInFast">
 								{$_(MY_SKILLS[$currentIndex].name)}
 							</p>
-						</a>
-					</div>
+						</div>
+					</a>
 				{/key}
 			{/if}
 		</div>
