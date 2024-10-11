@@ -20,7 +20,6 @@
 	import Screenshots from '$lib/components/Screenshots/Screenshots.svelte';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-	import { writable } from 'svelte/store';
 
 	type Related = {
 		display: string;
@@ -75,38 +74,19 @@
 
 	$: related = data.skill ? getRelatedProjects() : [];
 
-	const visibleItems = writable(new Set());
-	const visibleSections = writable(new Set());
+	let mounted = false;
+	let fadeInDelay = 0;
 
 	onMount(() => {
-		let index = 0;
-		const interval = setInterval(() => {
-			if (index < related.length) {
-				visibleItems.update((set) => {
-					set.add(index);
-					return set;
-				});
-				index++;
-			} else {
-				clearInterval(interval);
-			}
-		}, 100);
-
-		// Fade in main sections
-		let sectionIndex = 0;
-		const sectionInterval = setInterval(() => {
-			if (sectionIndex < 3) {
-				// Assuming 3 main sections
-				visibleSections.update((set) => {
-					set.add(sectionIndex);
-					return set;
-				});
-				sectionIndex++;
-			} else {
-				clearInterval(sectionInterval);
-			}
-		}, 200);
+		mounted = true;
+		fadeInDelay = 0; // Reset fadeInDelay when component mounts
 	});
+
+	function getAnimationDelay() {
+		const delay = fadeInDelay;
+		fadeInDelay += 200; // Increase delay for each subsequent item
+		return delay;
+	}
 </script>
 
 <TabTitle title={computedTitle} />
@@ -123,8 +103,11 @@
 				<MainTitle>{$_(data.skill.name)}</MainTitle>
 			</Banner>
 			<div class="p-5 md:p-0 flex flex-col items-center overflow-x-hidden">
-				{#if $visibleSections.has(0)}
-					<div in:fade={{ duration: 300 }} class="pt-3 pb-1 overflow-x-hidden w-full">
+				{#if mounted}
+					<div
+						in:fade={{ delay: getAnimationDelay(), duration: 300 }}
+						class="pt-3 pb-1 overflow-x-hidden w-full"
+					>
 						<div class="px-10px m-y-5">
 							{#if data.skill.description}
 								{$_(data.skill.description)}
@@ -138,18 +121,11 @@
 						<div class="px-10px m-y-5">
 							{#if data?.skill?.extraInfo?.length}
 								{#each data.skill.extraInfo as any}
-									<div
-										class="flex flex-row gap-1 flex-wrap mb-5 items-center
-									"
-									>
+									<div class="flex flex-row gap-1 flex-wrap mb-5 items-center">
 										<span class="text-[var(--accent-text)] text-[1.1em] font-500">
 											{$_(any.title)}
 										</span>
-										<div
-											class="px-10px
-										flex flex-row gap-3 flex-wrap align-center
-									"
-										>
+										<div class="px-10px flex flex-row gap-3 flex-wrap align-center">
 											{#each any.content as info}
 												{#if any.title === 'Frameworks'}
 													<ChipIcon
@@ -209,41 +185,36 @@
 							{/if}
 						</div>
 					</div>
-				{/if}
 
-				<div class=" mb-2">
-					<CardDivider />
-				</div>
+					<div class="mb-2">
+						<CardDivider />
+					</div>
 
-				{#if $visibleSections.has(1)}
-					<div in:fade={{ duration: 300 }} class="flex flex-wrap gap-2 px-10px w-full">
-						{#each related as item, index}
-							{#if $visibleItems.has(index)}
-								<div in:fade={{ duration: 300 }}>
-									<Chip
-										classes="inline-flex items-center"
-										href={`${base}${item.url}`}
-										newTab={false}
-									>
-										<CardLogo
-											src={item.img}
-											alt={$_(item.name)}
-											radius={'0px'}
-											size={15}
-											classes="mr-2"
-										/>
-										<span class="text-[0.9em]">{$_(item.display)}</span>
-									</Chip>
-								</div>
-							{/if}
+					<div
+						in:fade={{ delay: getAnimationDelay(), duration: 300 }}
+						class="flex flex-wrap gap-2 px-10px w-full"
+					>
+						{#each related as item}
+							<div>
+								<Chip classes="inline-flex items-center" href={`${base}${item.url}`} newTab={false}>
+									<CardLogo
+										src={item.img}
+										alt={$_(item.name)}
+										radius={'0px'}
+										size={15}
+										classes="mr-2"
+									/>
+									<span class="text-[0.9em]">{$_(item.display)}</span>
+								</Chip>
+							</div>
 						{/each}
 					</div>
-				{/if}
 
-				{#if $visibleSections.has(2) && screenshots.length > 0}
-					<div in:fade={{ duration: 300 }}>
-						<Screenshots {screenshots} />
-					</div>
+					{#if screenshots.length > 0}
+						<div in:fade={{ delay: getAnimationDelay(), duration: 300 }}>
+							<Screenshots {screenshots} />
+						</div>
+					{/if}
 				{/if}
 			</div>
 		</div>
