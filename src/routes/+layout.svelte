@@ -7,6 +7,11 @@
 	import { dev } from '$app/environment';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	inject({ mode: dev ? 'development' : 'production' });
 	injectSpeedInsights();
@@ -17,7 +22,7 @@
 <div class={`body contents ${$theme === 'dark' ? 'theme-dark' : 'theme-light'}`}>
 	<NavMenu />
 	<div class="content container">
-		<slot />
+		{@render children?.()}
 	</div>
 </div>
 

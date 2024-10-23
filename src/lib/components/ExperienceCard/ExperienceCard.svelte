@@ -11,9 +11,13 @@
 	import { _ } from 'svelte-i18n';
 	import { locale } from 'svelte-i18n';
 
-	export let experience: Experience;
+	interface Props {
+		experience: Experience;
+	}
 
-	$: ({ period, startYear, endYear } = calculateExperiencePeriod(
+	let { experience }: Props = $props();
+
+	let { period, startYear, endYear } = $derived(calculateExperiencePeriod(
 		experience?.period?.from,
 		experience?.period?.to ?? new Date(),
 		$locale ?? 'en'

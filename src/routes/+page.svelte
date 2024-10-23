@@ -76,8 +76,8 @@
 							in:fade={{ duration: 400 }}
 							out:fade={{ duration: 400 }}
 							class="absolute inset-0 flex items-center justify-center flex-col"
-							on:mouseenter={() => isHovering.set(true)}
-							on:mouseleave={() => isHovering.set(false)}
+							onmouseenter={() => isHovering.set(true)}
+							onmouseleave={() => isHovering.set(false)}
 							role="button"
 							tabindex="0"
 							aria-label={MY_SKILLS[$currentIndex].name}

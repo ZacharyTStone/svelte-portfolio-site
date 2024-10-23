@@ -15,7 +15,7 @@
 	import { _ } from 'svelte-i18n';
 
 	let result: Array<Skill> = items;
-	let mounted = false;
+	let mounted = $state(false);
 	const visibleItems = writable(new Set());
 	const staggerDelay = 100; // milliseconds between each skill's fade-in
 

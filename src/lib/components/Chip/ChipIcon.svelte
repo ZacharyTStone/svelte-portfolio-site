@@ -1,15 +1,28 @@
 <script lang="ts">
 	import { theme } from '$lib/stores/theme';
 
-	export let name = '';
-	export let logo = '';
-	export let newtab = false;
-	export let inverted = false;
-	export let grayscale = true;
 
 	import { _ } from 'svelte-i18n';
 
-	export let href: string | undefined = undefined;
+	interface Props {
+		name?: string;
+		logo?: string;
+		newtab?: boolean;
+		inverted?: boolean;
+		grayscale?: boolean;
+		href?: string | undefined;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		name = '',
+		logo = '',
+		newtab = false,
+		inverted = false,
+		grayscale = true,
+		href = undefined,
+		children
+	}: Props = $props();
 </script>
 
 <svelte:element
@@ -23,8 +36,8 @@
 	data-help={$_(name)}
 	target={href && newtab ? '_blank' : undefined}
 >
-	{#if $$slots.default}
-		<slot />
+	{#if children}
+		{@render children?.()}
 	{:else}
 		<img
 			class={`

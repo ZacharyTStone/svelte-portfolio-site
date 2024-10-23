@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Image from '../Image/Image.svelte';
 
-	export let screenshots = [] as { src: string; label?: string }[];
+	let { screenshots = [] as { src: string; label?: string }[] } = $props();
 
-	let isModalOpen = false;
-	let selectedImage = '';
+	let isModalOpen = $state(false);
+	let selectedImage = $state('');
 
 	function openModal(imageSrc: string) {
 		selectedImage = imageSrc;
@@ -34,8 +34,8 @@
 	{#each screenshots as item}
 		<div
 			class="col-center gap-3 w-99% h-99% rounded-10px cursor-pointer rainbow-hover"
-			on:click={() => openModal(item.src)}
-			on:keydown={() => {}}
+			onclick={() => openModal(item.src)}
+			onkeydown={() => {}}
 			role="button"
 			tabindex="0"
 		>
@@ -54,8 +54,8 @@
 {#if isModalOpen}
 	<div
 		class="fixed inset-0 bg-black bg-opacity-75 z-50 flex justify-center items-center backdrop-blur-md"
-		on:click={handleModalClick}
-		on:keydown={handleKeyDown}
+		onclick={handleModalClick}
+		onkeydown={handleKeyDown}
 		role="button"
 		aria-label="Selected Image"
 		tabindex={0}
@@ -68,7 +68,7 @@
 			aria-hidden="true"
 		/>
 		<button
-			on:click={closeModal}
+			onclick={closeModal}
 			aria-label="Close Modal"
 			tabIndex={0}
 			class="absolute top-0 right-0 m-4 text-black text-3xl bg-white p-2 rounded-full"

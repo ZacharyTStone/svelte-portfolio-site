@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import ProjectCard from '$lib/components/ProjectCard/ProjectCard.svelte';
@@ -16,13 +18,13 @@
 
 	const { items, title } = PROJECTS;
 
-	let filters: Array<SkillFilter> = MY_SKILLS.filter((it) =>
+	let filters: Array<SkillFilter> = $state(MY_SKILLS.filter((it) =>
 		items.some((project) => project.skills.some((skill) => skill.slug === it.slug))
-	);
+	));
 
-	let search = '';
+	let search = $state('');
 
-	let displayed: Array<Project> = [];
+	let displayed: Array<Project> = $state([]);
 
 	const isSelected = (slug: string): boolean =>
 		filters.some((item) => item.slug === slug && item.isSelected);
@@ -36,7 +38,7 @@
 		});
 	};
 
-	$: {
+	run(() => {
 		const selectedFilters = filters.filter((tech) => tech.isSelected);
 		displayed = items.filter((project) => {
 			const isFiltered =
@@ -49,7 +51,7 @@
 				$_(project.name).trim().toLowerCase().includes(search.trim().toLowerCase());
 			return isFiltered && isSearched && !project.dont_show;
 		});
-	}
+	});
 
 	const onSearch = (e: CustomEvent<{ search: string }>) => {
 		search = e.detail.search;
@@ -57,11 +59,11 @@
 
 	const visibleItems = writable(new Set());
 
-	let isInitialized = false;
+	let isInitialized = $state(false);
 	const staggerDelay = 100; // milliseconds between each project's fade-in
 
-	let featuredTitleVisible = false;
-	let otherTitleVisible = false;
+	let featuredTitleVisible = $state(false);
+	let otherTitleVisible = $state(false);
 
 	onMount(() => {
 		const query = location.search;

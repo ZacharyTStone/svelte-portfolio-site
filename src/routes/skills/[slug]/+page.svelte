@@ -29,7 +29,11 @@
 		url: string;
 	};
 
-	export let data: { skill?: Skill };
+	interface Props {
+		data: { skill?: Skill };
+	}
+
+	let { data }: Props = $props();
 
 	const { title } = SKILLS;
 
@@ -70,11 +74,13 @@
 		return out;
 	};
 
-	$: computedTitle = data.skill ? `${$_(data.skill.name)} - ${$_(title)}` : `${$_(title)}`;
+	let computedTitle = $derived(
+		data.skill ? `${$_(data.skill.name)} - ${$_(title)}` : `${$_(title)}`
+	);
 
-	$: related = data.skill ? getRelatedProjects() : [];
+	let related = $derived(data.skill ? getRelatedProjects() : []);
 
-	let mounted = false;
+	let mounted = $state(false);
 	let fadeInDelay = 0;
 
 	onMount(() => {

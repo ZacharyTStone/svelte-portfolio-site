@@ -4,15 +4,29 @@
 	import { changeColorOpacity } from '$lib/utils/helpers';
 	import { fade } from 'svelte/transition';
 
-	let el: HTMLElement;
+	let el: HTMLElement = $state();
 
-	export let color = '#ffffff00';
-	export let margin = '0px';
-	export let tiltDegree = 3;
-	export let classes: Array<string> = [];
-	export let href: undefined | string = undefined;
-	export let bgImg: string | undefined = undefined;
-	export let fadeDelay = 0; // New prop for fade delay
+	interface Props {
+		color?: string;
+		margin?: string;
+		tiltDegree?: number;
+		classes?: Array<string>;
+		href?: undefined | string;
+		bgImg?: string | undefined;
+		fadeDelay?: number;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		color = '#ffffff00',
+		margin = '0px',
+		tiltDegree = 3,
+		classes = [],
+		href = undefined,
+		bgImg = undefined,
+		fadeDelay = 0,
+		children
+	}: Props = $props();
 
 	onMount(() => {
 		if (el) {
@@ -33,12 +47,12 @@
 	};
 </script>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <svelte:element
 	this={href ? 'a' : 'div'}
 	{href}
 	bind:this={el}
-	on:mousemove={handleHover}
+	onmousemove={handleHover}
 	class={`card text-inherit decoration-none inline-flex flex-col border-1px border-solid border-[var(--border)] rounded-15px duration relative ${classes.join(
 		' '
 	)}`}
@@ -46,7 +60,7 @@
 	transition:fade={{ delay: fadeDelay, duration: 300 }}
 >
 	<div class="card-bg-img flex-1 flex flex-col p-15px rounded-15px">
-		<slot />
+		{@render children?.()}
 	</div>
 </svelte:element>
 

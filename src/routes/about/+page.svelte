@@ -11,7 +11,7 @@
 	let { description, lastName, links, name, title, skills } = HOME;
 	let fadeInDelay = 0;
 
-	let mounted = false;
+	let mounted = $state(false);
 
 	onMount(() => {
 		mounted = true;
@@ -51,7 +51,7 @@
 					</div>
 				</div>
 
-				<div class="hidden md:block stylized-vr" />
+				<div class="hidden md:block stylized-vr"></div>
 
 				<div
 					class="flex-1 flex flex-col gap-4 md:max-h-[80vh] lg:max-h-[80vh] px-4 py-4 md:px-6 md:py-6 lg:px-8 lg:py-8 overflow-y-auto overflow-x-visible"

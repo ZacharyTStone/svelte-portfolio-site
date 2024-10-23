@@ -32,7 +32,7 @@
 	<div class="col items-center relative mt-10 flex-1">
 		<div
 			class="w-[0.5px] hidden lg:flex top-0 bottom-0 py-50px bg-[var(--border)] absolute rounded"
-		/>
+		></div>
 		{#each items as job, index (job.company)}
 			{#if $visibleItems.has(index)}
 				<div
@@ -41,7 +41,7 @@
 					} relative items-center w-full my-[10px]`}
 					in:fly={{ x: index % 2 === 0 ? -100 : 100, duration: 800 }}
 				>
-					<div class="flex-1 hidden lg:flex" />
+					<div class="flex-1 hidden lg:flex"></div>
 					<div class="hidden lg:inline p-15px bg-[var(--main)] rounded">
 						<UIcon icon="i-carbon-condition-point" classes="" />
 					</div>

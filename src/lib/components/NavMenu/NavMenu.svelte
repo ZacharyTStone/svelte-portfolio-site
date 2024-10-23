@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { HOME, NavBar } from '$lib/params';
@@ -10,15 +12,15 @@
 	import { locale } from 'svelte-i18n';
 	import { onMount } from 'svelte';
 
-	let currentRoute = '/';
-	let navigationError = false;
+	let currentRoute = $state('/');
+	let navigationError = $state(false);
 
-	$: {
+	run(() => {
 		if ($page) {
 			currentRoute = $page.url.pathname;
 			console.log('Current route:', currentRoute);
 		}
-	}
+	});
 
 	const items = [
 		{ title: NavBar.about, to: '/about', icon: 'i-carbon-user' },
@@ -71,7 +73,7 @@
 					href={`${base}${item.to}`}
 					class="nav-menu-item !text-[var(--secondary-text)] rainbow-hover"
 					class:active={currentRoute === item.to}
-					on:click={(e) => handleNavigation(e, item.to)}
+					onclick={(e) => handleNavigation(e, item.to)}
 				>
 					<UIcon icon={item.icon} classes="text-1.3em" alt={$_(item.title)} />
 					<span class="nav-menu-item-label">{$_(item.title)}</span>
@@ -84,7 +86,7 @@
 			</a>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer text-[var(--secondary-text)] px-2 rainbow-hover"
-				on:click={() => toggleTheme($theme === 'dark' ? 'light' : 'dark')}
+				onclick={() => toggleTheme($theme === 'dark' ? 'light' : 'dark')}
 				aria-label={$_($theme === 'light' ? NavBar.lightMode : NavBar.darkMode)}
 			>
 				{#if $theme === 'light'}
@@ -95,7 +97,7 @@
 			</button>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer text-[var(--secondary-text)] px-2 rainbow-hover"
-				on:click={toggleLanguage}
+				onclick={toggleLanguage}
 				aria-label={$_($locale?.includes('en') ? NavBar.japanese : NavBar.english)}
 			>
 				{#if $locale?.includes('en')}

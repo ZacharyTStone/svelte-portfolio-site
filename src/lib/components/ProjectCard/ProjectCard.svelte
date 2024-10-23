@@ -6,7 +6,11 @@
 	import Card from '../Card/Card.svelte';
 	import Image from '../Image/Image.svelte';
 
-	export let project: Project;
+	interface Props {
+		project: Project;
+	}
+
+	let { project }: Props = $props();
 
 	const imageSrc = getAssetURL(project.logo);
 </script>
