@@ -21,10 +21,10 @@
 	},
 	"ABOUT": {
 		"title": "About Me",
-		"full_about": "I'm a self-taught software engineer specializing in front-end web development. I have extensive experience working with modern JavaScript frameworks and libraries like React, Next JS, Svelte, etc.  I also am comfortable with various CSS solutions such as Styled Components and Tailwind. My focus is on creating clean, efficient, and scalable web applications that prioritize user experience. I’m comfortable working in large codebases, and understand the importance of reducing technical debt and improving overall code quality to ensure a positive developer experience.",
+		"full_about": "I'm a self-taught software engineer specializing in front-end web development. I have extensive experience working with modern JavaScript frameworks and libraries like React, Next JS, Svelte, etc.  I also am comfortable with various CSS solutions such as Styled Components and Tailwind. ",
 		"blurb1": {
 			"title": "Core Values",
-			"text": "I’m a self-taught programmer and Japanese speaker and enjoy working on tasks to completion. I prioritize clear communication and open collaboration and always aim to enhance the quality of whatever project I work on."
+			"text": "I prioritize kind and clear communication and always aim to enhance the quality of whatever project I work on. Being a self-taught programmer and Japanese speaker, I have a strong work ethic and enjoy working on tasks to completion."
 		},
 		"socials": "Connect with me"
 	},
