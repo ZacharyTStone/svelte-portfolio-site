@@ -43,14 +43,14 @@
 			"type": "App And Website Agency",
 			"location": "New York, NY"
 		}
-		// ,
-		// "sellfire": {
-		// 	"name": "Frontend Engineer",
-		// 	"quote": "Sellfire is an all-in-one sales platform for inside sales teams. It offers all the necessary features in one software, including dial functions, real-time reporting, coaching and development, pipeline management, and automated lead management. Sellfire supports team scaling while improving sales performance. With real-time call coaching and report display, it quickly identifies and improves sales opportunities. By using Sellfire, sales teams can operate efficiently and effectively, accelerating business growth.",
-		// 	"type": "SAAS Startup",
-		// 	"location": "Austin, TX",
-		// 	"description": "Worked part-time as a front-end engineer for Sellfire while attending a Japanese language school in Japan."
-		// }
+		,
+		"sellfire": {
+			"name": "Frontend Engineer",
+			"quote": "Sellfire is an all-in-one sales platform for inside sales teams. It offers all the necessary features in one software, including dial functions, real-time reporting, coaching and development, pipeline management, and automated lead management. Sellfire supports team scaling while improving sales performance. With real-time call coaching and report display, it quickly identifies and improves sales opportunities. By using Sellfire, sales teams can operate efficiently and effectively, accelerating business growth.",
+			"type": "SAAS Startup",
+			"location": "Austin, TX",
+			"description": "Worked part-time as a front-end engineer for Sellfire while attending a Japanese language school in Japan."
+		}
 	},
 	"SKILLS": {
 		"title": "Skills",

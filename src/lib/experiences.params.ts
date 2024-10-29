@@ -59,26 +59,27 @@ const MY_EXPERIENCES: Array<Experience> = [
 			{ src: getAssetURL(Assets.Rapptr2), label: '' },
 			{ src: getAssetURL(Assets.Rapptr3), label: '' }
 		]
-	},
-	{
-		slug: 'sellfire',
-		company: 'Sellfire',
-		description: 'EXPERIENCES.sellfire.description',
-		contract: ContractType.PartTime,
-		type: 'EXPERIENCES.sellfire.type',
-		location: 'EXPERIENCES.sellfire.location',
-		period: { from: new Date(2024, 6) },
-		skills: getSkills('fe', 'be', 'dev-tools'),
-		name: 'EXPERIENCES.sellfire.name',
-		color: '#ffffff',
-		links: [{ to: 'https://sellfire.ai/', label: 'Sellfire', newTab: true }],
-		quote: {
-			text: 'EXPERIENCES.sellfire.quote',
-			link: { to: 'https://sellfire.ai/', label: 'Sellfire', newTab: true }
-		},
-		logo: Assets.Sellfire,
-		shortDescription: 'test'
 	}
+	// ,
+	// {
+	// 	slug: 'sellfire',
+	// 	company: 'Sellfire',
+	// 	description: 'EXPERIENCES.sellfire.description',
+	// 	contract: ContractType.PartTime,
+	// 	type: 'EXPERIENCES.sellfire.type',
+	// 	location: 'EXPERIENCES.sellfire.location',
+	// 	period: { from: new Date(2024, 6) },
+	// 	skills: getSkills('fe', 'be', 'dev-tools'),
+	// 	name: 'EXPERIENCES.sellfire.name',
+	// 	color: '#ffffff',
+	// 	links: [{ to: 'https://sellfire.ai/', label: 'Sellfire', newTab: true }],
+	// 	quote: {
+	// 		text: 'EXPERIENCES.sellfire.quote',
+	// 		link: { to: 'https://sellfire.ai/', label: 'Sellfire', newTab: true }
+	// 	},
+	// 	logo: Assets.Sellfire,
+	// 	shortDescription: 'test'
+	// }
 ];
 
 export default MY_EXPERIENCES;
