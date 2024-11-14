@@ -23,7 +23,6 @@
 <div class={`body contents ${$theme === 'dark' ? 'theme-dark' : 'theme-light'}`}>
 	<NavMenu />
 	<div class="content container">
-		<HeroLetters />
 		{@render children?.()}
 	</div>
 </div>

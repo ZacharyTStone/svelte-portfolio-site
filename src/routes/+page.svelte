@@ -22,6 +22,7 @@
 	<title>{useTitle(title, TITLE_SUFFIX)}</title>
 </svelte:head>
 
+<HeroLetters />
 <div class="hero-container">
 	<div class="hero-content">
 		<h1 class="hero-title" in:fly={{ y: -50, duration: 1000, easing: cubicOut }}>
