@@ -1,106 +1,151 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { writable } from 'svelte/store'; // Importing writable store
-	import { fade, fly } from 'svelte/transition'; // Importing fade and fly transitions
-	import { cubicOut } from 'svelte/easing'; // Importing cubicOut easing
-	import Carrousel from '$lib/components/Carrousel/Carrousel.svelte';
-	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
+	import { fade, fly } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
 	import Icon from '$lib/components/Icon/Icon.svelte';
-	import MainTitle from '$lib/components/MainTitle/MainTitle.svelte';
 	import { HOME, TITLE_SUFFIX, getPlatfromIcon } from '$lib/params';
-	import MY_SKILLS from '$lib/skills.params';
 	import { useTitle } from '$lib/utils/helpers';
 	import { _ } from 'svelte-i18n';
 	import { base } from '$app/paths';
 	import { getAssetURL } from '$lib/data/assets';
+	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
+	import Card from '$lib/components/Card/Card.svelte';
 
-	let { description, lastName, links, name, title, skills } = HOME;
+	let { description, lastName, links, name, title } = HOME;
 
-	// Set page title
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
-		const interval = setInterval(cycleSkills, 2000); // Cycle every 2 seconds
-		return () => clearInterval(interval);
 	});
-
-	// Store to hold the index of the currently displayed skill
-	const currentIndex = writable(0);
-	let isHovering = writable(false);
-
-	// Function to cycle through skills
-	function cycleSkills() {
-		if (!$isHovering) {
-			currentIndex.update((value) => (value + 1) % MY_SKILLS.length);
-		}
-	}
 </script>
 
 <svelte:head>
 	<title>{useTitle(title, TITLE_SUFFIX)}</title>
 </svelte:head>
 
-<div class="min-h-screen flex flex-col justify-center items-center p-4 md:p-8 fadeIn">
-	<div class="max-w-4xl w-full space-y-8">
-		<div class="text-center md:text-left space-y-4">
-			<h1 class="text-4xl md:text-6xl font-bold tracking-tight">
-				<span class="text-gray-400">
-					{$_(name)}
-					{$_(lastName)}
-				</span>
-			</h1>
-			<p class="text-xl md:text-2xl text-gray-600 font-light leading-relaxed">
-				{$_(description)}
-			</p>
-		</div>
-
-		<div class="flex flex-wrap justify-center md:justify-start gap-4">
-			{#each links as { platform, link }}
+<div class="hero-container">
+	<div class="hero-content">
+		<h1 class="hero-title" in:fly={{ y: -50, duration: 1000, easing: cubicOut }}>
+			<span class="text-color">
+				{$_(name)}
+				{$_(lastName)}
+			</span>
+		</h1>
+		<p class="hero-description" in:fade={{ delay: 500, duration: 1000 }}>
+			{$_(description)}
+		</p>
+		<div class="social-icons" in:fly={{ y: 50, delay: 1000, duration: 500, easing: cubicOut }}>
+			{#each links as { platform, link }, i}
 				<a
 					href={link}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="transform hover:scale-110 transition-transform duration-200"
+					class="social-icon"
+					style="animation-delay: {i * 200}ms"
 				>
-					<ChipIcon name={platform}>
-						<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'24px'} />
-					</ChipIcon>
+					<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'32px'} />
 				</a>
 			{/each}
 		</div>
-
-		<div class="mt-12 relative h-64 md:h-96">
-			{#if MY_SKILLS.length > 0}
-				{#key $currentIndex}
-					<a href={`${base}/skills/${MY_SKILLS[$currentIndex].slug}`} class="group no-underline">
-						<div
-							in:fade={{ duration: 400 }}
-							out:fade={{ duration: 400 }}
-							class="absolute inset-0 flex items-center justify-center flex-col"
-							onmouseenter={() => isHovering.set(true)}
-							onmouseleave={() => isHovering.set(false)}
-							role="button"
-							tabindex="0"
-							aria-label={MY_SKILLS[$currentIndex].name}
-						>
-							<img
-								src={getAssetURL(MY_SKILLS[$currentIndex].logo)}
-								alt={$_(MY_SKILLS[$currentIndex].name)}
-								class="w-32 h-32 md:w-48 md:h-48 object-contain "
-							/>
-							<p class="mt-4 text-center text-gray-400 text-lg md:text-xl fadeInFast">
-								{$_(MY_SKILLS[$currentIndex].name)}
-							</p>
-						</div>
-					</a>
-				{/key}
-			{/if}
+		<div class="cta-button" in:fly={{ y: 50, delay: 1500, duration: 500, easing: cubicOut }}>
+			<Card href={base + '/projects'}>View Projects</Card>
 		</div>
 	</div>
 </div>
 
 <style>
-	:global(body) {
-		background-color: #1a202c;
-		color: white;
+	.hero-container {
+		min-height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: transparent;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.hero-content {
+		text-align: center;
+		max-width: 800px;
+		z-index: 2;
+	}
+
+	.hero-title {
+		font-size: 4rem;
+		font-weight: bold;
+		margin-bottom: 1rem;
+	}
+
+	.text-color {
+		color: var(--text);
+	}
+
+	.hero-description {
+		font-size: 1.5rem;
+		color: var(--text);
+		margin-bottom: 2rem;
+	}
+
+	.social-icons {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.social-icon {
+		background-color: var(--card-bg);
+		border-radius: 50%;
+		width: 60px;
+		height: 60px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition:
+			transform 0.3s ease,
+			background-color 0.3s ease;
+		animation: fadeInUp 0.5s ease forwards;
+		opacity: 0;
+	}
+
+	.social-icon:hover {
+		transform: translateY(-5px);
+		background-color: var(--card-bg-hover);
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 1rem 2rem;
+		border-radius: 0.25rem;
+		font-weight: 600;
+		text-align: center;
+		text-decoration: none;
+		transition:
+			background-color 0.3s ease,
+			transform 0.3s ease;
+	}
+
+	.btn-primary {
+		background-color: var(--accent);
+		color: var(--text-inverse);
+	}
+
+	.btn-lg {
+		font-size: 1.25rem;
+	}
+
+	.btn:hover {
+		background-color: var(--accent-hover);
+		transform: translateY(-2px);
+	}
+
+	@keyframes fadeInUp {
+		0% {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 </style>

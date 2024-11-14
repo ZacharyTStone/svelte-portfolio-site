@@ -7,6 +7,7 @@
 	import { dev } from '$app/environment';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
 	interface Props {
 		children?: import('svelte').Snippet;
 	}
@@ -22,6 +23,7 @@
 <div class={`body contents ${$theme === 'dark' ? 'theme-dark' : 'theme-light'}`}>
 	<NavMenu />
 	<div class="content container">
+		<HeroLetters />
 		{@render children?.()}
 	</div>
 </div>
