@@ -111,4 +111,15 @@
 		color: var(--accent-text);
 		margin-bottom: 2rem;
 	}
+
+	/* Media query for mobile devices */
+	@media (max-width: 640px) {
+		.hero-title {
+			font-size: 2rem; /* Smaller size for mobile */
+		}
+
+		.hero-description {
+			font-size: 1.2rem; /* Smaller size for mobile */
+		}
+	}
 </style>
