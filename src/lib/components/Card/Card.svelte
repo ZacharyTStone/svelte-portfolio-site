@@ -15,6 +15,7 @@
 		bgImg?: string | undefined;
 		fadeDelay?: number;
 		children?: import('svelte').Snippet;
+		newtab?: boolean;
 	}
 
 	let {
@@ -25,7 +26,8 @@
 		href = undefined,
 		bgImg = undefined,
 		fadeDelay = 0,
-		children
+		children,
+		newtab = false
 	}: Props = $props();
 
 	onMount(() => {
@@ -49,7 +51,8 @@
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <svelte:element
-	this={href ? 'a' : 'div'}
+	this={href ? (newtab ? 'a' : 'a') : 'div'}
+	target={newtab ? '_blank' : '_self'}
 	{href}
 	bind:this={el}
 	onmousemove={handleHover}
@@ -74,7 +77,8 @@
 		--drop-y: 0;
 		--rot-x: 0;
 		--rot-y: 0;
-		background: linear-gradient(90deg, var(--main) 0%, var(--main) 60%, var(--main-60) 100%),
+		background:
+			linear-gradient(90deg, var(--main) 0%, var(--main) 60%, var(--main-60) 100%),
 			no-repeat right 40% / 40% var(--bg-img);
 
 		&-bg-img {

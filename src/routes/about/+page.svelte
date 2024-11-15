@@ -70,7 +70,9 @@
 						<div class="flex flex-col w-full gap-3">
 							{#each RESUME?.links as item}
 								<div in:fade={{ delay: getAnimationDelay(), duration: 500 }}>
-									<Card href={item?.to} classes={['w-full']}>{$_(item?.label)}</Card>
+									<Card newtab href={item?.to} classes={['w-full']}>
+										{$_(item?.label)}
+									</Card>
 								</div>
 							{/each}
 						</div>
