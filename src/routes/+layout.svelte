@@ -46,6 +46,7 @@
 
 		letter-spacing: 1px;
 		min-height: 100vh;
+		overflow: hidden;
 	}
 
 	:global(p) {

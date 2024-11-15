@@ -8,7 +8,6 @@
 		font-weight: bold;
 		color: var(--text-muted);
 		opacity: 0.1;
-		-webkit-text-stroke: 2px var(--accent);
 	}
 
 	@media (min-width: 1200px) {
