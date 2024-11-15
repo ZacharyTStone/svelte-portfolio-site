@@ -71,10 +71,10 @@ const MY_EXPERIENCES: Array<Experience> = [
 		skills: getSkills('fe', 'be', 'dev-tools'),
 		name: 'EXPERIENCES.sellfire.name',
 		color: '#ffffff',
-		links: [{ to: 'https://sellfire.ai/', label: 'Sellfire', newTab: true }],
+		links: [{ to: 'https://sellfire.com/', label: 'Sellfire', newTab: true }],
 		quote: {
 			text: 'EXPERIENCES.sellfire.quote',
-			link: { to: 'https://sellfire.ai/', label: 'Sellfire', newTab: true }
+			link: { to: 'https://sellfire.com/', label: 'Sellfire', newTab: true }
 		},
 		logo: Assets.Sellfire,
 		shortDescription: 'test'
