@@ -44,7 +44,7 @@
 	},
 
 	"ABOUT": {
-		"title": "自己紹介",
+		"title": "私について",
 		"full_about": "自学でフロントエンドウェブ開発を専門とするソフトウェアエンジニアです。React、Next.js、Svelteなどの最新のJavaScriptフレームワークやライブラリを使った豊富な経験があります。また、Styled ComponentsやTailwindなど、さまざまなCSSソリューションにも精通しています。",
 		"blurb1": {
 			"title": "自己PR",

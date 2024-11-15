@@ -77,7 +77,7 @@
 			cta-button"
 			in:fly={{ y: 50, delay: 1500, duration: 500, easing: cubicOut }}
 		>
-			<Card href={base + '/projects'}>View Projects</Card>
+			<Card href={base + '/about'}>{$_('ABOUT.title')}</Card>
 		</div>
 	</div>
 </div>

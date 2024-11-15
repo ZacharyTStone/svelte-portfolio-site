@@ -29,7 +29,7 @@
 	<title>{$_('NAVBAR.about')}</title>
 </svelte:head>
 
-<CommonPage title={$_('ABOUT.title')}>
+<CommonPage title={$_('NAVBAR.about')}>
 	<div class="max-w-full mx-auto px-2 py-1 relative">
 		<main
 			class="text-left flex flex-col gap-6 md:gap-6 lg:gap-12 md:flex-row lg:flex-row items-stretch"
@@ -108,7 +108,9 @@
 			height: 300px;
 			margin-top: 100px;
 		}
-		transition: transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 1.5s;
+		transition:
+			transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+			opacity 1.5s;
 		z-index: 10;
 	}
 
