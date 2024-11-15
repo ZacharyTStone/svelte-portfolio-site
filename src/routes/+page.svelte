@@ -71,7 +71,12 @@
 			{/each}
 		</div>
 
-		<div class="cta-button" in:fly={{ y: 50, delay: 1500, duration: 500, easing: cubicOut }}>
+		<div
+			class="
+			hidden lg:block
+			cta-button"
+			in:fly={{ y: 50, delay: 1500, duration: 500, easing: cubicOut }}
+		>
 			<Card href={base + '/projects'}>View Projects</Card>
 		</div>
 	</div>
