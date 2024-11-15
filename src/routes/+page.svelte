@@ -10,6 +10,7 @@
 	import { getAssetURL } from '$lib/data/assets';
 	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
 	import Card from '$lib/components/Card/Card.svelte';
+	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
 
 	let { description, lastName, links, name, title } = HOME;
 
@@ -34,17 +35,15 @@
 		<p class="hero-description" in:fade={{ delay: 500, duration: 1000 }}>
 			{$_(description)}
 		</p>
-		<div class="social-icons" in:fly={{ y: 50, delay: 1000, duration: 500, easing: cubicOut }}>
-			{#each links as { platform, link }, i}
-				<a
-					href={link}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="social-icon"
-					style="animation-delay: {i * 200}ms"
-				>
-					<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'32px'} />
-				</a>
+		<div
+			class="hidden lg:fixed bottom-0 left-0 lg:right-auto lg:left-0 flex justify-center gap-5 pb-15 px-15"
+		>
+			{#each links as { platform, link, index }}
+				<div in:fade={{ delay: 1000 + index * 100, duration: 600 }}>
+					<ChipIcon name={platform} href={link} newtab>
+						<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'24px'} />
+					</ChipIcon>
+				</div>
 			{/each}
 		</div>
 

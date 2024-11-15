@@ -23,8 +23,14 @@
 
 	.z-letter {
 		top: 3%;
-		left: 3%;
+		left: 0px;
 		animation: slideInLeft 1s ease-out;
+	}
+
+	.s-letter {
+		bottom: -10px;
+		right: 0px;
+		animation: slideInRight 1s ease-out;
 	}
 
 	@keyframes slideInLeft {
@@ -51,12 +57,6 @@
 			transform: translateX(0);
 			opacity: 0.1;
 		}
-	}
-
-	.s-letter {
-		bottom: -10px;
-		right: 0px;
-		animation: slideInRight 1s ease-out;
 	}
 
 	@keyframes slideInRight {
