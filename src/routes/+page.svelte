@@ -11,11 +11,38 @@
 	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
 	import Card from '$lib/components/Card/Card.svelte';
 	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
+	import { locale } from 'svelte-i18n';
 
 	let { description, lastName, links, name, title } = HOME;
 
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
+	});
+
+	const calculateNameIntroduction = ({
+		name,
+		lastName,
+		english
+	}: {
+		name: string;
+		lastName: string;
+		english: boolean;
+	}) => {
+		const now = new Date();
+		const hours = now.getHours();
+
+		if (english) {
+			return hours < 12 ? 'Good Morning 👋' : hours < 18 ? 'Good Afternoon 👋' : 'Good Evening 👋';
+		}
+
+		return hours < 12 ? 'おはよう 👋' : hours < 18 ? 'こんにちは 👋' : 'こんばんは 👋';
+	};
+
+	// Reactive statement to update the greeting when currentLocale changes
+	$: greeting = calculateNameIntroduction({
+		name: $_(name),
+		lastName: $_(lastName),
+		english: $locale?.includes('en') ?? false
 	});
 </script>
 
@@ -27,18 +54,15 @@
 <div class="hero-container">
 	<div class="hero-content">
 		<h1 class="hero-title" in:fly={{ y: -50, duration: 1000, easing: cubicOut }}>
-			<span class="text-color">
-				{$_(name)}
-				{$_(lastName)}
-			</span>
+			{greeting}
 		</h1>
-		<p class="hero-description" in:fade={{ delay: 500, duration: 1000 }}>
+		<h3 class="hero-description" in:fade={{ delay: 500, duration: 1000 }}>
 			{$_(description)}
-		</p>
+		</h3>
 		<div
 			class="hidden lg:fixed bottom-0 left-0 lg:right-auto lg:left-0 flex justify-center gap-5 pb-15 px-15"
 		>
-			{#each links as { platform, link, index }}
+			{#each links as { platform, link }, index}
 				<div in:fade={{ delay: 1000 + index * 100, duration: 600 }}>
 					<ChipIcon name={platform} href={link} newtab>
 						<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'24px'} />
@@ -71,82 +95,15 @@
 	}
 
 	.hero-title {
-		font-size: 4rem;
+		font-size: 3rem;
 		font-weight: bold;
 		margin-bottom: 1rem;
-	}
-
-	.text-color {
-		color: var(--text);
+		color: var(--main-text);
 	}
 
 	.hero-description {
 		font-size: 1.5rem;
-		color: var(--text);
+		color: var(--accent-text);
 		margin-bottom: 2rem;
-	}
-
-	.social-icons {
-		display: flex;
-		justify-content: center;
-		gap: 1rem;
-		margin-bottom: 2rem;
-	}
-
-	.social-icon {
-		background-color: var(--card-bg);
-		border-radius: 50%;
-		width: 60px;
-		height: 60px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		transition:
-			transform 0.3s ease,
-			background-color 0.3s ease;
-		animation: fadeInUp 0.5s ease forwards;
-		opacity: 0;
-	}
-
-	.social-icon:hover {
-		transform: translateY(-5px);
-		background-color: var(--card-bg-hover);
-	}
-
-	.btn {
-		display: inline-block;
-		padding: 1rem 2rem;
-		border-radius: 0.25rem;
-		font-weight: 600;
-		text-align: center;
-		text-decoration: none;
-		transition:
-			background-color 0.3s ease,
-			transform 0.3s ease;
-	}
-
-	.btn-primary {
-		background-color: var(--accent);
-		color: var(--text-inverse);
-	}
-
-	.btn-lg {
-		font-size: 1.25rem;
-	}
-
-	.btn:hover {
-		background-color: var(--accent-hover);
-		transform: translateY(-2px);
-	}
-
-	@keyframes fadeInUp {
-		0% {
-			opacity: 0;
-			transform: translateY(20px);
-		}
-		100% {
-			opacity: 1;
-			transform: translateY(0);
-		}
 	}
 </style>

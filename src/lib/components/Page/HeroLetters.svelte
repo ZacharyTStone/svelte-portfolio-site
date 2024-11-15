@@ -1,5 +1,5 @@
-<span class="hero-letter z-letter">Z</span>
-<span class="hero-letter s-letter">S</span>
+<span class="hero-letter z-letter">ZACH</span>
+<span class="hero-letter s-letter">STONE</span>
 
 <style>
 	.hero-letter {
@@ -7,7 +7,7 @@
 		font-size: 30vw;
 		font-weight: bold;
 		color: var(--text-muted);
-		opacity: 0.03;
+		opacity: 0.1;
 		-webkit-text-stroke: 2px var(--accent);
 	}
 
@@ -18,7 +18,7 @@
 	}
 
 	:global(:root[data-theme='dark']) .hero-letter {
-		opacity: 0.1;
+		opacity: 0.3;
 	}
 
 	.z-letter {
@@ -40,7 +40,7 @@
 		}
 		100% {
 			transform: translateX(0);
-			opacity: 0.03;
+			opacity: 0.1;
 		}
 	}
 
@@ -55,7 +55,7 @@
 		}
 		100% {
 			transform: translateX(0);
-			opacity: 0.1;
+			opacity: 0.3;
 		}
 	}
 
@@ -66,7 +66,7 @@
 		}
 		100% {
 			transform: translateX(0);
-			opacity: 0.03;
+			opacity: 0.1;
 		}
 	}
 
@@ -81,7 +81,7 @@
 		}
 		100% {
 			transform: translateX(0);
-			opacity: 0.1;
+			opacity: 0.3;
 		}
 	}
 </style>
