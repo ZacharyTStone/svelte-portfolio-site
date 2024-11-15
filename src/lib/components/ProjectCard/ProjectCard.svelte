@@ -56,23 +56,6 @@
 		width: 100%;
 	}
 
-	.project-container:hover .project-title {
-		background: linear-gradient(
-			90deg,
-			#ff0000,
-			#d96d02,
-			#c9c900,
-			#01c901,
-			#0000ff,
-			#4b0082,
-			#8b00ff
-		);
-		background-size: 400%;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		animation: rainbow 5s linear infinite;
-	}
-
 	:global(.project-image) {
 		width: 100%;
 		height: 200px;

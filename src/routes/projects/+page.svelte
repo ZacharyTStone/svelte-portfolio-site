@@ -12,19 +12,26 @@
 	import { _ } from 'svelte-i18n';
 	import { fade } from 'svelte/transition';
 	import { writable } from 'svelte/store';
+
 	interface SkillFilter extends Skill {
 		isSelected?: boolean;
 	}
 
 	const { items, title } = PROJECTS;
 
-	let filters: Array<SkillFilter> = $state(MY_SKILLS.filter((it) =>
-		items.some((project) => project.skills.some((skill) => skill.slug === it.slug))
-	));
+	let filters: Array<SkillFilter> = $state(
+		MY_SKILLS.filter((it) =>
+			items.some((project) => project.skills.some((skill) => skill.slug === it.slug))
+		)
+	);
 
 	let search = $state('');
-
 	let displayed: Array<Project> = $state([]);
+	const visibleItems = writable(new Set());
+	let isInitialized = $state(false);
+	const staggerDelay = 100;
+	let featuredTitleVisible = $state(false);
+	let otherTitleVisible = $state(false);
 
 	const isSelected = (slug: string): boolean =>
 		filters.some((item) => item.slug === slug && item.isSelected);
@@ -38,7 +45,7 @@
 		});
 	};
 
-	run(() => {
+	const updateDisplayedProjects = () => {
 		const selectedFilters = filters.filter((tech) => tech.isSelected);
 		displayed = items.filter((project) => {
 			const isFiltered =
@@ -51,34 +58,15 @@
 				$_(project.name).trim().toLowerCase().includes(search.trim().toLowerCase());
 			return isFiltered && isSearched && !project.dont_show;
 		});
-	});
+	};
 
 	const onSearch = (e: CustomEvent<{ search: string }>) => {
 		search = e.detail.search;
 	};
 
-	const visibleItems = writable(new Set());
-
-	let isInitialized = $state(false);
-	const staggerDelay = 100; // milliseconds between each project's fade-in
-
-	let featuredTitleVisible = $state(false);
-	let otherTitleVisible = $state(false);
-
-	onMount(() => {
-		const query = location.search;
-		if (query) {
-			const queryParams = new URLSearchParams(location.search);
-			const item = queryParams.get('item');
-			if (item) {
-				search = item;
-			}
-		}
-
-		// Set isInitialized to true immediately
+	const initializeProjects = () => {
 		isInitialized = true;
 
-		// Fade in projects gradually
 		let index = 0;
 		const interval = setInterval(() => {
 			if (index < displayed.length) {
@@ -92,14 +80,28 @@
 			}
 		}, staggerDelay);
 
-		// Set titles visible after a short delay
 		setTimeout(() => {
 			featuredTitleVisible = true;
 			setTimeout(() => {
 				otherTitleVisible = true;
-			}, 300); // Delay for the second title
-		}, 200); // Delay for the first title
+			}, 300);
+		}, 200);
+	};
+
+	onMount(() => {
+		const query = location.search;
+		if (query) {
+			const queryParams = new URLSearchParams(location.search);
+			const item = queryParams.get('item');
+			if (item) {
+				search = item;
+			}
+		}
+
+		initializeProjects();
 	});
+
+	run(updateDisplayedProjects);
 </script>
 
 <SearchPage {title} on:search={onSearch}>
@@ -108,7 +110,6 @@
 			<Chip
 				classes={'text-0.9em md:text-0.8em'}
 				on:click={() => {
-					// clear all
 					filters = filters.map((tech) => {
 						tech.isSelected = false;
 						return tech;
@@ -142,6 +143,10 @@
 			>
 				{$_(PROJECTS.featured_projects ?? 'Featured Projects')}
 			</h4>
+		{:else}
+			<div class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto opacity-0">
+				Placeholder
+			</div>
 		{/if}
 		<div class="projects-list mt-5 mx-auto">
 			{#each displayed.filter((project) => project.featured) as project, index (project.slug)}
@@ -159,10 +164,14 @@
 			>
 				{$_(PROJECTS.other_projects ?? 'Other Projects')}
 			</h4>
+		{:else}
+			<div class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto opacity-0">
+				Placeholder
+			</div>
 		{/if}
 		<div class="projects-list mt-5 mx-auto">
 			{#each displayed.filter((project) => !project.featured) as project, index (project.slug)}
-				{#if $visibleItems.has(index + displayed.filter((p) => p.featured).length)}
+				{#if $visibleItems.has(index)}
 					<div in:fade={{ duration: 300 }}>
 						<ProjectCard {project} />
 					</div>
@@ -178,14 +187,14 @@
 		grid-template-columns: repeat(3, 1fr);
 		gap: 20px;
 		width: 100%;
-		min-height: 200px; // Add a minimum height to prevent collapsing
+		min-height: 282px;
 
 		@media (max-width: 1350px) {
 			grid-template-columns: repeat(2, 1fr);
 		}
 		@media (max-width: 850px) {
 			grid-template-columns: repeat(1, 1fr);
-			gap: 70px; // Increase the gap for mobile screens
+			gap: 70px;
 		}
 	}
 </style>
