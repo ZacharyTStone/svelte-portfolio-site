@@ -11,6 +11,12 @@
 		-webkit-text-stroke: 2px var(--accent);
 	}
 
+	@media (min-width: 1200px) {
+		.hero-letter {
+			font-size: 15vw;
+		}
+	}
+
 	:global(:root[data-theme='dark']) .hero-letter {
 		opacity: 0.1;
 	}
