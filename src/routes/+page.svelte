@@ -23,11 +23,11 @@
 
 	const calculateNameIntroduction = ({ language }: { language: string | null }) => {
 		if (language === 'en') {
-			return hours < 12 ? 'Good Morning 👋' : hours < 18 ? 'Good Afternoon 👋' : 'Good Evening 👋';
+			return hours < 12 ? 'Good Morning' : hours < 18 ? 'Good Afternoon' : 'Good Evening';
 		}
 
 		if (language === 'ja') {
-			return hours < 12 ? 'おはよう 👋' : hours < 18 ? 'こんにちは 👋' : 'こんばんは 👋';
+			return hours < 12 ? 'おはよう' : hours < 18 ? 'こんにちは' : 'こんばんは';
 		}
 
 		return '';
@@ -47,7 +47,7 @@
 <div class="hero-container">
 	<div class="hero-content">
 		<h1 class="hero-title" in:fly={{ y: -50, duration: 1000, easing: cubicOut }}>
-			{greeting}
+			<span class="text-gradient">{greeting}</span>
 		</h1>
 		<h3 class="hero-description" in:fade={{ delay: 500, duration: 1000 }}>
 			{$_(description)}
@@ -103,6 +103,9 @@
 		font-size: 1.5rem;
 		color: var(--accent-text);
 		margin-bottom: 2rem;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	/* Media query for mobile devices */
@@ -113,6 +116,16 @@
 
 		.hero-description {
 			font-size: 1.2rem; /* Smaller size for mobile */
+		}
+	}
+
+	.text-gradient {
+		color: var(--accent-text-hover);
+	}
+
+	@keyframes shimmer {
+		to {
+			background-position: 200% 90%;
 		}
 	}
 </style>

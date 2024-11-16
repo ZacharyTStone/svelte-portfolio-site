@@ -1,7 +1,17 @@
-<span class="hero-letter z-letter">ZACH</span>
-<span class="hero-letter s-letter">STONE</span>
+<div class="hero-letters">
+	<span class="hero-letter z-letter">ZACH</span>
+	<span class="hero-letter s-letter">STONE</span>
+</div>
 
 <style>
+	.hero-letters {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
 	.hero-letter {
 		position: absolute;
 		font-size: 25vw;
