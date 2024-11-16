@@ -3,7 +3,7 @@
 		"title": "Home",
 		"name": "Zach",
 		"lastName": "Stone",
-		"description": "I'm a software engineer specializing in front-end web development with Japanese language skills."
+		"description": "I'm a software engineer with Japanese language skills specializing in front-end web development."
 	},
 	"NAVBAR": {
 		"home": "Home",
@@ -20,7 +20,7 @@
 		"darkMode": "Dark Mode"
 	},
 	"ABOUT": {
-		"title": "About Me",
+		"title": "Learn About Me",
 		"full_about": "I'm a self-taught software engineer specializing in front-end web development. I have extensive experience working with modern JavaScript frameworks and libraries like React, Next JS, Svelte, etc.  I also am comfortable with various CSS solutions such as Styled Components and Tailwind. ",
 		"blurb1": {
 			"title": "Core Values",
