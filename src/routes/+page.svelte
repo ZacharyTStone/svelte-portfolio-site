@@ -15,6 +15,8 @@
 
 	let { description, lastName, links, name, title } = HOME;
 
+	let hours = new Date().getHours();
+
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
 	});
@@ -28,9 +30,6 @@
 		lastName: string;
 		english: boolean;
 	}) => {
-		const now = new Date();
-		const hours = now.getHours();
-
 		if (english) {
 			return hours < 12 ? 'Good Morning 👋' : hours < 18 ? 'Good Afternoon 👋' : 'Good Evening 👋';
 		}
