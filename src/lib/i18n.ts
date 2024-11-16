@@ -2,7 +2,7 @@
 import { browser } from '$app/environment';
 import { init, register } from 'svelte-i18n';
 
-const defaultLocale = 'en';
+const defaultLocale = window.navigator.language.includes('ja') ? 'ja' : 'en';
 
 register('ja', () => import('./locales/ja.json'));
 register('en', () => import('./locales/en.json'));
