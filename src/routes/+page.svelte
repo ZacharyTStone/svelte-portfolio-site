@@ -21,27 +21,21 @@
 		document.title = useTitle(title, TITLE_SUFFIX);
 	});
 
-	const calculateNameIntroduction = ({
-		name,
-		lastName,
-		english
-	}: {
-		name: string;
-		lastName: string;
-		english: boolean;
-	}) => {
-		if (english) {
+	const calculateNameIntroduction = ({ language }: { language: string | null }) => {
+		if (language === 'en') {
 			return hours < 12 ? 'Good Morning 👋' : hours < 18 ? 'Good Afternoon 👋' : 'Good Evening 👋';
 		}
 
-		return hours < 12 ? 'おはよう 👋' : hours < 18 ? 'こんにちは 👋' : 'こんばんは 👋';
+		if (language === 'ja') {
+			return hours < 12 ? 'おはよう 👋' : hours < 18 ? 'こんにちは 👋' : 'こんばんは 👋';
+		}
+
+		return '';
 	};
 
 	// Reactive statement to update the greeting when currentLocale changes
 	$: greeting = calculateNameIntroduction({
-		name: $_(name),
-		lastName: $_(lastName),
-		english: $locale?.includes('en') ?? false
+		language: $locale?.includes('en') ? 'en' : $locale?.includes('ja') ? 'ja' : null
 	});
 </script>
 
