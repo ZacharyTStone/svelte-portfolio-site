@@ -12,22 +12,23 @@
 	import Card from '$lib/components/Card/Card.svelte';
 	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
 	import { locale } from 'svelte-i18n';
+	import { goto } from '$app/navigation';
 
 	let { description, lastName, links, name, title } = HOME;
-
-	let hours = new Date().getHours();
 
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
 	});
 
 	const calculateNameIntroduction = ({ language }: { language: string | null }) => {
+		const hours = new Date().getHours();
+
 		if (language === 'en') {
 			return hours < 12 ? 'Good Morning' : hours < 18 ? 'Good Afternoon' : 'Good Evening';
 		}
 
 		if (language === 'ja') {
-			return hours < 12 ? 'おはよう' : hours < 18 ? 'こんにちは' : 'こんばんは';
+			return hours < 12 ? 'おはようございます' : hours < 18 ? 'こんにちは' : 'こんばんは';
 		}
 
 		return '';
@@ -70,7 +71,7 @@
 			cta-button"
 			in:fly={{ y: 50, delay: 1500, duration: 500, easing: cubicOut }}
 		>
-			<Card href={base + '/about'}>{$_('ABOUT.title')}</Card>
+			<Card href={`${base}/about`}>{$_('ABOUT.title')}</Card>
 		</div>
 	</div>
 </div>
