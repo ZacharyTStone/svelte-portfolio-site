@@ -38,6 +38,15 @@
 	$: greeting = calculateNameIntroduction({
 		language: $locale?.includes('en') ? 'en' : $locale?.includes('ja') ? 'ja' : null
 	});
+
+	async function handleNavigation(event: Event, to: string) {
+		event.preventDefault();
+		try {
+			await goto(`${base}${to}`);
+		} catch (error) {
+			console.error('Navigation error:', error);
+		}
+	}
 </script>
 
 <svelte:head>
@@ -71,7 +80,7 @@
 			cta-button"
 			in:fly={{ y: 50, delay: 1500, duration: 500, easing: cubicOut }}
 		>
-			<Card href={`${base}/about`}>{$_('ABOUT.title')}</Card>
+			<Card onClick={(e) => handleNavigation(e, '/about')}>{$_('ABOUT.title')}</Card>
 		</div>
 	</div>
 </div>

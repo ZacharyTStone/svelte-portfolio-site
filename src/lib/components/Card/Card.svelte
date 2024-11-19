@@ -4,7 +4,7 @@
 	import { changeColorOpacity } from '$lib/utils/helpers';
 	import { fade } from 'svelte/transition';
 
-	let el: HTMLElement = $state();
+	let el: HTMLElement | undefined = $state();
 
 	interface Props {
 		color?: string;
@@ -16,6 +16,7 @@
 		fadeDelay?: number;
 		children?: import('svelte').Snippet;
 		newtab?: boolean;
+		onClick?: (event: Event) => void;
 	}
 
 	let {
@@ -27,7 +28,8 @@
 		bgImg = undefined,
 		fadeDelay = 0,
 		children,
-		newtab = false
+		newtab = false,
+		onClick
 	}: Props = $props();
 
 	onMount(() => {
@@ -61,6 +63,7 @@
 	)}`}
 	style={color}
 	transition:fade={{ delay: fadeDelay, duration: 300 }}
+	onclick={onClick}
 >
 	<div class="card-bg-img flex-1 flex flex-col p-15px rounded-15px">
 		{@render children?.()}

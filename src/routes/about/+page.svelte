@@ -7,6 +7,7 @@
 	import { _ } from 'svelte-i18n';
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 
 	let { description, lastName, links, name, title, skills } = HOME;
 	let fadeInDelay = 0;
@@ -22,6 +23,20 @@
 		const delay = fadeInDelay;
 		fadeInDelay += 200; // Increase delay for each subsequent item
 		return delay;
+	}
+
+	async function handleNavigation(event: Event, to: string, offPlatform = false) {
+		event.preventDefault();
+
+		if (offPlatform) {
+			window.open(to, '_blank');
+		} else {
+			try {
+				await goto(to);
+			} catch (error) {
+				console.error('Navigation error:', error);
+			}
+		}
 	}
 </script>
 
@@ -70,7 +85,11 @@
 						<div class="flex flex-col w-full gap-3">
 							{#each RESUME?.links as item}
 								<div in:fade={{ delay: getAnimationDelay(), duration: 500 }}>
-									<Card newtab href={item?.to} classes={['w-full']}>
+									<Card
+										newtab
+										onClick={(e) => handleNavigation(e, item?.to, true)}
+										classes={['w-full']}
+									>
 										{$_(item?.label)}
 									</Card>
 								</div>
