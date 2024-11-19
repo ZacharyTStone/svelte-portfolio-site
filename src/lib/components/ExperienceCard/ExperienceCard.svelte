@@ -1,15 +1,13 @@
 <script lang="ts">
+	import { getAssetURL } from '$lib/data/assets';
 	import type { Experience } from '$lib/types';
-	import { calculateExperiencePeriod } from '$lib/utils/helpers';
+	import { calculateExperiencePeriod, handleNavigation } from '$lib/utils/helpers';
+	import { _, locale } from 'svelte-i18n';
 	import Card from '../Card/Card.svelte';
 	import CardLogo from '../Card/CardLogo.svelte';
 	import CardTitle from '../Card/CardTitle.svelte';
 	import ChipIcon from '../Chip/ChipIcon.svelte';
-	import { getAssetURL } from '$lib/data/assets';
-	import { base } from '$app/paths';
 	import UIcon from '../Icon/UIcon.svelte';
-	import { _ } from 'svelte-i18n';
-	import { locale } from 'svelte-i18n';
 
 	interface Props {
 		experience: Experience;
@@ -17,14 +15,20 @@
 
 	let { experience }: Props = $props();
 
-	let { period, startYear, endYear } = $derived(calculateExperiencePeriod(
-		experience?.period?.from,
-		experience?.period?.to ?? new Date(),
-		$locale ?? 'en'
-	));
+	let { period, startYear, endYear } = $derived(
+		calculateExperiencePeriod(
+			experience?.period?.from,
+			experience?.period?.to ?? new Date(),
+			$locale ?? 'en'
+		)
+	);
 </script>
 
-<Card margin="0px 0px 20px 0px" tiltDegree={2} href="{base}/experience/{experience.slug}">
+<Card
+	margin="0px 0px 20px 0px"
+	tiltDegree={2}
+	onClick={(e) => handleNavigation(e, `/experience/${experience.slug}`)}
+>
 	<div class="col md:flex-row items-start gap-5 md:gap-1">
 		<CardLogo src={getAssetURL(experience.logo)} alt={experience.company} size={75} />
 		<div class="col ml-0 md:ml-[20px] gap-3 w-full">
@@ -53,7 +57,7 @@
 					<ChipIcon
 						logo={getAssetURL(skill.logo)}
 						name={$_(skill.name)}
-						href="{base}/skills/{skill.slug}"
+						onClick={(e) => handleNavigation(e, `/skills/${skill.slug}`)}
 					/>
 				{/each}
 			</div>

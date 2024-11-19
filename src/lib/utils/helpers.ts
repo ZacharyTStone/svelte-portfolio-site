@@ -1,3 +1,6 @@
+import { goto } from '$app/navigation';
+import { base } from '$app/paths';
+
 export const countMonths = (from: Date, to: Date = new Date()): number => {
 	let firstYear = 0;
 	let wholeYears = 0;
@@ -166,4 +169,18 @@ export function calculateExperiencePeriod(fromDate: Date, toDate: Date, language
 		remainingMonths,
 		period
 	};
+}
+
+export async function handleNavigation(event: Event, to: string, offPlatform = false) {
+	event.preventDefault();
+
+	if (offPlatform) {
+		window.open(to, '_blank');
+	} else {
+		try {
+			await goto(to);
+		} catch (error) {
+			console.error('Navigation error:', error);
+		}
+	}
 }

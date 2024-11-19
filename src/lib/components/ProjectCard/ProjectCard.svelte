@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import { getAssetURL } from '$lib/data/assets';
 	import type { Project } from '$lib/types';
+	import { handleNavigation } from '$lib/utils/helpers';
 	import { _ } from 'svelte-i18n';
 	import Card from '../Card/Card.svelte';
 	import Image from '../Image/Image.svelte';
-	import { goto } from '$app/navigation';
 
 	interface Props {
 		project: Project;
@@ -14,15 +13,6 @@
 	let { project }: Props = $props();
 
 	const imageSrc = getAssetURL(project.logo);
-
-	async function handleNavigation(event: Event, to: string) {
-		event.preventDefault();
-		try {
-			await goto(`${base}${to}`);
-		} catch (error) {
-			console.error('Navigation error:', error);
-		}
-	}
 </script>
 
 <div class="project-container">

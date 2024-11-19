@@ -12,6 +12,7 @@
 	import Card from '$lib/components/Card/Card.svelte';
 	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
 	import { locale } from 'svelte-i18n';
+	import { handleNavigation } from '$lib/utils/helpers';
 	import { goto } from '$app/navigation';
 
 	let { description, lastName, links, name, title } = HOME;
@@ -38,15 +39,6 @@
 	$: greeting = calculateNameIntroduction({
 		language: $locale?.includes('en') ? 'en' : $locale?.includes('ja') ? 'ja' : null
 	});
-
-	async function handleNavigation(event: Event, to: string) {
-		event.preventDefault();
-		try {
-			await goto(`${base}${to}`);
-		} catch (error) {
-			console.error('Navigation error:', error);
-		}
-	}
 </script>
 
 <svelte:head>

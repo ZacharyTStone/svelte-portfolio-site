@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { theme } from '$lib/stores/theme';
 
-
 	import { _ } from 'svelte-i18n';
 
 	interface Props {
@@ -12,6 +11,7 @@
 		grayscale?: boolean;
 		href?: string | undefined;
 		children?: import('svelte').Snippet;
+		onClick?: (event: Event) => void;
 	}
 
 	let {
@@ -21,7 +21,8 @@
 		inverted = false,
 		grayscale = true,
 		href = undefined,
-		children
+		children,
+		onClick
 	}: Props = $props();
 </script>
 
@@ -35,6 +36,7 @@
 			`}
 	data-help={$_(name)}
 	target={href && newtab ? '_blank' : undefined}
+	onclick={onClick}
 >
 	{#if children}
 		{@render children?.()}

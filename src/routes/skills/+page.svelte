@@ -1,14 +1,14 @@
 <script lang="ts">
 	import Card from '$lib/components/Card/Card.svelte';
-	import { base } from '$app/paths';
-	import { SKILLS } from '$lib/params';
-	import type { Skill } from '$lib/types';
-	import { getAssetURL } from '$lib/data/assets';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CommonPage from '$lib/components/Page/CommonPage.svelte';
+	import { getAssetURL } from '$lib/data/assets';
+	import { SKILLS } from '$lib/params';
+	import type { Skill } from '$lib/types';
+	import { handleNavigation } from '$lib/utils/helpers';
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
 	import { writable } from 'svelte/store';
+	import { fade } from 'svelte/transition';
 
 	const { items } = SKILLS;
 
@@ -54,7 +54,7 @@
 								'cursor-pointer decoration-none rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg'
 							]}
 							tiltDegree={1}
-							href={`${base}/skills/${skill.slug}`}
+							onClick={(e) => handleNavigation(e, `/skills/${skill.slug}`)}
 							bgImg={getAssetURL(skill.logo)}
 						>
 							<p class="text-[var(--tertiary-text)] w-max">

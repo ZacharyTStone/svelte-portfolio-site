@@ -10,7 +10,7 @@
 	import UIcon from '../Icon/UIcon.svelte';
 	import { _ } from 'svelte-i18n';
 	import { locale } from 'svelte-i18n';
-	import { onMount } from 'svelte';
+	import { handleNavigation } from '$lib/utils/helpers';
 
 	let currentRoute = $state('/');
 	let navigationError = $state(false);
@@ -29,22 +29,6 @@
 		{ title: NavBar.career, to: '/experience', icon: 'i-carbon-development' }
 	];
 
-	onMount(() => {
-		console.log('NavMenu mounted');
-		console.log('Initial route:', currentRoute);
-		console.log('Navigation items:', items);
-	});
-
-	async function handleNavigation(event: Event, to: string) {
-		event.preventDefault();
-		try {
-			await goto(`${base}${to}`);
-		} catch (error) {
-			console.error('Navigation error:', error);
-			navigationError = true;
-		}
-	}
-
 	function toggleLanguage() {
 		if ($locale?.includes('en')) {
 			locale.set('ja');
@@ -58,7 +42,7 @@
 	<nav class="container !justify-between flex flex-row items-center text-sm">
 		<a
 			href={`${base}/`}
-			class="nav-menu-left decoration-none flex flex-row items-center cursor-pointer s:px-2 md:px-8 text-[var(--secondary-text)]  rainbow-hover"
+			class="nav-menu-left decoration-none flex flex-row items-center cursor-pointer s:px-2 md:px-8 text-[var(--secondary-text)] rainbow-hover"
 			aria-label={$_(HOME.title)}
 		>
 			<UIcon icon="i-carbon-code" classes="text-2em" alt="home" />

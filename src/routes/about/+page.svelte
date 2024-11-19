@@ -4,10 +4,10 @@
 	import Icon from '$lib/components/Icon/Icon.svelte';
 	import CommonPage from '$lib/components/Page/CommonPage.svelte';
 	import { getPlatfromIcon, HOME, RESUME } from '$lib/params';
+	import { handleNavigation } from '$lib/utils/helpers';
+	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import { fade } from 'svelte/transition';
-	import { onMount } from 'svelte';
-	import { goto } from '$app/navigation';
 
 	let { description, lastName, links, name, title, skills } = HOME;
 	let fadeInDelay = 0;
@@ -23,20 +23,6 @@
 		const delay = fadeInDelay;
 		fadeInDelay += 200; // Increase delay for each subsequent item
 		return delay;
-	}
-
-	async function handleNavigation(event: Event, to: string, offPlatform = false) {
-		event.preventDefault();
-
-		if (offPlatform) {
-			window.open(to, '_blank');
-		} else {
-			try {
-				await goto(to);
-			} catch (error) {
-				console.error('Navigation error:', error);
-			}
-		}
 	}
 </script>
 
