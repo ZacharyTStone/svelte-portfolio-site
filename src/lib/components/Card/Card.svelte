@@ -65,7 +65,9 @@
 	transition:fade={{ delay: fadeDelay, duration: 300 }}
 	onclick={onClick}
 >
-	<div class="card-bg-img flex-1 flex flex-col p-15px rounded-15px">
+	<div
+		class={`card-bg-img flex-1 flex flex-col p-15px rounded-15px ${onClick ? 'cursor-pointer' : ''}`}
+	>
 		{@render children?.()}
 	</div>
 </svelte:element>
