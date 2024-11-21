@@ -21,12 +21,12 @@
 
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
-		greeting = calculateGreeting({
+		greeting = calculateNameIntroduction({
 			language: $locale?.includes('en') ? 'en' : $locale?.includes('ja') ? 'ja' : null
 		});
 	});
 
-	const calculateGreeting = ({ language }: { language: string | null }) => {
+	const calculateNameIntroduction = ({ language }: { language: string | null }) => {
 		const hours = new Date().getHours();
 
 		if (language === 'en') {
@@ -48,19 +48,17 @@
 <HeroLetters />
 <div class="hero-container">
 	<div class="hero-content">
-		<h1 class="hero-title" in:fade={{ delay: 800, duration: 1000 }}>
-			{#if greeting}
-				<span class="text-gradient">{greeting}</span>
-			{/if}
+		<h1 class="hero-title fadeIn">
+			<span class="text-gradient">{greeting}</span>
 		</h1>
-		<h3 class="hero-description" in:fade={{ delay: 1000, duration: 1000 }}>
+		<h3 class="hero-description fadeIn">
 			{$_(description)}
 		</h3>
 		<div
 			class="hidden lg:fixed bottom-0 left-0 lg:right-auto lg:left-0 flex justify-center gap-5 pb-15 px-15"
 		>
 			{#each links as { platform, link }, index}
-				<div in:fade={{ delay: 1000 + index * 100, duration: 600 }}>
+				<div class="fadeIn">
 					<ChipIcon name={platform} href={link} newtab>
 						<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'24px'} />
 					</ChipIcon>
@@ -68,12 +66,7 @@
 			{/each}
 		</div>
 
-		<div
-			class="
-			hidden lg:block
-			cta-button"
-			in:fly={{ y: 50, delay: 1500, duration: 500, easing: cubicOut }}
-		>
+		<div class="hidden lg:block cta-button fadeIn">
 			<Card onClick={(e) => handleNavigation(e, '/about')}>{$_('ABOUT.title')}</Card>
 		</div>
 	</div>
@@ -130,6 +123,17 @@
 	@keyframes shimmer {
 		to {
 			background-position: 200% 90%;
+		}
+	}
+
+	@keyframes flyIn {
+		0% {
+			transform: translateY(50px);
+			opacity: 0;
+		}
+		100% {
+			transform: translateY(0);
+			opacity: 1;
 		}
 	}
 </style>
