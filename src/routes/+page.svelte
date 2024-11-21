@@ -21,12 +21,15 @@
 
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
-		greeting = calculateNameIntroduction({
-			language: $locale?.includes('en') ? 'en' : $locale?.includes('ja') ? 'ja' : null
-		});
 	});
 
-	const calculateNameIntroduction = ({ language }: { language: string | null }) => {
+	$: {
+		greeting = calculateGreeting({
+			language: $locale?.includes('en') ? 'en' : $locale?.includes('ja') ? 'ja' : null
+		});
+	}
+
+	const calculateGreeting = ({ language }: { language: string | null }) => {
 		const hours = new Date().getHours();
 
 		if (language === 'en') {
