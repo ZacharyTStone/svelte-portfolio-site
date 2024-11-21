@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
-	import { cubicOut } from 'svelte/easing';
+	import { cubicInOut, cubicOut } from 'svelte/easing';
 	import Icon from '$lib/components/Icon/Icon.svelte';
 	import { HOME, TITLE_SUFFIX, getPlatfromIcon } from '$lib/params';
 	import { useTitle } from '$lib/utils/helpers';
@@ -17,11 +17,16 @@
 
 	let { description, lastName, links, name, title } = HOME;
 
+	let greeting = '';
+
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
+		greeting = calculateGreeting({
+			language: $locale?.includes('en') ? 'en' : $locale?.includes('ja') ? 'ja' : null
+		});
 	});
 
-	const calculateNameIntroduction = ({ language }: { language: string | null }) => {
+	const calculateGreeting = ({ language }: { language: string | null }) => {
 		const hours = new Date().getHours();
 
 		if (language === 'en') {
@@ -34,11 +39,6 @@
 
 		return '';
 	};
-
-	// Reactive statement to update the greeting when currentLocale changes
-	$: greeting = calculateNameIntroduction({
-		language: $locale?.includes('en') ? 'en' : $locale?.includes('ja') ? 'ja' : null
-	});
 </script>
 
 <svelte:head>
@@ -48,10 +48,12 @@
 <HeroLetters />
 <div class="hero-container">
 	<div class="hero-content">
-		<h1 class="hero-title" in:fly={{ y: -50, duration: 1000, easing: cubicOut }}>
-			<span class="text-gradient">{greeting}</span>
+		<h1 class="hero-title" in:fade={{ delay: 800, duration: 1000 }}>
+			{#if greeting}
+				<span class="text-gradient">{greeting}</span>
+			{/if}
 		</h1>
-		<h3 class="hero-description" in:fade={{ delay: 500, duration: 1000 }}>
+		<h3 class="hero-description" in:fade={{ delay: 1000, duration: 1000 }}>
 			{$_(description)}
 		</h3>
 		<div
