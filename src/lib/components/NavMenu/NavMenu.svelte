@@ -46,10 +46,8 @@
 			borderRadius="0px"
 			hideBorder={true}
 		>
-			<UIcon icon="i-carbon-code" classes="text-2em" alt="home" />
-			<span class="ml-2 text-md font-bold hidden md:inline"
-				>{$_(HOME.name)} {$_(HOME.lastName)}</span
-			>
+			<UIcon icon="i-carbon-code" classes="text-1.3em md:text-1.5em" alt="home" />
+			<span class="nav-menu-item-label hidden md:inline">{$_(HOME.name)} {$_(HOME.lastName)}</span>
 		</Chip>
 
 		<div class="flex flex-row flex-1 self-center justify-center gap-0 md:gap-2">
@@ -118,26 +116,22 @@
 		position: sticky;
 		top: 0px;
 		z-index: 10;
-		padding: 4px 10px;
+		padding: 4px 5px;
 		border-bottom: 1px solid var(--secondary);
 		background-color: var(--main);
 		height: max-content;
 
 		// small mobile
 
-		@media (max-width: 425px) {
-			padding: 2px 5px;
-		}
-
 		&-item {
 			text-decoration: none;
-			padding: 10px 20px;
+			padding: 10px 15px;
 			color: inherit;
 			display: flex;
 			align-items: center;
 
 			@media (max-width: 425px) {
-				padding: 5px 10px;
+				padding: 2px 5px;
 			}
 
 			&-label {
