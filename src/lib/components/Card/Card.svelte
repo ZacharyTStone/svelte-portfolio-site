@@ -17,6 +17,7 @@
 		children?: import('svelte').Snippet;
 		newtab?: boolean;
 		onClick?: (event: Event) => void;
+		active?: boolean;
 	}
 
 	let {
@@ -29,7 +30,8 @@
 		fadeDelay = 0,
 		children,
 		newtab = false,
-		onClick
+		onClick,
+		active = false
 	}: Props = $props();
 
 	onMount(() => {
@@ -64,6 +66,7 @@
 	style={color}
 	transition:fade={{ delay: fadeDelay, duration: 300 }}
 	onclick={onClick}
+	class:active
 >
 	<div
 		class={`card-bg-img flex-1 flex flex-col p-15px rounded-15px ${onClick ? 'cursor-pointer' : ''}`}
@@ -102,6 +105,10 @@
 			border-color: var(--border-hover);
 			animation: card_shimmer 2s infinite;
 		}
+	}
+
+	.active {
+		border-color: var(--border-active);
 	}
 
 	:global(.card:hover .blurb-text) {

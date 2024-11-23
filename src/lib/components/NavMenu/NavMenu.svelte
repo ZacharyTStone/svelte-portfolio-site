@@ -11,6 +11,8 @@
 	import { _ } from 'svelte-i18n';
 	import { locale } from 'svelte-i18n';
 	import { handleNavigation } from '$lib/utils/helpers';
+	import Card from '../Card/Card.svelte';
+	import Chip from '../Chip/Chip.svelte';
 
 	let currentRoute = $state('/');
 	let navigationError = $state(false);
@@ -40,28 +42,31 @@
 
 <div class="nav-menu">
 	<nav class="container !justify-between flex flex-row items-center text-sm">
-		<a
+		<Chip
+			classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover gap-2"
 			href={`${base}/`}
-			class="nav-menu-left decoration-none flex flex-row items-center cursor-pointer s:px-2 md:px-8 text-[var(--secondary-text)] rainbow-hover"
-			aria-label={$_(HOME.title)}
+			newTab={false}
+			active={currentRoute === '/'}
+			borderRadius="0px"
 		>
 			<UIcon icon="i-carbon-code" classes="text-2em" alt="home" />
 			<span class="ml-2 text-md font-bold hidden md:inline"
 				>{$_(HOME.name)} {$_(HOME.lastName)}</span
 			>
-		</a>
+		</Chip>
 
 		<div class="flex flex-row flex-1 self-center justify-center md:gap-2">
 			{#each items as item}
-				<a
+				<Chip
+					classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover "
 					href={`${base}${item.to}`}
-					class="nav-menu-item !text-[var(--secondary-text)] rainbow-hover"
-					class:active={currentRoute === item.to}
-					onclick={(e) => handleNavigation(e, item.to)}
+					newTab={false}
+					active={currentRoute === item.to}
+					borderRadius="0px"
 				>
 					<UIcon icon={item.icon} classes="text-1.3em" alt={$_(item.title)} />
 					<span class="nav-menu-item-label">{$_(item.title)}</span>
-				</a>
+				</Chip>
 			{/each}
 		</div>
 		<div class="flex flex-row items-stretch gap-1 text-1.15em">
@@ -109,21 +114,16 @@
 {/if}
 
 <style lang="scss">
-	/* Show shimmer overlay on hover */
-	.nav-menu-item {
-		border-radius: 10px;
-	}
-
 	.nav-menu {
 		display: flex;
 		justify-content: center;
 		position: sticky;
 		top: 0px;
 		z-index: 10;
-		padding: 0px 10px;
+		padding: 4px 10px;
 		border-bottom: 1px solid var(--secondary);
 		background-color: var(--main);
-		height: 50px;
+		height: max-content;
 
 		// small mobile
 
