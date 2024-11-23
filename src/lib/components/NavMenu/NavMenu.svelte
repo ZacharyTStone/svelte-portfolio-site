@@ -48,6 +48,7 @@
 			newTab={false}
 			active={currentRoute === '/'}
 			borderRadius="0px"
+			hideBorder={true}
 		>
 			<UIcon icon="i-carbon-code" classes="text-2em" alt="home" />
 			<span class="ml-2 text-md font-bold hidden md:inline"
@@ -63,6 +64,7 @@
 					newTab={false}
 					active={currentRoute === item.to}
 					borderRadius="0px"
+					hideBorder={true}
 				>
 					<UIcon icon={item.icon} classes="text-1.3em" alt={$_(item.title)} />
 					<span class="nav-menu-item-label">{$_(item.title)}</span>

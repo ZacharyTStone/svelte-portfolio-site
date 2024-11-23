@@ -15,6 +15,7 @@
 		newTab?: boolean;
 		children?: import('svelte').Snippet;
 		borderRadius?: string;
+		hideBorder?: boolean;
 	}
 
 	let {
@@ -24,10 +25,13 @@
 		href = '',
 		newTab = true,
 		children,
-		borderRadius = '20px'
+		borderRadius = '20px',
+		hideBorder = false
 	}: Props = $props();
 	let className = $derived(
-		`row-center cursor-pointer py-[5px] px-[15px] m-[2.5px] decoration-none inline-block border-[1px] border-solid border-[var(--border)] rounded-[${borderRadius}] tracking-wider text-[0.9em] text-[var(--tertiary-text)] duration-[150ms] font-light rainbow-hover  ${
+		`row-center cursor-pointer py-[5px] px-[15px] m-[2.5px] decoration-none inline-block ${
+			hideBorder ? '' : `border-[1px] border-solid border-[var(--border)]`
+		} rounded-[${borderRadius}] tracking-wider text-[0.9em] text-[var(--tertiary-text)] duration-[150ms] font-light rainbow-hover  ${
 			active ? '' : 'bg-transparent hover:border-[var(--border-hover)]'
 		} ${classes}`
 	);
