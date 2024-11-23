@@ -2,17 +2,13 @@
 	import { run } from 'svelte/legacy';
 
 	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
 	import { HOME, NavBar } from '$lib/params';
 	import { theme, toggleTheme } from '$lib/stores/theme';
 
 	import { base } from '$app/paths';
-	import UIcon from '../Icon/UIcon.svelte';
-	import { _ } from 'svelte-i18n';
-	import { locale } from 'svelte-i18n';
-	import { handleNavigation } from '$lib/utils/helpers';
-	import Card from '../Card/Card.svelte';
+	import { _, locale } from 'svelte-i18n';
 	import Chip from '../Chip/Chip.svelte';
+	import UIcon from '../Icon/UIcon.svelte';
 
 	let currentRoute = $state('/');
 	let navigationError = $state(false);
@@ -56,18 +52,18 @@
 			>
 		</Chip>
 
-		<div class="flex flex-row flex-1 self-center justify-center md:gap-2">
+		<div class="flex flex-row flex-1 self-center justify-center gap-0 md:gap-2">
 			{#each items as item}
 				<Chip
-					classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover "
+					classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover"
 					href={`${base}${item.to}`}
 					newTab={false}
 					active={currentRoute === item.to}
 					borderRadius="0px"
 					hideBorder={true}
 				>
-					<UIcon icon={item.icon} classes="text-1.3em" alt={$_(item.title)} />
-					<span class="nav-menu-item-label">{$_(item.title)}</span>
+					<UIcon icon={item.icon} classes="text-1.3em md:text-1.5em" alt={$_(item.title)} />
+					<span class="nav-menu-item-label hidden md:inline">{$_(item.title)}</span>
 				</Chip>
 			{/each}
 		</div>
@@ -130,7 +126,7 @@
 		// small mobile
 
 		@media (max-width: 425px) {
-			padding: 0px 0px;
+			padding: 2px 5px;
 		}
 
 		&-item {
