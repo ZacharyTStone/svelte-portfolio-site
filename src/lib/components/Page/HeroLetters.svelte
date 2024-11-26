@@ -17,7 +17,7 @@
 		font-size: 25vw;
 		font-weight: bold;
 		color: var(--text-muted);
-		opacity: 0.1;
+		opacity: 0.2;
 	}
 
 	@media (min-width: 1200px) {
@@ -27,7 +27,7 @@
 	}
 
 	:global(:root[data-theme='dark']) .hero-letter {
-		opacity: 0.3;
+		opacity: 0.2;
 	}
 
 	.z-letter {
@@ -49,23 +49,12 @@
 		}
 		100% {
 			transform: translateX(0);
-			opacity: 0.1;
+			opacity: 0.2;
 		}
 	}
 
 	:global(:root[data-theme='dark']) .z-letter {
-		animation: slideInLeftDark 1s ease-out;
-	}
-
-	@keyframes slideInLeftDark {
-		0% {
-			transform: translateX(-100%);
-			opacity: 0;
-		}
-		100% {
-			transform: translateX(0);
-			opacity: 0.3;
-		}
+		animation: slideInLeft 1s ease-out;
 	}
 
 	@keyframes slideInRight {
@@ -75,22 +64,11 @@
 		}
 		100% {
 			transform: translateX(0);
-			opacity: 0.1;
+			opacity: 0.2;
 		}
 	}
 
 	:global(:root[data-theme='dark']) .s-letter {
-		animation: slideInRightDark 1s ease-out;
-	}
-
-	@keyframes slideInRightDark {
-		0% {
-			transform: translateX(100%);
-			opacity: 0;
-		}
-		100% {
-			transform: translateX(0);
-			opacity: 0.3;
-		}
+		animation: slideInRight 1s ease-out;
 	}
 </style>
