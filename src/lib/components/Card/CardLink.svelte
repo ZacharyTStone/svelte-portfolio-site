@@ -1,12 +1,21 @@
 <script lang="ts">
 	import UIcon from '../Icon/UIcon.svelte';
 
-	export let label: string;
-	export let to: string;
-	export let icon_path: any;
-	export let icon_color: string;
 
 	import Icon from '../Icon/Icon.svelte';
+	interface Props {
+		label: string;
+		to: string;
+		icon_path: any;
+		icon_color: string;
+	}
+
+	let {
+		label,
+		to,
+		icon_path,
+		icon_color
+	}: Props = $props();
 </script>
 
 <a

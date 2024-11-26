@@ -1,18 +1,22 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import { getAssetURL } from '$lib/data/assets';
 	import type { Project } from '$lib/types';
+	import { handleNavigation } from '$lib/utils/helpers';
 	import { _ } from 'svelte-i18n';
 	import Card from '../Card/Card.svelte';
 	import Image from '../Image/Image.svelte';
 
-	export let project: Project;
+	interface Props {
+		project: Project;
+	}
+
+	let { project }: Props = $props();
 
 	const imageSrc = getAssetURL(project.logo);
 </script>
 
 <div class="project-container">
-	<Card color={project.color} href="{base}/projects/{project.slug}">
+	<Card color={project.color} onClick={(e) => handleNavigation(e, `/projects/${project.slug}`)}>
 		<h2 class="project-title">
 			{$_(project.name)}
 		</h2>
@@ -50,23 +54,6 @@
 		min-height: 50px;
 		text-align: center;
 		width: 100%;
-	}
-
-	.project-container:hover .project-title {
-		background: linear-gradient(
-			90deg,
-			#ff0000,
-			#d96d02,
-			#c9c900,
-			#01c901,
-			#0000ff,
-			#4b0082,
-			#8b00ff
-		);
-		background-size: 400%;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		animation: rainbow 5s linear infinite;
 	}
 
 	:global(.project-image) {

@@ -13,11 +13,15 @@
 	import Screenshots from '$lib/components/Screenshots/Screenshots.svelte';
 	import TabTitle from '$lib/components/Page/TabTitle.svelte';
 	import { _ } from 'svelte-i18n';
-	export let data: { experience?: Experience };
+	interface Props {
+		data: { experience?: Experience };
+	}
+
+	let { data }: Props = $props();
 
 	const { title } = EXPERIENCES;
 
-	$: computedTitle = data.experience ? `${$_(data.experience.name)} - ${$_(title)}` : $_(title);
+	let computedTitle = $derived(data.experience ? `${$_(data.experience.name)} - ${$_(title)}` : $_(title));
 
 	const screenshots = data.experience?.screenshots ?? [];
 </script>

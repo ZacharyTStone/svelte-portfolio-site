@@ -3,7 +3,7 @@
 		"title": "Home",
 		"name": "Zach",
 		"lastName": "Stone",
-		"description": "a software engineer specializing in front-end web development with Japanese language skills."
+		"description": "I'm a software engineer specializing in web development with Japanese language skills."
 	},
 	"NAVBAR": {
 		"home": "Home",
@@ -20,17 +20,13 @@
 		"darkMode": "Dark Mode"
 	},
 	"ABOUT": {
-		"title": "About",
-		"full_about": "As a self-taught and highly motivated individual, I am passionate about improving processes in both my personal and professional life. I strive to foster a positive working environment through clear and kind communication. Alongside my coding endeavors, I am dedicated to enhancing my Japanese language skills and thoroughly enjoy the language-learning journey.",
+		"title": "Learn About Me",
+		"full_about": "I'm a self-taught software engineer specializing in web development. I have extensive experience working with modern JavaScript frameworks and libraries like React, Next JS, Svelte, etc.  I also am comfortable with various CSS solutions such as Styled Components and Tailwind. ",
 		"blurb1": {
-			"title": "Favorite Quote",
-			"text": "Even dust, when piled up, can become a mountain."
+			"title": "Core Values",
+			"text": "I prioritize kind and clear communication and always aim to enhance the quality of whatever project I work on. Being a self-taught programmer and Japanese speaker, I have a strong work ethic and enjoy working on tasks to completion."
 		},
-		"blurb2": {
-			"title": "Working Philosophy",
-			"text": "Code is a tool to solve problems. The best solution often requires no code at all. When code is necessary, it should be clean, expandable, and easy for future developers to understand."
-		},
-		"socials": "Socials"
+		"socials": "Connect with me"
 	},
 	"EXPERIENCES": {
 		"title": "Experiences",
@@ -47,12 +43,12 @@
 			"type": "App And Website Agency",
 			"location": "New York, NY"
 		},
-		"opsiq": {
+		"sellfire": {
 			"name": "Frontend Engineer",
-			"quote": "OPSIQ is an all-in-one sales platform for inside sales teams. It offers all the necessary features in one software, including dial functions, real-time reporting, coaching and development, pipeline management, and automated lead management. OPSIQ supports team scaling while improving sales performance. With real-time call coaching and report display, it quickly identifies and improves sales opportunities. By using OPSIQ, sales teams can operate efficiently and effectively, accelerating business growth.",
+			"quote": "Sellfire is an all-in-one sales platform for inside sales teams. It offers all the necessary features in one software, including dial functions, real-time reporting, coaching and development, pipeline management, and automated lead management. Sellfire supports team scaling while improving sales performance. With real-time call coaching and report display, it quickly identifies and improves sales opportunities. By using Sellfire, sales teams can operate efficiently and effectively, accelerating business growth.",
 			"type": "SAAS Startup",
 			"location": "Austin, TX",
-			"description": "Worked part-time as a front-end engineer for OPSIQ while attending a Japanese language school in Japan."
+			"description": "Worked part-time as a front-end engineer for Sellfire while attending a Japanese language school in Japan."
 		}
 	},
 	"SKILLS": {

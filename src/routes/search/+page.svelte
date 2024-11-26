@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
 	import { SEARCH } from '$lib/params';
@@ -19,8 +21,8 @@
 		to: string;
 	};
 
-	let query = '';
-	let result: Array<Item> = [];
+	let query = $state('');
+	let result: Array<Item> = $state([]);
 
 	function filterItems<T extends { name: string; label?: string; skills?: any }>(
 		items: T[],
@@ -60,7 +62,7 @@
 		query = searchParams.get('q') ?? '';
 	});
 
-	$: {
+	run(() => {
 		result = [];
 
 		// Generate items for projects
@@ -89,7 +91,7 @@
 				(data) => `experience/${(data as any).slug}`
 			)
 		);
-	}
+	});
 
 	console.log('result', result);
 </script>

@@ -23,7 +23,11 @@
 	import Image from '$lib/components/Image/Image.svelte';
 	import Screenshots from '$lib/components/Screenshots/Screenshots.svelte';
 
-	export let data: { project?: Project };
+	interface Props {
+		data: { project?: Project };
+	}
+
+	let { data }: Props = $props();
 
 	const { title } = PROJECTS;
 
@@ -31,7 +35,7 @@
 
 	const description = data.project?.description ?? '';
 
-	$: computedTitle = data.project ? `${$_(data.project.name ?? '')} - ${$_(title)}` : $_(title);
+	let computedTitle = $derived(data.project ? `${$_(data.project.name ?? '')} - ${$_(title)}` : $_(title));
 </script>
 
 <TabTitle title={computedTitle} />

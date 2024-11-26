@@ -1,18 +1,27 @@
 <!-- Icon.svelte -->
 <script lang="ts">
-	export let icon = '';
-	export let alt = '';
-	export let classes = '';
-	export let tooltip = '';
+	interface Props {
+		icon?: string;
+		alt?: string;
+		classes?: string;
+		tooltip?: string;
+	}
+
+	let {
+		icon = '',
+		alt = '',
+		classes = '',
+		tooltip = ''
+	}: Props = $props();
 </script>
 
 {#if tooltip}
 	<div class="tooltip">
-		<i class={`${icon} ${classes}`} aria-label={alt} />
+		<i class={`${icon} ${classes}`} aria-label={alt}></i>
 		<span class="tooltiptext">{tooltip}</span>
 	</div>
 {:else}
-	<i class={`${icon} ${classes}`} aria-label={alt} />
+	<i class={`${icon} ${classes}`} aria-label={alt}></i>
 {/if}
 
 <style>

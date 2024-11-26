@@ -1,16 +1,28 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	export let src: string = '';
-	export let alt: string = '';
-	export let classes: string = '';
-	export let loadingHeight: string = '200px'; // 追加
-	export let loadingWidth: string = '100%'; // 追加
-	export let style: string = '';
-	export let onClick: () => void = () => {};
+	interface Props {
+		src?: string;
+		alt?: string;
+		classes?: string;
+		loadingHeight?: string;
+		loadingWidth?: string;
+		style?: string;
+		onClick?: () => void;
+	}
 
-	let loaded = false;
-	let failed = false;
-	let loading = true;
+	let {
+		src = '',
+		alt = '',
+		classes = '',
+		loadingHeight = '200px',
+		loadingWidth = '100%',
+		style = '',
+		onClick = () => {}
+	}: Props = $props();
+
+	let loaded = $state(false);
+	let failed = $state(false);
+	let loading = $state(true);
 
 	onMount(() => {
 		const img = new Image();
@@ -29,8 +41,8 @@
 </script>
 
 {#if loaded}
-	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-	<img {src} {alt} class={classes} {style} on:click={onClick} on:keydown={onClick} />
+	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+	<img {src} {alt} class={classes} {style} onclick={onClick} onkeydown={onClick} />
 {:else if failed}
 	<img
 		src="https://icon-library.com/images/not-found-icon/not-found-icon-20.jpg"
@@ -41,7 +53,7 @@
 	<div
 		class={classes + ' skeleton'}
 		style={`min-height: ${loadingHeight}; min-width: ${loadingWidth}`}
-	/>
+	></div>
 {/if}
 
 <style>

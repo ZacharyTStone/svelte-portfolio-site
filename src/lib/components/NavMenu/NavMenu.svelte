@@ -1,24 +1,24 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
 	import { HOME, NavBar } from '$lib/params';
 	import { theme, toggleTheme } from '$lib/stores/theme';
 
 	import { base } from '$app/paths';
+	import { _, locale } from 'svelte-i18n';
+	import Chip from '../Chip/Chip.svelte';
 	import UIcon from '../Icon/UIcon.svelte';
-	import { _ } from 'svelte-i18n';
-	import { locale } from 'svelte-i18n';
-	import { onMount } from 'svelte';
 
-	let currentRoute = '/';
-	let navigationError = false;
+	let currentRoute = $state('/');
+	let navigationError = $state(false);
 
-	$: {
+	run(() => {
 		if ($page) {
 			currentRoute = $page.url.pathname;
 			console.log('Current route:', currentRoute);
 		}
-	}
+	});
 
 	const items = [
 		{ title: NavBar.about, to: '/about', icon: 'i-carbon-user' },
@@ -26,22 +26,6 @@
 		{ title: NavBar.personal, to: '/projects', icon: 'i-carbon-cube' },
 		{ title: NavBar.career, to: '/experience', icon: 'i-carbon-development' }
 	];
-
-	onMount(() => {
-		console.log('NavMenu mounted');
-		console.log('Initial route:', currentRoute);
-		console.log('Navigation items:', items);
-	});
-
-	async function handleNavigation(event: Event, to: string) {
-		event.preventDefault();
-		try {
-			await goto(`${base}${to}`);
-		} catch (error) {
-			console.error('Navigation error:', error);
-			navigationError = true;
-		}
-	}
 
 	function toggleLanguage() {
 		if ($locale?.includes('en')) {
@@ -54,28 +38,31 @@
 
 <div class="nav-menu">
 	<nav class="container !justify-between flex flex-row items-center text-sm">
-		<a
+		<Chip
+			classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover gap-2"
 			href={`${base}/`}
-			class="nav-menu-left decoration-none flex flex-row items-center cursor-pointer s:px-2 md:px-8 text-[var(--secondary-text)]  rainbow-hover"
-			aria-label={$_(HOME.title)}
+			newTab={false}
+			active={currentRoute === '/'}
+			borderRadius="0px"
+			hideBorder={true}
 		>
-			<UIcon icon="i-carbon-code" classes="text-2em" alt="home" />
-			<span class="ml-2 text-md font-bold hidden md:inline"
-				>{$_(HOME.name)} {$_(HOME.lastName)}</span
-			>
-		</a>
+			<UIcon icon="i-carbon-code" classes="text-1.3em md:text-1.5em" alt="home" />
+			<span class="nav-menu-item-label hidden md:inline">{$_(HOME.name)} {$_(HOME.lastName)}</span>
+		</Chip>
 
-		<div class="flex flex-row flex-1 self-center justify-center md:gap-2">
+		<div class="flex flex-row flex-1 self-center justify-center gap-0 md:gap-2">
 			{#each items as item}
-				<a
+				<Chip
+					classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover"
 					href={`${base}${item.to}`}
-					class="nav-menu-item !text-[var(--secondary-text)] rainbow-hover"
-					class:active={currentRoute === item.to}
-					on:click={(e) => handleNavigation(e, item.to)}
+					newTab={false}
+					active={currentRoute === item.to}
+					borderRadius="0px"
+					hideBorder={true}
 				>
-					<UIcon icon={item.icon} classes="text-1.3em" alt={$_(item.title)} />
-					<span class="nav-menu-item-label">{$_(item.title)}</span>
-				</a>
+					<UIcon icon={item.icon} classes="text-1.3em md:text-1.5em" alt={$_(item.title)} />
+					<span class="nav-menu-item-label hidden md:inline">{$_(item.title)}</span>
+				</Chip>
 			{/each}
 		</div>
 		<div class="flex flex-row items-stretch gap-1 text-1.15em">
@@ -84,7 +71,7 @@
 			</a>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer text-[var(--secondary-text)] px-2 rainbow-hover"
-				on:click={() => toggleTheme($theme === 'dark' ? 'light' : 'dark')}
+				onclick={() => toggleTheme($theme === 'dark' ? 'light' : 'dark')}
 				aria-label={$_($theme === 'light' ? NavBar.lightMode : NavBar.darkMode)}
 			>
 				{#if $theme === 'light'}
@@ -95,7 +82,7 @@
 			</button>
 			<button
 				class="bg-transparent text-1em border-none cursor-pointer text-[var(--secondary-text)] px-2 rainbow-hover"
-				on:click={toggleLanguage}
+				onclick={toggleLanguage}
 				aria-label={$_($locale?.includes('en') ? NavBar.japanese : NavBar.english)}
 			>
 				{#if $locale?.includes('en')}
@@ -123,37 +110,28 @@
 {/if}
 
 <style lang="scss">
-	/* Show shimmer overlay on hover */
-	.nav-menu-item {
-		border-radius: 10px;
-	}
-
 	.nav-menu {
 		display: flex;
 		justify-content: center;
 		position: sticky;
 		top: 0px;
 		z-index: 10;
-		padding: 0px 10px;
+		padding: 4px 5px;
 		border-bottom: 1px solid var(--secondary);
 		background-color: var(--main);
-		height: 50px;
+		height: max-content;
 
 		// small mobile
 
-		@media (max-width: 425px) {
-			padding: 0px 0px;
-		}
-
 		&-item {
 			text-decoration: none;
-			padding: 10px 20px;
+			padding: 10px 15px;
 			color: inherit;
 			display: flex;
 			align-items: center;
 
 			@media (max-width: 425px) {
-				padding: 5px 10px;
+				padding: 2px 5px;
 			}
 
 			&-label {

@@ -1,90 +1,142 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
-	import { writable } from 'svelte/store'; // Importing writable store
-	import { fade } from 'svelte/transition'; // Importing fade transition
-	import { quintInOut } from 'svelte/easing'; // Importing quintInOut easing
-	import Carrousel from '$lib/components/Carrousel/Carrousel.svelte';
-	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
+	import { onMount } from 'svelte';
+	import { fade, fly } from 'svelte/transition';
+	import { cubicInOut, cubicOut } from 'svelte/easing';
 	import Icon from '$lib/components/Icon/Icon.svelte';
-	import MainTitle from '$lib/components/MainTitle/MainTitle.svelte';
 	import { HOME, TITLE_SUFFIX, getPlatfromIcon } from '$lib/params';
-	import MY_SKILLS from '$lib/skills.params';
 	import { useTitle } from '$lib/utils/helpers';
 	import { _ } from 'svelte-i18n';
 	import { base } from '$app/paths';
 	import { getAssetURL } from '$lib/data/assets';
+	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
+	import Card from '$lib/components/Card/Card.svelte';
+	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
+	import { locale } from 'svelte-i18n';
+	import { handleNavigation } from '$lib/utils/helpers';
+	import { goto } from '$app/navigation';
 
-	let { description, lastName, links, name, title, skills } = HOME;
+	let { description, lastName, links, name, title } = HOME;
 
-	// Set page title
+	let greeting = '';
+
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
-		const interval = setInterval(cycleSkills, 5000); // Cycle every 5 seconds
-		return () => clearInterval(interval);
 	});
 
-	// Store to hold the index of the currently displayed skill
-	const currentIndex = writable(0);
-
-	// Function to cycle through skills
-	function cycleSkills() {
-		currentIndex.update((value) => (value + 1) % MY_SKILLS.length);
+	$: {
+		greeting = calculateGreeting({
+			language: $locale?.includes('en') ? 'en' : $locale?.includes('ja') ? 'ja' : null
+		});
 	}
+
+	const calculateGreeting = ({ language }: { language: string | null }) => {
+		const hours = new Date().getHours();
+
+		if (language === 'en') {
+			return hours < 12 ? 'Good Morning' : hours < 18 ? 'Good Afternoon' : 'Good Evening';
+		}
+
+		if (language === 'ja') {
+			return hours < 12 ? 'おはようございます' : hours < 18 ? 'こんにちは' : 'こんばんは';
+		}
+
+		return '';
+	};
 </script>
 
 <svelte:head>
 	<title>{useTitle(title, TITLE_SUFFIX)}</title>
 </svelte:head>
 
-<div
-	class="col self-center flex-1 md:flex-row md:self-stretch justify-center lg:justify-between items-center p-0 gap-10"
->
-	<div class="md:flex-1 flex flex-col items-center md:items-start gap-5 fadeIn">
-		<MainTitle classes="text-center md:text-left mb-5 md:mb-3">{$_(name)} {$_(lastName)},</MainTitle
-		>
-		<p
-			class="text-[var(--tertiary-text)] text-center md:text-left text-lg md:text-xl font-extralight leading-relaxed max-w-prose mb-5 md:mb-3"
-		>
+<HeroLetters />
+<div class="hero-container">
+	<div class="hero-content">
+		<h1 class="hero-title fadeIn">
+			<span class="text-gradient">{greeting}</span>
+		</h1>
+		<h3 class="hero-description fadeIn">
 			{$_(description)}
-		</p>
+		</h3>
 		<div
-			class="hidden md:fixed bottom-0 left-0 lg:right-auto lg:left-0 flex justify-center gap-5 pb-15 px-15"
+			class="hidden lg:fixed bottom-0 left-0 lg:right-auto lg:left-0 flex justify-center gap-5 pb-15 px-15"
 		>
-			{#each links as { platform, link }}
-				<ChipIcon name={platform} href={link} newtab>
-					<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'24px'} />
-				</ChipIcon>
+			{#each links as { platform, link }, index}
+				<div class="fadeIn">
+					<ChipIcon name={platform} href={link} newtab>
+						<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'24px'} />
+					</ChipIcon>
+				</div>
 			{/each}
 		</div>
-	</div>
-	<div class="fadeIn block md:hidden">
-		<Carrousel items={skills ?? MY_SKILLS} />
-	</div>
-	<div class="fixed bottom--10 right--20 z-10 fade-in hidden md:block">
-		{#if MY_SKILLS.length > 0}
-			{#key currentIndex}
-				<div in:fade={{ duration: 1000 }} out:fade={{ duration: 1000 }}>
-					<a href={`${base}/skills/${MY_SKILLS[$currentIndex].slug}`} rel="noreferrer">
-						<img
-							src={getAssetURL(MY_SKILLS[$currentIndex].logo)}
-							alt="Skill Logo"
-							class="opacity-20 w-100 h-100 aspect-square md:w-200 md:h-200 skill-logo"
-							style="object-fit: contain;"
-						/>
-					</a>
-				</div>
-			{/key}
-		{/if}
+
+		<div class="hidden lg:block cta-button fadeIn">
+			<Card onClick={(e) => handleNavigation(e, '/about')}>{$_('ABOUT.title')}</Card>
+		</div>
 	</div>
 </div>
 
 <style>
-	.skill-logo {
-		opacity: 0.2; /* Start with 0.2 opacity */
-	}
-	:global(body) {
-		min-height: 100vh;
+	.hero-container {
+		height: calc(100vh - 50px);
 		display: flex;
-		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		background-color: transparent;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.hero-content {
+		text-align: center;
+		max-width: 800px;
+		z-index: 2;
+	}
+
+	.hero-title {
+		font-size: 3rem;
+		font-weight: bold;
+		margin-bottom: 1rem;
+		color: var(--main-text);
+	}
+
+	.hero-description {
+		font-size: 1.5rem;
+		color: var(--accent-text);
+		margin-bottom: 2rem;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	/* Media query for mobile devices */
+	@media (max-width: 640px) {
+		.hero-title {
+			font-size: 2rem; /* Smaller size for mobile */
+		}
+
+		.hero-description {
+			font-size: 1.2rem; /* Smaller size for mobile */
+		}
+	}
+
+	.text-gradient {
+		color: var(--accent-text-hover);
+	}
+
+	@keyframes shimmer {
+		to {
+			background-position: 200% 90%;
+		}
+	}
+
+	@keyframes flyIn {
+		0% {
+			transform: translateY(50px);
+			opacity: 0;
+		}
+		100% {
+			transform: translateY(0);
+			opacity: 1;
+		}
 	}
 </style>

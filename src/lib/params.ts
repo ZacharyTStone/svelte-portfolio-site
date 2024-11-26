@@ -51,6 +51,7 @@ export const getPlatfromIcon = (platform: Platform): Icons => {
 export const HOME: HomePageParams = {
 	title: 'HOME',
 	name: 'HOME.name',
+
 	lastName: 'HOME.lastName',
 	description: 'HOME.description',
 	links: [

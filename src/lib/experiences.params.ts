@@ -61,22 +61,22 @@ const MY_EXPERIENCES: Array<Experience> = [
 		]
 	},
 	{
-		slug: 'opsiq',
-		company: 'OPSIQ',
-		description: 'EXPERIENCES.opsiq.description',
+		slug: 'sellfire',
+		company: 'Sellfire',
+		description: 'EXPERIENCES.sellfire.description',
 		contract: ContractType.PartTime,
-		type: 'EXPERIENCES.opsiq.type',
-		location: 'EXPERIENCES.opsiq.location',
+		type: 'EXPERIENCES.sellfire.type',
+		location: 'EXPERIENCES.sellfire.location',
 		period: { from: new Date(2024, 6) },
 		skills: getSkills('fe', 'be', 'dev-tools'),
-		name: 'EXPERIENCES.opsiq.name',
+		name: 'EXPERIENCES.sellfire.name',
 		color: '#ffffff',
-		links: [{ to: 'https://opsiq.ai/', label: 'OPSIQ', newTab: true }],
+		links: [{ to: 'https://sellfire.com/', label: 'Sellfire', newTab: true }],
 		quote: {
-			text: 'EXPERIENCES.opsiq.quote',
-			link: { to: 'https://opsiq.ai/', label: 'OPSIQ', newTab: true }
+			text: 'EXPERIENCES.sellfire.quote',
+			link: { to: 'https://sellfire.com/', label: 'Sellfire', newTab: true }
 		},
-		logo: Assets.Opsiq,
+		logo: Assets.Sellfire,
 		shortDescription: 'test'
 	}
 ];
