@@ -1,24 +1,13 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { page } from '$app/stores';
 	import { HOME, NavBar } from '$lib/params';
 	import { theme, toggleTheme } from '$lib/stores/theme';
-
+	import { handleNavigation } from '$lib/utils/helpers';
 	import { base } from '$app/paths';
+
 	import { _, locale } from 'svelte-i18n';
 	import Chip from '../Chip/Chip.svelte';
 	import UIcon from '../Icon/UIcon.svelte';
-
-	let currentRoute = $state('/');
-	let navigationError = $state(false);
-
-	run(() => {
-		if ($page) {
-			currentRoute = $page.url.pathname;
-			console.log('Current route:', currentRoute);
-		}
-	});
 
 	const items = [
 		{ title: NavBar.about, to: '/about', icon: 'i-carbon-user' },
@@ -40,9 +29,8 @@
 	<nav class="container !justify-between flex flex-row items-center text-sm">
 		<Chip
 			classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover gap-2"
-			href={`${base}/`}
+			onClick={(e) => handleNavigation(e, '/')}
 			newTab={false}
-			active={currentRoute === '/'}
 			borderRadius="0px"
 			hideBorder={true}
 		>
@@ -54,9 +42,8 @@
 			{#each items as item}
 				<Chip
 					classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover"
-					href={`${base}${item.to}`}
+					onClick={(e) => handleNavigation(e, item.to)}
 					newTab={false}
-					active={currentRoute === item.to}
 					borderRadius="0px"
 					hideBorder={true}
 				>
@@ -104,10 +91,6 @@
 		</div>
 	</nav>
 </div>
-
-{#if navigationError}
-	<p>An error occurred during navigation. Please try again.</p>
-{/if}
 
 <style lang="scss">
 	.nav-menu {

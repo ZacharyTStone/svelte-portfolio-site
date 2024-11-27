@@ -16,6 +16,7 @@
 		children?: import('svelte').Snippet;
 		borderRadius?: string;
 		hideBorder?: boolean;
+		onClick?: (e: MouseEvent) => void;
 	}
 
 	let {
@@ -26,11 +27,13 @@
 		newTab = true,
 		children,
 		borderRadius,
-		hideBorder = false
+		hideBorder = false,
+		onClick
 	}: Props = $props();
+
 	let className = $derived(
 		`row-center cursor-pointer py-[5px] px-[15px] m-[2.5px] decoration-none inline-block ${
-			hideBorder ? '' : `border-[1px] border-solid border-[var(--border)]`
+			hideBorder ? 'border-none' : `border-[1px] border-solid border-[var(--border)]`
 		} tracking-wider text-[0.9em] text-[var(--tertiary-text)] duration-[150ms] font-light ${
 			borderRadius ? `rounded-[${borderRadius}]` : 'rounded-[20px]'
 		} rainbow-hover  ${
@@ -51,7 +54,7 @@
 	bind:this={el}
 	{href}
 	class={className}
-	onclick={bubble('click')}
+	onclick={onClick || bubble('click')}
 	onkeydown={bubble('keydown')}
 	onkeypress={bubble('keypress')}
 	onkeyup={bubble('keyup')}

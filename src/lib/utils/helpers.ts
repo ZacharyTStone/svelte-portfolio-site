@@ -178,7 +178,7 @@ export async function handleNavigation(event: Event, to: string, offPlatform = f
 		window.open(to, '_blank');
 	} else {
 		try {
-			await goto(to);
+			await goto(`${base}${to}`);
 		} catch (error) {
 			console.error('Navigation error:', error);
 		}
