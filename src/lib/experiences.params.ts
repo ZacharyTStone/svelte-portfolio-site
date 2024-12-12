@@ -67,13 +67,32 @@ const MY_EXPERIENCES: Array<Experience> = [
 		contract: ContractType.PartTime,
 		type: 'EXPERIENCES.sellfire.type',
 		location: 'EXPERIENCES.sellfire.location',
-		period: { from: new Date(2024, 6) },
+		period: { from: new Date(2024, 6), to: new Date(2024, 12) },
 		skills: getSkills('fe', 'be', 'dev-tools'),
 		name: 'EXPERIENCES.sellfire.name',
 		color: '#ffffff',
 		links: [{ to: 'https://sellfire.com/', label: 'Sellfire', newTab: true }],
 		quote: {
 			text: 'EXPERIENCES.sellfire.quote',
+			link: { to: 'https://sellfire.com/', label: 'Sellfire', newTab: true }
+		},
+		logo: Assets.Sellfire,
+		shortDescription: 'test'
+	},
+	{
+		slug: 'sellfire2',
+		company: 'Sellfire',
+		description: 'EXPERIENCES.sellfire2.description',
+		contract: ContractType.FullTime,
+		type: 'EXPERIENCES.sellfire2.type',
+		location: 'EXPERIENCES.sellfire2.location',
+		period: { from: new Date(2024, 12) },
+		skills: getSkills('fe', 'be', 'dev-tools'),
+		name: 'EXPERIENCES.sellfire2.name',
+		color: '#ffffff',
+		links: [{ to: 'https://sellfire.com/', label: 'Sellfire', newTab: true }],
+		quote: {
+			text: 'EXPERIENCES.sellfire2.quote',
 			link: { to: 'https://sellfire.com/', label: 'Sellfire', newTab: true }
 		},
 		logo: Assets.Sellfire,
