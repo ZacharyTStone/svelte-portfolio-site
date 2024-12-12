@@ -33,7 +33,7 @@
 		<div
 			class="w-[0.5px] hidden lg:flex top-0 bottom-0 py-50px bg-[var(--border)] absolute rounded"
 		></div>
-		{#each items as job, index (job.company)}
+		{#each items as job, index (job.slug)}
 			{#if $visibleItems.has(index)}
 				<div
 					class={`flex ${
