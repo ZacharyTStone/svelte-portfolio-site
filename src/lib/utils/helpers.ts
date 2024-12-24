@@ -143,12 +143,14 @@ export const generateRandomHexColor = (): string => {
 };
 
 export function calculateExperiencePeriod(fromDate: Date, toDate: Date, language: string = 'en') {
-	const startYear = new Date(fromDate).getFullYear();
-	const endYear = new Date(toDate ?? new Date().toISOString()).getFullYear();
+	const startYear = fromDate.getFullYear();
+	const endYear = toDate ? toDate.getFullYear() : new Date().getFullYear();
 	const months = countMonths(fromDate, toDate);
 	const years = Math.floor(months / 12);
 	// show 1 month if the period is less than 1 year and less than 1 month
 	const remainingMonths = months % 12 || (years === 0 ? 1 : 0);
+
+	// unused
 	let period: string;
 
 	if (language.slice(0, 2) === 'ja') {
