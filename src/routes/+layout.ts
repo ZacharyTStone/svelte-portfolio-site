@@ -8,8 +8,8 @@ import type { LayoutLoad } from './$types';
 inject({ mode: dev ? 'development' : 'production' });
 
 export const load: LayoutLoad = async () => {
-	if (browser) {
-		locale.set(window.navigator.language);
-	}
-	await waitLocale();
+	// if (browser) {
+	// 	locale.set(window.navigator.language);
+	// }
+	// await waitLocale();
 };
