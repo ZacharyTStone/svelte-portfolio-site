@@ -29,14 +29,18 @@ interface SkillInfoSection {
 	}[];
 }
 
-interface certifcations {
+export interface Certifications {
 	label: string;
 	link?: string;
+	date?: string;
+	provider?: string;
 }
 
-interface courses {
+export interface Courses {
 	label: string;
 	link?: string;
+	date?: string;
+	provider?: string;
 }
 
 export interface Item {
@@ -47,8 +51,8 @@ export interface Item {
 	description: string;
 	screenshots?: Array<{ src: string; label: string }>;
 	extraInfo?: SkillInfoSection[];
-	certifications?: certifcations[];
-	courses?: courses[];
+	certifications?: Certifications[];
+	courses?: Courses[];
 }
 
 export interface Link {

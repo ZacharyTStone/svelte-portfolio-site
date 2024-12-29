@@ -45,7 +45,6 @@ const Backend: SkillInfoObject[] = [
 	{ label: 'GraphQL', link: 'https://graphql.org/' },
 	{ label: 'MongoDB', link: 'https://www.mongodb.com/' },
 	{ label: 'SQL', link: 'https://www.w3schools.com/sql/' },
-	{ label: 'Hasura', link: 'https://hasura.io/' },
 	{ label: 'Ably Web Sockets', link: 'https://www.ably.io/' }
 ];
 
@@ -59,7 +58,7 @@ const Other: SkillInfoObject[] = [
 	{ label: 'Jira', link: 'https://www.atlassian.com/software/jira' },
 	{ label: 'Github', link: 'https://github.com/' },
 	{ label: 'Twilio', link: 'https://www.twilio.com/' },
-	{ label: 'Chat GPT', link: 'https://chat.openai.com/chat' }
+	{ label: 'Cursor', link: 'https://www.cursor.com/' }
 ];
 
 const Mobile: SkillInfoObject[] = [
@@ -111,7 +110,21 @@ const MY_SKILLS = [
 		description: 'SKILLS.fe.description',
 		logo: Assets.TypeScript,
 		name: 'SKILLS.fe.name',
-		extraInfo: FE_EXTRA_INFO
+		extraInfo: FE_EXTRA_INFO,
+		courses: [
+			{
+				label: 'Response Web Design',
+				date: '07/08/2021',
+				provider: 'Free Code Camp',
+				link: 'https://www.freecodecamp.org/certification/zachinjapan/responsive-web-design'
+			},
+			{
+				label: 'Learn Javascript',
+				date: '01/13/2022',
+				provider: 'Codecademy',
+				link: 'https://www.codecademy.com/profiles/zasto3049868533/certificates/705dcb15de0da4dd9d9fc4f3274b430e'
+			}
+		]
 	}),
 	s({
 		slug: 'be',
@@ -119,7 +132,21 @@ const MY_SKILLS = [
 		description: 'SKILLS.be.description',
 		logo: Assets.NodeJs,
 		name: 'SKILLS.be.name',
-		extraInfo: BE_EXTRA_INFO
+		extraInfo: BE_EXTRA_INFO,
+		courses: [
+			{
+				label: 'Learn SQL Course',
+				date: '01/13/2022',
+				provider: 'Codecademy',
+				link: 'https://www.codecademy.com/profiles/zasto3049868533/certificates/042a4e5884e3eb6ea1f2a12be6abb851'
+			},
+			{
+				label: 'Javascript Algorithms and Data Structures',
+				date: '12/05/2021',
+				provider: 'Free Code Camp',
+				link: 'https://www.freecodecamp.org/certification/zachinjapan/javascript-algorithms-and-data-structures'
+			}
+		]
 	}),
 	// s({
 	// 	slug: 'cyber-security',
@@ -127,11 +154,10 @@ const MY_SKILLS = [
 	// 	description: 'SKILLS.cyber-security.description',
 	// 	logo: Assets.Security,
 	// 	name: 'SKILLS.cyber-security.name',
-	// 	extraInfo: SECURITY_EXTRA_INFO,
 	// 	courses: [
 	// 		{
 	// 			label: 'Web Application Security Testing with OWASP ZAP',
-	// 			link: 'https://coursera.org/share/6534ebedc75f9b25ca28b30aaf093435'
+	// 			link: 'https://coursera.org/share/764fa0ecbc96a7cd52d2a829ee73e03b'
 	// 		},
 	// 		{
 	// 			label: 'Hacking Web Applications & Penetration Testing: Web Hacking',
@@ -139,14 +165,14 @@ const MY_SKILLS = [
 	// 		}
 	// 	]
 	// }),
-	s({
-		slug: 'mobile',
-		color: 'purple',
-		description: 'SKILLS.mobile.description',
-		logo: Assets.Mobile,
-		name: 'SKILLS.mobile.name',
-		extraInfo: MOBILE_EXTRA_INFO
-	}),
+	// s({
+	// 	slug: 'mobile',
+	// 	color: 'purple',
+	// 	description: 'SKILLS.mobile.description',
+	// 	logo: Assets.Mobile,
+	// 	name: 'SKILLS.mobile.name',
+	// 	extraInfo: MOBILE_EXTRA_INFO
+	// }),
 	s({
 		slug: 'dev-tools',
 		color: 'red',
@@ -163,10 +189,19 @@ const MY_SKILLS = [
 		name: 'SKILLS.japanese.name',
 		certifications: [
 			{
-				label: 'Japanese Language Proficiency Test level N2'
+				label: 'Japanese Language Proficiency Test level N2',
+				date: '07/21/2021',
+				provider: 'Japan Foundation'
 			},
 			{
-				label: 'Kanji Kentei Level 10 (Perfect Score)'
+				label: 'Kanji Kentei Level 10 (Perfect Score)',
+				date: '07/21/2021',
+				provider: 'Japan Foundation'
+			},
+			{
+				label: 'Kanji Kentei Level 9',
+				date: '11/24/2024',
+				provider: 'Japan Foundation'
 			}
 		],
 		screenshots: [{ src: getAssetURL(Assets.Japanese1), label: '' }]
