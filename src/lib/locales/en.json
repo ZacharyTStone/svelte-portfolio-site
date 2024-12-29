@@ -20,7 +20,8 @@
 		"darkMode": "Dark Mode"
 	},
 	"ABOUT": {
-		"title": "Learn About Me",
+		"cta": "Learn More About Me",
+		"title": "About Me",
 		"full_about": "I'm a self-taught software engineer specializing in web development. I have extensive experience working with modern JavaScript frameworks and libraries like React, Next JS, Svelte, etc.  I also am comfortable with various CSS solutions such as Styled Components and Tailwind. ",
 		"blurb1": {
 			"title": "Core Values",
@@ -29,6 +30,7 @@
 		"socials": "Connect with me"
 	},
 	"EXPERIENCES": {
+		"cta": "See Where I've Worked",
 		"title": "Experiences",
 		"interac": {
 			"name": "Assistant Language Teacher",
@@ -59,6 +61,7 @@
 		}
 	},
 	"SKILLS": {
+		"cta": "See My Skills",
 		"title": "Skills",
 		"fe": {
 			"description": "I have extensive experience using a variety of frontend frameworks and tools to create responsive and accessible web applications. My work includes managing bug tickets, support tasks, and new feature development. I am proficient with CSS and CSS-in-JS tools like Styled Components and Tailwind. Crafting strong, reusable components is an art I continually strive to perfect. I am comfortable working in large code bases and understand the importance of refactoring code to reduce technical debt.",

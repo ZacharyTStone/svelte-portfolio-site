@@ -70,7 +70,7 @@
 		</div>
 
 		<div class="hidden lg:block cta-button fadeIn">
-			<Card onClick={(e) => handleNavigation(e, '/about')}>{$_('ABOUT.title')}</Card>
+			<Card onClick={(e) => handleNavigation(e, '/about')}>{$_('ABOUT.cta')}</Card>
 		</div>
 	</div>
 </div>

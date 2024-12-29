@@ -2,6 +2,7 @@
 	import Card from '$lib/components/Card/Card.svelte';
 	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
 	import Icon from '$lib/components/Icon/Icon.svelte';
+	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CommonPage from '$lib/components/Page/CommonPage.svelte';
 	import { getPlatfromIcon, HOME, RESUME } from '$lib/params';
 	import { handleNavigation } from '$lib/utils/helpers';
@@ -50,6 +51,24 @@
 							</p>
 						</Card>
 					</div>
+
+					<div
+						in:fade={{ delay: getAnimationDelay(), duration: 500 }}
+						class="flex flex-col w-full gap-3"
+					>
+						<Card newtab onClick={(e) => handleNavigation(e, '/skills')} classes={['w-full']}>
+							<div class="flex flex-row items-center gap-2">
+								<UIcon icon="i-carbon-link" />
+								{$_('SKILLS.cta')}
+							</div>
+						</Card>
+						<Card newtab onClick={(e) => handleNavigation(e, '/experience')} classes={['w-full']}>
+							<div class="flex flex-row items-center gap-2">
+								<UIcon icon="i-carbon-link" />
+								{$_('EXPERIENCES.cta')}
+							</div>
+						</Card>
+					</div>
 				</div>
 
 				<div class="hidden md:block stylized-vr"></div>
@@ -76,7 +95,10 @@
 										onClick={(e) => handleNavigation(e, item?.to, true)}
 										classes={['w-full']}
 									>
-										{$_(item?.label)}
+										<div class="flex flex-row items-center gap-2">
+											<UIcon icon="i-carbon-document" />
+											{$_(item?.label)}
+										</div>
 									</Card>
 								</div>
 							{/each}
