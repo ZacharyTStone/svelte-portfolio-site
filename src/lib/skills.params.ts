@@ -189,19 +189,26 @@ const MY_SKILLS = [
 		name: 'SKILLS.japanese.name',
 		certifications: [
 			{
-				label: 'Japanese Language Proficiency Test level N2',
+				label: 'Japanese Language Proficiency Test level N2 （日本語能力試験レベルN2）',
 				date: '07/21/2021',
 				provider: 'Japan Foundation'
 			},
 			{
-				label: 'Kanji Kentei Level 10 (Perfect Score)',
+				label: 'Kanji Kentei Level 10 (漢字検定レベル10)',
 				date: '07/21/2021',
 				provider: 'Japan Foundation'
 			},
 			{
-				label: 'Kanji Kentei Level 9',
+				label: 'Kanji Kentei Level 9 (漢字検定レベル9)',
 				date: '11/24/2024',
 				provider: 'Japan Foundation'
+			},
+			{
+				label:
+					'1st Place in RYUKA Speech Contest at Kobe University (神戸大学のRYUKAスピーチコンテスト 最優秀賞)',
+				date: '2024',
+				provider: 'Kobe University',
+				link: 'https://www.youtube.com/watch?v=jkPv_Z7iO_4&ab_channel=ZachStone'
 			}
 		],
 		screenshots: [{ src: getAssetURL(Assets.Japanese1), label: '' }]
