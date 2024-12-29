@@ -20,26 +20,36 @@
 		opacity: 0.2;
 	}
 
-	@media (min-width: 1200px) {
-		.hero-letter {
-			font-size: 15vw;
-		}
-	}
-
 	:global(:root[data-theme='dark']) .hero-letter {
 		opacity: 0.2;
 	}
 
 	.z-letter {
-		top: 50px;
-		left: 0px;
-		animation: slideInLeft 1s ease-out;
+		top: 20px;
+		left: 20px;
+		animation:
+			slideInLeft 1s ease-out,
+			fadeOutUp 1s 2s ease-in forwards;
 	}
 
 	.s-letter {
-		bottom: 0px;
-		right: 0px;
-		animation: slideInRight 1s ease-out;
+		bottom: 20px;
+		right: 20px;
+		animation:
+			slideInRight 1s ease-out,
+			fadeOutUp 1s 2s ease-in forwards;
+	}
+
+	@media (max-width: 768px) {
+		.z-letter {
+			top: 30dvh;
+			left: 20px;
+		}
+
+		.s-letter {
+			bottom: 30dvh;
+			right: 20px;
+		}
 	}
 
 	@keyframes slideInLeft {
@@ -53,10 +63,6 @@
 		}
 	}
 
-	:global(:root[data-theme='dark']) .z-letter {
-		animation: slideInLeft 1s ease-out;
-	}
-
 	@keyframes slideInRight {
 		0% {
 			transform: translateX(100%);
@@ -68,7 +74,14 @@
 		}
 	}
 
-	:global(:root[data-theme='dark']) .s-letter {
-		animation: slideInRight 1s ease-out;
+	@keyframes fadeOutUp {
+		0% {
+			opacity: 0.2;
+			transform: translateY(0);
+		}
+		100% {
+			opacity: 0;
+			transform: translateY(-100%);
+		}
 	}
 </style>

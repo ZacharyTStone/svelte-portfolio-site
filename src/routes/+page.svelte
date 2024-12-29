@@ -84,6 +84,7 @@
 		background-color: transparent;
 		position: relative;
 		overflow: hidden;
+		animation: fadeIn 4s ease-in-out;
 	}
 
 	.hero-content {
@@ -136,6 +137,18 @@
 		}
 		100% {
 			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		50% {
+			opacity: 0;
+		}
+		100% {
 			opacity: 1;
 		}
 	}
