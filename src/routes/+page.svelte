@@ -77,7 +77,7 @@
 
 <style>
 	.hero-container {
-		height: calc(100vh - 50px);
+		height: calc(100dvh - 50px);
 		display: flex;
 		justify-content: center;
 		align-items: center;
