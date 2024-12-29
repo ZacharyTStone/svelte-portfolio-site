@@ -23,12 +23,20 @@
 			locale.set('en');
 		}
 	}
+
+	let isOpen = false;
+
+	function toggleMenu() {
+		isOpen = !isOpen;
+	}
+
+	const mobileItems = [{ title: HOME.name, to: '/', icon: 'i-carbon-home' }, ...items];
 </script>
 
 <div class="nav-menu">
 	<nav class="container !justify-between flex flex-row items-center text-sm">
 		<Chip
-			classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover gap-2"
+			classes="hidden md:flexinline-flex items-center !text-[var(--secondary-text)] rainbow-hover gap-2 md:inline-flex hidden"
 			onClick={(e) => handleNavigation(e, '/')}
 			newTab={false}
 			borderRadius="0px"
@@ -38,7 +46,13 @@
 			<span class="nav-menu-item-label hidden md:inline">{$_(HOME.name)} {$_(HOME.lastName)}</span>
 		</Chip>
 
-		<div class="flex flex-row flex-1 self-center justify-center gap-0 md:gap-2">
+		<div class="md:hidden flex items-center">
+			<button class="mobile-menu-button" onclick={toggleMenu}>
+				<UIcon icon="i-carbon-menu" classes="text-1.5em" alt="Menu" />
+			</button>
+		</div>
+
+		<div class="hidden md:flex flex-row flex-1 self-center justify-center gap-2">
 			{#each items as item}
 				<Chip
 					classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover"
@@ -52,6 +66,7 @@
 				</Chip>
 			{/each}
 		</div>
+
 		<div class="flex flex-row items-stretch gap-1 text-1.15em">
 			<a href={`${base}/search`} class="text-inherit col-center self-stretch px-2 rainbow-hover">
 				<UIcon icon="i-carbon-search" alt="search" tooltip={$_(NavBar.search)} />
@@ -90,11 +105,34 @@
 			</button>
 		</div>
 	</nav>
+
+	{#if isOpen}
+		<div class="mobile-menu md:hidden">
+			{#each mobileItems as item}
+				<a
+					href={item.to}
+					class="mobile-menu-item"
+					onclick={(event) => {
+						isOpen = false;
+						handleNavigation(event, item.to);
+					}}
+				>
+					<UIcon icon={item.icon} classes="text-1.3em mr-2" alt={$_(item.title)} />
+					<span
+						>{item.title === HOME.name
+							? $_(item.title) + ' ' + $_(HOME.lastName)
+							: $_(item.title)}</span
+					>
+				</a>
+			{/each}
+		</div>
+	{/if}
 </div>
 
 <style lang="scss">
 	.nav-menu {
 		display: flex;
+
 		justify-content: center;
 		position: sticky;
 		top: 0px;
@@ -127,5 +165,36 @@
 				}
 			}
 		}
+	}
+
+	.mobile-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background-color: var(--main);
+		border-bottom: 1px solid var(--secondary);
+		padding: 10px;
+		z-index: 10;
+
+		&-item {
+			display: flex;
+			align-items: center;
+			padding: 10px;
+			color: var(--secondary-text);
+			text-decoration: none;
+
+			&:hover {
+				background-color: var(--secondary);
+			}
+		}
+	}
+
+	.mobile-menu-button {
+		background-color: transparent;
+		border: none;
+		color: var(--secondary-text);
+		cursor: pointer;
+		padding: 5px;
 	}
 </style>
