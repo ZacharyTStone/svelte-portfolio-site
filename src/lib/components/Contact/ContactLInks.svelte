@@ -23,7 +23,7 @@
 </script>
 
 <div
-	class="flex justify-center gap-5 pb-15 px-15 xl:fixed bottom-0 left-0 xl:right-auto xl:left-0 {showOnMobile
+	class="flex justify-center gap-5 pb-15 px-15 2xl:fixed bottom-0 left-0 2xl:right-auto 2xl:left-0 {showOnMobile
 		? ''
 		: 'hidden sm:flex'}"
 >
