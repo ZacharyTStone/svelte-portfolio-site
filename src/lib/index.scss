@@ -193,6 +193,10 @@ body {
 	animation: fadeIn 0.9s ease-in;
 }
 
+.fadeInSlow {
+	animation: fadeIn 4s ease-in;
+}
+
 .fadeInFast {
 	animation: fadeIn 0.2s ease-in-out;
 }
