@@ -18,6 +18,7 @@
 		newtab?: boolean;
 		onClick?: (event: Event) => void;
 		active?: boolean;
+		nofade?: boolean;
 	}
 
 	let {
@@ -31,7 +32,8 @@
 		children,
 		newtab = false,
 		onClick,
-		active = false
+		active = false,
+		nofade = false
 	}: Props = $props();
 
 	onMount(() => {
@@ -64,7 +66,7 @@
 		' '
 	)}`}
 	style={color}
-	transition:fade={{ delay: fadeDelay, duration: 300 }}
+	transition:fade={{ delay: fadeDelay, duration: nofade ? 0 : 300 }}
 	onclick={onClick}
 	class:active
 >

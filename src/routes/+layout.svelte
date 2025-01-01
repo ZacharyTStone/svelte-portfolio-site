@@ -8,6 +8,8 @@
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
+	import ContactLInks from '$lib/components/Contact/ContactLInks.svelte';
+
 	interface Props {
 		children?: import('svelte').Snippet;
 	}
@@ -24,6 +26,7 @@
 	<NavMenu />
 	<div class="content container">
 		{@render children?.()}
+		<ContactLInks showOnMobile={true} showText={false} />
 	</div>
 </div>
 

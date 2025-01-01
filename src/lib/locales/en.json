@@ -3,7 +3,8 @@
 		"title": "Home",
 		"name": "Zach",
 		"lastName": "Stone",
-		"description": "I'm a software engineer specializing in web development with Japanese language skills."
+		"description": "I'm a software engineer specializing in web development with Japanese language skills.",
+		"connect_cta": "Let's Connect!"
 	},
 	"NAVBAR": {
 		"home": "Home",

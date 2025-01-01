@@ -1,19 +1,11 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { fade, fly } from 'svelte/transition';
-	import { cubicInOut, cubicOut } from 'svelte/easing';
-	import Icon from '$lib/components/Icon/Icon.svelte';
-	import { HOME, TITLE_SUFFIX, getPlatfromIcon } from '$lib/params';
-	import { useTitle } from '$lib/utils/helpers';
-	import { _ } from 'svelte-i18n';
-	import { base } from '$app/paths';
-	import { getAssetURL } from '$lib/data/assets';
-	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
 	import Card from '$lib/components/Card/Card.svelte';
-	import ChipIcon from '$lib/components/Chip/ChipIcon.svelte';
-	import { locale } from 'svelte-i18n';
-	import { handleNavigation } from '$lib/utils/helpers';
-	import { goto } from '$app/navigation';
+	import ContactLInks from '$lib/components/Contact/ContactLInks.svelte';
+	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
+	import { HOME, TITLE_SUFFIX } from '$lib/params';
+	import { handleNavigation, useTitle } from '$lib/utils/helpers';
+	import { onMount } from 'svelte';
+	import { _, locale } from 'svelte-i18n';
 
 	let { description, lastName, links, name, title } = HOME;
 
@@ -57,34 +49,22 @@
 		<h3 class="hero-description fadeIn">
 			{$_(description)}
 		</h3>
-		<div
-			class="hidden lg:fixed bottom-0 left-0 lg:right-auto lg:left-0 flex justify-center gap-5 pb-15 px-15"
-		>
-			{#each links as { platform, link }, index}
-				<div class="fadeIn">
-					<ChipIcon name={platform} href={link} newtab>
-						<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'24px'} />
-					</ChipIcon>
-				</div>
-			{/each}
-		</div>
-
 		<div class="hidden lg:block cta-button fadeIn">
-			<Card onClick={(e) => handleNavigation(e, '/about')}>{$_('ABOUT.cta')}</Card>
+			<Card nofade={true} onClick={(e) => handleNavigation(e, '/about')}>{$_('ABOUT.cta')}</Card>
 		</div>
 	</div>
 </div>
 
 <style>
 	.hero-container {
-		height: calc(100dvh - 50px);
+		height: calc(100dvh - 151px);
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		background-color: transparent;
 		position: relative;
 		overflow: hidden;
-		animation: fadeIn 4s ease-in-out;
+		animation: fadeIn 4s ease-in;
 	}
 
 	.hero-content {

@@ -103,21 +103,6 @@
 								</div>
 							{/each}
 						</div>
-						<div
-							class="hidden lg:fixed bottom-0 left-0 lg:right-auto lg:left-0 flex justify-center gap-5 pb-15 px-15"
-						>
-							{#each links as { platform, link }}
-								<div in:fade={{ delay: getAnimationDelay(), duration: 600 }}>
-									<ChipIcon name={platform} href={link} newtab>
-										<Icon
-											icon={getPlatfromIcon(platform)}
-											color={'var(--accent-text)'}
-											size={'24px'}
-										/>
-									</ChipIcon>
-								</div>
-							{/each}
-						</div>
 					</div>
 				</div>
 			{/if}
