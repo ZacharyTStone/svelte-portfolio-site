@@ -14,7 +14,7 @@
 
 	.hero-letter {
 		position: absolute;
-		font-size: 25vh;
+		font-size: clamp(100px, 25vw, 50vh);
 		font-weight: bold;
 		color: var(--text-muted);
 		opacity: 0.2;
