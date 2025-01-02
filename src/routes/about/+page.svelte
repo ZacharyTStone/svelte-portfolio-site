@@ -56,6 +56,20 @@
 						in:fade={{ delay: getAnimationDelay(), duration: 500 }}
 						class="flex flex-col w-full gap-3"
 					>
+						<Card classes={['unblur-blurb-text', 'w-full']}>
+							<h2 class="text-lg md:text-xl font-semibold mb-2">
+								{$_('ABOUT.experienced_in.title')}
+							</h2>
+							<p class="blur-on-hover blurb-text" style="white-space: pre-line;">
+								{$_('ABOUT.experienced_in.text')}
+							</p>
+						</Card>
+					</div>
+
+					<div
+						in:fade={{ delay: getAnimationDelay(), duration: 500 }}
+						class="flex flex-col w-full gap-3"
+					>
 						<Card newtab onClick={(e) => handleNavigation(e, '/skills')} classes={['w-full']}>
 							<div class="flex flex-row items-center gap-2">
 								<UIcon icon="i-carbon-link" />
@@ -76,16 +90,15 @@
 				<div
 					class="flex-1 flex flex-col gap-4 md:max-h-[80vh] lg:max-h-[80vh] px-4 py-4 md:px-6 md:py-6 lg:px-8 lg:py-8 overflow-y-auto overflow-x-visible"
 				>
-					{#each [$_('ABOUT.blurb1')] as blurb, index}
-						<div in:fade={{ delay: getAnimationDelay(), duration: 300 }}>
-							<Card classes={['unblur-blurb-text', 'w-full']}>
-								<h2 class="text-lg md:text-xl font-semibold mb-2">
-									{$_(`ABOUT.blurb${index + 1}.title`)}
-								</h2>
-								<p class="blur-on-hover blurb-text">{$_(`ABOUT.blurb${index + 1}.text`)}</p>
-							</Card>
-						</div>
-					{/each}
+					<div in:fade={{ delay: getAnimationDelay(), duration: 300 }}>
+						<Card classes={['unblur-blurb-text', 'w-full']}>
+							<h2 class="text-lg md:text-xl font-semibold mb-2">
+								{$_(`ABOUT.values.title`)}
+							</h2>
+							<p class="blur-on-hover blurb-text">{$_(`ABOUT.values.text`)}</p>
+						</Card>
+					</div>
+
 					<div class="flex flex-col w-full gap-6 mt-6">
 						<div class="flex flex-col w-full gap-3">
 							{#each RESUME?.links as item}

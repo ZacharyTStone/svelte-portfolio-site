@@ -177,7 +177,7 @@ const MY_SKILLS = [
 		slug: 'dev-tools',
 		color: 'red',
 		description: 'SKILLS.dev-tools.description',
-		logo: Assets.Slack,
+		logo: Assets.DevTools,
 		name: 'SKILLS.dev-tools.name',
 		extraInfo: OTHER_EXTRA_INFO
 	}),

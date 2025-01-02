@@ -24,7 +24,11 @@
 		"cta": "Learn More About Me",
 		"title": "About Me",
 		"full_about": "I'm a self-taught software engineer specializing in web development. I have extensive experience working with modern JavaScript frameworks and libraries like React, Next JS, Svelte, etc.  I also am comfortable with various CSS solutions such as Styled Components and Tailwind. ",
-		"blurb1": {
+		"experienced_in": {
+			"title": "Experienced In",
+			"text": "-Managing bug tickets, support tasks, and new feature development.\n\n-Collaborating with clients on BRDs, feature briefs, tech specs, and documentation.\n\n-Coordinating with design, engineering, and product teams.\n\n-Conducting first-round interviews and reviewing candidates' applications"
+		},
+		"values": {
 			"title": "Core Values",
 			"text": "I prioritize kind and clear communication and always aim to enhance the quality of whatever project I work on. Being a self-taught programmer and Japanese speaker, I have a strong work ethic and enjoy working on tasks to completion."
 		},
@@ -42,7 +46,7 @@
 		"rapptr": {
 			"name": "Frontend Engineer",
 			"quote": "From app strategy, design and development to launch and ongoing tailored support, we are with you every step of the way – continuously refining and evolving your product.",
-			"description": "Main Tasks:\n\n- Managed bug tickets, support tasks, and new feature development.\n\n- Collaborated with clients on BRDs, feature briefs, tech specs, and documentation.\n\n- Coordinated with design, engineering, and product teams.\n\n- Conducted first-round interviews and reviewed candidates' applications.\n\nNotable Accomplishments On Main Project\n\n- Implemented a reusable project component library update based on a Figma file.\n\n- Developed an embeddable widget involving extensive research and coordination with various companies' engineering teams.\n\n- Enhanced QA processes, including improved instructions, weekly code reviews, and a dedicated testing environment.\n\n- Significantly refactored the codebase, reducing tech debt. While not the goal, it removed over 50,000 lines of code.",
+			"description": "Acomplishments: \n\n- Implemented a reusable project component library update based on a Figma file.\n\n- Developed an embeddable widget involving extensive research and coordination with various companies' engineering teams.\n\n- Enhanced QA processes, including improved instructions, weekly code reviews, and a dedicated testing environment.\n\n- Significantly refactored the codebase, reducing tech debt. While not the goal, it removed over 50,000 lines of code.",
 			"type": "App And Website Agency",
 			"location": "New York, NY"
 		},

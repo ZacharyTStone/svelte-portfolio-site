@@ -1,7 +1,7 @@
 import type { Asset } from '$lib/types';
 import { theme } from '$lib/stores/theme';
 import Rapptr from '$lib/assets/images/rapptr.png';
-import Sellfire from '$lib/assets/images/Sellfire.jpeg';
+import Sellfire from '$lib/assets/images/Sellfire.png';
 import Interac from '$lib/assets/images/interac.jpeg';
 import Github from '$lib/assets/images/github.svg';
 import YouTube from '$lib/assets/images/youtube.svg';
@@ -16,7 +16,7 @@ import Svelte from '$lib/assets/images/svelte.png';
 import Vue from '$lib/assets/images/vue.png';
 import TypeScript from '$lib/assets/images/ts.png';
 import Mobile from '$lib/assets/images/react-native.png';
-
+import DevTools from '$lib/assets/images/dev_tools.png';
 import anime from '$lib/assets/images/projects/anime.webp';
 import blog from '$lib/assets/images/projects/blog.webp';
 import haku from '$lib/assets/images/projects/haku.webp';
@@ -85,7 +85,7 @@ export const COLOR_ASSETS = {
 	Flashcard: { light: flashcard, dark: flashcard },
 	Quote: { light: quote, dark: quote },
 	Security: { light: Security, dark: Security },
-
+	DevTools: { light: DevTools, dark: DevTools },
 	React: { light: React, dark: React },
 	NodeJs: { light: Node, dark: Node },
 	Svelte: { light: Svelte, dark: Svelte },
