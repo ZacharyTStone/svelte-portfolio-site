@@ -91,7 +91,7 @@ export const RESUME: ResumePageParams = {
 	title: 'RESUME.title',
 	links: [
 		{
-			to: 'https://drive.google.com/file/d/10Pi3vww-CgT3m0JeLfSiUmuIueP3GEv8/view?usp=sharing',
+			to: 'https://docs.google.com/document/d/1HYvcN-oshInv0VPZSSp8-VtYEDZT1ON24ocUq-lcmVs/edit?usp=sharing',
 			label: 'RESUME.english',
 			newTab: true
 		},

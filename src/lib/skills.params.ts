@@ -103,11 +103,10 @@ const MOBILE_EXTRA_INFO: SkillExtraInfo[] = [
 	}
 ];
 
-const MY_SKILLS = [
+const MY_SKILLS: Array<Skill> = [
 	s({
 		slug: 'fe',
 		color: 'yellow',
-		description: 'SKILLS.fe.description',
 		logo: Assets.TypeScript,
 		name: 'SKILLS.fe.name',
 		extraInfo: FE_EXTRA_INFO,
@@ -129,7 +128,6 @@ const MY_SKILLS = [
 	s({
 		slug: 'be',
 		color: 'blue',
-		description: 'SKILLS.be.description',
 		logo: Assets.NodeJs,
 		name: 'SKILLS.be.name',
 		extraInfo: BE_EXTRA_INFO,
@@ -176,7 +174,6 @@ const MY_SKILLS = [
 	s({
 		slug: 'dev-tools',
 		color: 'red',
-		description: 'SKILLS.dev-tools.description',
 		logo: Assets.DevTools,
 		name: 'SKILLS.dev-tools.name',
 		extraInfo: OTHER_EXTRA_INFO
@@ -184,7 +181,6 @@ const MY_SKILLS = [
 	s({
 		slug: 'japanese',
 		color: 'orange',
-		description: 'SKILLS.japanese.description',
 		logo: Assets.Japan,
 		name: 'SKILLS.japanese.name',
 		certifications: [

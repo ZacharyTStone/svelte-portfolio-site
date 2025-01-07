@@ -35,7 +35,9 @@
 
 	const description = data.project?.description ?? '';
 
-	let computedTitle = $derived(data.project ? `${$_(data.project.name ?? '')} - ${$_(title)}` : $_(title));
+	let computedTitle = $derived(
+		data.project ? `${$_(data.project.name ?? '')} - ${$_(title)}` : $_(title)
+	);
 </script>
 
 <TabTitle title={computedTitle} />
@@ -90,11 +92,6 @@
 						{:else}
 							{$_(description)}
 						{/if}
-					{:else}
-						<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
-							<UIcon icon="i-carbon-text-font" classes="text-3.5em" />
-							<p class="font-300">No description</p>
-						</div>
 					{/if}
 				</div>
 				<div class="pt-3 pb-1 overflow-x-hidden w-full">

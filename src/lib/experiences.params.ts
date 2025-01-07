@@ -6,7 +6,6 @@ const MY_EXPERIENCES: Array<Experience> = [
 	{
 		slug: 'interac',
 		company: 'Interac',
-		description: 'EXPERIENCES.interac.description',
 		contract: ContractType.FullTime,
 		type: 'EXPERIENCES.interac.type',
 		location: 'EXPERIENCES.interac.location',
@@ -28,7 +27,6 @@ const MY_EXPERIENCES: Array<Experience> = [
 	{
 		slug: 'rapptr',
 		company: 'Rapptr Labs',
-		description: 'EXPERIENCES.rapptr.description',
 		contract: ContractType.FullTime,
 		type: 'EXPERIENCES.rapptr.type',
 		location: 'EXPERIENCES.rapptr.location',
@@ -63,7 +61,6 @@ const MY_EXPERIENCES: Array<Experience> = [
 	{
 		slug: 'sellfire',
 		company: 'Sellfire',
-		description: 'EXPERIENCES.sellfire.description',
 		contract: ContractType.PartTime,
 		type: 'EXPERIENCES.sellfire.type',
 		location: 'EXPERIENCES.sellfire.location',
@@ -82,7 +79,6 @@ const MY_EXPERIENCES: Array<Experience> = [
 	{
 		slug: 'sellfire2',
 		company: 'Sellfire',
-		description: 'EXPERIENCES.sellfire2.description',
 		contract: ContractType.FullTime,
 		type: 'EXPERIENCES.sellfire2.type',
 		location: 'EXPERIENCES.sellfire2.location',

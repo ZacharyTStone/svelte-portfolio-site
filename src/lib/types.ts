@@ -48,7 +48,7 @@ export interface Item {
 	name: string;
 	logo: Asset;
 	shortDescription: string;
-	description: string;
+	description?: string;
 	screenshots?: Array<{ src: string; label: string }>;
 	extraInfo?: SkillInfoSection[];
 	certifications?: Certifications[];

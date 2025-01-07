@@ -21,7 +21,9 @@
 
 	const { title } = EXPERIENCES;
 
-	let computedTitle = $derived(data.experience ? `${$_(data.experience.name)} - ${$_(title)}` : $_(title));
+	let computedTitle = $derived(
+		data.experience ? `${$_(data.experience.name)} - ${$_(title)}` : $_(title)
+	);
 
 	const screenshots = data.experience?.screenshots ?? [];
 </script>
@@ -84,11 +86,6 @@
 			<div class="px-10px m-y-5" style="white-space: pre-line;">
 				{#if data.experience.description}
 					{$_(data.experience.description)}
-				{:else}
-					<div class="p-5 col-center gap-3 m-y-auto text-[var(--border)]">
-						<UIcon icon="i-carbon-text-font" classes="text-3.5em" />
-						<p class="font-300">No description</p>
-					</div>
 				{/if}
 			</div>
 			<div class="pt-3 pb-1 overflow-x-hidden w-full">
