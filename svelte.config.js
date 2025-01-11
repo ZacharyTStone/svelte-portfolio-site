@@ -15,17 +15,6 @@ const config = {
 		paths: {
 			base: process.env.NODE_ENV === 'production' ? base : ''
 		}
-	},
-
-	vite: {
-		// Vite-specific configuration goes here
-		plugins: [
-			{
-				inspector: {
-					showToggleButton: 'always'
-				}
-			}
-		]
 	}
 };
 

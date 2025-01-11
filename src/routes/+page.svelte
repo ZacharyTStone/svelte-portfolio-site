@@ -9,31 +9,11 @@
 
 	let { description, lastName, links, name, title } = HOME;
 
-	let greeting = '';
+	let greeting = 'Hello 👋';
 
 	onMount(() => {
 		document.title = useTitle(title, TITLE_SUFFIX);
 	});
-
-	$: {
-		greeting = calculateGreeting({
-			language: $locale?.includes('en') ? 'en' : $locale?.includes('ja') ? 'ja' : null
-		});
-	}
-
-	const calculateGreeting = ({ language }: { language: string | null }) => {
-		const hours = new Date().getHours();
-
-		if (language === 'en') {
-			return hours < 12 ? 'Good Morning' : hours < 18 ? 'Good Afternoon' : 'Good Evening';
-		}
-
-		if (language === 'ja') {
-			return hours < 12 ? 'おはようございます' : hours < 18 ? 'こんにちは' : 'こんばんは';
-		}
-
-		return '';
-	};
 </script>
 
 <svelte:head>

@@ -10,6 +10,7 @@
 		left: 0;
 		width: 100vw;
 		height: 100vh;
+		pointer-events: none;
 	}
 
 	.hero-letter {
@@ -18,6 +19,7 @@
 		font-weight: bold;
 		color: var(--text-muted);
 		opacity: 0.2;
+		will-change: transform, opacity;
 	}
 
 	:global(:root[data-theme='dark']) .hero-letter {
@@ -57,6 +59,10 @@
 			transform: translateX(-100%);
 			opacity: 0;
 		}
+		10% {
+			transform: translateX(-100%);
+			opacity: 0;
+		}
 		100% {
 			transform: translateX(0);
 			opacity: 0.2;
@@ -65,6 +71,10 @@
 
 	@keyframes slideInRight {
 		0% {
+			transform: translateX(100%);
+			opacity: 0;
+		}
+		10% {
 			transform: translateX(100%);
 			opacity: 0;
 		}
