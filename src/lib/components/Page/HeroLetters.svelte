@@ -11,6 +11,7 @@
 		width: 100vw;
 		height: 100vh;
 		pointer-events: none;
+		
 	}
 
 	.hero-letter {
@@ -30,7 +31,7 @@
 		top: 20px;
 		left: 20px;
 		animation:
-			slideInLeft 1s ease-out,
+			slideInLeft 3s ease-out,
 			fadeOutUp 1s 2s ease-in forwards;
 	}
 
@@ -38,7 +39,7 @@
 		bottom: 20px;
 		right: 20px;
 		animation:
-			slideInRight 1s ease-out,
+			slideInRight 3s ease-out,
 			fadeOutUp 1s 2s ease-in forwards;
 	}
 
