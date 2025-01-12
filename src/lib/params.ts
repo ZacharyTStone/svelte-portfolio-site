@@ -99,12 +99,12 @@ export const RESUME: ResumePageParams = {
 			to: 'https://docs.google.com/spreadsheets/d/15MXDUEWai1SW2OZ6Nt8MbvfxRC8kAfCO/edit?usp=sharing&ouid=110021340560949770286&rtpof=true&sd=true',
 			label: 'RESUME.japanese',
 			newTab: true
-		},
-		{
-			to: 'https://docs.google.com/spreadsheets/d/1PfDypNRzmBTzJRFwEfF_dDX6QDFeGyUnf3xjk_mnsFo/edit?usp=sharing',
-			label: 'RESUME.japanese_work',
-			newTab: true
 		}
+		// {
+		// 	to: 'https://docs.google.com/spreadsheets/d/1PfDypNRzmBTzJRFwEfF_dDX6QDFeGyUnf3xjk_mnsFo/edit?usp=sharing',
+		// 	label: 'RESUME.japanese_work',
+		// 	newTab: true
+		// }
 	]
 };
 
