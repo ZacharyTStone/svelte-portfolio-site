@@ -32,7 +32,7 @@
 		left: 20px;
 		animation:
 			slideInLeft 3s ease-out,
-			fadeOutUp 1s 5s ease-in forwards;
+			fadeOutUp 1s 4s ease-in forwards;
 	}
 
 	.s-letter {
@@ -40,7 +40,7 @@
 		right: 20px;
 		animation:
 			slideInRight 3s ease-out,
-			fadeOutUp 1s 5s ease-in forwards;
+			fadeOutUp 1s 4s ease-in forwards;
 	}
 
 	@media (max-width: 768px) {
