@@ -44,7 +44,7 @@
 		background-color: transparent;
 		position: relative;
 		overflow: hidden;
-		animation: fadeIn 4s ease-in;
+		animation: fadeIn 7s ease-in;
 	}
 
 	.hero-content {
