@@ -1,19 +1,11 @@
 <script lang="ts">
 	import Card from '$lib/components/Card/Card.svelte';
-	import ContactLInks from '$lib/components/Contact/ContactLInks.svelte';
 	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
 	import { HOME, TITLE_SUFFIX } from '$lib/params';
 	import { handleNavigation, useTitle } from '$lib/utils/helpers';
-	import { onMount } from 'svelte';
-	import { _, locale } from 'svelte-i18n';
+	import { _ } from 'svelte-i18n';
 
 	let { description, lastName, links, name, title } = HOME;
-
-	let greeting = 'Hello 👋';
-
-	onMount(() => {
-		document.title = useTitle(title, TITLE_SUFFIX);
-	});
 </script>
 
 <svelte:head>
@@ -21,15 +13,14 @@
 </svelte:head>
 
 <HeroLetters />
-<div class="hero-container">
-	<div class="hero-content">
-		<h1 class="hero-title fadeIn">
-			<span class="text-gradient">{greeting}</span>
-		</h1>
-		<h3 class="hero-description fadeIn">
+<div
+	class="hero-container relative flex h-[calc(100dvh-151px)] items-center justify-center overflow-hidden bg-transparent"
+>
+	<div class="hero-content relative z-10 mx-auto max-w-2xl text-center">
+		<h3 class="hero-description mb-8 max-w-xl text-xl text-accent-text sm:text-2xl">
 			{$_(description)}
 		</h3>
-		<div class="hidden lg:block cta-button fadeIn">
+		<div class="cta-button hidden lg:block">
 			<Card nofade={true} onClick={(e) => handleNavigation(e, '/about')}>{$_('ABOUT.cta')}</Card>
 		</div>
 	</div>
@@ -47,47 +38,18 @@
 		animation: fadeIn 7s ease-in;
 	}
 
-	.hero-content {
-		text-align: center;
-		max-width: 800px;
-		z-index: 2;
-	}
-
-	.hero-title {
-		font-size: 3rem;
-		font-weight: bold;
-		margin-bottom: 1rem;
-		color: var(--main-text);
+	.hero-description,
+	.cta-button {
+		opacity: 0;
+		animation: flyIn 1s ease-out forwards;
 	}
 
 	.hero-description {
-		font-size: 1.5rem;
-		color: var(--accent-text);
-		margin-bottom: 2rem;
-		max-width: 600px;
-		margin-left: auto;
-		margin-right: auto;
+		animation-delay: 3s;
 	}
 
-	/* Media query for mobile devices */
-	@media (max-width: 640px) {
-		.hero-title {
-			font-size: 2rem; /* Smaller size for mobile */
-		}
-
-		.hero-description {
-			font-size: 1.2rem; /* Smaller size for mobile */
-		}
-	}
-
-	.text-gradient {
-		color: var(--accent-text-hover);
-	}
-
-	@keyframes shimmer {
-		to {
-			background-position: 200% 90%;
-		}
+	.cta-button {
+		animation-delay: 3.5s;
 	}
 
 	@keyframes flyIn {
@@ -102,9 +64,7 @@
 	}
 
 	@keyframes fadeIn {
-		0% {
-			opacity: 0;
-		}
+		0%,
 		50% {
 			opacity: 0;
 		}

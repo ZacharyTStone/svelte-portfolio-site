@@ -11,7 +11,6 @@
 		width: 100vw;
 		height: 100vh;
 		pointer-events: none;
-		
 	}
 
 	.hero-letter {
@@ -60,7 +59,7 @@
 			transform: translateX(-100%);
 			opacity: 0;
 		}
-		10% {
+		30% {
 			transform: translateX(-100%);
 			opacity: 0;
 		}
@@ -75,7 +74,7 @@
 			transform: translateX(100%);
 			opacity: 0;
 		}
-		10% {
+		30% {
 			transform: translateX(100%);
 			opacity: 0;
 		}

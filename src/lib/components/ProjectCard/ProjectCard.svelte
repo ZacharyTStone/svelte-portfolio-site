@@ -15,70 +15,21 @@
 	const imageSrc = getAssetURL(project.logo);
 </script>
 
-<div class="project-container">
+<div
+	class="project-container flex flex-col items-center transition duration-300 ease-in-out hover:scale-102"
+>
 	<Card color={project.color} onClick={(e) => handleNavigation(e, `/projects/${project.slug}`)}>
-		<h2 class="project-title">
+		<h2
+			class="project-title text-main-text m-0 rounded-lg opacity-100 transition duration-300 text-2xl font-bold max-w-full min-h-[50px] text-center w-full"
+		>
 			{$_(project.name)}
 		</h2>
 		<Image
 			src={imageSrc}
 			alt={$_(project.name)}
-			classes="project-image"
+			classes="w-full object-cover rounded-xl h-[200px]"
 			loadingHeight="200px"
 			loadingWidth="320px"
 		/>
 	</Card>
 </div>
-
-<style>
-	.project-container {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		transition: transform 0.3s ease-in-out;
-	}
-
-	.project-container:hover {
-		transform: scale(1.02);
-	}
-
-	.project-title {
-		color: var(--light-6);
-		margin: 0;
-		border-radius: 8px;
-		opacity: 1;
-		transition: opacity 0.3s;
-		font-size: 1.5rem;
-		font-weight: bold;
-		max-width: 100%;
-		min-height: 50px;
-		text-align: center;
-		width: 100%;
-	}
-
-	:global(.project-image) {
-		width: 100%;
-		height: 200px;
-		object-fit: cover;
-		border-radius: 14px;
-	}
-
-	@media (max-width: 767px) {
-		:global(.project-image) {
-			height: auto;
-			min-height: 200px;
-		}
-	}
-
-	@keyframes rainbow {
-		0% {
-			background-position: 0% 50%;
-		}
-		50% {
-			background-position: 100% 50%;
-		}
-		100% {
-			background-position: 0% 50%;
-		}
-	}
-</style>
