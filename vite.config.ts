@@ -6,7 +6,9 @@ const config: UserConfig = {
 	plugins: [UnoCSS(), sveltekit()],
 	build: {
 		minify: true,
-		sourcemap: false
+		sourcemap: true,
+		cssMinify: true,
+		cssCodeSplit: true
 	}
 };
 
