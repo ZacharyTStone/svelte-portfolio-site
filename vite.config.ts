@@ -1,9 +1,10 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import type { UserConfig } from 'vite';
 import UnoCSS from 'unocss/vite';
+import { enhancedImages } from '@sveltejs/enhanced-img';
 
 const config: UserConfig = {
-	plugins: [UnoCSS(), sveltekit()],
+	plugins: [sveltekit(), enhancedImages(), UnoCSS()],
 	build: {
 		minify: true,
 		sourcemap: true,

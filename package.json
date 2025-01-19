@@ -49,6 +49,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/enhanced-img": "^0.4.4",
 		"@vercel/analytics": "^1.1.0",
 		"@vercel/speed-insights": "^1.0.0",
 		"svelte-i18n": "^4.0.0",

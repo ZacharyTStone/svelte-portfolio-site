@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -53,7 +53,8 @@
 
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover">
+	<!-- user must wait for the hero animation. The pages are lightweight so we have decided to preload the data and code -->
+	<body data-sveltekit-preload-data="eager" data-sveltekit-preload-code="eager">
 		<script>
 			// Immediately executed function to set the theme
 			(function () {

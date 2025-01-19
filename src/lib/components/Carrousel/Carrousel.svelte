@@ -7,7 +7,7 @@
 	import UIcon from '../Icon/UIcon.svelte';
 	import { base } from '$app/paths';
 
-	let element: HTMLElement = $state();
+	let element: HTMLElement | undefined = $state();
 
 	let timeout: number;
 	let index = $state(0);
@@ -73,6 +73,7 @@
 						class="w-120px h-120px aspect-square"
 						src={getAssetURL(item.logo)}
 						alt={$_(item.name)}
+						aria-label={$_(item.name)}
 					/>
 				</a>
 				<span class="text-center m-t-10px sm:text-[1em] min-h-48px">{$_(item.name)}</span>

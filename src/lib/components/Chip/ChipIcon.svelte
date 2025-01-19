@@ -37,6 +37,7 @@
 	data-help={$_(name)}
 	target={href && newtab ? '_blank' : undefined}
 	onclick={onClick}
+	aria-hidden="true"
 >
 	{#if children}
 		{@render children?.()}
@@ -49,6 +50,7 @@
 									`}
 			src={logo}
 			alt={name}
+			aria-hidden="true"
 		/>
 	{/if}
 </svelte:element>

@@ -30,10 +30,12 @@
 		loading = true;
 
 		img.onload = () => {
+			console.log('Image loaded successfully');
 			loading = false;
 			loaded = true;
 		};
 		img.onerror = () => {
+			console.error('Image failed to load');
 			loading = false;
 			failed = true;
 		};
@@ -41,13 +43,14 @@
 </script>
 
 {#if loaded}
-	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-	<img {src} {alt} class={classes} {style} onclick={onClick} onkeydown={onClick} />
-{:else if failed}
 	<img
-		src="https://icon-library.com/images/not-found-icon/not-found-icon-20.jpg"
-		alt="Not Found"
+		{src}
 		class={classes}
+		{style}
+		onclick={onClick}
+		onkeydown={onClick}
+		alt="image"
+		aria-hidden="true"
 	/>
 {:else if loading}
 	<div
@@ -62,7 +65,9 @@
 		border: 2px solid;
 		border-radius: 10px;
 		border-color: #ff0000;
-		animation: pulse 1.5s ease-in-out infinite, rainbow-border 3s linear infinite;
+		animation:
+			pulse 1.5s ease-in-out infinite,
+			rainbow-border 3s linear infinite;
 	}
 
 	@keyframes pulse {
