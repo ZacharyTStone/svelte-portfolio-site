@@ -23,7 +23,7 @@
 	"ABOUT": {
 		"cta": "Learn More About Me",
 		"title": "About Me",
-		"full_about": "I'm a self-taught software engineer specializing in web development. I have extensive experience working with modern JavaScript frameworks and libraries like React, Next JS, Svelte, etc.  I also am comfortable with various CSS solutions such as Styled Components and Tailwind. ",
+		"full_about": "I have extensive experience working with modern JavaScript frameworks and libraries like React, Next JS, Svelte, etc.  I also am comfortable with various CSS solutions such as Styled Components and Tailwind. ",
 		"experienced_in": {
 			"title": "Experienced In",
 			"text": "-Managing bug tickets, support tasks, and new feature development.\n\n-Collaborating with clients on BRDs, feature briefs, tech specs, and documentation.\n\n-Coordinating with design, engineering, and product teams.\n\n-Conducting first-round interviews and reviewing candidates' applications"

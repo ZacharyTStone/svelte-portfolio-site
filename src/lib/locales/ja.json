@@ -55,7 +55,7 @@
 	"ABOUT": {
 		"cta": "私についてもっと知る",
 		"title": "自己紹介",
-		"full_about": "自学でフロントエンドウェブ開発を専門とするソフトウェアエンジニアです。React、Next.js、Svelteなどの最新のJavaScriptフレームワークやライブラリを使った豊富な経験があります。また、Styled ComponentsやTailwindなど、さまざまなCSSソリューションにも精通しています。",
+		"full_about": "React、Next.js、Svelteなどの最新のJavaScriptフレームワークやライブラリを使った豊富な経験があります。また、Styled ComponentsやTailwindなど、さまざまなCSSソリューションにも精通しています。",
 		"experienced_in": {
 			"title": "経験分野",
 			"text": "- バグチケットの管理、サポートタスク、新機能の開発。\n\n- クライアントとのBRD、機能概要、技術仕様書、ドキュメントの協力。\n\n- デザイン、エンジニアリング、プロダクトチームとの調整。\n\n- 一次面接の実施と応募者の書類審査。"
