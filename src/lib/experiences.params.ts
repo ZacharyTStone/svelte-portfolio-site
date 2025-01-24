@@ -2,7 +2,7 @@ import Assets, { getAssetURL } from './data/assets';
 import { getSkills } from './skills.params';
 import { ContractType, type Experience } from './types';
 
-const MY_EXPERIENCES: Array<Experience> = [
+const RAW_EXPERIENCES: Array<Experience> = [
 	{
 		slug: 'interac',
 		company: 'Interac',
@@ -96,4 +96,9 @@ const MY_EXPERIENCES: Array<Experience> = [
 	}
 ];
 
-export default MY_EXPERIENCES;
+// most recent first and then older
+const SORTED_EXPERIENCES = RAW_EXPERIENCES.sort((a, b) => {
+	return b.period.from.getTime() - a.period.from.getTime();
+});
+
+export default SORTED_EXPERIENCES;

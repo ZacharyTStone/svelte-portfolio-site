@@ -38,7 +38,7 @@
 				<div class="flex-1 flex flex-col gap-6 md:max-h-[80vh] overflow-x-visible animate-fadeIn">
 					<div in:fade={{ delay: getAnimationDelay(), duration: 200 }}>
 						<Card classes={['w-full', 'animate-slideInUp']}>
-							<h2 class="text-xl font-semibold mb-2 md:text-2xl">
+							<h2 class="text-xl font-semibold mb-2 md:text-2xl pb-2">
 								{$_('ABOUT.title')}
 							</h2>
 							<p class="text-base md:text-lg leading-relaxed">
@@ -52,10 +52,10 @@
 						class="flex flex-col w-full gap-4"
 					>
 						<Card classes={['w-full', 'animate-slideInUp']}>
-							<h2 class="text-xl font-semibold mb-2 md:text-2xl">
+							<h2 class="text-xl font-semibold mb-2 md:text-2xl pb-2">
 								{$_('ABOUT.experienced_in.title')}
 							</h2>
-							<p class="text-base md:text-lg leading-relaxed whitespace-pre-line">
+							<p class="text-base md:text-base leading-relaxed whitespace-pre-line">
 								{$_('ABOUT.experienced_in.text')}
 							</p>
 						</Card>
@@ -70,10 +70,10 @@
 				<div class="flex-1 flex flex-col gap-6 md:max-h-[80vh] overflow-x-visible animate-fadeIn">
 					<div in:fade={{ delay: getAnimationDelay(), duration: 400 }}>
 						<Card classes={['w-full', 'animate-slideInUp']}>
-							<h2 class="text-xl font-semibold mb-2 md:text-2xl">
+							<h2 class="text-xl font-semibold mb-2 md:text-2xl pb-2">
 								{$_(`ABOUT.values.title`)}
 							</h2>
-							<p class="text-base md:text-lg leading-relaxed">
+							<p class="text-base md:text-base leading-relaxed whitespace-pre-line">
 								{$_(`ABOUT.values.text`)}
 							</p>
 						</Card>
