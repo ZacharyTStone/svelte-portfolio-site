@@ -46,60 +46,6 @@
 							</p>
 						</Card>
 					</div>
-
-					<div
-						in:fade={{ delay: getAnimationDelay(), duration: 300 }}
-						class="flex flex-col w-full gap-4"
-					>
-						<Card classes={['w-full', 'animate-slideInUp']}>
-							<h2 class="text-xl font-semibold mb-2 md:text-2xl pb-2">
-								{$_('ABOUT.experienced_in.title')}
-							</h2>
-							<p class="text-base md:text-base leading-relaxed whitespace-pre-line">
-								{$_('ABOUT.experienced_in.text')}
-							</p>
-						</Card>
-					</div>
-				</div>
-
-				<div
-					class="hidden md:block w-px my-12 bg-border animate-fadeIn"
-					style="animation-delay: 0.8s;"
-				></div>
-
-				<div class="flex-1 flex flex-col gap-6 md:max-h-[80vh] overflow-x-visible animate-fadeIn">
-					<div in:fade={{ delay: getAnimationDelay(), duration: 400 }}>
-						<Card classes={['w-full', 'animate-slideInUp']}>
-							<h2 class="text-xl font-semibold mb-2 md:text-2xl pb-2">
-								{$_(`ABOUT.values.title`)}
-							</h2>
-							<p class="text-base md:text-base leading-relaxed whitespace-pre-line">
-								{$_(`ABOUT.values.text`)}
-							</p>
-						</Card>
-					</div>
-
-					<div
-						class="flex flex-col w-full gap-6 mt-6"
-						in:fade={{ delay: getAnimationDelay(), duration: 500 }}
-					>
-						<div class="flex flex-col w-full gap-4">
-							{#each RESUME?.links as item}
-								<div>
-									<Card
-										newtab
-										onClick={(e) => handleNavigation(e, item?.to, true)}
-										classes={['w-full', 'animate-slideInUp']}
-									>
-										<div class="flex items-center gap-2">
-											<UIcon icon="i-carbon-document" />
-											{$_(item?.label)}
-										</div>
-									</Card>
-								</div>
-							{/each}
-						</div>
-					</div>
 				</div>
 			{/if}
 		</main>

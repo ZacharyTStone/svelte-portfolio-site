@@ -19,7 +19,6 @@
 		font-weight: bold;
 		color: var(--text-muted);
 		opacity: 0.2;
-		//will-change: transform, opacity;
 	}
 
 	:global(:root[data-theme='dark']) .hero-letter {

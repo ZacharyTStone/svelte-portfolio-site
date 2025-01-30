@@ -3,7 +3,7 @@
 		"title": "Home",
 		"name": "Zach",
 		"lastName": "Stone",
-		"description": "I'm a software engineer specializing in web development with Japanese language skills.",
+		"description": "I'm a senior frontend engineer with Japanese language skills.",
 		"connect_cta": "Let's Connect!"
 	},
 	"NAVBAR": {
@@ -23,15 +23,7 @@
 	"ABOUT": {
 		"cta": "Learn More About Me",
 		"title": "About Me",
-		"full_about": "I am a software engineer with extensive experience building modern, responsive applications using JavaScript frameworks/libraries like React and Next.js. I strive to create clean, maintainable code and enjoy collaborating with teams to deliver high-quality products. As a self-taught programmer and Japanese learner, I bring strong problem-solving skills and a dedication to continuous learning.",
-		"experienced_in": {
-			"title": "Experienced In",
-			"text": "-Managing bug tickets, support tasks, and new feature development.\n\n-Collaborating with clients on BRDs, feature briefs, tech specs, and documentation.\n\n-Coordinating with design, engineering, and product teams.\n\n-Conducting first-round interviews and reviewing candidates' applications"
-		},
-		"values": {
-			"title": "Core Values",
-			"text": "I prioritize kind and clear communication and always aim to enhance the quality of whatever project I work on. Being a self-taught programmer and Japanese speaker, I have a strong work ethic and enjoy working on tasks to completion."
-		},
+		"full_about": "Passionate Senior Frontend Engineer with 4+ years of experience developing scalable, high-performance web applications using tools like React, Next.js, Javascript, and TypeScript. Passionate about crafting clean UIs with CSS libraries such as Styled Components and Tailwind CSS.  Proven track record in enhancing developer workflows, leading technical initiatives, and collaborating cross-functionally with engineering, QA, design, and product teams to deliver exceptional projects. Fluent in Japanese (JLPT N1), with a growing interest in backend development and cybersecurity.",
 		"socials": "Connect with me"
 	},
 	"EXPERIENCES": {
