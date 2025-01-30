@@ -28,14 +28,14 @@
 		: 'hidden sm:flex'}"
 >
 	{#each links as { platform, link }, index}
-		<div class="fadeIn">
+		<div class="fadeSlow">
 			<ChipIcon name={platform} href={link} newtab>
 				<Icon icon={getPlatfromIcon(platform)} color={'var(--accent-text)'} size={'24px'} />
 			</ChipIcon>
 		</div>
 	{/each}
 	{#if onHome}
-		<div class="fadeIn">
+		<div class="fadeSlow">
 			<div class="flex flex-row items-center gap-2 cursor-pointer h-100%">
 				<UIcon icon="i-carbon-arrow-left" />
 				<span class="text-gradient">{$_('HOME.connect_cta')}</span>
@@ -43,3 +43,9 @@
 		</div>
 	{/if}
 </div>
+
+<style>
+	.fadeSlow {
+		animation: fadeIn 12s ease-in-out forwards;
+	}
+</style>
