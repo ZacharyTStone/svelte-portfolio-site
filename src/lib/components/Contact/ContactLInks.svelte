@@ -46,7 +46,7 @@
 	</ul>
 	{#if onHome}
 		<div class="fadeSlow">
-			<div class="flex flex-row items-center gap-2 cursor-pointer h-100%">
+			<div class="flex flex-row items-center gap-2 cursor: url('/ring-pointer.png'), auto; h-100%">
 				<UIcon icon="i-carbon-arrow-left" />
 				<span class="text-gradient">{$_('HOME.connect_cta')}</span>
 			</div>

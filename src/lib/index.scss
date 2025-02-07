@@ -52,6 +52,16 @@
 
 body {
 	margin: 0px;
+	cursor:
+		url('/cursor-ring.png') 4 4,
+		default !important;
+}
+iframe,
+button,
+input,
+img,
+a {
+	cursor: url('/ring-pointer.png'), auto;
 }
 
 :root[data-theme='dark'] {

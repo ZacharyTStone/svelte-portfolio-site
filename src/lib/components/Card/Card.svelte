@@ -19,6 +19,7 @@
 		onClick?: (event: Event) => void;
 		active?: boolean;
 		nofade?: boolean;
+		style?: string;
 	}
 
 	let {
@@ -33,7 +34,8 @@
 		newtab = false,
 		onClick,
 		active = false,
-		nofade = false
+		nofade = false,
+		style
 	}: Props = $props();
 
 	onMount(() => {
@@ -65,13 +67,14 @@
 	class={`card text-inherit decoration-none inline-flex flex-col border-1px border-solid border-[var(--border)] rounded-15px duration relative ${classes.join(
 		' '
 	)}`}
-	style={color}
+	{style}
 	transition:fade={{ delay: fadeDelay, duration: nofade ? 0 : 300 }}
 	onclick={onClick}
 	class:active
 >
 	<div
-		class={`card-bg-img flex-1 flex flex-col p-15px rounded-15px ${onClick ? 'cursor-pointer' : ''}`}
+		class={`card-bg-img flex-1 flex flex-col p-15px rounded-15px`}
+		style={`${onClick ? 'cursor: url("/ring-pointer.png"), auto;' : ''}`}
 	>
 		{@render children?.()}
 	</div>

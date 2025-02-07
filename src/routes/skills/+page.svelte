@@ -18,8 +18,9 @@
 		{#each result as skill, index (skill.slug)}
 			<Card
 				classes={[
-					'cursor-pointer decoration-none rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg'
+					'decoration-none rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg'
 				]}
+				style="cursor: url('/ring-pointer.png'), auto;"
 				tiltDegree={1}
 				onClick={(e) => handleNavigation(e, `/skills/${skill.slug}`)}
 				bgImg={getAssetURL(skill.logo)}
