@@ -25,7 +25,7 @@
 </script>
 
 <div
-	class="fadeInSlow flex justify-center gap-5 pb-15 px-15 2xl:fixed bottom-0 left-0 2xl:right-auto 2xl:left-0 {showOnMobile
+	class="fadeInSlow flex justify-center gap-5 2xl:fixed bottom-0 left-0 2xl:right-auto 2xl:left-0 {showOnMobile
 		? ''
 		: 'hidden sm:flex'}"
 >
