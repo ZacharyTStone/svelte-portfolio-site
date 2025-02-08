@@ -125,11 +125,11 @@
 	}
 
 	.link-item:hover {
-		transform: translateY(-10px);
+		transform: translateY(-30px);
 		opacity: 1;
 	}
 
 	.link-item:hover ~ .link-item {
-		transform: translateY(10px);
+		transform: translateY(30px);
 	}
 </style>
