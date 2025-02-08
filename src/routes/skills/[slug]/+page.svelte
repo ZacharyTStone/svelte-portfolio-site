@@ -98,9 +98,14 @@
 								<div class="px-10px flex flex-row gap-3 flex-wrap align-center">
 									{#each any.content as info}
 										{#if any.title === 'Frameworks'}
-											<ChipIcon logo={getAssetURL(info.icon)} name={info.label} href={info.link} />
+											<ChipIcon
+												logo={getAssetURL(info.icon)}
+												name={info.label}
+												href={info.link}
+												newtab={true}
+											/>
 										{:else}
-											<a class="font-300" href={info.link}>
+											<a class="font-300" href={info.link} target="_blank">
 												<span class="text-[var(--accent-text)]">{info.label},{' '}</span>
 											</a>
 										{/if}
