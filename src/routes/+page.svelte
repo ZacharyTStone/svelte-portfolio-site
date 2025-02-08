@@ -20,7 +20,7 @@
 		<h3 class="hero-description mb-8 max-w-xl text-xl text-accent-text sm:text-2xl">
 			{$_(description)}
 		</h3>
-		<div class="cta-button hidden lg:block">
+		<div class="cta-button">
 			<Card nofade={true} onClick={(e) => handleNavigation(e, '/about')}>{$_('ABOUT.cta')}</Card>
 		</div>
 	</div>
