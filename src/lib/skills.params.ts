@@ -67,6 +67,12 @@ const Mobile: SkillInfoObject[] = [
 	{ label: 'React Navigation', link: 'https://reactnavigation.org/' }
 ];
 
+const Cyber: SkillInfoObject[] = [
+	{ label: 'OWASP ZAP', link: 'https://www.zaproxy.org/' },
+	{ label: 'Burp Suite', link: 'https://portswigger.net/burp' },
+	{ label: 'Kali Linux', link: 'https://www.kali.org/' }
+];
+
 const FE_EXTRA_INFO: SkillExtraInfo[] = [
 	{
 		title: 'EXTRA_INFO_LABELS.frameworks',
@@ -103,6 +109,12 @@ const MOBILE_EXTRA_INFO: SkillExtraInfo[] = [
 	}
 ];
 
+const CYBER_EXTRA_INFO: SkillExtraInfo[] = [
+	{
+		title: 'EXTRA_INFO_LABELS.tools',
+		content: Cyber
+	}
+];
 const MY_SKILLS: Array<Skill> = [
 	s({
 		slug: 'fe',
@@ -146,23 +158,24 @@ const MY_SKILLS: Array<Skill> = [
 			}
 		]
 	}),
-	// s({
-	// 	slug: 'cyber-security',
-	// 	color: 'green',
-	// 	description: 'SKILLS.cyber-security.description',
-	// 	logo: Assets.Security,
-	// 	name: 'SKILLS.cyber-security.name',
-	// 	courses: [
-	// 		{
-	// 			label: 'Web Application Security Testing with OWASP ZAP',
-	// 			link: 'https://coursera.org/share/764fa0ecbc96a7cd52d2a829ee73e03b'
-	// 		},
-	// 		{
-	// 			label: 'Hacking Web Applications & Penetration Testing: Web Hacking',
-	// 			link: 'https://www.udemy.com/certificate/UC-518b49d7-8a75-43bd-ae87-1dd891aa2ff4/'
-	// 		}
-	// 	]
-	// }),
+	s({
+		slug: 'cyber-security',
+		color: 'green',
+		// description: 'SKILLS.cyber-security.description',
+		logo: Assets.Security,
+		name: 'SKILLS.cyber-security.name',
+		courses: [
+			{
+				label: 'Web Application Security Testing with OWASP ZAP',
+				link: 'https://coursera.org/share/764fa0ecbc96a7cd52d2a829ee73e03b'
+			},
+			{
+				label: 'Hacking Web Applications & Penetration Testing: Web Hacking',
+				link: 'https://www.udemy.com/certificate/UC-518b49d7-8a75-43bd-ae87-1dd891aa2ff4/'
+			}
+		],
+		extraInfo: CYBER_EXTRA_INFO
+	}),
 	// s({
 	// 	slug: 'mobile',
 	// 	color: 'purple',

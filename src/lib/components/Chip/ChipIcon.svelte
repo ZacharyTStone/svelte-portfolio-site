@@ -12,6 +12,7 @@
 		href?: string | undefined;
 		children?: import('svelte').Snippet;
 		onClick?: (event: Event) => void;
+		tooltipLocation?: 'top' | 'bottom';
 	}
 
 	let {
@@ -22,7 +23,8 @@
 		grayscale = true,
 		href = undefined,
 		children,
-		onClick
+		onClick,
+		tooltipLocation = 'bottom'
 	}: Props = $props();
 </script>
 
@@ -31,8 +33,9 @@
 	{href}
 	class={`
 					chip-icon row-center relative text-inherit decoration-none p-10px m-r-5px m-b-5px border-1px border-solid border-[var(--border)] hover:border-[var(--border-hover)] rounded-10px
-					${href ? 'cursor: url("/ring-pointer.png"), auto;' : 'cursor-help'}
+					${href ? 'cursor: pointer;' : 'cursor-help'}
 					${grayscale ? 'grayscale-65 hover:grayscale-0' : ''}
+					tooltip-${tooltipLocation}
 			`}
 	data-help={$_(name)}
 	target={href && newtab ? '_blank' : undefined}
@@ -82,10 +85,19 @@
 				background-color: var(--secondary);
 				padding: 5px 10px;
 				left: 10px;
-				top: calc(100% + 0px);
 				border: 1px solid var(--border);
 				border-radius: 15px;
 			}
+		}
+
+		&.tooltip-bottom:hover::before {
+			top: calc(100% + 5px);
+			bottom: auto;
+		}
+
+		&.tooltip-top:hover::before {
+			bottom: calc(100% + 5px);
+			top: auto;
 		}
 
 		&-logo {

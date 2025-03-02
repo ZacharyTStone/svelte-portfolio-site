@@ -33,7 +33,7 @@
 <div class="px-10px grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 m-t-10">
 	{#each screenshots as item}
 		<div
-			class="col-center gap-3 w-99% h-99% rounded-10px cursor: url('/ring-pointer.png'), auto; rainbow-hover"
+			class="col-center gap-3 w-99% h-99% rounded-10px cursor: pointer; rainbow-hover"
 			onclick={() => openModal(item.src)}
 			onkeydown={() => {}}
 			role="button"

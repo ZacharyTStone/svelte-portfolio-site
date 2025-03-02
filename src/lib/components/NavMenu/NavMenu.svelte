@@ -72,7 +72,7 @@
 				<UIcon icon="i-carbon-search" alt="search" tooltip={$_(NavBar.search)} />
 			</a>
 			<button
-				class="bg-transparent text-1em border-none cursor: url('/ring-pointer.png'), auto; text-[var(--secondary-text)] px-2 rainbow-hover"
+				class="bg-transparent text-1em border-none cursor: pointer; text-[var(--secondary-text)] px-2 rainbow-hover"
 				onclick={() => toggleTheme($theme === 'dark' ? 'light' : 'dark')}
 				aria-label={$_($theme === 'light' ? NavBar.lightMode : NavBar.darkMode)}
 			>
@@ -83,7 +83,7 @@
 				{/if}
 			</button>
 			<button
-				class="bg-transparent text-1em border-none cursor: url('/ring-pointer.png'), auto; text-[var(--secondary-text)] px-2 rainbow-hover"
+				class="bg-transparent text-1em border-none cursor: pointer; text-[var(--secondary-text)] px-2 rainbow-hover"
 				onclick={toggleLanguage}
 				aria-label={$_($locale?.includes('en') ? NavBar.japanese : NavBar.english)}
 			>
@@ -194,7 +194,7 @@
 		background-color: transparent;
 		border: none;
 		color: var(--secondary-text);
-		cursor: url('/ring-pointer.png'), auto;
+		cursor: pointer;
 		padding: 5px;
 	}
 </style>

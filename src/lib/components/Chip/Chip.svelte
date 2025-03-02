@@ -37,7 +37,7 @@
 		} tracking-wider text-[0.9em] text-[var(--tertiary-text)] duration-[150ms] font-light ${
 			borderRadius ? `rounded-[${borderRadius}]` : 'rounded-[20px]'
 		} rainbow-hover  ${active ? '' : 'bg-transparent hover:border-[var(--border-hover)]'}
-		${onClick ? 'cursor: url("/ring-pointer.png"), auto;' : ''}
+		${onClick ? 'cursor: pointer;' : ''}
 		${classes}`
 	);
 

@@ -74,7 +74,7 @@
 >
 	<div
 		class={`card-bg-img flex-1 flex flex-col p-15px rounded-15px`}
-		style={`${onClick ? 'cursor: url("/ring-pointer.png"), auto;' : ''}`}
+		style={`${onClick ? 'cursor: pointer;' : ''}`}
 	>
 		{@render children?.()}
 	</div>
