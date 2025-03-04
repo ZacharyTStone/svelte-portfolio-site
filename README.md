@@ -22,7 +22,7 @@ The site was built using a template as a foundation, which has been significantl
 
 - **Framework**: [SvelteKit](https://kit.svelte.dev/) with [Svelte 5](https://svelte.dev/)
 - **Styling**: [TailwindCSS](https://tailwindcss.com/) and [SCSS](https://sass-lang.com/)
-- **Icons**: UnoCSS for icon integration
+- **Icons**: [UnoCSS](https://unocss.dev/) for icon integration
 - **Internationalization**: svelte-i18n for multi-language support (English/Japanese)
 - **Deployment**: [Vercel](https://vercel.com/)
 - **Analytics**: Vercel Analytics and Speed Insights
@@ -39,7 +39,7 @@ The site was built using a template as a foundation, which has been significantl
 
 ## Project Structure
 
-```
+```plaintext
 src/
 ├── lib/              # Shared component library
 │   ├── assets/       # Static assets
