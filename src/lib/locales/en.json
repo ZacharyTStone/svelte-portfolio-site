@@ -61,27 +61,21 @@
 		"cta": "See My Skills",
 		"title": "Skills",
 		"fe": {
-			"description": "I have extensive experience using a variety of frontend frameworks and tools to create responsive and accessible web applications. My work includes managing bug tickets, support tasks, and new feature development. I am proficient with CSS and CSS-in-JS tools like Styled Components and Tailwind. Crafting strong, reusable components is an art I continually strive to perfect. I am comfortable working in large code bases and understand the importance of refactoring code to reduce technical debt.",
 			"name": "Frontend Web"
 		},
 		"be": {
-			"description": "I have experience working with REST and GraphQL APIs on Node JS backends in Typescript. I also have experience working with databases in both SQL and NoSQL formats. At Rapptr Labs I worked on backend tickets for a business-level application using Node.js and Express with a database in SQL, interacted with through Prisma. In addition I am comfortable writing unit tests with Jest.",
 			"name": "Backend Web"
 		},
 		"cyber-security": {
-			"description": "My fascination with cybersecurity sparked when I implemented a comprehensive site overhaul according to a third-party audit at work. This experience exposed me to numerous cybersecurity concepts. While I am not pursuing a career in cybersecurity, I hope to continue to learn and apply these concepts in my work.",
 			"name": "Cybersecurity"
 		},
 		"dev-tools": {
-			"description": "Whether it is fixing merge conflicts in Git, or updating tickets in Jira, I am comfortable using a variety of tools to get the job done.",
 			"name": "Dev Tools"
 		},
 		"japanese": {
-			"description": "Outside of coding this is my biggest passion. I hope to one day be fluent and spend some time every day studying.",
 			"name": "Japanese"
 		},
 		"mobile": {
-			"description": "I am currently studying mobile development using React Native and use it on an active side project. I hope to increase my skills in this area and eventually work on a web/mobile cross development team.",
 			"name": "Mobile Development"
 		}
 	},
