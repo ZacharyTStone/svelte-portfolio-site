@@ -9,6 +9,8 @@
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
 	import ContactLInks from '$lib/components/Contact/ContactLInks.svelte';
+	import LoadingProvider from '$lib/components/LoadingProvider.svelte';
+	import { locale } from 'svelte-i18n';
 
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -19,13 +21,20 @@
 	inject({ mode: dev ? 'development' : 'production' });
 	injectSpeedInsights();
 
-	onMount(() => onHydrated());
+	onMount(() => {
+		onHydrated();
+
+		// For debugging only - can be removed in production
+		console.log('Current locale:', $locale);
+	});
 </script>
 
 <div class={`body contents ${$theme === 'dark' ? 'theme-dark' : 'theme-light'}`}>
 	<NavMenu />
 	<div class="content container">
-		{@render children?.()}
+		<LoadingProvider transition={true}>
+			{@render children?.()}
+		</LoadingProvider>
 		<ContactLInks showOnMobile={true} showText={false} />
 	</div>
 </div>
