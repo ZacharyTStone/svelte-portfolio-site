@@ -77,18 +77,18 @@
 <TabTitle title={computedTitle} />
 
 <div class="pb-10 overflow-x-hidden col flex-1">
-	<div class="flex flex-col items-center overflow-x-hidden fadeIn">
+	<div class="flex flex-col items-center overflow-x-hidden">
 		<Banner img={getAssetURL(data.skill.logo)}>
 			<MainTitle>{$_(data.skill.name)}</MainTitle>
 		</Banner>
-		<div class="p-5 md:p-0 flex flex-col items-center overflow-x-hidden fadeIn">
+		<div class="p-5 md:p-0 flex flex-col items-center overflow-x-hidden">
 			<div class="pt-3 pb-1 overflow-x-hidden w-full">
 				<div class="px-10px m-y-5">
 					{#if data.skill.description}
 						{$_(data.skill.description)}
 					{/if}
 				</div>
-				<div class="px-10px m-y-5 fadeIn">
+				<div class="px-10px m-y-5">
 					{#if data?.skill?.extraInfo?.length}
 						{#each data.skill.extraInfo as any}
 							<div class="flex flex-row gap-1 flex-wrap mb-5 items-center">
@@ -185,7 +185,7 @@
 			</div>
 
 			{#if screenshots.length > 0}
-				<div class="fadeIn">
+				<div class="">
 					<Screenshots {screenshots} />
 				</div>
 			{/if}

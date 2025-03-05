@@ -43,7 +43,9 @@
 			hideBorder={true}
 		>
 			<UIcon icon="i-carbon-code" classes="text-1.3em md:text-1.5em" alt="home" />
-			<span class="nav-menu-item-label hidden md:inline">{$_(HOME.name)} {$_(HOME.lastName)}</span>
+			<span class="nav-menu-item-label nav-brand hidden md:inline"
+				>{$_(HOME.name)} {$_(HOME.lastName)}</span
+			>
 		</Chip>
 
 		<div class="md:hidden flex items-center">
@@ -132,7 +134,6 @@
 <style lang="scss">
 	.nav-menu {
 		display: flex;
-
 		justify-content: center;
 		position: sticky;
 		top: 0px;
@@ -141,8 +142,10 @@
 		border-bottom: 1px solid var(--secondary);
 		background-color: var(--main);
 		height: max-content;
-
-		// small mobile
+		font-family: var(--text-f);
+		font-weight: var(--fw-medium);
+		letter-spacing: var(--ls-wide);
+		font-size: var(--fs-sm);
 
 		&-item {
 			text-decoration: none;
@@ -165,6 +168,13 @@
 				}
 			}
 		}
+	}
+
+	.nav-brand {
+		font-family: var(--title-f);
+		font-weight: var(--fw-medium);
+		letter-spacing: var(--ls-normal);
+		font-size: var(--fs-base);
 	}
 
 	.mobile-menu {
