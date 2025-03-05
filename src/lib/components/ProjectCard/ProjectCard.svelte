@@ -20,7 +20,7 @@
 >
 	<Card color={project.color} onClick={(e) => handleNavigation(e, `/projects/${project.slug}`)}>
 		<h2
-			class="project-title text-main-text m-0 rounded-lg opacity-100 transition duration-300 text-2xl font-bold max-w-full min-h-[50px] text-center w-full"
+			class="project-title text-main-text m-0 rounded-lg opacity-100 transition duration-300 text-2xl max-w-full min-h-[50px] text-center w-full"
 		>
 			{$_(project.name)}
 		</h2>
