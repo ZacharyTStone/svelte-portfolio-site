@@ -93,7 +93,7 @@
 
 	@media (max-width: 768px) {
 		.hero-container {
-			padding: 0 1rem;
+			padding: 0rem;
 		}
 
 		.asymmetric-grid {
@@ -101,13 +101,13 @@
 			grid-template-rows: auto auto;
 			gap: 1.5rem;
 			text-align: center;
-			padding: 1rem;
+			padding: 0rem;
 			transform: none;
 		}
 
 		.hero-content-left,
 		.hero-content-right {
-			padding: 0.5rem;
+			padding: 0px !important;
 			justify-content: center;
 			align-items: center;
 			transform: none !important;
@@ -134,7 +134,7 @@
 			transform: none !important;
 			margin: 0 auto 1rem auto;
 			white-space: nowrap;
-			font-size: clamp(2rem, 8vw, var(--fs-4xl));
+			font-size: 40px !important;
 			line-height: 1.2;
 		}
 
@@ -145,23 +145,11 @@
 
 		.hero-description {
 			text-align: center;
-			font-size: clamp(1rem, 4vw, var(--fs-lg));
+			font-size: 20px !important;
 			line-height: 1.5;
 			max-width: 90%;
-			margin: 0 auto 2rem auto;
+			margin: 0 auto 0rem auto;
 			transform: none !important;
-		}
-	}
-
-	/* Small phones */
-	@media (max-width: 380px) {
-		.hero-title {
-			font-size: clamp(1.8rem, 7vw, 2.5rem);
-		}
-
-		.hero-description {
-			font-size: clamp(0.9rem, 3.8vw, 1rem);
-			max-width: 95%;
 		}
 	}
 
