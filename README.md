@@ -32,7 +32,7 @@ The site was built using a template as a foundation, which has been significantl
 - **Responsive Design**: Fully responsive on all device sizes
 - **Animations**: Custom animations for enhanced user experience
 - **Bilingual Support**: Complete localization in English and Japanese
-- **Project Showcase**: Filterable project display
+- **Project Showcase**: Filterable project display with like functionality
 - **Skills Section**: Visual representation of technical skills
 - **Dark/Light Mode**: Theme toggle for user preference
 - **Performance Optimized**: Built with performance in mind
@@ -48,6 +48,7 @@ src/
 │   ├── hooks/        # Custom Svelte hooks
 │   ├── locales/      # i18n translation files
 │   ├── md/           # Markdown content
+│   ├── server/       # Server-side utilities
 │   ├── stores/       # Svelte stores
 │   └── utils/        # Utility functions
 ├── routes/           # Application routes
@@ -60,6 +61,102 @@ src/
 ├── app.d.ts          # TypeScript declarations
 └── app.html          # HTML template
 ```
+
+## Vercel KV Integration
+
+The project likes functionality uses Vercel KV for data persistence:
+
+1. Set up a KV database in your Vercel project:
+
+   ```bash
+   npx vercel link
+   npx vercel kv:create my-portfolio-likes
+   ```
+
+2. Add the created KV instance to your project:
+
+   ```bash
+   npx vercel kv:link my-portfolio-likes
+   ```
+
+3. Once deployed, the environment variables will be automatically configured in your Vercel project.
+
+4. For local development, copy `.env.example` to `.env.local` and add your KV API credentials:
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local with your KV credentials
+   ```
+
+## Security Considerations for Like Feature
+
+The thumbs up feature implements robust security measures to protect against abuse and attacks:
+
+1. **User Identification**: Users are uniquely identified using a UUID stored in localStorage to track like status while maintaining privacy.
+
+2. **Rate Limiting**:
+
+   - IP-based rate limiting restricts users to 30 likes per hour
+   - Rate limit headers provide transparent feedback to clients
+   - Prevents brute force attacks and abuse of the API
+
+3. **Input Validation and Sanitization**:
+
+   - All input parameters are validated for format and length
+   - Data is sanitized before use in Redis operations
+   - Prevents injection attacks and malformed data
+
+4. **Namespace Restrictions**:
+
+   - Redis key access is limited to specific allowed prefixes
+   - Prevents unauthorized access to Redis data outside the application's scope
+   - All operations are validated against allowed namespaces
+
+5. **Error Handling**:
+
+   - Comprehensive error catching and graceful failure
+   - Limited error information in responses to prevent information leakage
+   - Detailed server-side logging for diagnostics
+
+6. **Security Headers**:
+
+   - Content-Security-Policy restricts resource loading
+   - X-Content-Type-Options prevents MIME type sniffing
+   - X-XSS-Protection adds browser-level XSS protection
+   - Strict-Transport-Security enforces HTTPS in production
+   - X-Frame-Options prevents clickjacking attacks
+
+7. **Environment Variables**:
+   - Critical API credentials are stored securely as environment variables
+   - No credentials in client-side code
+   - Separation of development and production environments
+
+### Required Environment Variables
+
+For the like feature to work in production, you need to set up Redis storage through the Vercel Marketplace:
+
+1. **Redis Setup in Vercel Dashboard**:
+
+   - Go to your Vercel project dashboard
+   - Click on "Storage" in the left sidebar
+   - Click "Connect Storage"
+   - Select "Redis" from the marketplace
+   - Follow the instructions to create a new Redis database or connect to an existing one
+   - Complete the setup to get your Redis credentials
+
+2. **Environment Variables**:
+   After setting up Redis, the following environment variables will be automatically added to your project:
+
+   - `REDIS_URL` - The URL endpoint for your Redis database
+   - `REDIS_TOKEN` - The authentication token for your Redis database
+
+3. **Local Development**:
+   For local development, copy these credentials to your `.env.local` file:
+   ```bash
+   cp .env.example .env.local
+   # Then add your Redis credentials from the Vercel dashboard
+   ```
+
+These environment variables will be automatically set in your Vercel deployments once you've set up the Redis integration.
 
 ## Getting Started
 

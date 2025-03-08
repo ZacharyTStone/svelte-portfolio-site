@@ -284,4 +284,17 @@
 			transform: translate(-5px, 5px) rotate(43deg) translateZ(10px);
 		}
 	}
+
+	.popular-projects-section {
+		max-width: 800px;
+		margin: 2rem auto;
+		padding: 0 1rem;
+		animation: fadeIn 1.5s ease-in;
+	}
+
+	@media (max-width: 768px) {
+		.popular-projects-section {
+			margin: 1rem auto;
+		}
+	}
 </style>

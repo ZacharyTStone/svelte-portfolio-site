@@ -22,6 +22,9 @@
 	import { tooltip } from '@svelte-plugins/tooltips';
 	import Image from '$lib/components/Image/Image.svelte';
 	import Screenshots from '$lib/components/Screenshots/Screenshots.svelte';
+	import ThumbsUp from '$lib/components/ThumbsUp/ThumbsUp.svelte';
+	import { thumbsUpStore } from '$lib/stores/thumbsUpStore';
+	import { onMount } from 'svelte';
 
 	interface Props {
 		data: { project?: Project };
@@ -34,6 +37,21 @@
 	const screenshots = data.project?.screenshots ?? [];
 
 	const description = data.project?.description ?? '';
+
+	let likesCount = $state(data.project?.thumbsUpCount || 0);
+
+	onMount(async () => {
+		if (data.project) {
+			// Load likes from the server via the store
+			await thumbsUpStore.loadProjectLikes(data.project.slug);
+			likesCount = thumbsUpStore.getLikesCount(data.project.slug);
+		}
+	});
+
+	function handleLikeToggled(event: CustomEvent) {
+		// Update the count from the event
+		likesCount = event.detail.count;
+	}
 
 	let computedTitle = $derived(
 		data.project ? `${$_(data.project.name ?? '')} - ${$_(title)}` : $_(title)
@@ -77,6 +95,13 @@
 								</div>
 							</Chip>
 						{/each}
+					</div>
+					<div class="mt-4">
+						<ThumbsUp
+							projectSlug={data.project.slug}
+							count={likesCount}
+							on:likeToggled={handleLikeToggled}
+						/>
 					</div>
 				</div>
 			</Banner>

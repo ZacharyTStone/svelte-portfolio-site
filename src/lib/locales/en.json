@@ -99,10 +99,15 @@
 	},
 	"PROJECTS": {
 		"title": "Projects",
-		"no_filter_option": "No Filters",
+		"no_projects": "No projects",
+		"live_site": "Live Site",
+		"no_filter": "No Filter (All)",
 		"featured_projects": "Featured Projects",
 		"other_projects": "Other Projects",
-		"live_site": "Website",
+		"thumbs_up": "Thumbs Up",
+		"top_liked_projects": "Most Popular Projects",
+		"no_likes_yet": "No likes yet. Be the first to like a project!",
+		"projects_by_popularity": "Projects Sorted by Popularity",
 		"MY_ANIME_COLLECTION": {
 			"name": "My Anime Collection",
 			"description": "My Anime Collection is a free anime tracker where you can explore and create custom playlists of your favorite anime.",

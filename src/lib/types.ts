@@ -82,6 +82,7 @@ export interface Project extends Item {
 	featured_reason?: string;
 	description_is_markdown?: boolean;
 	dont_show?: boolean;
+	thumbsUpCount?: number;
 }
 
 export interface Experience extends Project {

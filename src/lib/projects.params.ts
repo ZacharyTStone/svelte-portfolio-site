@@ -52,7 +52,8 @@ const MY_PROJECTS: Array<Project> = [
 			{ src: getAssetURL(Assets.Mac6), label: '' },
 			{ src: getAssetURL(Assets.Mac7), label: '' },
 			{ src: getAssetURL(Assets.Mac8), label: '' }
-		]
+		],
+		thumbsUpCount: 0
 	},
 
 	{
@@ -92,7 +93,8 @@ const MY_PROJECTS: Array<Project> = [
 			{ src: getAssetURL(Assets.Haku3), label: '' },
 			{ src: getAssetURL(Assets.Haku4), label: '' },
 			{ src: getAssetURL(Assets.Haku5), label: '' }
-		]
+		],
+		thumbsUpCount: 0
 	},
 	{
 		slug: 'zach-in-japan',
@@ -130,7 +132,8 @@ const MY_PROJECTS: Array<Project> = [
 			{ src: getAssetURL(Assets.Blog2), label: '' },
 			{ src: getAssetURL(Assets.Blog3), label: '' },
 			{ src: getAssetURL(Assets.Blog4), label: '' }
-		]
+		],
+		thumbsUpCount: 0
 	},
 	{
 		slug: 'ai-flashcards',
@@ -166,7 +169,8 @@ const MY_PROJECTS: Array<Project> = [
 			{ src: getAssetURL(Assets.Anki1), label: '' },
 			{ src: getAssetURL(Assets.Anki2), label: '' },
 			{ src: getAssetURL(Assets.Anki3), label: '' }
-		]
+		],
+		thumbsUpCount: 0
 	},
 
 	// description: '
@@ -227,7 +231,8 @@ const MY_PROJECTS: Array<Project> = [
 		screenshots: [
 			{ src: getAssetURL(Assets.Prefecture1), label: '' },
 			{ src: getAssetURL(Assets.Prefecture2), label: '' }
-		]
+		],
+		thumbsUpCount: 0
 	},
 	{
 		slug: 'immerse-in-japan',
@@ -254,7 +259,8 @@ const MY_PROJECTS: Array<Project> = [
 		screenshots: [
 			{ src: getAssetURL(Assets.Immerse1), label: '' },
 			{ src: getAssetURL(Assets.Immerse2), label: '' }
-		]
+		],
+		thumbsUpCount: 0
 	}
 ];
 

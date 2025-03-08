@@ -12,6 +12,7 @@
 	import { _ } from 'svelte-i18n';
 	import { fade } from 'svelte/transition';
 	import { writable } from 'svelte/store';
+	import { thumbsUpStore } from '$lib/stores/thumbsUpStore';
 
 	interface SkillFilter extends Skill {
 		isSelected?: boolean;
@@ -19,9 +20,41 @@
 
 	const { items, title } = PROJECTS;
 
+	// Update projects with thumbs up counts from store
+	let projectsWithCounts = $state(
+		items.map((project) => ({
+			...project,
+			thumbsUpCount: project.thumbsUpCount || 0
+		}))
+	);
+
+	// Function to load all project likes
+	async function loadAllProjectLikes() {
+		if (typeof window !== 'undefined') {
+			await Promise.all(
+				items.map(async (project) => {
+					await thumbsUpStore.loadProjectLikes(project.slug);
+				})
+			);
+
+			updateProjectsWithCounts();
+		}
+	}
+
+	// Update projects with latest like counts from the store
+	function updateProjectsWithCounts() {
+		projectsWithCounts = items.map((project) => {
+			const storedCount = thumbsUpStore.getLikesCount(project.slug);
+			return {
+				...project,
+				thumbsUpCount: storedCount
+			};
+		});
+	}
+
 	let filters: Array<SkillFilter> = $state(
 		MY_SKILLS.filter((it) =>
-			items.some((project) => project.skills.some((skill) => skill.slug === it.slug))
+			projectsWithCounts.some((project) => project.skills.some((skill) => skill.slug === it.slug))
 		)
 	);
 
@@ -45,9 +78,25 @@
 		});
 	};
 
+	// Function to sort projects by thumbs up count
+	const sortByThumbsUp = (projects: Project[]) => {
+		return [...projects].sort((a, b) => {
+			const aCount = a.thumbsUpCount || 0;
+			const bCount = b.thumbsUpCount || 0;
+
+			// First sort by likes count in descending order
+			if (bCount !== aCount) {
+				return bCount - aCount;
+			}
+
+			// If like counts are equal, use project name as secondary sort
+			return $_(a.name).localeCompare($_(b.name));
+		});
+	};
+
 	const updateDisplayedProjects = () => {
 		const selectedFilters = filters.filter((tech) => tech.isSelected);
-		displayed = items.filter((project) => {
+		const filteredProjects = projectsWithCounts.filter((project) => {
 			const isFiltered =
 				selectedFilters.length === 0 ||
 				selectedFilters.every(
@@ -58,6 +107,9 @@
 				$_(project.name).trim().toLowerCase().includes(search.trim().toLowerCase());
 			return isFiltered && isSearched && !project.dont_show;
 		});
+
+		// Sort projects by thumbsUp count within each category
+		displayed = filteredProjects;
 	};
 
 	const onSearch = (e: CustomEvent<{ search: string }>) => {
@@ -88,7 +140,7 @@
 		}, 200);
 	};
 
-	onMount(() => {
+	onMount(async () => {
 		const query = location.search;
 		if (query) {
 			const queryParams = new URLSearchParams(location.search);
@@ -97,6 +149,9 @@
 				search = item;
 			}
 		}
+
+		// Load all project likes
+		await loadAllProjectLikes();
 
 		initializeProjects();
 	});
@@ -136,41 +191,15 @@
 			<p class="font-300">Could not find anything...</p>
 		</div>
 	{:else if isInitialized}
-		{#if featuredTitleVisible}
-			<h4
-				class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto"
-				in:fade={{ duration: 300 }}
-			>
-				{$_(PROJECTS.featured_projects ?? 'Featured Projects')}
-			</h4>
-		{:else}
-			<div class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto opacity-0">
-				Placeholder
-			</div>
-		{/if}
+		<h4
+			class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto"
+			in:fade={{ duration: 300 }}
+		>
+			{$_('PROJECTS.projects_by_popularity')}
+		</h4>
+
 		<div class="projects-list mt-5 mx-auto">
-			{#each displayed.filter((project) => project.featured) as project, index (project.slug)}
-				{#if $visibleItems.has(index)}
-					<div in:fade={{ duration: 300 }}>
-						<ProjectCard {project} />
-					</div>
-				{/if}
-			{/each}
-		</div>
-		{#if otherTitleVisible}
-			<h4
-				class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto"
-				in:fade={{ duration: 300 }}
-			>
-				{$_(PROJECTS.other_projects ?? 'Other Projects')}
-			</h4>
-		{:else}
-			<div class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto opacity-0">
-				Placeholder
-			</div>
-		{/if}
-		<div class="projects-list mt-5 mx-auto">
-			{#each displayed.filter((project) => !project.featured) as project, index (project.slug)}
+			{#each sortByThumbsUp(displayed) as project, index (project.slug)}
 				{#if $visibleItems.has(index)}
 					<div in:fade={{ duration: 300 }}>
 						<ProjectCard {project} />

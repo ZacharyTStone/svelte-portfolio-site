@@ -7,6 +7,7 @@
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import { fade } from 'svelte/transition';
+	import TopLikedProjects from '$lib/components/TopLikedProjects/TopLikedProjects.svelte';
 
 	let mounted = false;
 
@@ -65,6 +66,13 @@
 									</Card>
 								</div>
 							{/each}
+						</div>
+
+						<!-- Popular Projects Section -->
+						<div class="mt-8">
+							<Card classes={['w-full']}>
+								<TopLikedProjects limit={3} />
+							</Card>
 						</div>
 					</div>
 				</div>
