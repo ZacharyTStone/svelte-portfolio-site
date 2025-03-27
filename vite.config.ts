@@ -10,7 +10,8 @@ const config: UserConfig = {
 		sourcemap: true,
 		cssMinify: true,
 		cssCodeSplit: true
-	}
+	},
+	assetsInclude: ['**/*.svg'] // Treat all SVG files as assets
 };
 
 export default config;
