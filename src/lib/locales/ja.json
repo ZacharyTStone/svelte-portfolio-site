@@ -8,15 +8,16 @@
 	},
 	"NAVBAR": {
 		"home": "ホーム",
-		"personal": "プロジェクト",
-		"career": "経験",
-		"skills": "スキル",
-		"resume": "履歴書",
 		"about": "自己紹介",
+		"personal": "プロジェクト",
+		"skills": "スキル",
+		"career": "経験",
+		"resume": "履歴書",
 		"blog": "ブログ",
 		"search": "検索",
-		"japanese": "Japanese",
-		"english": "English",
+		"contact": "お問い合わせ",
+		"japanese": "日本語",
+		"english": "英語",
 		"lightMode": "ライトモード",
 		"darkMode": "ダークモード"
 	},
@@ -159,5 +160,25 @@
 		"project_tech": "プロジェクト技術",
 		"skills": "スキル",
 		"frameworks": "フレームワーク"
+	},
+	"CONTACT": {
+		"title": "お問い合わせ",
+		"meta_description": "ザック・ストーン - ウェブ開発者エンジニアへのお問い合わせ",
+		"name": "お名前",
+		"name_placeholder": "あなたのお名前",
+		"email": "メールアドレス",
+		"email_placeholder": "your@email.com",
+		"message": "メッセージ",
+		"message_placeholder": "メッセージを入力してください...",
+		"submit": "送信する",
+		"submitting": "送信中...",
+		"success_message": "お問い合わせありがとうございます！できるだけ早く返信いたします。",
+		"name_required": "お名前を入力してください",
+		"email_required": "メールアドレスを入力してください",
+		"email_invalid": "有効なメールアドレスを入力してください",
+		"message_required": "メッセージを入力してください",
+		"submission_error": "エラーが発生しました。もう一度お試しください。",
+		"connect_title": "他の連絡方法",
+		"connect_description": "以下のプラットフォームからもご連絡いただけます："
 	}
 }

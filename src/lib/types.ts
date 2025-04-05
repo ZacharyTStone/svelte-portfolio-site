@@ -137,3 +137,22 @@ export type SkillsPageParams = PageWithSearchParams<Skill>;
 export interface ResumePageParams extends PageParams {
 	links: Array<Link>;
 }
+
+// Add EmailJS and reCAPTCHA interface declarations
+declare global {
+	interface Window {
+		emailjs: {
+			init: (publicKey: string) => void;
+			send: (serviceId: string, templateId: string, templateParams: any) => Promise<any>;
+		};
+		grecaptcha: {
+			ready: (callback: () => void) => void;
+			execute: (siteKey: string, options: { action: string }) => Promise<string>;
+		};
+	}
+}
+
+export interface ColorAsset {
+	light: string;
+	dark: string;
+}

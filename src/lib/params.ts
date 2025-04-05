@@ -23,6 +23,7 @@ export const NavBar = {
 	skills: 'NAVBAR.skills',
 	blog: 'NAVBAR.blog',
 	search: 'NAVBAR.search',
+	contact: 'NAVBAR.contact',
 	japanese: 'NAVBAR.japanese',
 	english: 'NAVBAR.english',
 	lightMode: 'NAVBAR.lightMode',

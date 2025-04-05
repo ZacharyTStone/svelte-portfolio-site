@@ -8,15 +8,16 @@
 	},
 	"NAVBAR": {
 		"home": "Home",
-		"personal": "Projects",
-		"career": "Experience",
-		"skills": "Skills",
-		"resume": "Resume",
 		"about": "About",
+		"personal": "Projects",
+		"skills": "Skills",
+		"career": "Experience",
+		"resume": "Resume",
 		"blog": "Blog",
 		"search": "Search",
-		"japanese": "日本語",
-		"english": "英語",
+		"contact": "Contact",
+		"japanese": "Japanese",
+		"english": "English",
 		"lightMode": "Light Mode",
 		"darkMode": "Dark Mode"
 	},
@@ -161,5 +162,25 @@
 		"project_tech": "Project Tech",
 		"skills": "Skills",
 		"frameworks": "Frameworks"
+	},
+	"CONTACT": {
+		"title": "Get in Touch",
+		"meta_description": "Contact Zach Stone - Web Developer and Engineer",
+		"name": "Name",
+		"name_placeholder": "Your name",
+		"email": "Email",
+		"email_placeholder": "your@email.com",
+		"message": "Message",
+		"message_placeholder": "Your message...",
+		"submit": "Send Message",
+		"submitting": "Sending...",
+		"success_message": "Thanks for reaching out! I'll get back to you as soon as possible.",
+		"name_required": "Please enter your name",
+		"email_required": "Please enter your email",
+		"email_invalid": "Please enter a valid email address",
+		"message_required": "Please enter a message",
+		"submission_error": "Something went wrong. Please try again.",
+		"connect_title": "Connect With Me",
+		"connect_description": "You can also reach me through any of these platforms:"
 	}
 }
