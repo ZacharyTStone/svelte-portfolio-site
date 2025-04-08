@@ -162,6 +162,7 @@ small {
 
 	--main-text: var(--light-0);
 	--main-text-hover: var(--light-1);
+	--main-text-subtle: rgba(255, 255, 255, 0.15);
 	--secondary-text: var(--light-1);
 	--secondary-text-hover: var(--light-2);
 	--tertiary-text: var(--light-2);
@@ -196,6 +197,7 @@ small {
 
 	--main-text: var(--dark-0);
 	--main-text-hover: var(--dark-1);
+	--main-text-subtle: rgba(0, 0, 0, 0.15);
 	--secondary-text: var(--dark-1);
 	--secondary-text-hover: var(--dark-2);
 	--tertiary-text: var(--dark-2);

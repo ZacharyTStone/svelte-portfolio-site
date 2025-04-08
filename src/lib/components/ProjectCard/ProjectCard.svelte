@@ -18,7 +18,7 @@
 <div
 	class="project-container flex flex-col items-center transition duration-300 ease-in-out hover:scale-102"
 >
-	<Card color={project.color} onClick={(e) => handleNavigation(e, `/projects/${project.slug}`)}>
+	<Card onClick={(e) => handleNavigation(e, `/projects/${project.slug}`)}>
 		<h2
 			class="project-title text-main-text m-0 rounded-lg opacity-100 transition duration-300 text-2xl max-w-full min-h-[50px] text-center w-full"
 		>

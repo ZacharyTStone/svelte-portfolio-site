@@ -121,7 +121,8 @@
 				{#if data.extraInfo}
 					{#each data.extraInfo as { title, content }}
 						{#each content as { label, link }}
-							{#if label.toLowerCase().includes(query.toLowerCase())}
+							{@const currentQuery = query}
+							{#if label.toLowerCase().includes(currentQuery.toLowerCase())}
 								<Chip
 									href={`${base}/${to}`}
 									classes="flex flex-row items-center gap-2"

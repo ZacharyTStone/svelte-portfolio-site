@@ -47,15 +47,15 @@
 
 	const updateDisplayedProjects = () => {
 		const selectedFilters = filters.filter((tech) => tech.isSelected);
+		const trimmedSearch = search.trim().toLowerCase();
+
 		displayed = items.filter((project) => {
 			const isFiltered =
 				selectedFilters.length === 0 ||
-				selectedFilters.every(
-					(tech) => tech.isSelected && project.skills.some((skill) => skill.slug === tech.slug)
-				);
+				selectedFilters.every((tech) => project.skills.some((skill) => skill.slug === tech.slug));
 			const isSearched =
-				search.trim().length === 0 ||
-				$_(project.name).trim().toLowerCase().includes(search.trim().toLowerCase());
+				trimmedSearch.length === 0 || $_(project.name).trim().toLowerCase().includes(trimmedSearch);
+
 			return isFiltered && isSearched && !project.dont_show;
 		});
 	};
@@ -70,10 +70,7 @@
 		let index = 0;
 		const interval = setInterval(() => {
 			if (index < displayed.length) {
-				visibleItems.update((set) => {
-					set.add(index);
-					return set;
-				});
+				visibleItems.update((set) => new Set([...set, index]));
 				index++;
 			} else {
 				clearInterval(interval);
@@ -89,13 +86,10 @@
 	};
 
 	onMount(() => {
-		const query = location.search;
-		if (query) {
-			const queryParams = new URLSearchParams(location.search);
-			const item = queryParams.get('item');
-			if (item) {
-				search = item;
-			}
+		const queryParams = new URLSearchParams(location.search);
+		const item = queryParams.get('item');
+		if (item) {
+			search = item;
 		}
 
 		initializeProjects();
@@ -109,12 +103,7 @@
 		<div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-3 overflow-y-auto">
 			<Chip
 				classes={'text-0.9em md:text-0.8em'}
-				on:click={() => {
-					filters = filters.map((tech) => {
-						tech.isSelected = false;
-						return tech;
-					});
-				}}
+				onClick={() => (filters = filters.map((tech) => ({ ...tech, isSelected: false })))}
 				active={filters.every((tech) => !tech.isSelected)}
 			>
 				{$_(PROJECTS.no_filter_option ?? 'N/A')}
@@ -123,7 +112,7 @@
 				<Chip
 					active={tech.isSelected}
 					classes={'text-0.9em md:text-0.8em min-w-max-content'}
-					on:click={() => onSelected(tech.slug)}
+					onClick={() => onSelected(tech.slug)}
 				>
 					{$_(tech.name)}
 				</Chip>
