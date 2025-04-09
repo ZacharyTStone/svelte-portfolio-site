@@ -164,25 +164,7 @@
 				return;
 			}
 
-			// Verify reCAPTCHA token with our backend
-			const verificationResponse = await fetch('/api/verify-recaptcha', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ token: recaptchaToken })
-			});
-
-			const verificationResult = await verificationResponse.json();
-
-			if (!verificationResult.success) {
-				console.error('reCAPTCHA verification failed:', verificationResult);
-				error = getTranslation('CONTACT.recaptcha_verification_failed');
-				isSubmitting = false;
-				return;
-			}
-
-			// Use EmailJS to send email
+			// Use EmailJS to send email with the reCAPTCHA token
 			const templateParams = {
 				name: name,
 				email: email, // This will be shown as "reply-to" in the email
@@ -190,15 +172,20 @@
 				to_name: 'Zach Stone',
 				from_name: name,
 				reply_to: email, // This ensures the reply goes to the sender
-				'g-recaptcha-response': recaptchaToken,
+				'g-recaptcha-response': recaptchaToken, // EmailJS will verify this with Google
 				time: new Date().toLocaleString(),
 				year: new Date().getFullYear().toString()
 			};
 
 			console.log('Sending email with parameters:', templateParams);
 
-			await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
-			console.log('Email sent successfully!');
+			const response = await window.emailjs.send(
+				EMAILJS_SERVICE_ID,
+				EMAILJS_TEMPLATE_ID,
+				templateParams
+			);
+
+			console.log('Email sent successfully!', response);
 
 			// Reset form on success
 			name = '';
@@ -207,7 +194,18 @@
 			isSuccess = true;
 		} catch (err) {
 			console.error('Form submission error:', err);
-			error = getTranslation('CONTACT.submission_error');
+			// Check if it's a reCAPTCHA error
+			if (
+				err &&
+				typeof err === 'object' &&
+				'message' in err &&
+				typeof err.message === 'string' &&
+				err.message.includes('recaptcha')
+			) {
+				error = getTranslation('CONTACT.recaptcha_verification_failed');
+			} else {
+				error = getTranslation('CONTACT.submission_error');
+			}
 		} finally {
 			isSubmitting = false;
 		}
