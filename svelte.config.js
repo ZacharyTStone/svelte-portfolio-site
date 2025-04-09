@@ -11,9 +11,17 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter({ fallback: '404.html', static: '' }),
+		adapter: adapter({
+			fallback: '404.html',
+			static: '',
+			precompress: true // Enable precompression for static files
+		}),
 		paths: {
 			base: process.env.NODE_ENV === 'production' ? base : ''
+		},
+		inlineStyleThreshold: 5000, // Inline styles less than 5kb
+		csp: {
+			mode: 'auto'
 		}
 	}
 };
