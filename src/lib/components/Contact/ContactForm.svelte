@@ -6,6 +6,13 @@
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 
+	// Helper function to get translation with type safety
+	function getTranslation(key: string): string {
+		const translation = $_(key);
+		// Ensure we always return a string
+		return typeof translation === 'string' ? translation : JSON.stringify(translation);
+	}
+
 	// EmailJS configuration
 	const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'fXa9IjIQ6OlkvNdYd';
 	const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_u3xqm96';
@@ -78,22 +85,22 @@
 	// Form validation
 	function validateForm() {
 		if (!name.trim()) {
-			error = $_('CONTACT.name_required');
+			error = getTranslation('CONTACT.name_required');
 			return false;
 		}
 
 		if (!email.trim()) {
-			error = $_('CONTACT.email_required');
+			error = getTranslation('CONTACT.email_required');
 			return false;
 		}
 
 		if (!emailRegex.test(email)) {
-			error = $_('CONTACT.email_invalid');
+			error = getTranslation('CONTACT.email_invalid');
 			return false;
 		}
 
 		if (!message.trim()) {
-			error = $_('CONTACT.message_required');
+			error = getTranslation('CONTACT.message_required');
 			return false;
 		}
 
@@ -151,6 +158,30 @@
 			recaptchaToken = await executeRecaptcha();
 			console.log('reCAPTCHA token obtained:', !!recaptchaToken);
 
+			if (!recaptchaToken) {
+				error = getTranslation('CONTACT.recaptcha_error');
+				isSubmitting = false;
+				return;
+			}
+
+			// Verify reCAPTCHA token with our backend
+			const verificationResponse = await fetch('/api/verify-recaptcha', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ token: recaptchaToken })
+			});
+
+			const verificationResult = await verificationResponse.json();
+
+			if (!verificationResult.success) {
+				console.error('reCAPTCHA verification failed:', verificationResult);
+				error = getTranslation('CONTACT.recaptcha_verification_failed');
+				isSubmitting = false;
+				return;
+			}
+
 			// Use EmailJS to send email
 			const templateParams = {
 				name: name,
@@ -176,7 +207,7 @@
 			isSuccess = true;
 		} catch (err) {
 			console.error('Form submission error:', err);
-			error = $_('CONTACT.submission_error');
+			error = getTranslation('CONTACT.submission_error');
 		} finally {
 			isSubmitting = false;
 		}
@@ -185,15 +216,15 @@
 
 {#if mounted}
 	<div class="contact-form" in:fade={{ duration: 300 }}>
-		<Card classes={['w-full']} tiltDegree={0}>
+		<Card classes={'w-full'} tiltDegree={0}>
 			<h2 class="text-xl font-semibold mb-4 md:text-2xl">
-				{$_('CONTACT.title')}
+				{getTranslation('CONTACT.title')}
 			</h2>
 
 			{#if isSuccess}
 				<div class="success-message" in:fade={{ duration: 300 }}>
 					<UIcon icon="i-carbon-checkmark-filled" classes="text-2em" />
-					<p>{$_('CONTACT.success_message')}</p>
+					<p>{getTranslation('CONTACT.success_message')}</p>
 				</div>
 			{:else}
 				<form on:submit|preventDefault={handleSubmit} class="contact-form-fields">
@@ -205,34 +236,34 @@
 					{/if}
 
 					<div class="form-group">
-						<label for="name">{$_('CONTACT.name')}</label>
+						<label for="name">{getTranslation('CONTACT.name')}</label>
 						<input
 							id="name"
 							bind:value={name}
-							placeholder={$_('CONTACT.name_placeholder')}
+							placeholder={getTranslation('CONTACT.name_placeholder')}
 							class="text-[inherit] bg-transparent border-[1px] border-solid border-[var(--border)] px-[20px] py-[10px] rounded-[15px] flex-1 text-[1.15em] w-full"
 						/>
 					</div>
 
 					<div class="form-group">
-						<label for="email">{$_('CONTACT.email')}</label>
+						<label for="email">{getTranslation('CONTACT.email')}</label>
 						<input
 							id="email"
 							type="email"
 							bind:value={email}
-							placeholder={$_('CONTACT.email_placeholder')}
+							placeholder={getTranslation('CONTACT.email_placeholder')}
 							class="text-[inherit] bg-transparent border-[1px] border-solid border-[var(--border)] px-[20px] py-[10px] rounded-[15px] flex-1 text-[1.15em] w-full"
 						/>
 					</div>
 
 					<div class="form-group">
-						<label for="message">{$_('CONTACT.message')}</label>
+						<label for="message">{getTranslation('CONTACT.message')}</label>
 						<textarea
 							id="message"
 							bind:value={message}
-							placeholder={$_('CONTACT.message_placeholder')}
+							placeholder={getTranslation('CONTACT.message_placeholder')}
 							rows="5"
-							aria-label={$_('CONTACT.message')}
+							aria-label={getTranslation('CONTACT.message')}
 							class="text-[inherit] bg-transparent border-[1px] border-solid border-[var(--border)] px-[20px] py-[10px] rounded-[15px] flex-1 text-[1.15em] w-full max-w-[100%] resize-vertical"
 						></textarea>
 					</div>
@@ -256,9 +287,9 @@
 					<button type="submit" class="submit-button" disabled={isSubmitting}>
 						{#if isSubmitting}
 							<span class="loading-spinner"></span>
-							{$_('CONTACT.submitting')}
+							{getTranslation('CONTACT.submitting')}
 						{:else}
-							{$_('CONTACT.submit')}
+							{getTranslation('CONTACT.submit')}
 						{/if}
 					</button>
 				</form>

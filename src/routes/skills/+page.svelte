@@ -17,9 +17,7 @@
 	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mt-10">
 		{#each result as skill, index (skill.slug)}
 			<Card
-				classes={[
-					'decoration-none rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg'
-				]}
+				classes={'decoration-none rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg'}
 				style="cursor: pointer;"
 				tiltDegree={1}
 				onClick={(e) => handleNavigation(e, `/skills/${skill.slug}`)}

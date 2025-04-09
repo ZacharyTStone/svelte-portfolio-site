@@ -180,6 +180,8 @@
 		"email_invalid": "Please enter a valid email address",
 		"message_required": "Please enter a message",
 		"submission_error": "Something went wrong. Please try again.",
+		"recaptcha_error": "reCAPTCHA verification failed. Please try again.",
+		"recaptcha_verification_failed": "You appear to be a bot. Please try again later or contact me through social media.",
 		"connect_title": "Connect With Me",
 		"connect_description": "You can also reach me through any of these platforms:"
 	}
