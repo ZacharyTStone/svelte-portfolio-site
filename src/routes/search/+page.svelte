@@ -14,25 +14,28 @@
 
 	const { title } = SEARCH;
 
-	type Item<T = any> = {
+	interface Item<T = any> {
 		icon: string;
 		name: string;
 		data: T;
 		to: string;
-	};
+	}
 
 	let query = $state('');
 	let result: Array<Item> = $state([]);
 
+	/**
+	 * Filters items based on the current search query
+	 */
 	function filterItems<T extends { name: string; label?: string; skills?: any }>(
 		items: T[],
-		query: string
+		searchQuery: string
 	): T[] {
 		const containsQuery = (value: any, depth: number): boolean => {
 			if (depth > 8) return false;
 
 			if (typeof value === 'string') {
-				const includesValue = $_(value.toLowerCase()).includes(query.toLowerCase());
+				const includesValue = $_(value.toLowerCase()).includes(searchQuery.toLowerCase());
 				return includesValue;
 			} else if (Array.isArray(value)) {
 				return value.some((item) => containsQuery(item, depth + 1));
@@ -45,9 +48,12 @@
 			return false;
 		};
 
-		return items.filter((item: T) => !query || containsQuery(item, 1));
+		return items.filter((item: T) => !searchQuery || containsQuery(item, 1));
 	}
 
+	/**
+	 * Generates Item objects from data arrays
+	 */
 	function generateItems<T>(items: T[], icon: string, toFn: (data: T) => string): Item<T>[] {
 		return items.map<Item<T>>((data) => ({
 			data,
@@ -57,6 +63,20 @@
 		}));
 	}
 
+	/**
+	 * Handle search event
+	 */
+	function handleSearch(e: CustomEvent<{ search: string }>) {
+		query = e.detail.search;
+	}
+
+	/**
+	 * Check if item label contains the search query
+	 */
+	function labelMatchesQuery(label: string, searchQuery: string): boolean {
+		return label.toLowerCase().includes(searchQuery.toLowerCase());
+	}
+
 	onMount(() => {
 		let searchParams = new URLSearchParams(window.location.search);
 		query = searchParams.get('q') ?? '';
@@ -64,11 +84,13 @@
 
 	run(() => {
 		result = [];
+		// Store query in a closure variable to avoid referencing it directly in the reactive context
+		const currentQuery = query;
 
 		// Generate items for projects
 		result.push(
 			...generateItems(
-				filterItems(MY_PROJECTS, query),
+				filterItems(MY_PROJECTS, currentQuery),
 				'i-carbon-cube',
 				(data) => `projects/${(data as any).slug}`
 			)
@@ -77,7 +99,7 @@
 		// Generate items for skills
 		result.push(
 			...generateItems(
-				filterItems(MY_SKILLS, query),
+				filterItems(MY_SKILLS, currentQuery),
 				'i-carbon-software-resource-cluster',
 				(data) => `skills/${(data as any).slug}`
 			)
@@ -86,49 +108,59 @@
 		// Generate items for experiences
 		result.push(
 			...generateItems(
-				filterItems(MY_EXPERIENCES, query),
+				filterItems(MY_EXPERIENCES, currentQuery),
 				'i-carbon-development',
 				(data) => `experience/${(data as any).slug}`
 			)
 		);
 	});
-
-	console.log('result', result);
 </script>
 
-<SearchPage {title} on:search={(e) => (query = e.detail.search)}>
+<svelte:head>
+	<title>{title} | Portfolio</title>
+	<meta name="description" content="Search through projects, skills, and experiences" />
+</svelte:head>
+
+<SearchPage {title} onsearch={handleSearch}>
 	{#if !query}
 		<!-- Display prompt when no query -->
-		<div class="flex-1 self-center col-center m-t-10 gap-5 font-300 text-[var(--accent-text)]">
-			<UIcon icon="i-carbon-search-locate-mirror" classes="text-2em" />
-			<span>{$_(SEARCH.prompt)} </span>
+		<div
+			class="flex-1 self-center col-center m-t-10 gap-5 font-300 text-[var(--accent-text)]"
+			role="status"
+			aria-live="polite"
+		>
+			<UIcon icon="i-carbon-search-locate-mirror" classes="text-2em" ariaHidden={true} />
+			<span>{$_(SEARCH.prompt)}</span>
 		</div>
 	{:else if result.length === 0}
 		<!-- Display message when no results -->
-		<div class="flex-1 self-center col-center m-t-10 gap-5 font-300 text-[var(--accent-text)]">
-			<UIcon icon="i-carbon-cube" classes="text-2em" />
-			<span> Oops! Nothing to show for '{query}' </span>
+		<div
+			class="flex-1 self-center col-center m-t-10 gap-5 font-300 text-[var(--accent-text)]"
+			role="status"
+			aria-live="polite"
+		>
+			<UIcon icon="i-carbon-cube" classes="text-2em" ariaHidden={true} />
+			<span>Oops! Nothing to show for '{query}'</span>
 		</div>
 	{:else}
 		<!-- Display search results -->
-		<div class="flex flex-row flex-wrap gap-1">
+		<div class="flex flex-row flex-wrap gap-1" role="list" aria-label="Search results">
 			{#each result as { data, icon, name, to }}
 				<Chip href={`${base}/${to}`} classes="flex flex-row items-center gap-2" newTab={false}>
-					<UIcon {icon} />
+					<UIcon {icon} ariaHidden={true} />
 					<span>{$_(name)}</span>
 				</Chip>
 
 				{#if data.extraInfo}
 					{#each data.extraInfo as { title, content }}
 						{#each content as { label, link }}
-							{@const currentQuery = query}
-							{#if label.toLowerCase().includes(currentQuery.toLowerCase())}
+							{#if labelMatchesQuery(label, query)}
 								<Chip
 									href={`${base}/${to}`}
 									classes="flex flex-row items-center gap-2"
 									newTab={false}
 								>
-									<UIcon {icon} />
+									<UIcon {icon} ariaHidden={true} />
 									<span>{$_(label)}</span>
 								</Chip>
 							{/if}

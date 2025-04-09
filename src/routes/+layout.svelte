@@ -2,7 +2,7 @@
 	import 'uno.css';
 	import NavMenu from '$lib/components/NavMenu/NavMenu.svelte';
 	import '$lib/index.scss';
-	import { onHydrated, theme } from '$lib/stores/theme';
+	import { onHydrated, theme, ThemeType } from '$lib/stores/theme';
 	import { onMount } from 'svelte';
 	import { dev } from '$app/environment';
 	import { inject } from '@vercel/analytics';
@@ -23,13 +23,10 @@
 
 	onMount(() => {
 		onHydrated();
-
-		// For debugging only - can be removed in production
-		console.log('Current locale:', $locale);
 	});
 </script>
 
-<div class={`body contents ${$theme === 'dark' ? 'theme-dark' : 'theme-light'}`}>
+<div class={`body contents ${$theme === ThemeType.DARK ? 'theme-dark' : 'theme-light'}`}>
 	<NavMenu />
 	<div class="content container">
 		<LoadingProvider transition={true}>

@@ -17,9 +17,12 @@ export const countMonths = (from: Date, to: Date = new Date()): number => {
 	return firstYear + wholeYears + newYear + 1;
 };
 
-export const onHover: any = (ev: any, el: HTMLElement, tiltDegree: number = 10) => {
-	const target = ev.currentTarget;
+export const onHover = (ev: MouseEvent, el: HTMLElement, tiltDegree: number = 10): void => {
+	if (!el || !ev) {
+		return;
+	}
 
+	const target = ev.currentTarget as HTMLElement;
 	if (!target) {
 		return;
 	}
@@ -48,27 +51,50 @@ export const onHover: any = (ev: any, el: HTMLElement, tiltDegree: number = 10) 
 	el.style.setProperty('--rot-y', `${rY}deg`);
 };
 
+/**
+ * Changes the opacity of a hex color
+ * @param color The hex color to change opacity of
+ * @param opacity The opacity to set (0-1 or 0-100)
+ * @returns rgba color string
+ */
 export const changeColorOpacity = (color: string, opacity: number): string => {
 	let r: number, g: number, b: number;
 
-	if (color[0] !== '#' || (color.length !== 4 && color.length !== 7 && color.length !== 9)) {
-		throw new Error('Invalid hex color format');
+	// Validate input
+	if (typeof color !== 'string' || !color.startsWith('#')) {
+		throw new Error('Invalid color format: must be a hex color string starting with #');
 	}
 
-	if (color.length === 4) {
-		r = parseInt(color[1] + color[1], 16);
-		g = parseInt(color[2] + color[2], 16);
-		b = parseInt(color[3] + color[3], 16);
-	} else if (color.length === 7 || color.length === 9) {
-		r = parseInt(color.substring(1, 3), 16);
-		g = parseInt(color.substring(3, 5), 16);
-		b = parseInt(color.substring(5, 7), 16);
-	} else {
-		throw new Error('Invalid hex color format');
+	if (color.length !== 4 && color.length !== 7 && color.length !== 9) {
+		throw new Error('Invalid hex color format: must be #RGB, #RRGGBB, or #RRGGBBAA');
+	}
+
+	try {
+		if (color.length === 4) {
+			// #RGB format
+			r = parseInt(color[1] + color[1], 16);
+			g = parseInt(color[2] + color[2], 16);
+			b = parseInt(color[3] + color[3], 16);
+		} else {
+			// #RRGGBB or #RRGGBBAA format
+			r = parseInt(color.substring(1, 3), 16);
+			g = parseInt(color.substring(3, 5), 16);
+			b = parseInt(color.substring(5, 7), 16);
+		}
+	} catch (error) {
+		throw new Error('Failed to parse hex color values');
+	}
+
+	// Validate parsed RGB values
+	if (isNaN(r) || isNaN(g) || isNaN(b)) {
+		throw new Error('Invalid hex color: contains non-hex characters');
 	}
 
 	// Convert opacity to 0-1 range if it is not already
 	if (opacity > 1) opacity = opacity / 100;
+
+	// Clamp opacity between 0 and 1
+	opacity = Math.max(0, Math.min(1, opacity));
 
 	return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 };
@@ -103,7 +129,8 @@ export const isEmail = (email: string): boolean => {
 	return reg.test(email ?? '');
 };
 
-export const RANDOM_COLORS = [
+// Define the colors as a readonly array for type safety
+export const RANDOM_COLORS: readonly string[] = [
 	'#FFC0CB',
 	'#FFB6C1',
 	'#FF69B4',
@@ -134,15 +161,42 @@ export const RANDOM_COLORS = [
 	'#90EE90',
 	'#98FB98',
 	'#00FF00'
-];
+] as const;
 
+/**
+ * Generates a random hex color from the predefined RANDOM_COLORS array
+ * @returns A randomly selected hex color string
+ */
 export const generateRandomHexColor = (): string => {
-	const randomIndex = Math.floor(Math.random() * RANDOM_COLORS.length);
+	if (RANDOM_COLORS.length === 0) {
+		return '#000000'; // Fallback color if array is empty
+	}
 
+	const randomIndex = Math.floor(Math.random() * RANDOM_COLORS.length);
 	return RANDOM_COLORS[randomIndex];
 };
 
-export function calculateExperiencePeriod(fromDate: Date, toDate: Date, language: string = 'en') {
+/**
+ * Calculate experience period between two dates
+ * @param fromDate Start date of the experience
+ * @param toDate End date of the experience (defaults to current date)
+ * @param language Language code for localization
+ * @returns Object containing period information
+ */
+export interface ExperiencePeriod {
+	startYear: number;
+	endYear: number;
+	months: number;
+	years: number;
+	remainingMonths: number;
+	period: string;
+}
+
+export function calculateExperiencePeriod(
+	fromDate: Date,
+	toDate: Date = new Date(),
+	language: string = 'en'
+): ExperiencePeriod {
 	const startYear = fromDate.getFullYear();
 	const endYear = toDate ? toDate.getFullYear() : new Date().getFullYear();
 	const months = countMonths(fromDate, toDate);
@@ -150,7 +204,6 @@ export function calculateExperiencePeriod(fromDate: Date, toDate: Date, language
 	// show 1 month if the period is less than 1 year and less than 1 month
 	const remainingMonths = months % 12 || (years === 0 ? 1 : 0);
 
-	// unused
 	let period: string;
 
 	if (language.slice(0, 2) === 'ja') {
@@ -173,16 +226,23 @@ export function calculateExperiencePeriod(fromDate: Date, toDate: Date, language
 	};
 }
 
-export async function handleNavigation(event: Event, to: string, offPlatform = false) {
+export async function handleNavigation(
+	event: Event,
+	to: string,
+	offPlatform = false
+): Promise<void> {
 	event.preventDefault();
 
 	if (offPlatform) {
-		window.open(to, '_blank');
-	} else {
-		try {
-			await goto(`${base}${to}`);
-		} catch (error) {
-			console.error('Navigation error:', error);
-		}
+		window.open(to, '_blank', 'noopener,noreferrer');
+		return;
+	}
+
+	try {
+		await goto(`${base}${to}`);
+	} catch (error) {
+		console.error('Navigation error:', error);
+		// Optional: implement fallback navigation or error display
+		window.location.href = `${base}${to}`;
 	}
 }

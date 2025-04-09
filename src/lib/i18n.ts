@@ -1,10 +1,19 @@
 // src/lib/i18n/index.ts
 import { browser } from '$app/environment';
 import { init, register, locale } from 'svelte-i18n';
-import { derived, writable } from 'svelte/store';
+import { derived, writable, type Readable } from 'svelte/store';
 
-const defaultLocale = 'en';
-const supportedLocales = ['en', 'ja'];
+/**
+ * Configuration for internationalization
+ */
+const CONFIG = {
+	defaultLocale: 'en',
+	supportedLocales: ['en', 'ja'] as const,
+	storageKey: 'userLanguage'
+} as const;
+
+// Define a type for supported locales
+export type SupportedLocale = (typeof CONFIG.supportedLocales)[number];
 
 // Register all locales
 register('ja', () => import('./locales/ja.json'));
@@ -13,31 +22,53 @@ register('en', () => import('./locales/en.json'));
 // Create a loading state store to prevent stuttering
 export const isLoading = writable(true);
 
-// Function to detect the user's preferred language
-function detectUserLanguage() {
-	if (!browser) return defaultLocale;
+/**
+ * Detects the user's preferred language based on stored preferences and browser settings
+ * @returns The detected locale or default locale if no supported locale is found
+ */
+function detectUserLanguage(): SupportedLocale {
+	if (!browser) return CONFIG.defaultLocale;
 
 	// Try to get stored preference first
 	try {
-		const storedLanguage = localStorage.getItem('userLanguage');
-		if (storedLanguage && supportedLocales.includes(storedLanguage)) {
-			return storedLanguage;
+		const storedLanguage = localStorage.getItem(CONFIG.storageKey);
+		if (storedLanguage && CONFIG.supportedLocales.includes(storedLanguage as SupportedLocale)) {
+			return storedLanguage as SupportedLocale;
 		}
 	} catch (e) {
-		console.warn('Unable to access localStorage');
+		console.warn('Unable to access localStorage:', e instanceof Error ? e.message : String(e));
 	}
 
 	// Get browser language (e.g., 'en-US' or 'ja')
 	const browserLanguage = window.navigator.language.split('-')[0];
 
 	// Check if the language is supported, otherwise use default
-	return supportedLocales.includes(browserLanguage) ? browserLanguage : defaultLocale;
+	return CONFIG.supportedLocales.includes(browserLanguage as SupportedLocale)
+		? (browserLanguage as SupportedLocale)
+		: CONFIG.defaultLocale;
+}
+
+/**
+ * Safely updates the user's language preference in localStorage
+ * @param language The language to save
+ */
+function saveLanguagePreference(language: string): void {
+	if (!browser) return;
+
+	try {
+		localStorage.setItem(CONFIG.storageKey, language);
+	} catch (e) {
+		console.warn(
+			'Unable to save language preference to localStorage:',
+			e instanceof Error ? e.message : String(e)
+		);
+	}
 }
 
 // Initialize i18n with proper configuration
 init({
-	fallbackLocale: defaultLocale,
-	initialLocale: browser ? detectUserLanguage() : defaultLocale
+	fallbackLocale: CONFIG.defaultLocale,
+	initialLocale: browser ? detectUserLanguage() : CONFIG.defaultLocale
 });
 
 // If in the browser, update localStorage when locale changes
@@ -49,11 +80,7 @@ if (browser) {
 	// Subscribe to locale changes to update localStorage
 	locale.subscribe((currentLocale) => {
 		if (currentLocale) {
-			try {
-				localStorage.setItem('userLanguage', currentLocale);
-			} catch (e) {
-				console.warn('Unable to save language preference to localStorage');
-			}
+			saveLanguagePreference(currentLocale);
 		}
 
 		// Mark loading as complete after locale is set
@@ -61,9 +88,8 @@ if (browser) {
 	});
 }
 
-// Create a derived store for easy access to translated content
-export const t = derived(locale, () => (key: string) => {
-	// Implementation would depend on how svelte-i18n handles translations
-	// This is a simple placeholder
-	return key;
-});
+/**
+ * Helper function for translations
+ * Creates a derived store for easy access to translated content
+ */
+export const t: Readable<(key: string) => string> = derived(locale, () => (key: string) => key);

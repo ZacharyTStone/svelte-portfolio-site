@@ -5,19 +5,15 @@
 		alt?: string;
 		classes?: string;
 		tooltip?: string;
+		ariaHidden?: boolean;
 	}
 
-	let {
-		icon = '',
-		alt = '',
-		classes = '',
-		tooltip = ''
-	}: Props = $props();
+	let { icon = '', alt = '', classes = '', tooltip = '', ariaHidden = false }: Props = $props();
 </script>
 
 {#if tooltip}
 	<div class="tooltip">
-		<i class={`${icon} ${classes}`} aria-label={alt}></i>
+		<i class={`${icon} ${classes}`} aria-label={alt} aria-hidden={ariaHidden}></i>
 		<span class="tooltiptext">{tooltip}</span>
 	</div>
 {:else}

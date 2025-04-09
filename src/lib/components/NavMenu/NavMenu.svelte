@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { HOME, NavBar } from '$lib/params';
-	import { theme, toggleTheme } from '$lib/stores/theme';
+	import { theme, toggleTheme, ThemeType } from '$lib/stores/theme';
 	import { handleNavigation } from '$lib/utils/helpers';
 	import { base } from '$app/paths';
 
@@ -9,7 +9,13 @@
 	import Chip from '../Chip/Chip.svelte';
 	import UIcon from '../Icon/UIcon.svelte';
 
-	const items = [
+	interface NavItem {
+		title: string;
+		to: string;
+		icon: string;
+	}
+
+	const items: NavItem[] = [
 		{ title: NavBar.about, to: '/about', icon: 'i-carbon-user' },
 		{ title: NavBar.skills, to: '/skills', icon: 'i-carbon-software-resource-cluster' },
 		{ title: NavBar.personal, to: '/projects', icon: 'i-carbon-cube' },
@@ -17,7 +23,7 @@
 		{ title: NavBar.contact, to: '/contact', icon: 'i-carbon-email' }
 	];
 
-	function toggleLanguage() {
+	function toggleLanguage(): void {
 		if ($locale?.includes('en')) {
 			locale.set('ja');
 		} else {
@@ -27,11 +33,20 @@
 
 	let isOpen = false;
 
-	function toggleMenu() {
+	function toggleMenu(): void {
 		isOpen = !isOpen;
 	}
 
-	const mobileItems = [{ title: HOME.name, to: '/', icon: 'i-carbon-home' }, ...items];
+	function handleItemClick(event: Event, item: NavItem): void {
+		isOpen = false;
+		handleNavigation(event, item.to);
+	}
+
+	function handleThemeToggle(): void {
+		toggleTheme($theme === ThemeType.DARK ? ThemeType.LIGHT : ThemeType.DARK);
+	}
+
+	const mobileItems: NavItem[] = [{ title: HOME.name, to: '/', icon: 'i-carbon-home' }, ...items];
 </script>
 
 <div class="nav-menu">
@@ -50,7 +65,7 @@
 		</Chip>
 
 		<div class="md:hidden flex items-center">
-			<button class="mobile-menu-button" onclick={toggleMenu}>
+			<button class="mobile-menu-button" onclick={toggleMenu} aria-label="Toggle menu">
 				<UIcon icon="i-carbon-menu" classes="text-1.5em" alt="Menu" />
 			</button>
 		</div>
@@ -76,10 +91,10 @@
 			</a>
 			<button
 				class="bg-transparent text-1em border-none cursor: pointer; text-[var(--secondary-text)] px-2 rainbow-hover"
-				onclick={() => toggleTheme($theme === 'dark' ? 'light' : 'dark')}
-				aria-label={$_($theme === 'light' ? NavBar.lightMode : NavBar.darkMode)}
+				onclick={handleThemeToggle}
+				aria-label={$_($theme === ThemeType.LIGHT ? NavBar.lightMode : NavBar.darkMode)}
 			>
-				{#if $theme === 'light'}
+				{#if $theme === ThemeType.LIGHT}
 					<UIcon icon="i-carbon-moon" alt="light Theme" tooltip={$_(NavBar.lightMode)} />
 				{:else}
 					<UIcon icon="i-carbon-sun" alt="Dark Theme" tooltip={$_(NavBar.darkMode)} />
@@ -115,10 +130,7 @@
 				<a
 					href={item.to}
 					class="mobile-menu-item"
-					onclick={(event) => {
-						isOpen = false;
-						handleNavigation(event, item.to);
-					}}
+					onclick={(event) => handleItemClick(event, item)}
 				>
 					<UIcon icon={item.icon} classes="text-1.3em mr-2" alt={$_(item.title)} />
 					<span
@@ -148,24 +160,12 @@
 		letter-spacing: var(--ls-wide);
 		font-size: var(--fs-sm);
 
-		&-item {
-			text-decoration: none;
-			padding: 10px 15px;
-			color: inherit;
-			display: flex;
-			align-items: center;
+		&-item-label {
+			margin-left: 10px;
 
-			@media (max-width: 425px) {
-				padding: 2px 5px;
-			}
-
-			&-label {
-				margin-left: 10px;
-
-				@media (max-width: 950px) {
-					& {
-						display: none;
-					}
+			@media (max-width: 950px) {
+				& {
+					display: none;
 				}
 			}
 		}

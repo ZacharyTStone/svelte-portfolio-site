@@ -3,6 +3,7 @@
 	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
 	import { HOME, TITLE_SUFFIX } from '$lib/params';
 	import { handleNavigation, useTitle } from '$lib/utils/helpers';
+	import { createContainerPerspective } from '$lib/utils/animation';
 	import { _ } from 'svelte-i18n';
 	import { onMount } from 'svelte';
 
@@ -19,7 +20,7 @@
 		const centerX = rect.left + rect.width / 2;
 		const centerY = rect.top + rect.height / 2;
 
-		// Calculate distance from center
+		// Calculate distance from center (normalize to -1 to 1 range)
 		mouseX = ((event.clientX - centerX) / (rect.width / 2)) * 5;
 		mouseY = ((event.clientY - centerY) / (rect.height / 2)) * 5;
 	}
@@ -34,6 +35,7 @@
 
 <svelte:head>
 	<title>{useTitle(title, TITLE_SUFFIX)}</title>
+	<meta name="description" content={$_(description)} />
 </svelte:head>
 
 <HeroLetters />
@@ -41,13 +43,15 @@
 	class="hero-container relative items-center overflow-hidden bg-transparent"
 	bind:this={tiltContainer}
 	style="--mouse-x: {mouseX}deg; --mouse-y: {mouseY}deg;"
+	role="main"
+	aria-labelledby="hero-title"
 >
 	<div class="asymmetric-grid">
 		<div class="hero-content-left">
-			<h1 class="hero-title">
+			<h1 id="hero-title" class="hero-title">
 				{$_(name)} <span class="last-name">{$_(lastName)}</span>
 			</h1>
-			<div class="floating-element shape-1"></div>
+			<div class="floating-element shape-1" aria-hidden="true"></div>
 		</div>
 
 		<div class="hero-content-right">
@@ -55,11 +59,16 @@
 				{$_(description)}
 			</h3>
 			<div class="cta-button">
-				<Card nofade={true} enhanced3d={true} onClick={(e) => handleNavigation(e, '/about')}
-					>{$_('ABOUT.cta')}</Card
+				<Card
+					nofade={true}
+					enhanced3d={true}
+					onClick={(e) => handleNavigation(e, '/about')}
+					ariaLabel={$_('ABOUT.cta')}
 				>
+					{$_('ABOUT.cta')}
+				</Card>
 			</div>
-			<div class="floating-element shape-2"></div>
+			<div class="floating-element shape-2" aria-hidden="true"></div>
 		</div>
 	</div>
 </div>

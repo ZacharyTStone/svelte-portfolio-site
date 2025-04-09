@@ -1,26 +1,45 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { handleTiltEffect, adjustColorOpacity } from '$lib/utils/animation';
+	import { handleTiltEffect, adjustColorOpacity, resetTiltEffect } from '$lib/utils/animation';
 	import { fade } from 'svelte/transition';
 
-	let el: HTMLElement | null = null;
-
-	interface Props {
+	/**
+	 * Component props with proper typing
+	 */
+	export interface CardProps {
+		/** Background/border color of the card */
 		color?: string;
+		/** Margin around the card */
 		margin?: string;
+		/** Degree of tilt effect on hover */
 		tiltDegree?: number;
-		href?: string | undefined;
-		bgImg?: string | undefined;
+		/** URL to navigate to when clicked (turns card into a link) */
+		href?: string;
+		/** Background image URL */
+		bgImg?: string;
+		/** Delay before fade in animation */
 		fadeDelay?: number;
+		/** Child content */
 		children?: import('svelte').Snippet;
+		/** Whether link should open in a new tab */
 		external?: boolean;
+		/** Click handler function */
 		onClick?: (event: Event) => void;
+		/** Whether the card is in active state */
 		active?: boolean;
+		/** Disable fade animation */
 		nofade?: boolean;
+		/** Additional inline styles */
 		style?: string;
+		/** Enable enhanced 3D effect */
 		enhanced3d?: boolean;
+		/** Additional CSS classes */
 		classes?: string;
+		/** ARIA label for better accessibility */
+		ariaLabel?: string;
 	}
+
+	let el: HTMLElement | null = null;
 
 	let {
 		color = '#ffffff00',
@@ -36,8 +55,9 @@
 		nofade = false,
 		style = '',
 		enhanced3d = false,
-		classes = ''
-	}: Props = $props();
+		classes = '',
+		ariaLabel = ''
+	}: CardProps = $props();
 
 	onMount(() => {
 		if (el) {
@@ -53,20 +73,36 @@
 		}
 	});
 
-	function onMouseMove(e: MouseEvent) {
+	function onMouseMove(e: MouseEvent): void {
 		handleTiltEffect(e, el, tiltDegree, enhanced3d ? 1.02 : 1.01);
 	}
+
+	function onMouseLeave(): void {
+		resetTiltEffect(el);
+	}
+
+	function handleKeydown(e: KeyboardEvent): void {
+		if (!href && onClick && (e.key === 'Enter' || e.key === ' ')) {
+			e.preventDefault();
+			onClick(e);
+		}
+	}
+
+	// Determine correct ARIA role based on props
+	const role = href ? undefined : onClick ? 'button' : undefined;
 </script>
 
 <svelte:element
 	this={href ? 'a' : 'div'}
-	target={external ? '_blank' : '_self'}
+	target={external ? '_blank' : undefined}
 	rel={external ? 'noopener noreferrer' : undefined}
 	{href}
 	bind:this={el}
-	role={onClick ? 'button' : undefined}
+	{role}
 	aria-pressed={active ? 'true' : undefined}
+	aria-label={ariaLabel || undefined}
 	onmousemove={onMouseMove}
+	onmouseleave={onMouseLeave}
 	class="card inline-flex flex-col border border-solid rounded-[15px] transition-all duration-300 relative
 	{enhanced3d ? 'card-enhanced-3d transform-gpu' : ''} 
 	{active ? 'border-[var(--border-active)]' : 'border-[var(--main-text-subtle)]'} 
@@ -74,18 +110,22 @@
 	{style}
 	transition:fade={{ delay: fadeDelay, duration: nofade ? 0 : 300 }}
 	onclick={onClick}
+	onkeydown={handleKeydown}
+	tabindex={onClick || href ? 0 : undefined}
 >
 	<div
 		class="card-content flex-1 flex flex-col p-[15px] rounded-[15px] relative z-2
 		{enhanced3d ? 'card-content-3d' : ''}
-		{onClick ? 'cursor-pointer' : ''}"
+		{onClick || href ? 'cursor-pointer' : ''}"
 	>
 		{#if enhanced3d}
 			<div
 				class="card-shadow absolute inset-0 rounded-[15px] shadow-lg opacity-0 transition-all duration-300 z-1"
+				aria-hidden="true"
 			></div>
 			<div
 				class="card-glow absolute -inset-5 bg-[radial-gradient(circle_at_var(--drop-x)_var(--drop-y),var(--drop-color),transparent_70%)] opacity-0 z-0 pointer-events-none transition-opacity duration-300"
+				aria-hidden="true"
 			></div>
 		{/if}
 		{@render children?.()}
