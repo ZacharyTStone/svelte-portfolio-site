@@ -71,7 +71,11 @@
 		recaptchaScript.defer = true;
 		recaptchaScript.onload = () => {
 			recaptchaReady = true;
+			window.grecaptcha.ready(() => {
+				console.log('reCAPTCHA is ready');
+			});
 		};
+
 		document.head.appendChild(recaptchaScript);
 
 		return () => {
@@ -111,16 +115,14 @@
 	// Execute reCAPTCHA verification
 	async function executeRecaptcha(): Promise<string> {
 		if (!window.grecaptcha || !recaptchaReady) {
-			console.warn('reCAPTCHA not loaded yet');
+			console.error('reCAPTCHA not loaded yet');
 			return '';
 		}
 
 		try {
-			return await new Promise<string>((resolve) => {
-				window.grecaptcha.ready(() => {
-					window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact_form' }).then(resolve);
-				});
-			});
+			const token = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' });
+			console.log('reCAPTCHA token obtained:', token ? 'yes' : 'no');
+			return token;
 		} catch (err) {
 			console.error('reCAPTCHA error:', err);
 			return '';
@@ -132,9 +134,6 @@
 		// Reset states
 		error = '';
 		isSubmitting = true;
-
-		// Debug logs
-		console.log('Form submission attempt with:', { name, email, message });
 
 		// Check honeypot (if filled, it's likely a bot)
 		if (honeypot) {
@@ -148,7 +147,6 @@
 
 		// Validate form
 		if (!validateForm()) {
-			console.log('Form validation failed:', { error });
 			isSubmitting = false;
 			return;
 		}
@@ -156,7 +154,6 @@
 		try {
 			// Get reCAPTCHA token
 			recaptchaToken = await executeRecaptcha();
-			console.log('reCAPTCHA token obtained:', !!recaptchaToken);
 
 			if (!recaptchaToken) {
 				error = getTranslation('CONTACT.recaptcha_error');
@@ -164,20 +161,36 @@
 				return;
 			}
 
-			// Use EmailJS to send email with the reCAPTCHA token
+			// Verify reCAPTCHA token with server
+			const verifyResponse = await fetch('/api/verify-recaptcha', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ token: recaptchaToken })
+			});
+
+			const verifyResult = await verifyResponse.json();
+
+			if (!verifyResult.success) {
+				console.error('reCAPTCHA verification failed:', verifyResult);
+				error = getTranslation('CONTACT.recaptcha_verification_failed');
+				isSubmitting = false;
+				return;
+			}
+
+			// Use EmailJS to send email
 			const templateParams = {
-				name: name,
-				email: email, // This will be shown as "reply-to" in the email
-				message: message,
+				name,
+				email,
+				message,
 				to_name: 'Zach Stone',
 				from_name: name,
-				reply_to: email, // This ensures the reply goes to the sender
-				'g-recaptcha-response': recaptchaToken, // EmailJS will verify this with Google
+				reply_to: email,
+				'g-recaptcha-response': recaptchaToken,
 				time: new Date().toLocaleString(),
 				year: new Date().getFullYear().toString()
 			};
-
-			console.log('Sending email with parameters:', templateParams);
 
 			const response = await window.emailjs.send(
 				EMAILJS_SERVICE_ID,
@@ -185,7 +198,7 @@
 				templateParams
 			);
 
-			console.log('Email sent successfully!', response);
+			console.log('Email sent successfully:', response.status);
 
 			// Reset form on success
 			name = '';
@@ -194,18 +207,7 @@
 			isSuccess = true;
 		} catch (err) {
 			console.error('Form submission error:', err);
-			// Check if it's a reCAPTCHA error
-			if (
-				err &&
-				typeof err === 'object' &&
-				'message' in err &&
-				typeof err.message === 'string' &&
-				err.message.includes('recaptcha')
-			) {
-				error = getTranslation('CONTACT.recaptcha_verification_failed');
-			} else {
-				error = getTranslation('CONTACT.submission_error');
-			}
+			error = getTranslation('CONTACT.submission_error');
 		} finally {
 			isSubmitting = false;
 		}

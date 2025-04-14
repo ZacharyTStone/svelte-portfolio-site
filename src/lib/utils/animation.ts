@@ -9,8 +9,8 @@ interface TiltEffectOptions {
 }
 
 const DEFAULT_TILT_OPTIONS: TiltEffectOptions = {
-	tiltDegree: 10,
-	scale: 1.02
+	tiltDegree: 5,
+	scale: 1.01
 };
 
 /**
@@ -26,7 +26,7 @@ export const handleTiltEffect = (
 ): void => {
 	if (!element || !event) return;
 
-	const { tiltDegree = 10, scale = 1.02 } = options;
+	const { tiltDegree = 5, scale = 1.01 } = options;
 	const rect = element.getBoundingClientRect();
 	const { clientX, clientY } = event;
 	const { left, top, width, height } = rect;

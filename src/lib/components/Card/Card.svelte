@@ -44,7 +44,7 @@
 	let {
 		color = '#ffffff00',
 		margin = '0px',
-		tiltDegree = 3,
+		tiltDegree = 2,
 		href = undefined,
 		bgImg = undefined,
 		fadeDelay = 0,
@@ -74,7 +74,11 @@
 	});
 
 	function onMouseMove(e: MouseEvent): void {
-		handleTiltEffect(e, el, tiltDegree, enhanced3d ? 1.02 : 1.01);
+		if (tiltDegree === 0) return;
+		handleTiltEffect(e, el, {
+			tiltDegree,
+			scale: enhanced3d ? 1.015 : 1.005
+		});
 	}
 
 	function onMouseLeave(): void {
