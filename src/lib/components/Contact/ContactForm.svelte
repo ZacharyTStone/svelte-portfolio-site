@@ -6,11 +6,13 @@
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 
-	// Define callback for reCAPTCHA
+	// Define callback for reCAPTCHA v2 Invisible
 	if (typeof window !== 'undefined') {
-		window.enableSubmit = () => {
+		window.onSubmitRecaptcha = (token: string) => {
 			console.log('reCAPTCHA verification complete');
-			recaptchaVerified = true;
+			// Store the token and submit the form programmatically
+			recaptchaToken = token;
+			submitForm();
 		};
 	}
 
@@ -46,7 +48,6 @@
 	let honeypot = ''; // Anti-spam honeypot field
 	let recaptchaToken = '';
 	let recaptchaReady = false;
-	let recaptchaVerified = false; // New state to track if reCAPTCHA is verified
 	let mounted = false;
 
 	// Set up success message timer handling
@@ -81,7 +82,7 @@
 		};
 		document.head.appendChild(script);
 
-		// Load reCAPTCHA v2 checkbox version (not invisible)
+		// Load reCAPTCHA v2 invisible version
 		const recaptchaScript = document.createElement('script');
 		recaptchaScript.src = 'https://www.google.com/recaptcha/api.js';
 		recaptchaScript.async = true;
@@ -130,27 +131,15 @@
 		return true;
 	}
 
-	// Get reCAPTCHA v2 response
-	function getRecaptchaResponse(): string {
-		if (!window.grecaptcha) {
-			console.error('reCAPTCHA not loaded yet');
-			return '';
-		}
-
-		// Get the response from the checkbox
-		return window.grecaptcha.getResponse();
-	}
-
-	// Handle form submission
+	// This function handles the initial form submission
+	// It validates the form and triggers the reCAPTCHA check
 	async function handleSubmit() {
 		// Reset states
 		error = '';
-		isSubmitting = true;
 
 		// Check for missing environment variables
 		if (!envVariablesPresent) {
 			error = 'Server configuration error. Please contact the site owner.';
-			isSubmitting = false;
 			return;
 		}
 
@@ -158,7 +147,6 @@
 		if (honeypot) {
 			// Simulate success but don't actually submit
 			setTimeout(() => {
-				isSubmitting = false;
 				isSuccess = true;
 			}, 1000);
 			return;
@@ -166,20 +154,18 @@
 
 		// Validate form
 		if (!validateForm()) {
-			isSubmitting = false;
 			return;
 		}
 
-		// Get reCAPTCHA token from checkbox
-		recaptchaToken = getRecaptchaResponse();
+		// The reCAPTCHA will be triggered automatically by the g-recaptcha class on the button
+		// The callback (onSubmitRecaptcha) will be called with the token if successful
+	}
 
-		if (!recaptchaToken) {
-			error = getTranslation('CONTACT.recaptcha_error');
-			isSubmitting = false;
-			return;
-		}
-
+	// This function is called by the reCAPTCHA callback with the token
+	async function submitForm() {
 		try {
+			isSubmitting = true;
+
 			// Use EmailJS to send email with the reCAPTCHA token
 			const templateParams = {
 				name,
@@ -207,7 +193,7 @@
 			name = '';
 			email = '';
 			message = '';
-			recaptchaVerified = false; // Reset reCAPTCHA verification status
+			recaptchaToken = ''; // Reset token
 			// Reset the reCAPTCHA widget
 			if (window.grecaptcha) {
 				window.grecaptcha.reset();
@@ -217,7 +203,6 @@
 			console.error('Form submission error:', err);
 			error = getTranslation('CONTACT.submission_error');
 
-			recaptchaVerified = false; // Reset reCAPTCHA verification status
 			// Reset the reCAPTCHA widget on error too
 			if (window.grecaptcha) {
 				window.grecaptcha.reset();
@@ -287,14 +272,7 @@
 						<input type="text" bind:value={honeypot} tabindex="-1" autocomplete="off" />
 					</div>
 
-					<!-- reCAPTCHA v2 checkbox -->
-					<div
-						class="g-recaptcha"
-						data-sitekey={RECAPTCHA_SITE_KEY}
-						data-theme="light"
-						data-callback="enableSubmit"
-					></div>
-
+					<!-- reCAPTCHA v2 invisible doesn't need a separate div, it binds to the submit button -->
 					<div class="recaptcha-notice">
 						This site is protected by reCAPTCHA and the Google
 						<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
@@ -306,7 +284,14 @@
 						> apply.
 					</div>
 
-					<button type="submit" class="submit-button" disabled={isSubmitting || !recaptchaVerified}>
+					<button
+						type="submit"
+						class="submit-button g-recaptcha"
+						data-sitekey={RECAPTCHA_SITE_KEY}
+						data-callback="onSubmitRecaptcha"
+						data-action="submit"
+						disabled={isSubmitting}
+					>
 						{#if isSubmitting}
 							<div class="loading-spinner"></div>
 							{getTranslation('CONTACT.submitting')}
@@ -438,12 +423,18 @@
 		}
 	}
 
-	/* Style for reCAPTCHA container */
-	:global(.g-recaptcha) {
+	/* Style for reCAPTCHA container - no longer needed for v2 Invisible */
+	/* :global(.g-recaptcha) {
 		display: flex;
 		justify-content: center;
 		margin: 10px 0;
 		width: 100%;
+	} */
+
+	/* Make sure the reCAPTCHA badge is visible */
+	:global(.grecaptcha-badge) {
+		visibility: visible !important;
+		z-index: 999;
 	}
 
 	.loading-spinner {
