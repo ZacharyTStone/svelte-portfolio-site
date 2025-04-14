@@ -2,10 +2,11 @@
 	import Card from '$lib/components/Card/Card.svelte';
 	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
 	import { HOME, TITLE_SUFFIX } from '$lib/params';
-	import { handleNavigation, useTitle } from '$lib/utils/helpers';
+	import { handleNavigation, useTitle, debounce } from '$lib/utils/helpers';
 	import { createContainerPerspective } from '$lib/utils/animation';
 	import { _ } from 'svelte-i18n';
 	import { onMount } from 'svelte';
+	import ContactLinks from '$lib/components/Contact/ContactLinks.svelte';
 
 	let { description, lastName, links, name, title } = HOME;
 
@@ -13,17 +14,26 @@
 	let mouseX = 0;
 	let mouseY = 0;
 
-	function handleMouseMove(event: MouseEvent): void {
-		if (!tiltContainer) return;
-
-		const rect = tiltContainer.getBoundingClientRect();
+	function calculateMousePosition(
+		event: MouseEvent,
+		container: HTMLElement
+	): { x: number; y: number } {
+		const rect = container.getBoundingClientRect();
 		const centerX = rect.left + rect.width / 2;
 		const centerY = rect.top + rect.height / 2;
 
-		// Calculate distance from center (normalize to -1 to 1 range)
-		mouseX = ((event.clientX - centerX) / (rect.width / 2)) * 5;
-		mouseY = ((event.clientY - centerY) / (rect.height / 2)) * 5;
+		return {
+			x: ((event.clientX - centerX) / (rect.width / 2)) * 5,
+			y: ((event.clientY - centerY) / (rect.height / 2)) * 5
+		};
 	}
+
+	const handleMouseMove = debounce((event: MouseEvent) => {
+		if (!tiltContainer) return;
+		const { x, y } = calculateMousePosition(event, tiltContainer);
+		mouseX = x;
+		mouseY = y;
+	}, 8); // ~120fps
 
 	onMount(() => {
 		document.addEventListener('mousemove', handleMouseMove);
@@ -79,7 +89,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-color: transparent;
 		position: relative;
 		overflow: hidden;
 		animation: fadeIn 1.5s ease-in;
@@ -95,88 +104,29 @@
 		position: relative;
 		z-index: 2;
 		transform-style: preserve-3d;
+		will-change: transform;
 		transform: perspective(1000px) rotateX(calc(var(--mouse-y) * -0.1))
 			rotateY(calc(var(--mouse-x) * 0.1));
 		transition: transform 0.05s ease-out;
+		backface-visibility: hidden;
 	}
 
-	@media (max-width: 768px) {
-		.hero-container {
-			padding: 0rem;
-		}
-
-		.asymmetric-grid {
-			grid-template-columns: 1fr;
-			grid-template-rows: auto auto;
-			gap: 1.5rem;
-			text-align: center;
-			padding: 0rem;
-			transform: none;
-		}
-
-		.hero-content-left,
-		.hero-content-right {
-			padding: 0px !important;
-			justify-content: center;
-			align-items: center;
-			transform: none !important;
-		}
-
-		.cta-button {
-			align-self: center;
-			margin-top: 1rem;
-		}
-
-		@media (max-width: 600px) {
-			.cta-button {
-				width: 100%;
-			}
-		}
-
-		.floating-element {
-			display: none;
-		}
-
-		.hero-title {
-			text-align: center;
-			max-width: 100%;
-			transform: none !important;
-			margin: 0 auto 1rem auto;
-			white-space: nowrap;
-			font-size: 40px !important;
-			line-height: 1.2;
-		}
-
-		.last-name {
-			display: inline;
-			transform: none !important;
-		}
-
-		.hero-description {
-			text-align: center;
-			font-size: 20px !important;
-			line-height: 1.5;
-			max-width: 90%;
-			margin: 0 auto 0rem auto;
-			transform: none !important;
-		}
-	}
-
-	.hero-content-left {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding: 2rem;
-		position: relative;
-		transform: translateZ(20px);
-	}
-
+	.hero-content-left,
 	.hero-content-right {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		padding: 2rem;
 		position: relative;
+		will-change: transform;
+		backface-visibility: hidden;
+	}
+
+	.hero-content-left {
+		transform: translateZ(20px);
+	}
+
+	.hero-content-right {
 		transform: translateZ(40px);
 	}
 
@@ -188,15 +138,19 @@
 		opacity: 0;
 		animation: flyIn 1s ease-out 0.5s forwards;
 		margin-bottom: 1.5rem;
+		will-change: transform, opacity;
 		transform: translateZ(30px);
 		position: relative;
 		z-index: 3;
+		backface-visibility: hidden;
 	}
 
 	.last-name {
 		font-weight: var(--fw-light);
 		font-style: italic;
+		will-change: transform;
 		transform: translateZ(50px);
+		backface-visibility: hidden;
 	}
 
 	.hero-description {
@@ -209,6 +163,8 @@
 		margin-bottom: 2rem;
 		position: relative;
 		z-index: 3;
+		will-change: transform, opacity;
+		backface-visibility: hidden;
 	}
 
 	.cta-button {
@@ -226,6 +182,7 @@
 		border-radius: 10px;
 		transform-style: preserve-3d;
 		animation: floatAnimation 10s ease-in-out infinite alternate;
+		backface-visibility: hidden;
 	}
 
 	.shape-1 {
@@ -248,13 +205,70 @@
 		background: linear-gradient(45deg, var(--accent) 0%, transparent 70%);
 	}
 
+	@media (max-width: 768px) {
+		.hero-container {
+			padding: 0;
+		}
+
+		.asymmetric-grid {
+			grid-template-columns: 1fr;
+			grid-template-rows: auto auto;
+			gap: 1.5rem;
+			text-align: center;
+			padding: 0;
+			transform: none;
+		}
+
+		.hero-content-left,
+		.hero-content-right {
+			padding: 0;
+			justify-content: center;
+			align-items: center;
+			transform: none;
+		}
+
+		.cta-button {
+			align-self: center;
+			margin-top: 1rem;
+			width: 100%;
+		}
+
+		.floating-element {
+			display: none;
+		}
+
+		.hero-title {
+			text-align: center;
+			max-width: 100%;
+			transform: none;
+			margin: 0 auto 1rem;
+			white-space: nowrap;
+			font-size: 40px;
+			line-height: 1.2;
+		}
+
+		.last-name {
+			display: inline;
+			transform: none;
+		}
+
+		.hero-description {
+			text-align: center;
+			font-size: 20px;
+			line-height: 1.5;
+			max-width: 90%;
+			margin: 0 auto;
+			transform: none;
+		}
+	}
+
 	@keyframes flyIn {
 		0% {
-			transform: translateY(50px) translateZ(30px);
+			transform: translate3d(0, 50px, 30px);
 			opacity: 0;
 		}
 		100% {
-			transform: translateY(0) translateZ(30px);
+			transform: translate3d(0, 0, 30px);
 			opacity: 1;
 		}
 	}
@@ -263,34 +277,34 @@
 	@media (max-width: 768px) {
 		@keyframes flyIn {
 			0% {
-				transform: translateY(30px);
+				transform: translate3d(0, 30px, 0);
 				opacity: 0;
 			}
 			100% {
-				transform: translateY(0);
+				transform: translate3d(0, 0, 0);
 				opacity: 1;
 			}
 		}
 	}
 
 	@keyframes fadeIn {
-		0% {
+		from {
 			opacity: 0;
 		}
-		100% {
+		to {
 			opacity: 1;
 		}
 	}
 
 	@keyframes floatAnimation {
 		0% {
-			transform: translate(0, 0) rotate(45deg) translateZ(10px);
+			transform: translate3d(0, 0, 10px) rotate(45deg);
 		}
 		50% {
-			transform: translate(10px, -10px) rotate(47deg) translateZ(15px);
+			transform: translate3d(10px, -10px, 15px) rotate(47deg);
 		}
 		100% {
-			transform: translate(-5px, 5px) rotate(43deg) translateZ(10px);
+			transform: translate3d(-5px, 5px, 10px) rotate(43deg);
 		}
 	}
 </style>

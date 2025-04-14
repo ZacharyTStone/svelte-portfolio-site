@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+	/* Base colors */
 	--dark-0: #000;
 	--dark-1: #1e1e1e;
 	--dark-2: #2e2e2e;
@@ -23,24 +24,17 @@
 	--light-7: #818181;
 	--light-8: #717171;
 
-	--code-keyword-light: #bd2864;
-	--code-keyword-dark: #bd2864;
+	/* Code colors */
+	--code-keyword: #bd2864;
+	--code-string: #297a3a;
+	--code-function: #0068d6;
+	--code-constant: #f08d49;
+	--code-operator: #016464;
 
-	--code-string-light: #297a3a;
-	--code-string-dark: #62c073;
+	/* Link colors */
+	--link: #3b82f6;
 
-	--code-function-light: #0068d6;
-	--code-function-dark: #52a8ff;
-
-	--code-constant-dark: #f8c555;
-	--code-constant-light: #f08d49;
-
-	--code-operator-dark: #67cdcc;
-	--code-operator-light: #016464;
-
-	--link-dark: #2563eb;
-	--link-light: #3b82f6;
-
+	/* Opacity variants */
 	--dark-0-60: rgba(0, 0, 0, 0.6);
 	--light-0-60: rgba(255, 255, 255, 0.6);
 
@@ -49,18 +43,18 @@
 	--title-f: 'Playfair Display', serif;
 
 	/* Font sizes */
-	--fs-xs: 0.75rem; /* 12px */
-	--fs-sm: 0.875rem; /* 14px */
-	--fs-base: 1rem; /* 16px */
-	--fs-lg: 1.125rem; /* 18px */
-	--fs-xl: 1.25rem; /* 20px */
-	--fs-2xl: 1.5rem; /* 24px */
-	--fs-3xl: 1.875rem; /* 30px */
-	--fs-4xl: 2.25rem; /* 36px */
-	--fs-5xl: 3rem; /* 48px */
-	--fs-6xl: 3.75rem; /* 60px */
-	--fs-7xl: 4.5rem; /* 72px */
-	--fs-8xl: 6rem; /* 96px */
+	--fs-xs: 0.75rem;
+	--fs-sm: 0.875rem;
+	--fs-base: 1rem;
+	--fs-lg: 1.125rem;
+	--fs-xl: 1.25rem;
+	--fs-2xl: 1.5rem;
+	--fs-3xl: 1.875rem;
+	--fs-4xl: 2.25rem;
+	--fs-5xl: 3rem;
+	--fs-6xl: 3.75rem;
+	--fs-7xl: 4.5rem;
+	--fs-8xl: 6rem;
 
 	/* Font weights */
 	--fw-light: 300;
@@ -172,15 +166,7 @@ small {
 
 	--border: var(--dark-2);
 	--border-hover: var(--light-7);
-
 	--main-60: var(--dark-0-60);
-
-	--code-keyword: var(--code-keyword-dark);
-	--code-string: var(--code-string-dark);
-	--code-function: var(--code-function-dark);
-	--code-constant: var(--code-constant-dark);
-	--code-operator: var(--code-operator-dark);
-	--link: var(--link-light);
 }
 
 :root[data-theme='light'] {
@@ -207,46 +193,26 @@ small {
 
 	--border: var(--light-1);
 	--border-hover: var(--dark-8);
-
 	--main-60: var(--light-0-60);
-
-	--code-keyword: var(--code-keyword-light);
-	--code-string: var(--code-string-light);
-	--code-function: var(--code-function-light);
-	--code-constant: var(--code-constant-light);
-	--code-operator: var(--code-operator-light);
-	--link: var(--link-dark);
 }
 
 .container {
 	max-width: 1200px;
-	min-width: 1200px;
-	margin: 0px auto;
+	margin: 0 auto;
+	padding: 0 1rem;
+	width: min(1200px, 100% - 2rem);
 
 	@media (max-width: 1350px) {
-		& {
-			max-width: 1000px;
-			min-width: 1000px;
-		}
+		max-width: 1000px;
 	}
 
 	@media (max-width: 1075px) {
-		& {
-			max-width: 800px;
-			min-width: 800px;
-		}
+		max-width: 800px;
 	}
 
 	@media (max-width: 850px) {
-		& {
-			max-width: -webkit-fill-available;
-			min-width: -webkit-fill-available;
-			max-width: -moz-available;
-			min-width: -moz-available;
-
-			// todo fix this to be less hacky
-			padding: 0px 10px !important;
-		}
+		max-width: 100%;
+		padding: 0 1rem;
 	}
 }
 

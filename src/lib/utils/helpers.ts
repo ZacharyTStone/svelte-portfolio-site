@@ -2,53 +2,48 @@ import { goto } from '$app/navigation';
 import { base } from '$app/paths';
 
 export const countMonths = (from: Date, to: Date = new Date()): number => {
-	let firstYear = 0;
-	let wholeYears = 0;
-	let newYear = 0;
+	const fromYear = from.getFullYear();
+	const toYear = to.getFullYear();
+	const fromMonth = from.getMonth();
+	const toMonth = to.getMonth();
 
-	if (to.getFullYear() !== from.getFullYear()) {
-		newYear = to.getMonth();
-		wholeYears = (to.getFullYear() - from.getFullYear() - 1) * 12;
-		firstYear = 12 - from.getMonth();
-	} else {
-		firstYear = to.getMonth() - from.getMonth();
+	if (toYear === fromYear) {
+		return toMonth - fromMonth + 1;
 	}
 
-	return firstYear + wholeYears + newYear + 1;
+	const yearDiff = toYear - fromYear;
+	const monthsInFirstYear = 12 - fromMonth;
+	const monthsInLastYear = toMonth + 1;
+	const monthsInBetween = (yearDiff - 1) * 12;
+
+	return monthsInFirstYear + monthsInBetween + monthsInLastYear;
 };
 
 export const onHover = (ev: MouseEvent, el: HTMLElement, tiltDegree: number = 10): void => {
-	if (!el || !ev) {
-		return;
-	}
+	if (!el || !ev) return;
 
 	const target = ev.currentTarget as HTMLElement;
-	if (!target) {
-		return;
-	}
+	if (!target) return;
 
 	const rect = target.getBoundingClientRect();
+	const { clientX, clientY } = ev;
+	const { left, top, width, height } = rect;
 
-	const x = ev.clientX - rect.left;
-	const y = ev.clientY - rect.top;
+	// Set drop shadow position
+	el.style.setProperty('--drop-x', `${clientX - left}px`);
+	el.style.setProperty('--drop-y', `${clientY - top}px`);
 
-	el.style.setProperty('--drop-x', `${x}px`);
-	el.style.setProperty('--drop-y', `${y}px`);
+	// Calculate center points
+	const centerX = rect.x + width / 2;
+	const centerY = rect.y + height / 2;
 
-	const width = el.offsetWidth;
-	const height = el.offsetHeight;
+	// Calculate rotation
+	const rotateX = ((-1 * tiltDegree * (clientY - centerY)) / (height / 2)).toFixed(2);
+	const rotateY = ((tiltDegree * (clientX - centerX)) / (width / 2)).toFixed(2);
 
-	const cX = rect.x + width / 2;
-	const cY = rect.y + height / 2;
-
-	const mX = ev.clientX - cX;
-	const mY = ev.clientY - cY;
-
-	const rY = ((tiltDegree * mX) / (width / 2)).toFixed(2);
-	const rX = ((-1 * (tiltDegree * mY)) / (height / 2)).toFixed(2);
-
-	el.style.setProperty('--rot-x', `${rX}deg`);
-	el.style.setProperty('--rot-y', `${rY}deg`);
+	// Apply rotation
+	el.style.setProperty('--rot-x', `${rotateX}deg`);
+	el.style.setProperty('--rot-y', `${rotateY}deg`);
 };
 
 /**
@@ -58,16 +53,15 @@ export const onHover = (ev: MouseEvent, el: HTMLElement, tiltDegree: number = 10
  * @returns rgba color string
  */
 export const changeColorOpacity = (color: string, opacity: number): string => {
-	let r: number, g: number, b: number;
-
-	// Validate input
 	if (typeof color !== 'string' || !color.startsWith('#')) {
 		throw new Error('Invalid color format: must be a hex color string starting with #');
 	}
 
-	if (color.length !== 4 && color.length !== 7 && color.length !== 9) {
+	if (![4, 7, 9].includes(color.length)) {
 		throw new Error('Invalid hex color format: must be #RGB, #RRGGBB, or #RRGGBBAA');
 	}
+
+	let r: number, g: number, b: number;
 
 	try {
 		if (color.length === 4) {
@@ -81,56 +75,53 @@ export const changeColorOpacity = (color: string, opacity: number): string => {
 			g = parseInt(color.substring(3, 5), 16);
 			b = parseInt(color.substring(5, 7), 16);
 		}
-	} catch (error) {
+	} catch {
 		throw new Error('Failed to parse hex color values');
 	}
 
-	// Validate parsed RGB values
 	if (isNaN(r) || isNaN(g) || isNaN(b)) {
 		throw new Error('Invalid hex color: contains non-hex characters');
 	}
 
-	// Convert opacity to 0-1 range if it is not already
-	if (opacity > 1) opacity = opacity / 100;
+	// Normalize opacity to 0-1 range
+	const normalizedOpacity = Math.max(0, Math.min(1, opacity > 1 ? opacity / 100 : opacity));
 
-	// Clamp opacity between 0 and 1
-	opacity = Math.max(0, Math.min(1, opacity));
-
-	return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+	return `rgba(${r}, ${g}, ${b}, ${normalizedOpacity})`;
 };
 
-export const getMonthName = (index: number): string => {
-	const monthNames = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-	];
+const MONTH_NAMES = [
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December'
+] as const;
 
-	return monthNames[index];
+export const getMonthName = (index: number): string => {
+	if (index < 0 || index >= MONTH_NAMES.length) {
+		throw new Error(`Invalid month index: ${index}`);
+	}
+	return MONTH_NAMES[index];
 };
 
 export const useImage = (url: string, base: string): string => `${base}${url}`;
 
-export const useTitle = (title: string, suffix: string) => `${title} | ${suffix}`;
+export const useTitle = (title: string, suffix: string): string => `${title} | ${suffix}`;
 
-export const isEmail = (email: string): boolean => {
-	const reg =
-		/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const EMAIL_REGEX =
+	/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-	return reg.test(email ?? '');
-};
+export const isEmail = (email: string): boolean => EMAIL_REGEX.test(email ?? '');
 
 // Define the colors as a readonly array for type safety
-export const RANDOM_COLORS: readonly string[] = [
+export const RANDOM_COLORS = [
 	'#FFC0CB',
 	'#FFB6C1',
 	'#FF69B4',
@@ -168,12 +159,7 @@ export const RANDOM_COLORS: readonly string[] = [
  * @returns A randomly selected hex color string
  */
 export const generateRandomHexColor = (): string => {
-	if (RANDOM_COLORS.length === 0) {
-		return '#000000'; // Fallback color if array is empty
-	}
-
-	const randomIndex = Math.floor(Math.random() * RANDOM_COLORS.length);
-	return RANDOM_COLORS[randomIndex];
+	return RANDOM_COLORS[Math.floor(Math.random() * RANDOM_COLORS.length)];
 };
 
 /**
@@ -198,23 +184,17 @@ export function calculateExperiencePeriod(
 	language: string = 'en'
 ): ExperiencePeriod {
 	const startYear = fromDate.getFullYear();
-	const endYear = toDate ? toDate.getFullYear() : new Date().getFullYear();
+	const endYear = toDate.getFullYear();
 	const months = countMonths(fromDate, toDate);
 	const years = Math.floor(months / 12);
-	// show 1 month if the period is less than 1 year and less than 1 month
-	const remainingMonths = months % 12 || (years === 0 ? 1 : 0);
+	const remainingMonths = months % 12 === 0 && years === 0 ? 1 : months % 12;
 
-	let period: string;
-
-	if (language.slice(0, 2) === 'ja') {
-		period = `${years > 0 ? `${years}年間` : ''}${
-			remainingMonths > 0 ? `${remainingMonths}ヶ月` : ''
-		}`;
-	} else {
-		period = `${years > 0 ? `${years} year${years > 1 ? 's' : ''}` : ''} ${
-			years > 0 && remainingMonths > 0 ? 'and ' : ''
-		}${remainingMonths > 0 ? `${remainingMonths} month${remainingMonths > 1 ? 's' : ''}` : ''}`;
-	}
+	const isJapanese = language.slice(0, 2) === 'ja';
+	const period = isJapanese
+		? `${years > 0 ? `${years}年間` : ''}${remainingMonths > 0 ? `${remainingMonths}ヶ月` : ''}`
+		: `${years > 0 ? `${years} year${years > 1 ? 's' : ''}` : ''} ${
+				years > 0 && remainingMonths > 0 ? 'and ' : ''
+			}${remainingMonths > 0 ? `${remainingMonths} month${remainingMonths > 1 ? 's' : ''}` : ''}`;
 
 	return {
 		startYear,
@@ -222,7 +202,7 @@ export function calculateExperiencePeriod(
 		months,
 		years,
 		remainingMonths,
-		period
+		period: period.trim()
 	};
 }
 
@@ -242,7 +222,23 @@ export async function handleNavigation(
 		await goto(`${base}${to}`);
 	} catch (error) {
 		console.error('Navigation error:', error);
-		// Optional: implement fallback navigation or error display
 		window.location.href = `${base}${to}`;
 	}
+}
+
+/**
+ * Creates a debounced function that delays invoking the provided function until after wait milliseconds have elapsed since the last time it was invoked.
+ * @param func The function to debounce
+ * @param wait The number of milliseconds to delay
+ * @returns A debounced version of the provided function
+ */
+export function debounce<T extends (...args: any[]) => any>(
+	func: T,
+	wait: number
+): (...args: Parameters<T>) => void {
+	let timeout: number;
+	return function (...args: Parameters<T>) {
+		clearTimeout(timeout);
+		timeout = setTimeout(() => func(...args), wait);
+	};
 }

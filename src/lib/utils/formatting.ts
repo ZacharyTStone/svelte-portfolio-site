@@ -56,7 +56,7 @@ export const formatExperiencePeriod = (
 	const endYear = endDate.getFullYear();
 	const months = countMonthsBetween(fromDate, endDate);
 	const years = Math.floor(months / 12);
-	const remainingMonths = months % 12 || (years === 0 ? 1 : 0);
+	const remainingMonths = months % 12 === 0 && years === 0 ? 1 : months % 12;
 
 	let formattedPeriod: string;
 
@@ -76,6 +76,6 @@ export const formatExperiencePeriod = (
 		months,
 		years,
 		remainingMonths,
-		formattedPeriod
+		formattedPeriod: formattedPeriod.trim()
 	};
 };
