@@ -64,17 +64,14 @@
 		};
 		document.head.appendChild(script);
 
-		// Load reCAPTCHA (use the non-enterprise version)
+		// Load reCAPTCHA v2 checkbox version (not invisible)
 		const recaptchaScript = document.createElement('script');
-		recaptchaScript.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+		recaptchaScript.src = 'https://www.google.com/recaptcha/api.js';
 		recaptchaScript.async = true;
 		recaptchaScript.defer = true;
 		recaptchaScript.onload = () => {
 			recaptchaReady = true;
-			// Initialize reCAPTCHA
-			window.grecaptcha.ready(() => {
-				console.log('reCAPTCHA is ready');
-			});
+			console.log('reCAPTCHA is ready');
 		};
 		recaptchaScript.onerror = (error) => {
 			console.error('Error loading reCAPTCHA script:', error);
@@ -116,37 +113,15 @@
 		return true;
 	}
 
-	// Execute reCAPTCHA verification
-	async function executeRecaptcha(): Promise<string> {
-		if (!window.grecaptcha || !recaptchaReady) {
-			console.error('reCAPTCHA not loaded yet. Please try again in a moment.');
+	// Get reCAPTCHA v2 response
+	function getRecaptchaResponse(): string {
+		if (!window.grecaptcha) {
+			console.error('reCAPTCHA not loaded yet');
 			return '';
 		}
 
-		try {
-			return await new Promise<string>((resolve, reject) => {
-				window.grecaptcha.ready(async () => {
-					try {
-						const token = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, {
-							action: 'submit'
-						});
-						console.log('reCAPTCHA token obtained:', token ? 'yes' : 'no');
-						resolve(token);
-					} catch (err) {
-						console.error('reCAPTCHA execution error:', err);
-						reject(err);
-					}
-				});
-
-				// Timeout after 5 seconds
-				setTimeout(() => {
-					reject(new Error('reCAPTCHA execution timed out'));
-				}, 5000);
-			});
-		} catch (err) {
-			console.error('reCAPTCHA error:', err);
-			return '';
-		}
+		// Get the response from the checkbox
+		return window.grecaptcha.getResponse();
 	}
 
 	// Handle form submission
@@ -171,20 +146,16 @@
 			return;
 		}
 
+		// Get reCAPTCHA token from checkbox
+		recaptchaToken = getRecaptchaResponse();
+
+		if (!recaptchaToken) {
+			error = getTranslation('CONTACT.recaptcha_error');
+			isSubmitting = false;
+			return;
+		}
+
 		try {
-			// Get reCAPTCHA token
-			recaptchaToken = await executeRecaptcha();
-
-			if (!recaptchaToken) {
-				error = getTranslation('CONTACT.recaptcha_error');
-				isSubmitting = false;
-				return;
-			}
-
-			// With adapter-static, we can't verify the token server-side
-			// Instead, we'll pass it to EmailJS and rely on EmailJS's verification
-			// or Google's JavaScript verification
-
 			// Use EmailJS to send email with the reCAPTCHA token
 			const templateParams = {
 				name,
@@ -212,10 +183,19 @@
 			name = '';
 			email = '';
 			message = '';
+			// Reset the reCAPTCHA widget
+			if (window.grecaptcha) {
+				window.grecaptcha.reset();
+			}
 			isSuccess = true;
 		} catch (err) {
 			console.error('Form submission error:', err);
 			error = getTranslation('CONTACT.submission_error');
+
+			// Reset the reCAPTCHA widget on error too
+			if (window.grecaptcha) {
+				window.grecaptcha.reset();
+			}
 		} finally {
 			isSubmitting = false;
 		}
@@ -280,6 +260,9 @@
 					<div class="honeypot">
 						<input type="text" bind:value={honeypot} tabindex="-1" autocomplete="off" />
 					</div>
+
+					<!-- reCAPTCHA v2 checkbox -->
+					<div class="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY}></div>
 
 					<div class="recaptcha-notice">
 						This site is protected by reCAPTCHA and the Google
@@ -416,12 +399,20 @@
 		font-size: 0.8em;
 		color: var(--tertiary-text);
 		text-align: center;
-		margin-top: -10px;
+		margin-top: 5px;
 
 		a {
 			color: var(--accent-text);
 			text-decoration: underline;
 		}
+	}
+
+	/* Style for reCAPTCHA container */
+	:global(.g-recaptcha) {
+		display: flex;
+		justify-content: center;
+		margin: 10px 0;
+		width: 100%;
 	}
 
 	.loading-spinner {

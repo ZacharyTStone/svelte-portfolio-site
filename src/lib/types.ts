@@ -233,6 +233,10 @@ declare global {
 		grecaptcha: {
 			ready: (callback: () => void) => void;
 			execute: (siteKey: string, options: { action: string }) => Promise<string>;
+			// Methods for reCAPTCHA v2
+			render: (container: string | HTMLElement, parameters: object) => number;
+			getResponse: (widgetId?: number) => string;
+			reset: (widgetId?: number) => void;
 		};
 	}
 }
