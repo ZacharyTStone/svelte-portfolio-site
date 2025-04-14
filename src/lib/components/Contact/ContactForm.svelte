@@ -22,14 +22,19 @@
 	}
 
 	// EmailJS configuration
-	const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'fXa9IjIQ6OlkvNdYd';
-	const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_u3xqm96';
-	const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_7msqeur';
+	const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+	const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+	const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 	// Make sure this is a V2 Checkbox site key
-	const RECAPTCHA_SITE_KEY =
-		import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6Lc2xworAAAAAIzw1FWeX8s0ek0Na4RegAyExzug';
+	const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
-	console.log('Using reCAPTCHA site key:', RECAPTCHA_SITE_KEY);
+	// Check if required variables are set (without logging their values)
+	const envVariablesPresent =
+		!!EMAILJS_PUBLIC_KEY && !!EMAILJS_SERVICE_ID && !!EMAILJS_TEMPLATE_ID && !!RECAPTCHA_SITE_KEY;
+
+	if (!envVariablesPresent) {
+		console.error('Missing required environment variables for contact form');
+	}
 
 	// Form state
 	let name = '';
@@ -141,6 +146,13 @@
 		// Reset states
 		error = '';
 		isSubmitting = true;
+
+		// Check for missing environment variables
+		if (!envVariablesPresent) {
+			error = 'Server configuration error. Please contact the site owner.';
+			isSubmitting = false;
+			return;
+		}
 
 		// Check honeypot (if filled, it's likely a bot)
 		if (honeypot) {
