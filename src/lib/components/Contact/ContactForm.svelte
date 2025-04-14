@@ -6,6 +6,14 @@
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 
+	// Define callback for reCAPTCHA
+	if (typeof window !== 'undefined') {
+		window.enableSubmit = () => {
+			console.log('reCAPTCHA verification complete');
+			recaptchaVerified = true;
+		};
+	}
+
 	// Helper function to get translation with type safety
 	function getTranslation(key: string): string {
 		const translation = $_(key);
@@ -17,8 +25,11 @@
 	const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'fXa9IjIQ6OlkvNdYd';
 	const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_u3xqm96';
 	const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_7msqeur';
+	// Make sure this is a V2 Checkbox site key
 	const RECAPTCHA_SITE_KEY =
 		import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6Lc2xworAAAAAIzw1FWeX8s0ek0Na4RegAyExzug';
+
+	console.log('Using reCAPTCHA site key:', RECAPTCHA_SITE_KEY);
 
 	// Form state
 	let name = '';
@@ -30,6 +41,7 @@
 	let honeypot = ''; // Anti-spam honeypot field
 	let recaptchaToken = '';
 	let recaptchaReady = false;
+	let recaptchaVerified = false; // New state to track if reCAPTCHA is verified
 	let mounted = false;
 
 	// Set up success message timer handling
@@ -183,6 +195,7 @@
 			name = '';
 			email = '';
 			message = '';
+			recaptchaVerified = false; // Reset reCAPTCHA verification status
 			// Reset the reCAPTCHA widget
 			if (window.grecaptcha) {
 				window.grecaptcha.reset();
@@ -192,6 +205,7 @@
 			console.error('Form submission error:', err);
 			error = getTranslation('CONTACT.submission_error');
 
+			recaptchaVerified = false; // Reset reCAPTCHA verification status
 			// Reset the reCAPTCHA widget on error too
 			if (window.grecaptcha) {
 				window.grecaptcha.reset();
@@ -262,7 +276,12 @@
 					</div>
 
 					<!-- reCAPTCHA v2 checkbox -->
-					<div class="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY}></div>
+					<div
+						class="g-recaptcha"
+						data-sitekey={RECAPTCHA_SITE_KEY}
+						data-theme="light"
+						data-callback="enableSubmit"
+					></div>
 
 					<div class="recaptcha-notice">
 						This site is protected by reCAPTCHA and the Google
@@ -275,9 +294,9 @@
 						> apply.
 					</div>
 
-					<button type="submit" class="submit-button" disabled={isSubmitting}>
+					<button type="submit" class="submit-button" disabled={isSubmitting || !recaptchaVerified}>
 						{#if isSubmitting}
-							<span class="loading-spinner"></span>
+							<div class="loading-spinner"></div>
 							{getTranslation('CONTACT.submitting')}
 						{:else}
 							{getTranslation('CONTACT.submit')}
