@@ -238,8 +238,8 @@ declare global {
 			getResponse: (widgetId?: number) => string;
 			reset: (widgetId?: number) => void;
 		};
-		// Callback for reCAPTCHA v2 Invisible
-		onSubmitRecaptcha: (token: string) => void;
+		// Callback for reCAPTCHA
+		enableSubmit: () => void;
 	}
 }
 
