@@ -8,7 +8,6 @@
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
-	import ContactLinks from '$lib/components/Contact/ContactLinks.svelte';
 	import LoadingProvider from '$lib/components/LoadingProvider.svelte';
 	import { locale } from 'svelte-i18n';
 	import SocialLinks from '$lib/components/Contact/SocialLinks.svelte';
