@@ -6,7 +6,7 @@
 	import { createContainerPerspective } from '$lib/utils/animation';
 	import { _ } from 'svelte-i18n';
 	import { onMount } from 'svelte';
-	import ContactLinks from '$lib/components/Contact/ContactLinks.svelte';
+	import SocialLinks from '$lib/components/Contact/SocialLinks.svelte';
 
 	let { description, lastName, links, name, title } = HOME;
 

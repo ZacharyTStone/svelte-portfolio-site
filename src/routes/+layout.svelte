@@ -11,6 +11,7 @@
 	import ContactLinks from '$lib/components/Contact/ContactLinks.svelte';
 	import LoadingProvider from '$lib/components/LoadingProvider.svelte';
 	import { locale } from 'svelte-i18n';
+	import SocialLinks from '$lib/components/Contact/SocialLinks.svelte';
 
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -32,7 +33,7 @@
 		<LoadingProvider transition={true}>
 			{@render children?.()}
 		</LoadingProvider>
-		<ContactLinks showOnMobile={true} showText={false} />
+		<SocialLinks showOnMobile={true} showText={false} />
 	</div>
 </div>
 
