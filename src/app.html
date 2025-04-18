@@ -7,7 +7,16 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#000000" />
-		<meta name="description" content="Zachary Stone's web developer portfolio" />
+		<meta
+			name="description"
+			content="Zachary Stone - Full Stack Web Developer specialized in modern web technologies. View my projects, skills, and experience."
+		/>
+		<meta
+			name="keywords"
+			content="Zachary Stone, Web Developer, Portfolio, Full Stack Developer, JavaScript, TypeScript, React, Svelte, Node.js"
+		/>
+		<meta name="author" content="Zachary Stone" />
+		<meta name="robots" content="index, follow" />
 		<meta name="Zachary Stone's Portfolio" content="Zachary Stone's web developer portfolio" />
 		<meta name="image" content="%sveltekit.assets%/icon.png" />
 		<!-- Google Fonts -->
@@ -33,30 +42,54 @@
 		/>
 
 		<!-- HTML Meta Tags -->
-		<title>Zach Stone</title>
+		<title>Zach Stone | Full Stack Web Developer</title>
+		<link rel="canonical" href="https://zstone.dev/" />
 
 		<!-- Google / Search Engine Tags -->
-		<meta itemprop="name" content="Zach Stone" />
-		<meta itemprop="description" content="Zachary Stone's web developer portfolio" />
+		<meta itemprop="name" content="Zach Stone | Full Stack Web Developer" />
+		<meta
+			itemprop="description"
+			content="Zachary Stone - Full Stack Web Developer specialized in modern web technologies. View my projects, skills, and experience."
+		/>
 		<meta itemprop="image" content="%sveltekit.assets%/icon.png" />
 
 		<!-- Facebook Meta Tags -->
 		<meta property="og:url" content="https://zstone.dev/" />
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Zachary Stone" />
-		<meta property="og:description" content="Zachary Stone's web developer portfolio" />
+		<meta property="og:title" content="Zach Stone | Full Stack Web Developer" />
+		<meta
+			property="og:description"
+			content="Zachary Stone - Full Stack Web Developer specialized in modern web technologies. View my projects, skills, and experience."
+		/>
 		<meta property="og:image" content="%sveltekit.assets%/icon.png" />
 
 		<!-- Twitter Meta Tags -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Zachary Stone" />
-		<meta name="twitter:description" content="Zachary Stone's web developer portfolio" />
+		<meta name="twitter:title" content="Zach Stone | Full Stack Web Developer" />
+		<meta
+			name="twitter:description"
+			content="Zachary Stone - Full Stack Web Developer specialized in modern web technologies. View my projects, skills, and experience."
+		/>
 		<meta name="twitter:image" content="%sveltekit.assets%/icon.png" />
 
 		<!-- Manifest File -->
-		<!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+		<link rel="manifest" href="%sveltekit.assets%/manifest.json" />
 
 		<!-- Favicon -->
+
+		<!-- JSON-LD Structured Data -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Person",
+				"name": "Zachary Stone",
+				"url": "https://zstone.dev",
+				"image": "%sveltekit.assets%/icon.png",
+				"jobTitle": "Full Stack Web Developer",
+				"sameAs": ["https://github.com/zacharystone", "https://linkedin.com/in/zacharystone"],
+				"knowsAbout": ["JavaScript", "TypeScript", "React", "Svelte", "Node.js", "Web Development"]
+			}
+		</script>
 
 		%sveltekit.head%
 	</head>
