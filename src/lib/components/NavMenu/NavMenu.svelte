@@ -8,6 +8,7 @@
 	import { _, locale } from 'svelte-i18n';
 	import Chip from '../Chip/Chip.svelte';
 	import UIcon from '../Icon/UIcon.svelte';
+	import Icon from '../Icon/Icon.svelte';
 
 	interface NavItem {
 		title: string;
@@ -31,10 +32,26 @@
 		}
 	}
 
-	let isOpen = false;
+	let isOpen = $state(false);
+	let activeSection = $state('');
+
+	$effect(() => {
+		activeSection = $page.url.pathname;
+	});
 
 	function toggleMenu(): void {
 		isOpen = !isOpen;
+	}
+
+	function closeMenu(): void {
+		isOpen = false;
+	}
+
+	// Close menu on Escape key press
+	function handleKeyDown(event: KeyboardEvent) {
+		if (event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27) {
+			closeMenu();
+		}
 	}
 
 	function handleItemClick(event: Event, item: NavItem): void {
@@ -65,8 +82,14 @@
 		</Chip>
 
 		<div class="md:hidden flex items-center">
-			<button class="mobile-menu-button" onclick={toggleMenu} aria-label="Toggle menu">
-				<UIcon icon="i-carbon-menu" classes="text-1.5em" alt="Menu" />
+			<button
+				class="mobile-menu-button"
+				onclick={toggleMenu}
+				aria-expanded={isOpen}
+				aria-controls="mobile-menu"
+				aria-label="Toggle menu"
+			>
+				<UIcon icon="i-carbon-menu" classes="text-[var(--accent-text)] text-1.5em" alt="Menu" />
 			</button>
 		</div>
 
@@ -125,21 +148,63 @@
 	</nav>
 
 	{#if isOpen}
-		<div class="mobile-menu md:hidden">
-			{#each mobileItems as item}
-				<a
-					href={item.to}
-					class="mobile-menu-item"
-					onclick={(event) => handleItemClick(event, item)}
-				>
-					<UIcon icon={item.icon} classes="text-1.3em mr-2" alt={$_(item.title)} />
-					<span
-						>{item.title === HOME.name
-							? $_(item.title) + ' ' + $_(HOME.lastName)
-							: $_(item.title)}</span
+		<div
+			id="mobile-menu"
+			class="mobile-menu {isOpen ? 'open' : ''}"
+			role="menu"
+			aria-hidden={!isOpen}
+			onkeydown={handleKeyDown}
+		>
+			<button class="close-button" onclick={closeMenu} aria-label="Close menu">
+				<UIcon icon="i-carbon-close" classes="text-[var(--accent-text)] text-1.5em" alt="Close" />
+			</button>
+
+			<ul class="nav-links" role="menubar">
+				<li class="nav-item" role="none">
+					<a
+						href="/"
+						class="nav-link {activeSection === '/' ? 'active' : ''}"
+						role="menuitem"
+						aria-current={activeSection === '/' ? 'page' : undefined}
 					>
-				</a>
-			{/each}
+						<UIcon icon="i-carbon-home" alt="Home icon" />
+						<span>{$_('NAV.home')}</span>
+					</a>
+				</li>
+				<li class="nav-item" role="none">
+					<a
+						href="/projects"
+						class="nav-link {activeSection === '/projects' ? 'active' : ''}"
+						role="menuitem"
+						aria-current={activeSection === '/projects' ? 'page' : undefined}
+					>
+						<UIcon icon="i-carbon-code" alt="Projects icon" />
+						<span>{$_('NAV.projects')}</span>
+					</a>
+				</li>
+				<li class="nav-item" role="none">
+					<a
+						href="/about"
+						class="nav-link {activeSection === '/about' ? 'active' : ''}"
+						role="menuitem"
+						aria-current={activeSection === '/about' ? 'page' : undefined}
+					>
+						<UIcon icon="i-carbon-user" alt="About icon" />
+						<span>{$_('NAV.about')}</span>
+					</a>
+				</li>
+				<li class="nav-item" role="none">
+					<a
+						href="/contact"
+						class="nav-link {activeSection === '/contact' ? 'active' : ''}"
+						role="menuitem"
+						aria-current={activeSection === '/contact' ? 'page' : undefined}
+					>
+						<UIcon icon="i-carbon-email" alt="Contact icon" />
+						<span>{$_('NAV.contact')}</span>
+					</a>
+				</li>
+			</ul>
 		</div>
 	{/if}
 </div>
@@ -207,5 +272,85 @@
 		color: var(--secondary-text);
 		cursor: pointer;
 		padding: 5px;
+	}
+
+	.close-button {
+		display: none;
+		background: none;
+		border: none;
+		padding: 0.5rem;
+		cursor: pointer;
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 1rem;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.nav-item {
+		position: relative;
+	}
+
+	.nav-link {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem;
+		color: var(--text);
+		text-decoration: none;
+		border-radius: 0.5rem;
+		transition: background-color 0.2s;
+	}
+
+	.nav-link:hover {
+		background-color: var(--hover);
+	}
+
+	.nav-link.active {
+		background-color: var(--active);
+		color: var(--active-text);
+	}
+
+	@media (max-width: 768px) {
+		.mobile-menu-button {
+			display: block;
+		}
+
+		.mobile-menu {
+			position: fixed;
+			top: 0;
+			right: -100%;
+			width: 100%;
+			height: 100vh;
+			background-color: var(--bg);
+			flex-direction: column;
+			justify-content: center;
+			transition: right 0.3s ease-in-out;
+			z-index: 1000;
+		}
+
+		.mobile-menu.open {
+			right: 0;
+		}
+
+		.close-button {
+			display: block;
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+		}
+
+		.nav-links {
+			flex-direction: column;
+			align-items: center;
+			gap: 2rem;
+		}
+
+		.nav-link {
+			font-size: 1.5rem;
+		}
 	}
 </style>

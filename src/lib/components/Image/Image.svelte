@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+
 	interface Props {
 		src?: string;
 		alt?: string;
@@ -17,7 +18,7 @@
 		loadingHeight = '200px',
 		loadingWidth = '100%',
 		style = '',
-		onClick = () => {}
+		onClick
 	}: Props = $props();
 
 	let loaded = $state(false);
@@ -30,12 +31,10 @@
 		loading = true;
 
 		img.onload = () => {
-			console.log('Image loaded successfully');
 			loading = false;
 			loaded = true;
 		};
 		img.onerror = () => {
-			console.error('Image failed to load');
 			loading = false;
 			failed = true;
 		};
@@ -48,14 +47,23 @@
 		class={classes}
 		{style}
 		onclick={onClick}
-		onkeydown={onClick}
-		alt="image"
-		aria-hidden="true"
+		onkeydown={(e: KeyboardEvent) => e.key === 'Enter' && onClick?.()}
+		{alt}
+		role={onClick != null ? 'button' : undefined}
 	/>
 {:else if loading}
 	<div
 		class={classes + ' skeleton'}
 		style={`min-height: ${loadingHeight}; min-width: ${loadingWidth}`}
+		aria-label="Loading image"
+		role="status"
+	></div>
+{:else if failed}
+	<div
+		class={classes + ' skeleton error'}
+		style={`min-height: ${loadingHeight}; min-width: ${loadingWidth}`}
+		aria-label="Failed to load image"
+		role="alert"
 	></div>
 {/if}
 
@@ -68,6 +76,11 @@
 		animation:
 			pulse 1.5s ease-in-out infinite,
 			rainbow-border 3s linear infinite;
+	}
+
+	.skeleton.error {
+		border-color: #ff0000;
+		animation: none;
 	}
 
 	@keyframes pulse {

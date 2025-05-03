@@ -2,9 +2,6 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#000000" />
 		<meta
@@ -19,6 +16,7 @@
 		<meta name="robots" content="index, follow" />
 		<meta name="Zachary Stone's Portfolio" content="Zachary Stone's web developer portfolio" />
 		<meta name="image" content="%sveltekit.assets%/icon.png" />
+
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,8 +24,8 @@
 			href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap"
 			rel="stylesheet"
 		/>
-		<!-- csp -->
-		<!-- Add the Content Security Policy (CSP) meta tag -->
+
+		<!-- Content Security Policy -->
 		<meta
 			http-equiv="Content-Security-Policy"
 			content="
@@ -44,6 +42,7 @@
 		<!-- HTML Meta Tags -->
 		<title>Zach Stone | Full Stack Web Developer</title>
 		<link rel="canonical" href="https://zstone.dev/" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
 
 		<!-- Google / Search Engine Tags -->
 		<meta itemprop="name" content="Zach Stone | Full Stack Web Developer" />
@@ -59,7 +58,7 @@
 		<meta property="og:title" content="Zach Stone | Full Stack Web Developer" />
 		<meta
 			property="og:description"
-			content="Zachary Stone - Full Stack Web Developer specialized in modern web technologies. View my projects, skills, and experience."
+			content="Zachary Stone - Senior Frontend Engineer specialized in modern web technologies."
 		/>
 		<meta property="og:image" content="%sveltekit.assets%/icon.png" />
 
@@ -68,14 +67,12 @@
 		<meta name="twitter:title" content="Zach Stone | Full Stack Web Developer" />
 		<meta
 			name="twitter:description"
-			content="Zachary Stone - Full Stack Web Developer specialized in modern web technologies. View my projects, skills, and experience."
+			content="Zachary Stone - Senior Frontend Engineer specialized in modern web technologies."
 		/>
 		<meta name="twitter:image" content="%sveltekit.assets%/icon.png" />
 
 		<!-- Manifest File -->
 		<link rel="manifest" href="%sveltekit.assets%/manifest.json" />
-
-		<!-- Favicon -->
 
 		<!-- JSON-LD Structured Data -->
 		<script type="application/ld+json">
@@ -92,8 +89,34 @@
 		</script>
 
 		%sveltekit.head%
+
+		<!-- Skip Link Styles -->
+		<style>
+			.skip-to-content {
+				position: absolute;
+				top: -40px;
+				left: 0;
+				background: #fff;
+				color: #000;
+				padding: 8px;
+				z-index: 100;
+				transform: translateY(-100%);
+				transition: transform 0.3s;
+			}
+
+			.skip-to-content:focus {
+				transform: translateY(0);
+				top: 0;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				.skip-to-content {
+					background: #000;
+					color: #fff;
+				}
+			}
+		</style>
 	</head>
-	<!-- user must wait for the hero animation. The pages are lightweight so we have decided to preload the data and code -->
 	<body data-sveltekit-preload-data="eager" data-sveltekit-preload-code="eager">
 		<script>
 			// Immediately executed function to set the theme
@@ -108,6 +131,7 @@
 				document.documentElement.setAttribute('data-theme', themeToUse);
 			})();
 		</script>
-		<div style="display: contents">%sveltekit.body%</div>
+		<a href="#main-content" class="skip-to-content">Skip to content</a>
+		<div style="display: contents" id="main-content">%sveltekit.body%</div>
 	</body>
 </html>
