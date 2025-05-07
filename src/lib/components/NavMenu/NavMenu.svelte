@@ -155,10 +155,6 @@
 			aria-hidden={!isOpen}
 			onkeydown={handleKeyDown}
 		>
-			<button class="close-button" onclick={closeMenu} aria-label="Close menu">
-				<UIcon icon="i-carbon-close" classes="text-[var(--accent-text)] text-1.5em" alt="Close" />
-			</button>
-
 			<ul class="nav-links" role="menubar">
 				<li class="nav-item" role="none">
 					<a
@@ -166,9 +162,10 @@
 						class="nav-link {activeSection === '/' ? 'active' : ''}"
 						role="menuitem"
 						aria-current={activeSection === '/' ? 'page' : undefined}
+						onclick={closeMenu}
 					>
 						<UIcon icon="i-carbon-home" alt="Home icon" />
-						<span>{$_('NAV.home')}</span>
+						<span>{$_('NAVBAR.home')}</span>
 					</a>
 				</li>
 				<li class="nav-item" role="none">
@@ -177,9 +174,10 @@
 						class="nav-link {activeSection === '/projects' ? 'active' : ''}"
 						role="menuitem"
 						aria-current={activeSection === '/projects' ? 'page' : undefined}
+						onclick={closeMenu}
 					>
 						<UIcon icon="i-carbon-code" alt="Projects icon" />
-						<span>{$_('NAV.projects')}</span>
+						<span>{$_('NAVBAR.personal')}</span>
 					</a>
 				</li>
 				<li class="nav-item" role="none">
@@ -188,9 +186,10 @@
 						class="nav-link {activeSection === '/about' ? 'active' : ''}"
 						role="menuitem"
 						aria-current={activeSection === '/about' ? 'page' : undefined}
+						onclick={closeMenu}
 					>
 						<UIcon icon="i-carbon-user" alt="About icon" />
-						<span>{$_('NAV.about')}</span>
+						<span>{$_('NAVBAR.about')}</span>
 					</a>
 				</li>
 				<li class="nav-item" role="none">
@@ -199,9 +198,10 @@
 						class="nav-link {activeSection === '/contact' ? 'active' : ''}"
 						role="menuitem"
 						aria-current={activeSection === '/contact' ? 'page' : undefined}
+						onclick={closeMenu}
 					>
 						<UIcon icon="i-carbon-email" alt="Contact icon" />
-						<span>{$_('NAV.contact')}</span>
+						<span>{$_('NAVBAR.contact')}</span>
 					</a>
 				</li>
 			</ul>
@@ -280,6 +280,13 @@
 		border: none;
 		padding: 0.5rem;
 		cursor: pointer;
+		border-radius: 50%;
+		transition: all 0.2s ease;
+	}
+
+	.close-button:hover {
+		background-color: var(--hover);
+		transform: rotate(90deg);
 	}
 
 	.nav-links {
@@ -297,21 +304,27 @@
 	.nav-link {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
-		padding: 0.5rem;
-		color: var(--text);
+		gap: 0.75rem;
+		padding: 0.75rem;
+		color: var(--secondary-text);
 		text-decoration: none;
 		border-radius: 0.5rem;
-		transition: background-color 0.2s;
+		transition: all 0.2s ease;
 	}
 
 	.nav-link:hover {
 		background-color: var(--hover);
+		transform: translateY(-2px);
 	}
 
 	.nav-link.active {
 		background-color: var(--active);
-		color: var(--active-text);
+		color: var(--accent-text);
+		font-weight: var(--fw-medium);
+	}
+
+	.nav-link span {
+		font-size: 1rem;
 	}
 
 	@media (max-width: 768px) {
@@ -320,37 +333,53 @@
 		}
 
 		.mobile-menu {
-			position: fixed;
-			top: 0;
-			right: -100%;
-			width: 100%;
-			height: 100vh;
-			background-color: var(--bg);
-			flex-direction: column;
-			justify-content: center;
-			transition: right 0.3s ease-in-out;
+			position: absolute;
+			top: 100%;
+			right: 0;
+			width: 200px;
+			background-color: var(--main);
+			border: 1px solid var(--secondary);
+			border-radius: 8px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			opacity: 0;
+			transform: translateY(-10px);
+			pointer-events: none;
+			transition: all 0.25s ease-out;
 			z-index: 1000;
+			margin-top: 4px;
+			margin-right: 8px;
+			overflow: hidden;
 		}
 
 		.mobile-menu.open {
-			right: 0;
-		}
-
-		.close-button {
-			display: block;
-			position: absolute;
-			top: 1rem;
-			right: 1rem;
+			opacity: 1;
+			transform: translateY(0);
+			pointer-events: all;
 		}
 
 		.nav-links {
 			flex-direction: column;
-			align-items: center;
-			gap: 2rem;
+			width: 100%;
+			padding: 8px;
+			gap: 0;
+		}
+
+		.nav-item {
+			width: 100%;
 		}
 
 		.nav-link {
-			font-size: 1.5rem;
+			padding: 10px;
+			font-size: 1rem;
+			width: 100%;
+			display: flex;
+			justify-content: flex-start;
+			border-radius: 6px;
+			margin: 2px 0;
+		}
+
+		.nav-link span {
+			font-size: 0.9rem;
 		}
 	}
 </style>
