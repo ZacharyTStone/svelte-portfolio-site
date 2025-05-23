@@ -20,8 +20,6 @@ export type ArrayElementType<ArrayType extends readonly unknown[]> =
 
 const FRAMEWORKS: SkillInfoObject[] = [
 	{ label: 'React', link: 'https://reactjs.org/', icon: COLOR_ASSETS.React },
-	{ label: 'Gatsby', link: 'https://www.gatsbyjs.org/', icon: COLOR_ASSETS.Gatsby },
-	{ label: 'Vue', link: 'https://vuejs.org/', icon: COLOR_ASSETS.VueJs },
 	{ label: 'Next', link: 'https://nextjs.org/', icon: COLOR_ASSETS.Next },
 	{ label: 'Svelte', link: 'https://svelte.dev/', icon: COLOR_ASSETS.Svelte }
 ];
@@ -32,11 +30,9 @@ const FE_TOOLS: SkillInfoObject[] = [
 	{ label: 'JavaScript', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
 	{ label: 'Typescript', link: 'https://www.typescriptlang.org/' },
 	{ label: 'Styled Components', link: 'https://styled-components.com/' },
-	{ label: 'Bootstrap', link: 'https://getbootstrap.com/' },
 	{ label: 'Tailwind', link: 'https://tailwindcss.com/' },
-	{ label: 'Material UI', link: 'https://material-ui.com/' },
 	{ label: 'Context API', link: 'https://reactjs.org/docs/context.html' },
-	{ label: 'Redux', link: 'https://redux.js.org/' }
+	{ label: 'Playwright', link: 'https://playwright.dev/' }
 ];
 
 const Backend: SkillInfoObject[] = [
