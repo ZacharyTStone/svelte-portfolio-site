@@ -2,70 +2,62 @@
 	import { onMount } from 'svelte';
 
 	interface Props {
-		src?: string;
-		alt?: string;
+		src: string;
+		alt: string;
 		classes?: string;
 		loadingHeight?: string;
 		loadingWidth?: string;
 		style?: string;
 		onClick?: () => void;
+		loading?: 'eager' | 'lazy';
 	}
 
 	let {
-		src = '',
-		alt = '',
+		src,
+		alt,
 		classes = '',
-		loadingHeight = '200px',
+		loadingHeight = '100%',
 		loadingWidth = '100%',
 		style = '',
-		onClick
+		onClick,
+		loading = 'lazy'
 	}: Props = $props();
 
-	let loaded = $state(false);
-	let failed = $state(false);
-	let loading = $state(true);
+	let isLoaded = $state(false);
+	let hasError = $state(false);
 
 	onMount(() => {
 		const img = new Image();
 		img.src = src;
-		loading = true;
+		isLoaded = true;
 
 		img.onload = () => {
-			loading = false;
-			loaded = true;
+			isLoaded = true;
 		};
 		img.onerror = () => {
-			loading = false;
-			failed = true;
+			hasError = true;
+			isLoaded = true;
 		};
 	});
 </script>
 
-{#if loaded}
-	<img
-		{src}
-		class={classes}
-		{style}
-		onclick={onClick}
-		onkeydown={(e: KeyboardEvent) => e.key === 'Enter' && onClick?.()}
-		{alt}
-		role={onClick != null ? 'button' : undefined}
-	/>
-{:else if loading}
-	<div
-		class={classes + ' skeleton'}
-		style={`min-height: ${loadingHeight}; min-width: ${loadingWidth}`}
-		aria-label="Loading image"
-		role="status"
-	></div>
-{:else if failed}
-	<div
-		class={classes + ' skeleton error'}
-		style={`min-height: ${loadingHeight}; min-width: ${loadingWidth}`}
-		aria-label="Failed to load image"
-		role="alert"
-	></div>
-{/if}
+<img
+	{src}
+	{alt}
+	{loading}
+	{style}
+	onclick={onClick}
+	onkeydown={(e) => e.key === 'Enter' && onClick?.()}
+	role={onClick ? 'button' : undefined}
+	class={`${classes} ${!isLoaded ? 'bg-gray-200 border-2 border-solid rounded-lg animate-pulse' : ''} ${
+		hasError ? 'border-red-500' : 'border-current animate-rainbow'
+	}`}
+	onload={() => (isLoaded = true)}
+	onerror={() => {
+		hasError = true;
+		isLoaded = true;
+	}}
+/>
 
 <style>
 	.skeleton {

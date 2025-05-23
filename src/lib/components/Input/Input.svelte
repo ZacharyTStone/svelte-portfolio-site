@@ -47,7 +47,7 @@
 	{type}
 	autocomplete="off"
 	{spellcheck}
-	class="text-[inherit] bg-transparent border-[1px] border-solid border-[var(--border)] px-[20px] py-[10px] rounded-[15px] flex-1 text-[1.15em]"
+	class="text-inherit bg-transparent border border-solid border-[var(--border)] px-5 py-2.5 rounded-xl flex-1 text-lg focus:outline-1 focus:outline-[var(--border-hover)] focus:bg-[var(--main-hover)]"
 />
 
 <style lang="scss">

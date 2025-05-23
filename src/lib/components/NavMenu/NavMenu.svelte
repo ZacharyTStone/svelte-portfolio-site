@@ -9,6 +9,8 @@
 	import Chip from '../Chip/Chip.svelte';
 	import UIcon from '../Icon/UIcon.svelte';
 	import Icon from '../Icon/Icon.svelte';
+	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 
 	interface NavItem {
 		title: string;
@@ -34,9 +36,18 @@
 
 	let isOpen = $state(false);
 	let activeSection = $state('');
+	let isScrolled = $state(false);
 
 	$effect(() => {
 		activeSection = $page.url.pathname;
+	});
+
+	onMount(() => {
+		const handleScroll = () => {
+			isScrolled = window.scrollY > 0;
+		};
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
 	});
 
 	function toggleMenu(): void {
@@ -67,83 +78,89 @@
 </script>
 
 <div class="nav-menu">
-	<nav class="container !justify-between flex flex-row items-center text-sm">
-		<Chip
-			classes="hidden md:flexinline-flex items-center !text-[var(--secondary-text)] rainbow-hover gap-2 md:inline-flex hidden"
-			onClick={(e) => handleNavigation(e, '/')}
-			newTab={false}
-			borderRadius="0px"
-			hideBorder={true}
-		>
-			<UIcon icon="i-carbon-code" classes="text-1.3em md:text-1.5em" alt="home" />
-			<span class="nav-menu-item-label nav-brand hidden md:inline"
-				>{$_(HOME.name)} {$_(HOME.lastName)}</span
+	<nav
+		class={`sticky top-0 z-10 flex justify-center px-1 py-1 border-b border-[var(--secondary)] bg-[var(--main)] h-max font-text font-medium tracking-wide text-sm ${
+			isScrolled ? 'shadow-md' : ''
+		}`}
+	>
+		<div class="container flex items-center justify-between">
+			<Chip
+				classes="hidden md:flexinline-flex items-center !text-[var(--secondary-text)] rainbow-hover gap-2 md:inline-flex hidden"
+				onClick={(e: MouseEvent) => handleNavigation(e, '/')}
+				newTab={false}
+				borderRadius="0px"
+				hideBorder={true}
 			>
-		</Chip>
-
-		<div class="md:hidden flex items-center">
-			<button
-				class="mobile-menu-button"
-				onclick={toggleMenu}
-				aria-expanded={isOpen}
-				aria-controls="mobile-menu"
-				aria-label="Toggle menu"
-			>
-				<UIcon icon="i-carbon-menu" classes="text-[var(--accent-text)] text-1.5em" alt="Menu" />
-			</button>
-		</div>
-
-		<div class="hidden md:flex flex-row flex-1 self-center justify-center gap-2">
-			{#each items as item}
-				<Chip
-					classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover"
-					onClick={(e) => handleNavigation(e, item.to)}
-					newTab={false}
-					borderRadius="0px"
-					hideBorder={true}
+				<UIcon icon="i-carbon-code" classes="text-1.3em md:text-1.5em" alt="home" />
+				<span class="nav-menu-item-label nav-brand hidden md:inline"
+					>{$_(HOME.name)} {$_(HOME.lastName)}</span
 				>
-					<UIcon icon={item.icon} classes="text-1.3em md:text-1.5em" alt={$_(item.title)} />
-					<span class="nav-menu-item-label hidden md:inline">{$_(item.title)}</span>
-				</Chip>
-			{/each}
-		</div>
+			</Chip>
 
-		<div class="flex flex-row items-stretch gap-1 text-1.15em">
-			<a href={`${base}/search`} class="text-inherit col-center self-stretch px-2 rainbow-hover">
-				<UIcon icon="i-carbon-search" alt="search" tooltip={$_(NavBar.search)} />
-			</a>
-			<button
-				class="bg-transparent text-1em border-none cursor: pointer; text-[var(--secondary-text)] px-2 rainbow-hover"
-				onclick={handleThemeToggle}
-				aria-label={$_($theme === ThemeType.LIGHT ? NavBar.lightMode : NavBar.darkMode)}
-			>
-				{#if $theme === ThemeType.LIGHT}
-					<UIcon icon="i-carbon-moon" alt="light Theme" tooltip={$_(NavBar.lightMode)} />
-				{:else}
-					<UIcon icon="i-carbon-sun" alt="Dark Theme" tooltip={$_(NavBar.darkMode)} />
-				{/if}
-			</button>
-			<button
-				class="bg-transparent text-1em border-none cursor: pointer; text-[var(--secondary-text)] px-2 rainbow-hover"
-				onclick={toggleLanguage}
-				aria-label={$_($locale?.includes('en') ? NavBar.japanese : NavBar.english)}
-			>
-				{#if $locale?.includes('en')}
-					<UIcon
-						icon="i-flag-jp-4x3"
-						classes="text-1.3em mt-0.5"
-						alt="JA"
-						tooltip={$_(NavBar.japanese)}
-					/>
-				{:else}
-					<UIcon
-						icon={'i-flag-us-4x3'}
-						classes="text-1.3em mt-0.5"
-						alt="English"
-						tooltip={$_(NavBar.english)}
-					/>
-				{/if}
-			</button>
+			<div class="md:hidden flex items-center">
+				<button
+					class="mobile-menu-button"
+					onclick={toggleMenu}
+					aria-expanded={isOpen}
+					aria-controls="mobile-menu"
+					aria-label="Toggle menu"
+				>
+					<UIcon icon="i-carbon-menu" classes="text-[var(--accent-text)] text-1.5em" alt="Menu" />
+				</button>
+			</div>
+
+			<div class="hidden md:flex flex-row flex-1 self-center justify-center gap-2">
+				{#each items as item}
+					<Chip
+						classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover"
+						onClick={(e: MouseEvent) => handleNavigation(e, item.to)}
+						newTab={false}
+						borderRadius="0px"
+						hideBorder={true}
+					>
+						<UIcon icon={item.icon} classes="text-1.3em md:text-1.5em" alt={$_(item.title)} />
+						<span class="nav-menu-item-label hidden md:inline">{$_(item.title)}</span>
+					</Chip>
+				{/each}
+			</div>
+
+			<div class="flex flex-row items-stretch gap-1 text-1.15em">
+				<a href={`${base}/search`} class="text-inherit col-center self-stretch px-2 rainbow-hover">
+					<UIcon icon="i-carbon-search" alt="search" tooltip={$_(NavBar.search)} />
+				</a>
+				<button
+					class="bg-transparent text-1em border-none cursor: pointer; text-[var(--secondary-text)] px-2 rainbow-hover"
+					onclick={handleThemeToggle}
+					aria-label={$_($theme === ThemeType.LIGHT ? NavBar.lightMode : NavBar.darkMode)}
+				>
+					{#if $theme === ThemeType.LIGHT}
+						<UIcon icon="i-carbon-moon" alt="light Theme" tooltip={$_(NavBar.lightMode)} />
+					{:else}
+						<UIcon icon="i-carbon-sun" alt="Dark Theme" tooltip={$_(NavBar.darkMode)} />
+					{/if}
+				</button>
+				<button
+					class="bg-transparent text-1em border-none cursor: pointer; text-[var(--secondary-text)] px-2 rainbow-hover"
+					onclick={toggleLanguage}
+					aria-label={$_($locale?.includes('en') ? NavBar.japanese : NavBar.english)}
+				>
+					{#if $locale?.includes('en')}
+						<UIcon
+							icon="i-flag-jp-4x3"
+							classes="text-1.3em mt-0.5"
+							alt="JA"
+							tooltip={$_(NavBar.japanese)}
+						/>
+					{:else}
+						<UIcon
+							icon={'i-flag-us-4x3'}
+							classes="text-1.3em mt-0.5"
+							alt="English"
+							tooltip={$_(NavBar.english)}
+						/>
+					{/if}
+				</button>
+			</div>
 		</div>
 	</nav>
 

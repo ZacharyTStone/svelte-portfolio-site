@@ -10,32 +10,31 @@
     <img src="https://img.shields.io/github/followers/ZacharyTStone?style=social" alt="Followers" />  
 </p>
 
-# Zach Stone Portfolio
+# Zachary Stone's Portfolio
 
-## Description
-
-A modern, responsive portfolio website built with Svelte and SvelteKit. This project showcases my professional experience, projects, skills, and resume in both English and Japanese.
-
-The site was built using a template as a foundation, which has been significantly customized and extended to meet my personal branding and functional requirements.
-
-## Tech Stack
-
-- **Framework**: [SvelteKit](https://kit.svelte.dev/) with [Svelte 5](https://svelte.dev/)
-- **Styling**: [TailwindCSS](https://tailwindcss.com/) and [SCSS](https://sass-lang.com/)
-- **Icons**: [UnoCSS](https://unocss.dev/) for icon integration
-- **Internationalization**: svelte-i18n for multi-language support (English/Japanese)
-- **Deployment**: [Vercel](https://vercel.com/)
-- **Analytics**: Vercel Analytics and Speed Insights
+A modern, responsive portfolio website built with SvelteKit and Tailwind CSS.
 
 ## Features
 
-- **Responsive Design**: Fully responsive on all device sizes
-- **Animations**: Custom animations for enhanced user experience
+- **Modern Stack**: Built with SvelteKit and Tailwind CSS
+- **Responsive Design**: Fully responsive layout that works on all devices
+- **Dark/Light Mode**: Theme toggle with system preference detection
 - **Bilingual Support**: Complete localization in English and Japanese
 - **Project Showcase**: Filterable project display
 - **Skills Section**: Visual representation of technical skills
-- **Dark/Light Mode**: Theme toggle for user preference
 - **Performance Optimized**: Built with performance in mind
+- **Accessibility**: WCAG compliant with keyboard navigation and screen reader support
+
+## Tech Stack
+
+- **Framework**: SvelteKit
+- **Styling**: Tailwind CSS
+- **Icons**: UnoCSS Icons
+- **Animations**: Tailwind CSS animations
+- **Internationalization**: svelte-i18n
+- **Analytics**: Vercel Analytics
+- **Performance**: Vercel Speed Insights
+- **Type Safety**: TypeScript
 
 ## Project Structure
 
@@ -44,21 +43,21 @@ src/
 ├── lib/              # Shared component library
 │   ├── assets/       # Static assets
 │   ├── components/   # Reusable UI components
-│   ├── data/         # Data files
-│   ├── hooks/        # Custom Svelte hooks
-│   ├── locales/      # i18n translation files
-│   ├── md/           # Markdown content
-│   ├── stores/       # Svelte stores
-│   └── utils/        # Utility functions
-├── routes/           # Application routes
-│   ├── about/        # About page
-│   ├── experience/   # Experience page
-│   ├── projects/     # Projects page
-│   ├── resume/       # Resume page
-│   ├── search/       # Search functionality
-│   └── skills/       # Skills page
-├── app.d.ts          # TypeScript declarations
-└── app.html          # HTML template
+│   ├── data/        # Data files
+│   ├── hooks/       # Custom Svelte hooks
+│   ├── locales/     # i18n translation files
+│   ├── md/          # Markdown content
+│   ├── stores/      # Svelte stores
+│   └── utils/       # Utility functions
+├── routes/          # Application routes
+│   ├── about/       # About page
+│   ├── experience/  # Experience page
+│   ├── projects/    # Projects page
+│   ├── resume/      # Resume page
+│   ├── search/      # Search functionality
+│   └── skills/      # Skills page
+├── app.d.ts         # TypeScript declarations
+└── app.html         # HTML template
 ```
 
 ## Getting Started
@@ -105,7 +104,7 @@ npm run build
 
 ## License
 
-[![MIT](https://img.shields.io/badge/license-MIT-green?style=plastic)](https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt)
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contributions
 
