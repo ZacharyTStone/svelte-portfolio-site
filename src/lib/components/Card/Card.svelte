@@ -39,7 +39,7 @@
 		ariaLabel?: string;
 	}
 
-	let el = $state<HTMLElement | null>(null);
+	let el: HTMLElement | null = null;
 
 	let {
 		color = '#ffffff00',
@@ -96,57 +96,45 @@
 	const role = href ? undefined : onClick ? 'button' : undefined;
 </script>
 
-{#if href}
-	<a
-		{href}
-		target={external ? '_blank' : undefined}
-		rel={external ? 'noopener noreferrer' : undefined}
-		class={`card ${enhanced3d ? 'card-enhanced-3d' : ''} ${classes} relative block p-6 rounded-xl border border-solid border-[var(--border-color)] transition-all duration-200 hover:border-[var(--border-hover)] hover:animate-shimmer`}
-		style={`${style} --drop-x: 0; --drop-y: 0; --rot-x: 0; --rot-y: 0; --scale: 1;`}
-		onmousemove={(e) => handleTiltEffect(e, el, { tiltDegree, scale: enhanced3d ? 1.015 : 1.005 })}
-		onmouseleave={() => resetTiltEffect(el)}
-		bind:this={el}
-		aria-label={ariaLabel}
+<svelte:element
+	this={href ? 'a' : 'div'}
+	target={external ? '_blank' : undefined}
+	rel={external ? 'noopener noreferrer' : undefined}
+	{href}
+	bind:this={el}
+	{role}
+	aria-pressed={active ? 'true' : undefined}
+	aria-label={ariaLabel || undefined}
+	onmousemove={onMouseMove}
+	onmouseleave={onMouseLeave}
+	class="card inline-flex flex-col border border-solid rounded-[15px] transition-all duration-300 relative
+	{enhanced3d ? 'card-enhanced-3d transform-gpu' : ''} 
+	{active ? 'border-[var(--border-active)]' : 'border-[var(--main-text-subtle)]'} 
+	{classes}"
+	{style}
+	transition:fade={{ delay: fadeDelay, duration: nofade ? 0 : 300 }}
+	onclick={onClick}
+	onkeydown={handleKeydown}
+	tabindex={onClick || href ? 0 : undefined}
+>
+	<div
+		class="card-content flex-1 flex flex-col p-[15px] rounded-[15px] relative z-2
+		{enhanced3d ? 'card-content-3d' : ''}
+		{onClick || href ? 'cursor-pointer' : ''}"
 	>
-		<div
-			class={`card-content ${enhanced3d ? 'card-content-3d transform-gpu' : ''} relative z-10 transition-all duration-200`}
-		>
-			{@render children?.()}
-		</div>
 		{#if enhanced3d}
 			<div
-				class="card-shadow absolute inset-0 -z-10 opacity-0 transition-all duration-200 bg-black/5 rounded-xl"
+				class="card-shadow absolute inset-0 rounded-[15px] shadow-lg opacity-0 transition-all duration-300 z-1"
+				aria-hidden="true"
 			></div>
 			<div
-				class="card-glow absolute inset-0 -z-20 opacity-0 transition-all duration-200 bg-gradient-to-r from-transparent via-white to-transparent rounded-xl"
+				class="card-glow absolute -inset-5 bg-[radial-gradient(circle_at_var(--drop-x)_var(--drop-y),var(--drop-color),transparent_70%)] opacity-0 z-0 pointer-events-none transition-opacity duration-300"
+				aria-hidden="true"
 			></div>
 		{/if}
-	</a>
-{:else}
-	<button
-		class={`card ${enhanced3d ? 'card-enhanced-3d' : ''} ${classes} relative block p-6 rounded-xl border border-solid border-[var(--border-color)] transition-all duration-200 hover:border-[var(--border-hover)] hover:animate-shimmer w-full text-left`}
-		style={`${style} --drop-x: 0; --drop-y: 0; --rot-x: 0; --rot-y: 0; --scale: 1;`}
-		onmousemove={(e) => handleTiltEffect(e, el, { tiltDegree, scale: enhanced3d ? 1.015 : 1.005 })}
-		onmouseleave={() => resetTiltEffect(el)}
-		onclick={onClick}
-		bind:this={el}
-		aria-label={ariaLabel}
-	>
-		<div
-			class={`card-content ${enhanced3d ? 'card-content-3d transform-gpu' : ''} relative z-10 transition-all duration-200`}
-		>
-			{@render children?.()}
-		</div>
-		{#if enhanced3d}
-			<div
-				class="card-shadow absolute inset-0 -z-10 opacity-0 transition-all duration-200 bg-black/5 rounded-xl"
-			></div>
-			<div
-				class="card-glow absolute inset-0 -z-20 opacity-0 transition-all duration-200 bg-gradient-to-r from-transparent via-white to-transparent rounded-xl"
-			></div>
-		{/if}
-	</button>
-{/if}
+		{@render children?.()}
+	</div>
+</svelte:element>
 
 <style lang="scss">
 	.card {

@@ -12,18 +12,38 @@
 </script>
 
 {#if tooltip}
-	<div class="relative inline-block group">
+	<div class="tooltip">
 		<i class={`${icon} ${classes}`} aria-label={alt} aria-hidden={ariaHidden}></i>
-		<span
-			class="invisible absolute z-10 px-2 py-1 -ml-[60px] mt-[30px] left-1/2 bg-black text-white text-center rounded-md opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-300"
-		>
-			{tooltip}
-		</span>
+		<span class="tooltiptext">{tooltip}</span>
 	</div>
 {:else}
 	<i class={`${icon} ${classes}`} aria-label={alt}></i>
 {/if}
 
 <style>
-	/* Removed unused CSS selectors */
+	.tooltip {
+		position: relative;
+		display: inline-block;
+	}
+
+	.tooltip .tooltiptext {
+		visibility: hidden;
+		background-color: black;
+		color: white;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px;
+		position: absolute;
+		z-index: 1;
+		top: 30px;
+		left: 50%;
+		margin-left: -60px;
+		opacity: 0;
+		transition: opacity 0.3s;
+	}
+
+	.tooltip:hover .tooltiptext {
+		visibility: visible;
+		opacity: 1;
+	}
 </style>

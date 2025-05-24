@@ -2,62 +2,70 @@
 	import { onMount } from 'svelte';
 
 	interface Props {
-		src: string;
-		alt: string;
+		src?: string;
+		alt?: string;
 		classes?: string;
 		loadingHeight?: string;
 		loadingWidth?: string;
 		style?: string;
 		onClick?: () => void;
-		loading?: 'eager' | 'lazy';
 	}
 
 	let {
-		src,
-		alt,
+		src = '',
+		alt = '',
 		classes = '',
-		loadingHeight = '100%',
+		loadingHeight = '200px',
 		loadingWidth = '100%',
 		style = '',
-		onClick,
-		loading = 'lazy'
+		onClick
 	}: Props = $props();
 
-	let isLoaded = $state(false);
-	let hasError = $state(false);
+	let loaded = $state(false);
+	let failed = $state(false);
+	let loading = $state(true);
 
 	onMount(() => {
 		const img = new Image();
 		img.src = src;
-		isLoaded = true;
+		loading = true;
 
 		img.onload = () => {
-			isLoaded = true;
+			loading = false;
+			loaded = true;
 		};
 		img.onerror = () => {
-			hasError = true;
-			isLoaded = true;
+			loading = false;
+			failed = true;
 		};
 	});
 </script>
 
-<img
-	{src}
-	{alt}
-	{loading}
-	{style}
-	onclick={onClick}
-	onkeydown={(e) => e.key === 'Enter' && onClick?.()}
-	role={onClick ? 'button' : undefined}
-	class={`${classes} ${!isLoaded ? 'bg-gray-200 border-2 border-solid rounded-lg animate-pulse' : ''} ${
-		hasError ? 'border-red-500' : 'border-current animate-rainbow'
-	}`}
-	onload={() => (isLoaded = true)}
-	onerror={() => {
-		hasError = true;
-		isLoaded = true;
-	}}
-/>
+{#if loaded}
+	<img
+		{src}
+		class={classes}
+		{style}
+		onclick={onClick}
+		onkeydown={(e: KeyboardEvent) => e.key === 'Enter' && onClick?.()}
+		{alt}
+		role={onClick != null ? 'button' : undefined}
+	/>
+{:else if loading}
+	<div
+		class={classes + ' skeleton'}
+		style={`min-height: ${loadingHeight}; min-width: ${loadingWidth}`}
+		aria-label="Loading image"
+		role="status"
+	></div>
+{:else if failed}
+	<div
+		class={classes + ' skeleton error'}
+		style={`min-height: ${loadingHeight}; min-width: ${loadingWidth}`}
+		aria-label="Failed to load image"
+		role="alert"
+	></div>
+{/if}
 
 <style>
 	.skeleton {
