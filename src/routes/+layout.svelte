@@ -2,13 +2,13 @@
 	import 'uno.css';
 	import NavMenu from '$lib/components/NavMenu/NavMenu.svelte';
 	import '$lib/index.scss';
-	import { onHydrated, theme, ThemeType } from '$lib/stores/theme';
+	import { onHydrated, theme, ThemeType, toggleTheme } from '$lib/stores/theme';
 	import { onMount } from 'svelte';
 	import { dev } from '$app/environment';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
 	import LoadingProvider from '$lib/components/LoadingProvider.svelte';
+	import ScrollToTop from '$lib/components/ScrollToTop.svelte';
 	import { locale } from 'svelte-i18n';
 	import SocialLinks from '$lib/components/Contact/SocialLinks.svelte';
 
@@ -34,6 +34,7 @@
 		</LoadingProvider>
 		<SocialLinks showOnMobile={true} showText={false} />
 	</div>
+	<ScrollToTop />
 </div>
 
 <style lang="scss">

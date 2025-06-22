@@ -92,6 +92,7 @@
 		position: relative;
 		overflow: hidden;
 		animation: fadeIn 1.5s ease-in;
+		background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
 	}
 
 	.asymmetric-grid {
@@ -100,7 +101,7 @@
 		width: 100%;
 		max-width: 1200px;
 		margin: 0 auto;
-		padding: 2rem;
+		padding: var(--space-2xl);
 		position: relative;
 		z-index: 2;
 		transform-style: preserve-3d;
@@ -109,6 +110,7 @@
 			rotateY(calc(var(--mouse-x) * 0.1));
 		transition: transform 0.05s ease-out;
 		backface-visibility: hidden;
+		gap: var(--space-2xl);
 	}
 
 	.hero-content-left,
@@ -116,7 +118,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		padding: 2rem;
+		padding: var(--space-xl);
 		position: relative;
 		will-change: transform;
 		backface-visibility: hidden;
@@ -137,12 +139,16 @@
 		line-height: var(--lh-tight);
 		opacity: 0;
 		animation: flyIn 1s ease-out 0.5s forwards;
-		margin-bottom: 1.5rem;
+		margin-bottom: var(--space-lg);
 		will-change: transform, opacity;
 		transform: translateZ(30px);
 		position: relative;
 		z-index: 3;
 		backface-visibility: hidden;
+		background: linear-gradient(135deg, var(--main-text) 0%, var(--accent-text) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
 	.last-name {
@@ -151,6 +157,10 @@
 		will-change: transform;
 		transform: translateZ(50px);
 		backface-visibility: hidden;
+		background: linear-gradient(135deg, var(--accent-text) 0%, var(--secondary-text) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
 	.hero-description {
@@ -160,11 +170,12 @@
 		font-size: var(--fs-xl);
 		opacity: 0;
 		animation: flyIn 1s ease-out 1s forwards;
-		margin-bottom: 2rem;
+		margin-bottom: var(--space-2xl);
 		position: relative;
 		z-index: 3;
 		will-change: transform, opacity;
 		backface-visibility: hidden;
+		color: var(--secondary-text);
 	}
 
 	.cta-button {
@@ -179,10 +190,11 @@
 		position: absolute;
 		background-color: var(--accent);
 		opacity: 0.1;
-		border-radius: 10px;
+		border-radius: var(--radius-xl);
 		transform-style: preserve-3d;
 		animation: floatAnimation 10s ease-in-out infinite alternate;
 		backface-visibility: hidden;
+		filter: blur(1px);
 	}
 
 	.shape-1 {

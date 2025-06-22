@@ -96,14 +96,14 @@
 		<div class="hidden md:flex flex-row flex-1 self-center justify-center gap-2">
 			{#each items as item}
 				<Chip
-					classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover"
+					classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover nav-item"
 					onClick={(e) => handleNavigation(e, item.to)}
 					newTab={false}
 					borderRadius="0px"
 					hideBorder={true}
 				>
 					<UIcon icon={item.icon} classes="text-1.3em md:text-1.5em" alt={$_(item.title)} />
-					<span class="nav-menu-item-label hidden md:inline">{$_(item.title)}</span>
+					<span class="nav-menu-item-label hidden md:inline nav-text">{$_(item.title)}</span>
 				</Chip>
 			{/each}
 		</div>
@@ -252,18 +252,6 @@
 		border-bottom: 1px solid var(--secondary);
 		padding: 10px;
 		z-index: 10;
-
-		&-item {
-			display: flex;
-			align-items: center;
-			padding: 10px;
-			color: var(--secondary-text);
-			text-decoration: none;
-
-			&:hover {
-				background-color: var(--secondary);
-			}
-		}
 	}
 
 	.mobile-menu-button {
@@ -272,21 +260,6 @@
 		color: var(--secondary-text);
 		cursor: pointer;
 		padding: 5px;
-	}
-
-	.close-button {
-		display: none;
-		background: none;
-		border: none;
-		padding: 0.5rem;
-		cursor: pointer;
-		border-radius: 50%;
-		transition: all 0.2s ease;
-	}
-
-	.close-button:hover {
-		background-color: var(--hover);
-		transform: rotate(90deg);
 	}
 
 	.nav-links {
