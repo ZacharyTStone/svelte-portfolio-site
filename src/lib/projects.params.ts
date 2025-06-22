@@ -11,7 +11,7 @@ const MY_PROJECTS: Array<Project> = [
 		shortDescription: 'PROJECTS.MY_ANIME_COLLECTION.shortDescription',
 		links: [
 			{
-				to: 'https://www.my-anime-collection.com/landing',
+				to: 'https://my-anime-collection.onrender.com/',
 				label: 'PROJECTS.live_site',
 				newTab: true
 			},
