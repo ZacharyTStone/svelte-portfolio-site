@@ -194,6 +194,18 @@
 				</li>
 				<li class="nav-item" role="none">
 					<a
+						href="/experience"
+						class="nav-link {activeSection === '/experience' ? 'active' : ''}"
+						role="menuitem"
+						aria-current={activeSection === '/experience' ? 'page' : undefined}
+						onclick={closeMenu}
+					>
+						<UIcon icon="i-carbon-development" alt="Experience icon" />
+						<span>{$_('NAVBAR.career')}</span>
+					</a>
+				</li>
+				<li class="nav-item" role="none">
+					<a
 						href="/contact"
 						class="nav-link {activeSection === '/contact' ? 'active' : ''}"
 						role="menuitem"
