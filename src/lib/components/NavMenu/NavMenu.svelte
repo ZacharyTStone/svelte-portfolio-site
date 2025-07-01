@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import { HOME, NavBar } from '$lib/params';
 	import { theme, toggleTheme, ThemeType } from '$lib/stores/theme';
-	import { handleNavigation } from '$lib/utils/helpers';
+       import { handleNavigation } from '$lib/utils/navigation';
 	import { base } from '$app/paths';
 
 	import { _, locale } from 'svelte-i18n';
