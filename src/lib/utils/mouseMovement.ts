@@ -6,9 +6,14 @@ export interface MousePosition {
 }
 
 /**
- * Track mouse movement relative to a container and expose the coordinates as a readable store.
+ * Create a readable store that tracks the mouse position relative to a container.
+ * @param container The element to measure mouse movement against.
+ * @param factor Optional multiplier for the returned values.
  */
-export function useMouseMovement(container: HTMLElement | null): Readable<MousePosition> {
+export function createMouseMovementStore(
+	container: HTMLElement | null,
+	factor = 5
+): Readable<MousePosition> {
 	return readable<MousePosition>({ x: 0, y: 0 }, (set) => {
 		function handleMouseMove(event: MouseEvent): void {
 			if (!container) return;
@@ -16,9 +21,9 @@ export function useMouseMovement(container: HTMLElement | null): Readable<MouseP
 			const rect = container.getBoundingClientRect();
 			const centerX = rect.left + rect.width / 2;
 			const centerY = rect.top + rect.height / 2;
+			const x = ((event.clientX - centerX) / (rect.width / 2)) * factor;
+			const y = ((event.clientY - centerY) / (rect.height / 2)) * factor;
 
-			const x = ((event.clientX - centerX) / (rect.width / 2)) * 5;
-			const y = ((event.clientY - centerY) / (rect.height / 2)) * 5;
 
 			set({ x, y });
 		}
