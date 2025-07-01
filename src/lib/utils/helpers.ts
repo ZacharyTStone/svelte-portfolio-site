@@ -120,6 +120,31 @@ const EMAIL_REGEX =
 
 export const isEmail = (email: string): boolean => EMAIL_REGEX.test(email ?? '');
 
+// Aliases and extended helpers for backward compatibility
+export const countMonthsBetween = countMonths;
+
+export const getMonthNameLocalized = (index: number, locale: string = 'en-US'): string => {
+	const date = new Date();
+	date.setMonth(index);
+	return date.toLocaleString(locale, { month: 'long' });
+};
+
+export const formatPageTitle = useTitle;
+export const isValidEmail = isEmail;
+
+export interface FormattedExperiencePeriod extends ExperiencePeriod {
+	formattedPeriod: string;
+}
+
+export function formatExperiencePeriod(
+	fromDate: Date,
+	toDate: Date | null = null,
+	language: string = 'en'
+): FormattedExperiencePeriod {
+	const periodData = calculateExperiencePeriod(fromDate, toDate ?? new Date(), language);
+	return { ...periodData, formattedPeriod: periodData.period };
+}
+
 // Define the colors as a readonly array for type safety
 export const RANDOM_COLORS = [
 	'#FFC0CB',
