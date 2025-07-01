@@ -1,6 +1,3 @@
-import { goto } from '$app/navigation';
-import { base } from '$app/paths';
-
 export const countMonths = (from: Date, to: Date = new Date()): number => {
 	const fromYear = from.getFullYear();
 	const toYear = to.getFullYear();
@@ -120,6 +117,31 @@ const EMAIL_REGEX =
 
 export const isEmail = (email: string): boolean => EMAIL_REGEX.test(email ?? '');
 
+// Aliases and extended helpers for backward compatibility
+export const countMonthsBetween = countMonths;
+
+export const getMonthNameLocalized = (index: number, locale: string = 'en-US'): string => {
+	const date = new Date();
+	date.setMonth(index);
+	return date.toLocaleString(locale, { month: 'long' });
+};
+
+export const formatPageTitle = useTitle;
+export const isValidEmail = isEmail;
+
+export interface FormattedExperiencePeriod extends ExperiencePeriod {
+	formattedPeriod: string;
+}
+
+export function formatExperiencePeriod(
+	fromDate: Date,
+	toDate: Date | null = null,
+	language: string = 'en'
+): FormattedExperiencePeriod {
+	const periodData = calculateExperiencePeriod(fromDate, toDate ?? new Date(), language);
+	return { ...periodData, formattedPeriod: periodData.period };
+}
+
 // Define the colors as a readonly array for type safety
 export const RANDOM_COLORS = [
 	'#FFC0CB',
@@ -206,25 +228,6 @@ export function calculateExperiencePeriod(
 	};
 }
 
-export async function handleNavigation(
-	event: Event,
-	to: string,
-	offPlatform = false
-): Promise<void> {
-	event.preventDefault();
-
-	if (offPlatform) {
-		window.open(to, '_blank', 'noopener,noreferrer');
-		return;
-	}
-
-	try {
-		await goto(`${base}${to}`);
-	} catch (error) {
-		console.error('Navigation error:', error);
-		window.location.href = `${base}${to}`;
-	}
-}
 
 /**
  * Creates a debounced function that delays invoking the provided function until after wait milliseconds have elapsed since the last time it was invoked.

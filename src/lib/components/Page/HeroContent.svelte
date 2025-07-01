@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Card from '$lib/components/Card/Card.svelte';
-	import { handleNavigation } from '$lib/utils/helpers';
+       import { handleNavigation } from '$lib/utils/navigation';
 	import { _ } from 'svelte-i18n';
 	import type { MousePosition } from '$lib/utils/mouseMovement';
 

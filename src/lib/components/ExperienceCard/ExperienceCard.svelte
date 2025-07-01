@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { getAssetURL } from '$lib/data/assets';
 	import type { Experience } from '$lib/types';
-	import { calculateExperiencePeriod, handleNavigation } from '$lib/utils/helpers';
+       import { calculateExperiencePeriod } from '$lib/utils/helpers';
+       import { handleNavigation } from '$lib/utils/navigation';
 	import { _, locale } from 'svelte-i18n';
 	import Card from '../Card/Card.svelte';
 	import CardLogo from '../Card/CardLogo.svelte';

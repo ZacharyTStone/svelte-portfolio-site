@@ -36,27 +36,24 @@ export enum Icons {
 export { handleTiltEffect, adjustColorOpacity, createContainerPerspective } from './animation';
 
 // Navigation utilities
-export { navigate, getRelativeUrl, getAssetUrl } from './navigation';
+export { handleNavigation, navigate, getRelativeUrl, getAssetUrl } from './navigation';
 
-// Formatting utilities
-export {
-	countMonthsBetween,
-	getMonthName,
-	formatPageTitle,
-	isValidEmail,
-	formatExperiencePeriod
-} from './formatting';
-
-// Legacy exports from helpers.ts (maintaining backward compatibility)
+// General utilities
 export {
 	countMonths,
+	countMonthsBetween,
+	getMonthName,
+	getMonthNameLocalized,
+	formatPageTitle,
+	isValidEmail,
+	formatExperiencePeriod,
 	onHover,
 	changeColorOpacity,
 	useImage,
 	useTitle,
 	isEmail,
-	generateRandomHexColor,
-	calculateExperiencePeriod,
-	handleNavigation,
-	RANDOM_COLORS
+        generateRandomHexColor,
+        calculateExperiencePeriod,
+        RANDOM_COLORS
 } from './helpers';
+

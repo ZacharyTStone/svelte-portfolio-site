@@ -3,7 +3,7 @@
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CommonPage from '$lib/components/Page/CommonPage.svelte';
 	import { HOME, RESUME } from '$lib/params';
-	import { handleNavigation } from '$lib/utils/helpers';
+       import { handleNavigation } from '$lib/utils/navigation';
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import { fade } from 'svelte/transition';
