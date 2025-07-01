@@ -4,7 +4,7 @@
 	import { getAssetURL } from '$lib/data/assets';
 	import { SKILLS } from '$lib/params';
 	import type { Skill } from '$lib/types';
-	import { handleNavigation } from '$lib/utils/helpers';
+       import { handleNavigation } from '$lib/utils/navigation';
 
 	const { items } = SKILLS;
 

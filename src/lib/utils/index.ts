@@ -36,7 +36,7 @@ export enum Icons {
 export { handleTiltEffect, adjustColorOpacity, createContainerPerspective } from './animation';
 
 // Navigation utilities
-export { navigate, getRelativeUrl, getAssetUrl } from './navigation';
+export { handleNavigation, navigate, getRelativeUrl, getAssetUrl } from './navigation';
 
 // Formatting utilities
 export {
@@ -55,8 +55,8 @@ export {
 	useImage,
 	useTitle,
 	isEmail,
-	generateRandomHexColor,
-	calculateExperiencePeriod,
-	handleNavigation,
-	RANDOM_COLORS
+        generateRandomHexColor,
+        calculateExperiencePeriod,
+        RANDOM_COLORS
 } from './helpers';
+

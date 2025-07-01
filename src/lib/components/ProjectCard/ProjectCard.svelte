@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getAssetURL } from '$lib/data/assets';
 	import type { Project } from '$lib/types';
-	import { handleNavigation } from '$lib/utils/helpers';
+       import { handleNavigation } from '$lib/utils/navigation';
 	import { _ } from 'svelte-i18n';
 	import Card from '../Card/Card.svelte';
 	import Image from '../Image/Image.svelte';

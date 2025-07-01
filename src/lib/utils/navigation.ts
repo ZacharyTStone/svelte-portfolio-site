@@ -1,6 +1,4 @@
-/**
- * Utility functions for handling navigation
- */
+/** Utility functions for handling navigation */
 import { goto } from '$app/navigation';
 import { base } from '$app/paths';
 
@@ -10,21 +8,30 @@ import { base } from '$app/paths';
  * @param to - The target path
  * @param external - Whether the link is external
  */
-export async function navigate(event: Event, to: string, external: boolean = false): Promise<void> {
-	event.preventDefault();
+export async function handleNavigation(
+        event: Event,
+        to: string,
+        external: boolean = false
+): Promise<void> {
+        event.preventDefault();
 
-	if (external) {
-		window.open(to, '_blank', 'noopener,noreferrer');
-	} else {
-		try {
-			// Prefix with base path if not already included
-			const path = to.startsWith(base) ? to : `${base}${to}`;
-			await goto(path);
-		} catch (error) {
-			console.error('Navigation error:', error);
-		}
-	}
+        if (external) {
+                window.open(to, '_blank', 'noopener,noreferrer');
+                return;
+        }
+
+        try {
+                const path = to.startsWith(base) ? to : `${base}${to}`;
+                await goto(path);
+        } catch (error) {
+                console.error('Navigation error:', error);
+        }
 }
+
+/**
+ * @deprecated Use `handleNavigation` instead
+ */
+export const navigate = handleNavigation;
 
 /**
  * Create a relative URL with the base path
