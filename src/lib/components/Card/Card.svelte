@@ -6,7 +6,7 @@
 	/**
 	 * Component props with proper typing
 	 */
-	export interface CardProps {
+    export interface CardProps {
 		/** Background/border color of the card */
 		color?: string;
 		/** Margin around the card */
@@ -23,8 +23,9 @@
 		children?: import('svelte').Snippet;
 		/** Whether link should open in a new tab */
 		external?: boolean;
-		/** Click handler function */
-		onClick?: (event: Event) => void;
+        /** Click handler function (supports both `onclick` and `onClick`) */
+        onclick?: (event: MouseEvent) => void;
+        onClick?: (event: MouseEvent) => void;
 		/** Whether the card is in active state */
 		active?: boolean;
 		/** Disable fade animation */
@@ -50,7 +51,8 @@
 		fadeDelay = 0,
 		children,
 		external = false,
-		onClick,
+        onclick,
+        onClick,
 		active = false,
 		nofade = false,
 		style = '',
@@ -85,15 +87,17 @@
 		resetTiltEffect(el);
 	}
 
-	function handleKeydown(e: KeyboardEvent): void {
-		if (!href && onClick && (e.key === 'Enter' || e.key === ' ')) {
+    const clickHandler = onclick ?? onClick;
+
+    function handleKeydown(e: KeyboardEvent): void {
+        if (!href && clickHandler && (e.key === 'Enter' || e.key === ' ')) {
 			e.preventDefault();
-			onClick(e);
+            clickHandler(e as unknown as MouseEvent);
 		}
 	}
 
 	// Determine correct ARIA role based on props
-	const role = href ? undefined : onClick ? 'button' : undefined;
+    const role = href ? undefined : clickHandler ? 'button' : undefined;
 </script>
 
 <svelte:element
@@ -113,9 +117,9 @@
 	{classes}"
 	{style}
 	transition:fade={{ delay: fadeDelay, duration: nofade ? 0 : 300 }}
-	onclick={onClick}
+    onclick={clickHandler}
 	onkeydown={handleKeydown}
-	tabindex={onClick || href ? 0 : undefined}
+    tabindex={clickHandler || href ? 0 : undefined}
 >
 	<div
 		class="card-content flex-1 flex flex-col p-[15px] rounded-[15px] relative z-2

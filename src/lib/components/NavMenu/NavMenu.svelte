@@ -1,14 +1,15 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { HOME, NavBar } from '$lib/params';
-	import { theme, toggleTheme, ThemeType } from '$lib/stores/theme';
-       import { handleNavigation } from '$lib/utils/navigation';
-	import { base } from '$app/paths';
+    import { page } from '$app/stores';
+    import { HOME, NavBar } from '$lib/params';
+    import { theme, toggleTheme, ThemeType } from '$lib/stores/theme';
+    import { handleNavigation, getRelativeUrl } from '$lib/utils/navigation';
+    import { base } from '$app/paths';
 
 	import { _, locale } from 'svelte-i18n';
-	import Chip from '../Chip/Chip.svelte';
+    import Chip from '../Chip/Chip.svelte';
 	import UIcon from '../Icon/UIcon.svelte';
 	import Icon from '../Icon/Icon.svelte';
+    import LanguageToggle from '$lib/components/LanguageToggle.svelte';
 
 	interface NavItem {
 		title: string;
@@ -16,13 +17,13 @@
 		icon: string;
 	}
 
-	const items: NavItem[] = [
-		{ title: NavBar.about, to: '/about', icon: 'i-carbon-user' },
-		{ title: NavBar.skills, to: '/skills', icon: 'i-carbon-software-resource-cluster' },
-		{ title: NavBar.personal, to: '/projects', icon: 'i-carbon-cube' },
-		{ title: NavBar.career, to: '/experience', icon: 'i-carbon-development' },
-		{ title: NavBar.contact, to: '/contact', icon: 'i-carbon-email' }
-	];
+    const items: NavItem[] = [
+        { title: NavBar.about, to: '/about', icon: 'i-carbon-user' },
+        { title: NavBar.skills, to: '/skills', icon: 'i-carbon-software-resource-cluster' },
+        { title: NavBar.personal, to: '/projects', icon: 'i-carbon-cube' },
+        { title: NavBar.career, to: '/experience', icon: 'i-carbon-development' },
+        { title: NavBar.contact, to: '/contact', icon: 'i-carbon-email' }
+    ];
 
 	function toggleLanguage(): void {
 		if ($locale?.includes('en')) {
@@ -39,9 +40,9 @@
 		activeSection = $page.url.pathname;
 	});
 
-	function toggleMenu(): void {
-		isOpen = !isOpen;
-	}
+    function toggleMenu(): void {
+        isOpen = !isOpen;
+    }
 
 	function closeMenu(): void {
 		isOpen = false;
@@ -54,23 +55,28 @@
 		}
 	}
 
-	function handleItemClick(event: Event, item: NavItem): void {
-		isOpen = false;
-		handleNavigation(event, item.to);
-	}
+    function handleItemClick(event: Event, item: NavItem): void {
+        isOpen = false;
+        handleNavigation(event, item.to);
+    }
 
 	function handleThemeToggle(): void {
 		toggleTheme($theme === ThemeType.DARK ? ThemeType.LIGHT : ThemeType.DARK);
 	}
 
-	const mobileItems: NavItem[] = [{ title: HOME.name, to: '/', icon: 'i-carbon-home' }, ...items];
+    const mobileItems: NavItem[] = [{ title: NavBar.home, to: '/', icon: 'i-carbon-home' }, ...items];
+
+    function isActivePath(path: string): boolean {
+        // Support both raw path and base-prefixed path
+        return activeSection === path || activeSection === getRelativeUrl(path);
+    }
 </script>
 
 <div class="nav-menu">
 	<nav class="container !justify-between flex flex-row items-center text-sm">
 		<Chip
 			classes="hidden md:flexinline-flex items-center !text-[var(--secondary-text)] rainbow-hover gap-2 md:inline-flex hidden"
-			onClick={(e) => handleNavigation(e, '/')}
+            onClick={(e) => handleNavigation(e, '/')}
 			newTab={false}
 			borderRadius="0px"
 			hideBorder={true}
@@ -81,23 +87,23 @@
 			>
 		</Chip>
 
-		<div class="md:hidden flex items-center">
-			<button
-				class="mobile-menu-button"
-				onclick={toggleMenu}
-				aria-expanded={isOpen}
-				aria-controls="mobile-menu"
-				aria-label="Toggle menu"
-			>
-				<UIcon icon="i-carbon-menu" classes="text-[var(--accent-text)] text-1.5em" alt="Menu" />
-			</button>
-		</div>
+        <div class="md:hidden flex items-center">
+            <button
+                class="mobile-menu-button"
+                onclick={toggleMenu}
+                aria-expanded={isOpen}
+                aria-controls="mobile-menu"
+                aria-label="Toggle menu"
+            >
+                <UIcon icon="i-carbon-menu" classes="text-[var(--accent-text)] text-1.5em" alt="Menu" />
+            </button>
+        </div>
 
 		<div class="hidden md:flex flex-row flex-1 self-center justify-center gap-2">
 			{#each items as item}
 				<Chip
 					classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover nav-item"
-					onClick={(e) => handleNavigation(e, item.to)}
+                    onClick={(e) => handleNavigation(e, item.to)}
 					newTab={false}
 					borderRadius="0px"
 					hideBorder={true}
@@ -109,12 +115,12 @@
 		</div>
 
 		<div class="flex flex-row items-stretch gap-1 text-1.15em">
-			<a href={`${base}/search`} class="text-inherit col-center self-stretch px-2 rainbow-hover">
+            <a href={`${base}/search`} class="text-inherit col-center self-stretch px-2 rainbow-hover">
 				<UIcon icon="i-carbon-search" alt="search" tooltip={$_(NavBar.search)} />
 			</a>
 			<button
-				class="bg-transparent text-1em border-none cursor: pointer; text-[var(--secondary-text)] px-2 rainbow-hover"
-				onclick={handleThemeToggle}
+                class="bg-transparent text-1em border-none cursor: pointer; text-[var(--secondary-text)] px-2 rainbow-hover"
+                onclick={handleThemeToggle}
 				aria-label={$_($theme === ThemeType.LIGHT ? NavBar.lightMode : NavBar.darkMode)}
 			>
 				{#if $theme === ThemeType.LIGHT}
@@ -123,101 +129,35 @@
 					<UIcon icon="i-carbon-sun" alt="Dark Theme" tooltip={$_(NavBar.darkMode)} />
 				{/if}
 			</button>
-			<button
-				class="bg-transparent text-1em border-none cursor: pointer; text-[var(--secondary-text)] px-2 rainbow-hover"
-				onclick={toggleLanguage}
-				aria-label={$_($locale?.includes('en') ? NavBar.japanese : NavBar.english)}
-			>
-				{#if $locale?.includes('en')}
-					<UIcon
-						icon="i-flag-jp-4x3"
-						classes="text-1.3em mt-0.5"
-						alt="JA"
-						tooltip={$_(NavBar.japanese)}
-					/>
-				{:else}
-					<UIcon
-						icon={'i-flag-us-4x3'}
-						classes="text-1.3em mt-0.5"
-						alt="English"
-						tooltip={$_(NavBar.english)}
-					/>
-				{/if}
-			</button>
+            <LanguageToggle />
 		</div>
 	</nav>
 
 	{#if isOpen}
-		<div
-			id="mobile-menu"
-			class="mobile-menu {isOpen ? 'open' : ''}"
-			role="menu"
-			aria-hidden={!isOpen}
-			onkeydown={handleKeyDown}
-		>
-			<ul class="nav-links" role="menubar">
-				<li class="nav-item" role="none">
-					<a
-						href="/"
-						class="nav-link {activeSection === '/' ? 'active' : ''}"
-						role="menuitem"
-						aria-current={activeSection === '/' ? 'page' : undefined}
-						onclick={closeMenu}
-					>
-						<UIcon icon="i-carbon-home" alt="Home icon" />
-						<span>{$_('NAVBAR.home')}</span>
-					</a>
-				</li>
-				<li class="nav-item" role="none">
-					<a
-						href="/projects"
-						class="nav-link {activeSection === '/projects' ? 'active' : ''}"
-						role="menuitem"
-						aria-current={activeSection === '/projects' ? 'page' : undefined}
-						onclick={closeMenu}
-					>
-						<UIcon icon="i-carbon-code" alt="Projects icon" />
-						<span>{$_('NAVBAR.personal')}</span>
-					</a>
-				</li>
-				<li class="nav-item" role="none">
-					<a
-						href="/about"
-						class="nav-link {activeSection === '/about' ? 'active' : ''}"
-						role="menuitem"
-						aria-current={activeSection === '/about' ? 'page' : undefined}
-						onclick={closeMenu}
-					>
-						<UIcon icon="i-carbon-user" alt="About icon" />
-						<span>{$_('NAVBAR.about')}</span>
-					</a>
-				</li>
-				<li class="nav-item" role="none">
-					<a
-						href="/experience"
-						class="nav-link {activeSection === '/experience' ? 'active' : ''}"
-						role="menuitem"
-						aria-current={activeSection === '/experience' ? 'page' : undefined}
-						onclick={closeMenu}
-					>
-						<UIcon icon="i-carbon-development" alt="Experience icon" />
-						<span>{$_('NAVBAR.career')}</span>
-					</a>
-				</li>
-				<li class="nav-item" role="none">
-					<a
-						href="/contact"
-						class="nav-link {activeSection === '/contact' ? 'active' : ''}"
-						role="menuitem"
-						aria-current={activeSection === '/contact' ? 'page' : undefined}
-						onclick={closeMenu}
-					>
-						<UIcon icon="i-carbon-email" alt="Contact icon" />
-						<span>{$_('NAVBAR.contact')}</span>
-					</a>
-				</li>
-			</ul>
-		</div>
+        <div
+            id="mobile-menu"
+            class="mobile-menu {isOpen ? 'open' : ''}"
+            role="menu"
+            aria-hidden={!isOpen}
+            onkeydown={handleKeyDown}
+        >
+            <ul class="nav-links" role="menubar">
+                {#each mobileItems as item}
+                    <li class="nav-item" role="none">
+                        <a
+                            href={getRelativeUrl(item.to)}
+                            class="nav-link {isActivePath(item.to) ? 'active' : ''}"
+                            role="menuitem"
+                            aria-current={isActivePath(item.to) ? 'page' : undefined}
+                            onclick={(e) => handleItemClick(e, item)}
+                        >
+                            <UIcon icon={item.icon} alt={`${$_(item.title)} icon`} />
+                            <span>{$_(item.title)}</span>
+                        </a>
+                    </li>
+                {/each}
+            </ul>
+        </div>
 	{/if}
 </div>
 

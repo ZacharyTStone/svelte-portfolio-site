@@ -18,8 +18,8 @@
 <div
 	class="project-container group flex flex-col items-center transition-all duration-500 ease-out hover:scale-105"
 >
-	<Card
-		onClick={(e) => handleNavigation(e, `/projects/${project.slug}`)}
+    <Card
+    onClick={(e) => handleNavigation(e, `/projects/${project.slug}`)}
 		classes="w-full h-full flex flex-col overflow-hidden"
 		enhanced3d={true}
 	>
@@ -71,6 +71,7 @@
 	.line-clamp-2 {
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
+		line-clamp: 2;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 	}

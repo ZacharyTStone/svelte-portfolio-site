@@ -101,18 +101,18 @@
 <SearchPage {title} on:search={onSearch}>
 	<div class="projects-filters">
 		<div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-3 overflow-y-auto">
-			<Chip
+            <Chip
 				classes={'text-0.9em md:text-0.8em'}
-				onClick={() => (filters = filters.map((tech) => ({ ...tech, isSelected: false })))}
+                on:click={() => (filters = filters.map((tech) => ({ ...tech, isSelected: false })))}
 				active={filters.every((tech) => !tech.isSelected)}
 			>
 				{$_(PROJECTS.no_filter_option ?? 'N/A')}
 			</Chip>
 			{#each filters as tech}
-				<Chip
+                <Chip
 					active={tech.isSelected}
 					classes={'text-0.9em md:text-0.8em min-w-max-content'}
-					onClick={() => onSelected(tech.slug)}
+                    on:click={() => onSelected(tech.slug)}
 				>
 					{$_(tech.name)}
 				</Chip>

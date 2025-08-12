@@ -20,7 +20,7 @@
 				classes={'decoration-none rounded-lg shadow-md transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg'}
 				style="cursor: pointer;"
 				tiltDegree={1}
-				onClick={(e) => handleNavigation(e, `/skills/${skill.slug}`)}
+                onClick={(e) => handleNavigation(e, `/skills/${skill.slug}`)}
 				bgImg={getAssetURL(skill.logo)}
 			>
 				<p class="text-[var(--tertiary-text)] w-max google-font skill-card-text">

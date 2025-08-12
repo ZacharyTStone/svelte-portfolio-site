@@ -21,7 +21,7 @@
 	<div class="resume">
 		{#if links?.length}
 			{#each links as item}
-				<Card onClick={(e) => handleNavigation(e, item.to)}>{$_(item?.label)}</Card>
+                <Card onClick={(e) => handleNavigation(e, item.to)}>{$_(item?.label)}</Card>
 			{/each}
 		{:else}
 			<Chip>Ooops! no CV at the moment.</Chip>

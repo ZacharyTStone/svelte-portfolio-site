@@ -28,7 +28,7 @@
 <Card
 	margin="0px 0px 20px 0px"
 	tiltDegree={2}
-	onClick={(e) => handleNavigation(e, `/experience/${experience.slug}`)}
+onClick={(e) => handleNavigation(e, `/experience/${experience.slug}`)}
 >
 	<div class="col md:flex-row items-start gap-5 md:gap-1">
 		<CardLogo src={getAssetURL(experience.logo)} alt={experience.company} size={75} />
@@ -58,7 +58,7 @@
 					<ChipIcon
 						logo={getAssetURL(skill.logo)}
 						name={$_(skill.name)}
-						onClick={(e) => handleNavigation(e, `/skills/${skill.slug}`)}
+                        onClick={(e) => handleNavigation(e, `/skills/${skill.slug}`)}
 					/>
 				{/each}
 			</div>

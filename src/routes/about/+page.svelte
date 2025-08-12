@@ -32,7 +32,7 @@
 			{#if mounted}
 				<div class="flex-1 flex flex-col gap-6 md:max-h-[80vh] overflow-x-visible">
 					<div in:fade={{ delay: getAnimationDelay(), duration: 200 }}>
-						<Card classes={['w-full']}>
+                        <Card classes="w-full">
 							<h2 class="text-xl font-semibold mb-2 md:text-2xl pb-2">
 								{$_('ABOUT.title')}
 							</h2>
@@ -53,11 +53,10 @@
 						<div class="flex flex-col w-full gap-4">
 							{#each RESUME?.links as item}
 								<div>
-									<Card
-										newtab
-										onClick={(e) => handleNavigation(e, item?.to, true)}
-										classes={['w-full']}
-									>
+                                    <Card
+                                        onclick={(e) => handleNavigation(e, item?.to, true)}
+                                        classes="w-full"
+                                    >
 										<div class="flex items-center gap-2">
 											<UIcon icon="i-carbon-document" />
 											{$_(item?.label)}
