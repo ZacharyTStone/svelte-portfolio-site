@@ -73,7 +73,7 @@
 				<Card
 					nofade={true}
 					enhanced3d={true}
-                    onClick={(e) => handleNavigation(e, '/about')}
+					onClick={(e) => handleNavigation(e, '/about')}
 					ariaLabel={$_('ABOUT.cta')}
 				>
 					{$_('ABOUT.cta')}

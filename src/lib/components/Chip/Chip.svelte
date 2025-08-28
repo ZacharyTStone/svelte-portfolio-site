@@ -7,15 +7,7 @@
 	let el: HTMLElement | undefined = $state();
 
 	import { _ } from 'svelte-i18n';
-    // Declare emitted events for consumers to use `on:click` with proper typing
-    interface $$Events {
-        click: MouseEvent;
-        keydown: KeyboardEvent;
-        keypress: KeyboardEvent;
-        keyup: KeyboardEvent;
-    }
-
-    interface Props {
+	interface Props {
 		active?: boolean;
 		size?: string;
 		classes?: string;
@@ -24,8 +16,7 @@
 		children?: import('svelte').Snippet;
 		borderRadius?: string;
 		hideBorder?: boolean;
-        /** @deprecated Use `on:click` instead */
-        onClick?: (e: MouseEvent) => void;
+		onClick?: (e: MouseEvent) => void;
 	}
 
 	let {

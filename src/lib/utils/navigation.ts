@@ -22,18 +22,6 @@ export async function handleNavigation(
 
         try {
                 const path = to.startsWith(base) ? to : `${base}${to}`;
-
-                // If navigating to home, notify listeners (e.g., hero letters) to reset state
-                const normalized = path.endsWith('/') ? path : `${path}/`;
-                const homeNormalized = `${base}/`;
-                if (normalized === homeNormalized) {
-                        try {
-                                window.dispatchEvent(new CustomEvent('app:reset-hero-letters'));
-                        } catch (e) {
-                                // no-op
-                        }
-                }
-
                 await goto(path);
         } catch (error) {
                 console.error('Navigation error:', error);
