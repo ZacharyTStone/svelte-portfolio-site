@@ -14,7 +14,7 @@
 
 ## Description
 
-A modern, responsive portfolio website built with Svelte and SvelteKit. This project showcases my professional experience, projects, skills, and resume in both English and Japanese.
+A modern, responsive portfolio website built with Svelte and SvelteKit. This project showcases my professional experience, projects, and skills in both English and Japanese.
 
 The site was built using a template as a foundation, which has been significantly customized and extended to meet my personal branding and functional requirements.
 
@@ -54,7 +54,6 @@ src/
 │   ├── about/        # About page
 │   ├── experience/   # Experience page
 │   ├── projects/     # Projects page
-│   ├── resume/       # Resume page
 │   ├── search/       # Search functionality
 │   └── skills/       # Skills page
 ├── app.d.ts          # TypeScript declarations

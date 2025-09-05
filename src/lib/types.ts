@@ -198,9 +198,6 @@ export type SkillsPageParams = PageWithSearchParams<Skill>;
 /**
  * Resume page parameters
  */
-export interface ResumePageParams extends PageParams {
-	links: Array<Link>;
-}
 
 /**
  * EmailJS template parameters for contact form

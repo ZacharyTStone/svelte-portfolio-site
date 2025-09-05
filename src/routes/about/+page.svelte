@@ -2,11 +2,12 @@
 	import Card from '$lib/components/Card/Card.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CommonPage from '$lib/components/Page/CommonPage.svelte';
-	import { HOME, RESUME } from '$lib/params';
+	import { HOME } from '$lib/params';
        import { handleNavigation } from '$lib/utils/navigation';
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import { fade } from 'svelte/transition';
+	import SocialLinks from '$lib/components/Contact/SocialLinks.svelte';
 
 	let mounted = false;
 
@@ -32,41 +33,32 @@
 			{#if mounted}
 				<div class="flex-1 flex flex-col gap-6 md:max-h-[80vh] overflow-x-visible">
 					<div in:fade={{ delay: getAnimationDelay(), duration: 200 }}>
-						<Card classes={['w-full']}>
-							<h2 class="text-xl font-semibold mb-2 md:text-2xl pb-2">
-								{$_('ABOUT.title')}
-							</h2>
-							<p class="text-base md:text-lg leading-relaxed">
-								{$_('ABOUT.full_about')}
-							</p>
-						</Card>
-					</div>
-				</div>
-
-				<div class="hidden md:block w-px my-12 bg-border" style="animation-delay: 0.8s;"></div>
-
-				<div class="flex-1 flex flex-col gap-6 md:max-h-[80vh] overflow-x-visible">
-					<div
-						class="flex flex-col w-full gap-6 mt-6"
-						in:fade={{ delay: getAnimationDelay(), duration: 500 }}
-					>
-						<div class="flex flex-col w-full gap-4">
-							{#each RESUME?.links as item}
-								<div>
-									<Card
-										newtab
-										onClick={(e) => handleNavigation(e, item?.to, true)}
-										classes={['w-full']}
-									>
-										<div class="flex items-center gap-2">
-											<UIcon icon="i-carbon-document" />
-											{$_(item?.label)}
-										</div>
-									</Card>
-								</div>
-							{/each}
+						<div class="mx-auto w-full max-w-[800px]">
+							<Card classes={'w-full'}>
+								<h2 class="text-xl font-semibold mb-2 md:text-2xl pb-2">
+									{$_('ABOUT.title')}
+								</h2>
+								<p class="text-base md:text-lg leading-relaxed">
+									{$_('ABOUT.full_about')}
+								</p>
+							</Card>
+							<div class="mt-3 grid grid-cols-1 md:grid-cols-[auto,1fr] items-start gap-3">
+								<Card
+									classes={'inline-flex'}
+									ariaLabel={$_('SKILLS.cta')}
+									onClick={(e) => handleNavigation(e, '/skills')}
+								>
+									<div class="flex items-center gap-2">
+										<UIcon icon="i-carbon-software-resource-cluster" />
+										<span>{$_('SKILLS.cta')}</span>
+									</div>
+								</Card>
+							</div>
 						</div>
 					</div>
+
+					<div class="hidden md:block w-px my-12 bg-border" style="animation-delay: 0.8s;"></div>
+
 				</div>
 			{/if}
 		</main>

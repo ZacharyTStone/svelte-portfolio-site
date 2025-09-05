@@ -12,7 +12,6 @@
 		"personal": "Projects",
 		"skills": "Skills",
 		"career": "Experience",
-		"resume": "Resume",
 		"blog": "Blog",
 		"search": "Search",
 		"contact": "Contact",
@@ -79,12 +78,6 @@
 		"mobile": {
 			"name": "Mobile Development"
 		}
-	},
-	"RESUME": {
-		"title": "Resume",
-		"english": "English Resume",
-		"japanese": "Japanese Resume",
-		"japanese_work": "Japanese Work Resume"
 	},
 	"SEARCH": {
 		"title": "Search",

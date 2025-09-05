@@ -12,7 +12,6 @@
 		"personal": "プロジェクト",
 		"skills": "スキル",
 		"career": "経験",
-		"resume": "履歴書",
 		"blog": "ブログ",
 		"search": "検索",
 		"contact": "お問い合わせ",
@@ -76,12 +75,6 @@
 		"mobile": {
 			"name": "モバイル開発"
 		}
-	},
-	"RESUME": {
-		"title": "履歴書",
-		"english": "履歴書（英語）",
-		"japanese": "履歴書（日本語）",
-		"japanese_work": "職務経歴書（日本語）"
 	},
 	"SEARCH": {
 		"title": "検索",

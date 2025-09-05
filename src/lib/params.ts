@@ -7,7 +7,6 @@ import {
 	type ProjectPageParams,
 	type ExperiencePageParams,
 	type SkillsPageParams,
-	type ResumePageParams,
 	type SearchPageParams
 } from './types';
 import { Icons } from './utils';
@@ -19,7 +18,6 @@ export const NavBar = {
 	about: 'NAVBAR.about',
 	personal: 'NAVBAR.personal',
 	career: 'NAVBAR.career',
-	resume: 'NAVBAR.resume',
 	skills: 'NAVBAR.skills',
 	blog: 'NAVBAR.blog',
 	search: 'NAVBAR.search',
@@ -88,26 +86,7 @@ export const SKILLS: SkillsPageParams = {
 	items: MY_SKILLS
 };
 
-export const RESUME: ResumePageParams = {
-	title: 'RESUME.title',
-	links: [
-		{
-			to: 'https://docs.google.com/document/d/1HYvcN-oshInv0VPZSSp8-VtYEDZT1ON24ocUq-lcmVs/edit?usp=sharing',
-			label: 'RESUME.english',
-			newTab: true
-		},
-		{
-			to: 'https://docs.google.com/spreadsheets/d/15MXDUEWai1SW2OZ6Nt8MbvfxRC8kAfCO/edit?usp=sharing&ouid=110021340560949770286&rtpof=true&sd=true',
-			label: 'RESUME.japanese',
-			newTab: true
-		}
-		// {
-		// 	to: 'https://docs.google.com/spreadsheets/d/1PfDypNRzmBTzJRFwEfF_dDX6QDFeGyUnf3xjk_mnsFo/edit?usp=sharing',
-		// 	label: 'RESUME.japanese_work',
-		// 	newTab: true
-		// }
-	]
-};
+// Removed RESUME section
 
 export const SEARCH: SearchPageParams = {
 	title: 'SEARCH.title',
