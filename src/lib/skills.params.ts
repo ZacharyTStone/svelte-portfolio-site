@@ -57,16 +57,13 @@ const Other: SkillInfoObject[] = [
 	{ label: 'Cursor', link: 'https://www.cursor.com/' }
 ];
 
-const Mobile: SkillInfoObject[] = [
-	{ label: 'React Native', link: 'https://reactnative.dev/' },
-	{ label: 'Expo', link: 'https://expo.io/' },
-	{ label: 'React Navigation', link: 'https://reactnavigation.org/' }
-];
+
 
 const Cyber: SkillInfoObject[] = [
 	{ label: 'OWASP ZAP', link: 'https://www.zaproxy.org/' },
 	{ label: 'Burp Suite', link: 'https://portswigger.net/burp' },
-	{ label: 'Kali Linux', link: 'https://www.kali.org/' }
+	{ label: 'Kali Linux', link: 'https://www.kali.org/' },
+	
 ];
 
 const FE_EXTRA_INFO: SkillExtraInfo[] = [
@@ -98,12 +95,7 @@ const OTHER_EXTRA_INFO: SkillExtraInfo[] = [
 	}
 ];
 
-const MOBILE_EXTRA_INFO: SkillExtraInfo[] = [
-	{
-		title: 'EXTRA_INFO_LABELS.tools',
-		content: Mobile
-	}
-];
+
 
 const CYBER_EXTRA_INFO: SkillExtraInfo[] = [
 	{
@@ -157,7 +149,7 @@ const MY_SKILLS: Array<Skill> = [
 	s({
 		slug: 'cyber-security',
 		color: 'green',
-		// description: 'SKILLS.cyber-security.description',
+
 		logo: Assets.Security,
 		name: 'SKILLS.cyber-security.name',
 		courses: [
@@ -168,18 +160,16 @@ const MY_SKILLS: Array<Skill> = [
 			{
 				label: 'Hacking Web Applications & Penetration Testing: Web Hacking',
 				link: 'https://www.udemy.com/certificate/UC-518b49d7-8a75-43bd-ae87-1dd891aa2ff4/'
-			}
+			},
+			{	
+				label: 'Hack The Box Bug Bounty Hunter (In Progress)',
+				link: 'https://www.hackthebox.com/profile/442531'
+			},
 		],
-		extraInfo: CYBER_EXTRA_INFO
+		extraInfo: CYBER_EXTRA_INFO,
+		
 	}),
-	// s({
-	// 	slug: 'mobile',
-	// 	color: 'purple',
-	// 	description: 'SKILLS.mobile.description',
-	// 	logo: Assets.Mobile,
-	// 	name: 'SKILLS.mobile.name',
-	// 	extraInfo: MOBILE_EXTRA_INFO
-	// }),
+
 	s({
 		slug: 'dev-tools',
 		color: 'red',

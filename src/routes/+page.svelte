@@ -4,10 +4,8 @@
 	import { HOME, TITLE_SUFFIX } from '$lib/params';
        import { useTitle, debounce } from '$lib/utils/helpers';
        import { handleNavigation } from '$lib/utils/navigation';
-	import { createContainerPerspective } from '$lib/utils/animation';
 	import { _ } from 'svelte-i18n';
 	import { onMount } from 'svelte';
-	import SocialLinks from '$lib/components/Contact/SocialLinks.svelte';
 
 	let { description, lastName, links, name, title } = HOME;
 
