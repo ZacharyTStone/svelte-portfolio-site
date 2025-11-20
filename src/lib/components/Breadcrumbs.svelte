@@ -11,6 +11,17 @@
 		href: string;
 	}
 
+	// Define NAVBAR as a top-level constant before any reactive statements
+	const NAVBAR = {
+		home: 'NAVBAR.home',
+		about: 'NAVBAR.about',
+		personal: 'NAVBAR.personal',
+		skills: 'NAVBAR.skills',
+		career: 'NAVBAR.career',
+		contact: 'NAVBAR.contact',
+		search: 'NAVBAR.search'
+	} as const;
+
 	// Safe translation function that handles SSR
 	function safeTranslate(key: string): string {
 		if (!browser) {
@@ -23,16 +34,6 @@
 			return key.split('.').pop() || key;
 		}
 	}
-
-	const NAVBAR = {
-		home: 'NAVBAR.home',
-		about: 'NAVBAR.about',
-		personal: 'NAVBAR.personal',
-		skills: 'NAVBAR.skills',
-		career: 'NAVBAR.career',
-		contact: 'NAVBAR.contact',
-		search: 'NAVBAR.search'
-	};
 
 	let breadcrumbs: BreadcrumbItem[] = $derived.by(() => {
 		const pathname = $page.url.pathname;
@@ -117,7 +118,9 @@
 						<span class="breadcrumb-current" aria-current="page">{crumb.label}</span>
 					{/if}
 					{#if index < breadcrumbs.length - 1}
-						<UIcon icon="i-carbon-chevron-right" classes="breadcrumb-separator" />
+						<span class="breadcrumb-separator">
+							<UIcon icon="i-carbon-chevron-right" />
+						</span>
 					{/if}
 				</li>
 			{/each}

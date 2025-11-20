@@ -1,7 +1,7 @@
-import { sveltekit } from '@sveltejs/kit/vite';
-import type { UserConfig } from 'vite';
-import UnoCSS from 'unocss/vite';
 import { enhancedImages } from '@sveltejs/enhanced-img';
+import { sveltekit } from '@sveltejs/kit/vite';
+import UnoCSS from 'unocss/vite';
+import type { UserConfig } from 'vite';
 import compression from 'vite-plugin-compression';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import preload from 'vite-plugin-preload';
@@ -51,6 +51,13 @@ const config: UserConfig = {
 	server: {
 		fs: {
 			strict: true
+		}
+	},
+	css: {
+		preprocessorOptions: {
+			scss: {
+				silenceDeprecations: ['legacy-js-api']
+			}
 		}
 	}
 };
