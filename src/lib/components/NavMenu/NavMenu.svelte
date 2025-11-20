@@ -351,31 +351,29 @@
 
 		.mobile-menu {
 			position: fixed;
-			top: auto;
+			top: 0;
+			left: 0;
 			right: 0;
-			left: auto;
-			bottom: 0;
-			width: 280px;
-			max-width: 85vw;
+			width: 100%;
 			height: auto;
-			max-height: calc(100vh - 80px);
+			max-height: calc(100vh - 60px);
 			background-color: var(--main);
-			border: 1px solid var(--secondary);
-			border-radius: 16px 0 0 0;
-			box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.2);
+			border-bottom: 1px solid var(--secondary);
+			box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 			opacity: 0;
-			transform: translateX(100%);
+			transform: translateY(-100%);
 			pointer-events: none;
 			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 			z-index: 1000;
 			margin: 0;
 			overflow-y: auto;
 			overflow-x: hidden;
+			padding: 16px;
 		}
 
 		.mobile-menu.open {
 			opacity: 1;
-			transform: translateX(0);
+			transform: translateY(0);
 			pointer-events: all;
 		}
 
