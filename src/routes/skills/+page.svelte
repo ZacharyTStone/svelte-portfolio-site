@@ -6,11 +6,10 @@
 	import type { Skill } from '$lib/types';
        import { handleNavigation } from '$lib/utils/navigation';
 
-	const { items } = SKILLS;
-
 	import { _ } from 'svelte-i18n';
 
-	let result: Array<Skill> = items;
+	const { items } = SKILLS;
+	let result: Array<Skill> = items || [];
 </script>
 
 <CommonPage title={$_(SKILLS.title)}>

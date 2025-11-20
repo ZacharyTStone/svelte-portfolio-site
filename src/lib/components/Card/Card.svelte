@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { adjustColorOpacity, handleTiltEffect, resetTiltEffect } from '$lib/utils/animation';
 	import { onMount } from 'svelte';
-	import { handleTiltEffect, adjustColorOpacity, resetTiltEffect } from '$lib/utils/animation';
 	import { fade } from 'svelte/transition';
 
 	/**
@@ -210,5 +210,36 @@
 
 	:global(.card:hover .blurb-text) {
 		filter: blur(0) !important;
+	}
+
+	/* Reduced motion support */
+	@media (prefers-reduced-motion: reduce) {
+		.card {
+			transition: none !important;
+
+			&:hover {
+				transform: none !important;
+				animation: none !important;
+
+				.card-content {
+					background-image: none !important;
+				}
+			}
+		}
+
+		.card-enhanced-3d {
+			&:hover {
+				transform: none !important;
+				box-shadow: var(--shadow-md) !important;
+
+				.card-shadow {
+					opacity: 0 !important;
+				}
+
+				.card-glow {
+					opacity: 0 !important;
+				}
+			}
+		}
 	}
 </style>

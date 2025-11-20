@@ -16,6 +16,7 @@
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import TabTitle from '$lib/components/Page/TabTitle.svelte';
 	import Screenshots from '$lib/components/Screenshots/Screenshots.svelte';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { _ } from 'svelte-i18n';
 
 	type Related = {
@@ -77,6 +78,7 @@
 <TabTitle title={computedTitle} />
 
 <div class="pb-10 overflow-x-hidden col flex-1">
+	<Breadcrumbs />
 	<div class="flex flex-col items-center overflow-x-hidden">
 		<Banner img={getAssetURL(data.skill.logo)}>
 			<MainTitle>{$_(data.skill.name)}</MainTitle>

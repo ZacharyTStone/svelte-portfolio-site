@@ -3,6 +3,8 @@
  * @module animation
  */
 
+import { prefersReducedMotion } from './reducedMotion';
+
 interface TiltEffectOptions {
 	tiltDegree?: number;
 	scale?: number;
@@ -24,7 +26,7 @@ export const handleTiltEffect = (
 	element: HTMLElement | null,
 	options: TiltEffectOptions = DEFAULT_TILT_OPTIONS
 ): void => {
-	if (!element || !event) return;
+	if (!element || !event || prefersReducedMotion()) return;
 
 	const { tiltDegree = 5, scale = 1.01 } = options;
 	const rect = element.getBoundingClientRect();

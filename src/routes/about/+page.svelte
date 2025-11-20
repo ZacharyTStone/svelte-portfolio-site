@@ -6,6 +6,7 @@
        import { handleNavigation } from '$lib/utils/navigation';
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
+	import { browser } from '$app/environment';
 	import { fade } from 'svelte/transition';
 	import SocialLinks from '$lib/components/Contact/SocialLinks.svelte';
 
@@ -18,13 +19,27 @@
 	function getAnimationDelay() {
 		return 0;
 	}
+
+	// Safe translation for SSR
+	function safeTranslate(key: string): string {
+		if (!browser) {
+			return key.split('.').pop() || key;
+		}
+		try {
+			return $_(key);
+		} catch {
+			return key.split('.').pop() || key;
+		}
+	}
+
+	const aboutTitle = 'NAVBAR.about';
 </script>
 
 <svelte:head>
-	<title>{$_('NAVBAR.about')}</title>
+	<title>{safeTranslate(aboutTitle)}</title>
 </svelte:head>
 
-<CommonPage title={$_('NAVBAR.about')}>
+<CommonPage title={aboutTitle}>
 	<div class="max-w-full mx-auto px-2 py-1 relative">
 		<main
 			class="text-left flex flex-col gap-6 md:gap-6 lg:gap-12 md:flex-row lg:flex-row items-stretch"

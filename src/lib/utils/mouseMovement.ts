@@ -24,7 +24,6 @@ export function createMouseMovementStore(
 			const x = ((event.clientX - centerX) / (rect.width / 2)) * factor;
 			const y = ((event.clientY - centerY) / (rect.height / 2)) * factor;
 
-
 			set({ x, y });
 		}
 

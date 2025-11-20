@@ -12,7 +12,9 @@
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import Screenshots from '$lib/components/Screenshots/Screenshots.svelte';
 	import TabTitle from '$lib/components/Page/TabTitle.svelte';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import { _ } from 'svelte-i18n';
+	import { page } from '$app/stores';
 	interface Props {
 		data: { experience?: Experience };
 	}
@@ -30,6 +32,7 @@
 
 <TabTitle title={computedTitle} />
 
+<Breadcrumbs />
 {#if data.experience === undefined}
 	<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)]">
 		<UIcon icon="i-carbon-cube" classes="text-3.5em" />

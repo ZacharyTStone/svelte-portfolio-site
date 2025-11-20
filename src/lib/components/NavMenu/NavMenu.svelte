@@ -1,14 +1,14 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { HOME, NavBar } from '$lib/params';
-	import { theme, toggleTheme, ThemeType } from '$lib/stores/theme';
-       import { handleNavigation } from '$lib/utils/navigation';
-	import { base } from '$app/paths';
+	import { theme, ThemeType, toggleTheme } from '$lib/stores/theme';
+	import { handleNavigation } from '$lib/utils/navigation';
 
+	import { toastStore } from '$lib/utils/toast';
 	import { _, locale } from 'svelte-i18n';
 	import Chip from '../Chip/Chip.svelte';
 	import UIcon from '../Icon/UIcon.svelte';
-	import Icon from '../Icon/Icon.svelte';
 
 	interface NavItem {
 		title: string;
@@ -27,8 +27,10 @@
 	function toggleLanguage(): void {
 		if ($locale?.includes('en')) {
 			locale.set('ja');
+			toastStore.info($_(NavBar.japanese) + ' enabled');
 		} else {
 			locale.set('en');
+			toastStore.info($_(NavBar.english) + ' enabled');
 		}
 	}
 
@@ -60,7 +62,11 @@
 	}
 
 	function handleThemeToggle(): void {
-		toggleTheme($theme === ThemeType.DARK ? ThemeType.LIGHT : ThemeType.DARK);
+		const newTheme = $theme === ThemeType.DARK ? ThemeType.LIGHT : ThemeType.DARK;
+		toggleTheme(newTheme);
+		toastStore.info(
+			$_(newTheme === ThemeType.DARK ? NavBar.darkMode : NavBar.lightMode) + ' enabled'
+		);
 	}
 
 	const mobileItems: NavItem[] = [{ title: HOME.name, to: '/', icon: 'i-carbon-home' }, ...items];
@@ -70,6 +76,7 @@
 	<nav class="container !justify-between flex flex-row items-center text-sm">
 		<Chip
 			classes="hidden md:flexinline-flex items-center !text-[var(--secondary-text)] rainbow-hover gap-2 md:inline-flex hidden"
+			href="/"
 			onClick={(e) => handleNavigation(e, '/')}
 			newTab={false}
 			borderRadius="0px"
@@ -97,6 +104,7 @@
 			{#each items as item}
 				<Chip
 					classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover nav-item"
+					href={item.to}
 					onClick={(e) => handleNavigation(e, item.to)}
 					newTab={false}
 					borderRadius="0px"
@@ -148,6 +156,16 @@
 	</nav>
 
 	{#if isOpen}
+		<div
+			class="mobile-menu-backdrop"
+			onclick={closeMenu}
+			onkeydown={(e) => {
+				if (e.key === 'Escape') closeMenu();
+			}}
+			role="button"
+			tabindex="-1"
+			aria-label="Close menu"
+		></div>
 		<div
 			id="mobile-menu"
 			class="mobile-menu {isOpen ? 'open' : ''}"
@@ -255,6 +273,16 @@
 		font-size: var(--fs-base);
 	}
 
+	.mobile-menu-backdrop {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.3);
+		backdrop-filter: blur(4px);
+		z-index: 999;
+		opacity: 0;
+		animation: fadeIn 0.2s ease-out forwards;
+	}
+
 	.mobile-menu {
 		position: absolute;
 		top: 100%;
@@ -317,28 +345,37 @@
 			display: block;
 		}
 
+		.mobile-menu-backdrop {
+			display: block;
+		}
+
 		.mobile-menu {
-			position: absolute;
-			top: 100%;
+			position: fixed;
+			top: auto;
 			right: 0;
-			width: 200px;
+			left: auto;
+			bottom: 0;
+			width: 280px;
+			max-width: 85vw;
+			height: auto;
+			max-height: calc(100vh - 80px);
 			background-color: var(--main);
 			border: 1px solid var(--secondary);
-			border-radius: 8px;
-			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			border-radius: 16px 0 0 0;
+			box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.2);
 			opacity: 0;
-			transform: translateY(-10px);
+			transform: translateX(100%);
 			pointer-events: none;
-			transition: all 0.25s ease-out;
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 			z-index: 1000;
-			margin-top: 4px;
-			margin-right: 8px;
-			overflow: hidden;
+			margin: 0;
+			overflow-y: auto;
+			overflow-x: hidden;
 		}
 
 		.mobile-menu.open {
 			opacity: 1;
-			transform: translateY(0);
+			transform: translateX(0);
 			pointer-events: all;
 		}
 
@@ -365,6 +402,26 @@
 
 		.nav-link span {
 			font-size: 0.9rem;
+		}
+	}
+
+	/* Reduced motion support */
+	@media (prefers-reduced-motion: reduce) {
+		.mobile-menu-backdrop {
+			animation: none;
+			backdrop-filter: none;
+		}
+
+		.mobile-menu {
+			transition: none !important;
+		}
+
+		.nav-link {
+			transition: none !important;
+
+			&:hover {
+				transform: none !important;
+			}
 		}
 	}
 </style>

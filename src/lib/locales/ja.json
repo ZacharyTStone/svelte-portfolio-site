@@ -18,7 +18,8 @@
 		"japanese": "日本語",
 		"english": "英語",
 		"lightMode": "ライトモード",
-		"darkMode": "ダークモード"
+		"darkMode": "ダークモード",
+		"enabled": "有効"
 	},
 	"EXPERIENCES": {
 		"cta": "経歴を見る",

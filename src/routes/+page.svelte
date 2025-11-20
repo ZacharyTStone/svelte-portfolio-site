@@ -2,10 +2,10 @@
 	import Card from '$lib/components/Card/Card.svelte';
 	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
 	import { HOME, TITLE_SUFFIX } from '$lib/params';
-       import { useTitle, debounce } from '$lib/utils/helpers';
-       import { handleNavigation } from '$lib/utils/navigation';
-	import { _ } from 'svelte-i18n';
+	import { debounce, useTitle } from '$lib/utils/helpers';
+	import { handleNavigation } from '$lib/utils/navigation';
 	import { onMount } from 'svelte';
+	import { _ } from 'svelte-i18n';
 
 	let { description, lastName, links, name, title } = HOME;
 
@@ -316,6 +316,29 @@
 		}
 		100% {
 			transform: translate3d(-5px, 5px, 10px) rotate(43deg);
+		}
+	}
+
+	/* Reduced motion support */
+	@media (prefers-reduced-motion: reduce) {
+		.hero-container {
+			animation: none;
+		}
+
+		.asymmetric-grid {
+			transform: none;
+			transition: none;
+		}
+
+		.hero-title,
+		.hero-description,
+		.cta-button {
+			animation: none;
+			opacity: 1;
+		}
+
+		.floating-element {
+			animation: none;
 		}
 	}
 </style>

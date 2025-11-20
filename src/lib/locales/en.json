@@ -18,7 +18,8 @@
 		"japanese": "Japanese",
 		"english": "English",
 		"lightMode": "Light Mode",
-		"darkMode": "Dark Mode"
+		"darkMode": "Dark Mode",
+		"enabled": "enabled"
 	},
 	"ABOUT": {
 		"cta": "Learn More About Me",

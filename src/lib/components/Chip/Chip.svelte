@@ -45,6 +45,28 @@
 		if (el) {
 			el.style.setProperty('--size', size);
 		}
+
+		// Prefetch route on hover for internal links
+		if (href && !newTab && el) {
+			const handleMouseEnter = () => {
+				if (href && href.startsWith('/')) {
+					// Use SvelteKit's prefetch
+					const link = el as HTMLAnchorElement;
+					if (link && link.href) {
+						// Trigger prefetch by creating a temporary link
+						const prefetchLink = document.createElement('link');
+						prefetchLink.rel = 'prefetch';
+						prefetchLink.href = link.href;
+						document.head.appendChild(prefetchLink);
+					}
+				}
+			};
+
+			el.addEventListener('mouseenter', handleMouseEnter);
+			return () => {
+				el?.removeEventListener('mouseenter', handleMouseEnter);
+			};
+		}
 	});
 </script>
 

@@ -4,24 +4,23 @@
 
 	import { base } from '$app/paths';
 	// @ts-ignore
-	import { type Project } from '$lib/types';
 	import { getAssetURL } from '$lib/data/assets';
 	import { PROJECTS } from '$lib/params';
+	import { type Project } from '$lib/types';
 
-	import TabTitle from '$lib/components/Page/TabTitle.svelte';
-	import Chip from '$lib/components/Chip/Chip.svelte';
 	import Banner from '$lib/components/Banner/Banner.svelte';
-	import UIcon from '$lib/components/Icon/UIcon.svelte';
+	import Breadcrumbs from '$lib/components/Breadcrumbs.svelte';
 	import CardDivider from '$lib/components/Card/CardDivider.svelte';
-	import { Icons } from '$lib/utils/index';
+	import Chip from '$lib/components/Chip/Chip.svelte';
 	import Icon from '$lib/components/Icon/Icon.svelte';
+	import UIcon from '$lib/components/Icon/UIcon.svelte';
+	import TabTitle from '$lib/components/Page/TabTitle.svelte';
+	import { Icons } from '$lib/utils/index';
 	import { _ } from 'svelte-i18n';
 	import SvelteMarkdown from 'svelte-markdown';
-
 	// @ts-ignore
-	import { tooltip } from '@svelte-plugins/tooltips';
-	import Image from '$lib/components/Image/Image.svelte';
 	import Screenshots from '$lib/components/Screenshots/Screenshots.svelte';
+	import { tooltip } from '@svelte-plugins/tooltips';
 
 	interface Props {
 		data: { project?: Project };
@@ -43,6 +42,7 @@
 <TabTitle title={computedTitle} />
 
 <div class="pb-10 overflow-x-hidden col flex-1">
+	<Breadcrumbs />
 	{#if data.project === undefined}
 		<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)]">
 			<UIcon icon="i-carbon-cube" classes="text-3.5em" />

@@ -288,4 +288,12 @@
 			transform: scale(1.05);
 		}
 	}
+
+	/* Reduced motion support */
+	@media (prefers-reduced-motion: reduce) {
+		.hero-letter {
+			animation: none !important;
+			transition: none !important;
+		}
+	}
 </style>

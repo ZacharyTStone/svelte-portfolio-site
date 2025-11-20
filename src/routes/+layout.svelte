@@ -1,16 +1,15 @@
 <script lang="ts">
-	import 'uno.css';
-	import NavMenu from '$lib/components/NavMenu/NavMenu.svelte';
-	import '$lib/index.scss';
-	import { onHydrated, theme, ThemeType, toggleTheme } from '$lib/stores/theme';
-	import { onMount } from 'svelte';
 	import { dev } from '$app/environment';
+	import SocialLinks from '$lib/components/Contact/SocialLinks.svelte';
+	import LoadingProvider from '$lib/components/LoadingProvider.svelte';
+	import NavMenu from '$lib/components/NavMenu/NavMenu.svelte';
+	import Toast from '$lib/components/Toast.svelte';
+	import '$lib/index.scss';
+	import { onHydrated, theme, ThemeType } from '$lib/stores/theme';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-	import LoadingProvider from '$lib/components/LoadingProvider.svelte';
-	import ScrollToTop from '$lib/components/ScrollToTop.svelte';
-	import { locale } from 'svelte-i18n';
-	import SocialLinks from '$lib/components/Contact/SocialLinks.svelte';
+	import { onMount } from 'svelte';
+	import 'uno.css';
 
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -34,7 +33,8 @@
 		</LoadingProvider>
 		<SocialLinks showOnMobile={true} showText={false} />
 	</div>
-	<ScrollToTop />
+
+	<Toast />
 </div>
 
 <style lang="scss">
