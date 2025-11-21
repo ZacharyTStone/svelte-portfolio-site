@@ -12,3 +12,24 @@ declare module '*.md' {
 	const content: string;
 	export default content;
 }
+
+// Window global type extensions
+declare global {
+	interface Window {
+		enableSubmit?: () => void;
+		emailjs?: {
+			init: (publicKey: string) => void;
+			send: (
+				serviceId: string,
+				templateId: string,
+				templateParams: Record<string, string>
+			) => Promise<{ status: number }>;
+		};
+		grecaptcha?: {
+			getResponse: () => string;
+			reset: () => void;
+		};
+	}
+}
+
+export {};

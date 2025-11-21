@@ -38,6 +38,12 @@ export { handleTiltEffect, adjustColorOpacity, createContainerPerspective } from
 // Navigation utilities
 export { handleNavigation, navigate, getRelativeUrl, getAssetUrl } from './navigation';
 
+// Logger utility
+export { logger } from './logger';
+
+// Script loader utility
+export { loadScript } from './scriptLoader';
+
 // General utilities
 export {
 	countMonths,

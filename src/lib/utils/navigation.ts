@@ -24,7 +24,7 @@ export async function handleNavigation(
                 const path = to.startsWith(base) ? to : `${base}${to}`;
                 await goto(path);
         } catch (error) {
-                console.error('Navigation error:', error);
+                // Navigation errors are handled silently
         }
 }
 

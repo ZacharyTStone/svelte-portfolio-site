@@ -17,13 +17,21 @@
 		<meta name="Zachary Stone's Portfolio" content="Zachary Stone's web developer portfolio" />
 		<meta name="image" content="%sveltekit.assets%/icon.png" />
 
-		<!-- Google Fonts -->
+		<!-- Google Fonts - Optimized with font-display swap -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap"
 			rel="stylesheet"
+			media="print"
+			onload="this.media='all'"
 		/>
+		<noscript>
+			<link
+				href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap"
+				rel="stylesheet"
+			/>
+		</noscript>
 
 		<!-- Content Security Policy -->
 		<meta
@@ -117,7 +125,7 @@
 			}
 		</style>
 	</head>
-	<body data-sveltekit-preload-data="hover" data-sveltekit-preload-code="hover">
+	<body data-sveltekit-preload-data="tap" data-sveltekit-preload-code="tap">
 		<script>
 			// Immediately executed function to set the theme
 			(function () {

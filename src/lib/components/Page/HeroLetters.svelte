@@ -37,202 +37,95 @@
 		font-size: clamp(60px, 12vw, 180px);
 		filter: blur(1px);
 		transform-origin: center;
-		transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-		animation: fadeInRotate 2s ease-out forwards;
+		transition: opacity 0.3s ease, transform 0.3s ease;
+		animation: fadeInRotate 1.5s ease-out forwards;
 	}
 
-	/* Removed :hover effects, keeping only :focus for accessibility */
+	/* Focus for accessibility */
 	.hero-letter:focus {
 		opacity: 0.25;
-		transform: scale(1.1);
+		transform: scale(1.05);
 		color: var(--accent);
 		filter: blur(0);
-		text-shadow: 0 0 15px var(--accent-alpha);
 	}
 
 	.hero-letter:active {
-		transform: scale(0.95);
 		opacity: 0.3;
-		transition: all 0.2s ease;
+		transition: opacity 0.2s ease;
 	}
 
-	/* Animation for initial load */
+	/* Simplified animation for initial load */
 	@keyframes fadeInRotate {
 		0% {
 			opacity: 0;
-			transform: translateY(30px) rotate(-5deg) scale(0.8);
+			transform: translateY(20px);
 		}
 		100% {
 			opacity: 0.07;
-			transform: translateY(0) rotate(0) scale(1);
+			transform: translateY(0);
 		}
 	}
 
-	/* Unique floating animations for each letter */
+	/* Simplified floating animations - using single shared animation */
 	.animate-float-z {
-		animation-delay: 0s;
 		animation:
-			fadeInRotate 2s ease-out forwards,
-			float-z 20s ease-in-out infinite alternate;
+			fadeInRotate 1.5s ease-out forwards,
+			float-shared 20s ease-in-out infinite alternate;
 	}
 	.animate-float-a {
-		animation-delay: 0.2s;
 		animation:
-			fadeInRotate 2s 0.2s ease-out forwards,
-			float-a 25s ease-in-out infinite alternate;
+			fadeInRotate 1.5s 0.1s ease-out forwards,
+			float-shared 20s 0.1s ease-in-out infinite alternate;
 	}
 	.animate-float-c {
-		animation-delay: 0.4s;
 		animation:
-			fadeInRotate 2s 0.4s ease-out forwards,
-			float-c 22s ease-in-out infinite alternate;
+			fadeInRotate 1.5s 0.2s ease-out forwards,
+			float-shared 20s 0.2s ease-in-out infinite alternate;
 	}
 	.animate-float-h {
-		animation-delay: 0.6s;
 		animation:
-			fadeInRotate 2s 0.6s ease-out forwards,
-			float-h 24s ease-in-out infinite alternate;
+			fadeInRotate 1.5s 0.3s ease-out forwards,
+			float-shared 20s 0.3s ease-in-out infinite alternate;
 	}
 	.animate-float-s {
-		animation-delay: 0.8s;
 		animation:
-			fadeInRotate 2s 0.8s ease-out forwards,
-			float-s 26s ease-in-out infinite alternate;
+			fadeInRotate 1.5s 0.4s ease-out forwards,
+			float-shared 20s 0.4s ease-in-out infinite alternate;
 	}
 	.animate-float-t {
-		animation-delay: 1s;
 		animation:
-			fadeInRotate 2s 1s ease-out forwards,
-			float-t 23s ease-in-out infinite alternate;
+			fadeInRotate 1.5s 0.5s ease-out forwards,
+			float-shared 20s 0.5s ease-in-out infinite alternate;
 	}
 	.animate-float-o {
-		animation-delay: 1.2s;
 		animation:
-			fadeInRotate 2s 1.2s ease-out forwards,
-			float-o 21s ease-in-out infinite alternate;
+			fadeInRotate 1.5s 0.6s ease-out forwards,
+			float-shared 20s 0.6s ease-in-out infinite alternate;
 	}
 	.animate-float-n {
-		animation-delay: 1.4s;
 		animation:
-			fadeInRotate 2s 1.4s ease-out forwards,
-			float-n 27s ease-in-out infinite alternate;
+			fadeInRotate 1.5s 0.7s ease-out forwards,
+			float-shared 20s 0.7s ease-in-out infinite alternate;
 	}
 	.animate-float-e {
-		animation-delay: 1.6s;
 		animation:
-			fadeInRotate 2s 1.6s ease-out forwards,
-			float-e 24s ease-in-out infinite alternate;
+			fadeInRotate 1.5s 0.8s ease-out forwards,
+			float-shared 20s 0.8s ease-in-out infinite alternate;
 	}
 
-	/* Letter-specific focus transformations (removed hover) */
-	.hero-letter:nth-child(1):focus {
-		transform: scale(1.1) rotate(5deg);
-	}
-	.hero-letter:nth-child(2):focus {
-		transform: scale(1.1) rotate(-5deg);
-	}
-	.hero-letter:nth-child(3):focus {
-		transform: scale(1.1) rotate(3deg);
-	}
-	.hero-letter:nth-child(4):focus {
-		transform: scale(1.1) rotate(-3deg);
-	}
-	.hero-letter:nth-child(5):focus {
-		transform: scale(1.1) rotate(4deg);
-	}
-	.hero-letter:nth-child(6):focus {
-		transform: scale(1.1) rotate(-4deg);
-	}
-	.hero-letter:nth-child(7):focus {
-		transform: scale(1.1) rotate(5deg);
-	}
-	.hero-letter:nth-child(8):focus {
-		transform: scale(1.1) rotate(-5deg);
-	}
-	.hero-letter:nth-child(9):focus {
-		transform: scale(1.1) rotate(3deg);
+	/* Simplified focus transformation */
+	.hero-letter:focus {
+		transform: scale(1.05);
 	}
 
-	/* Unique floating animations for each letter */
-	@keyframes float-z {
+	/* Simplified shared floating animation */
+	@keyframes float-shared {
 		0%,
 		100% {
-			transform: translate(0, 0) rotate(0);
+			transform: translate(0, 0);
 		}
 		50% {
-			transform: translate(10px, -15px) rotate(2deg);
-		}
-	}
-	@keyframes float-a {
-		0%,
-		100% {
-			transform: translate(0, 0) rotate(0);
-		}
-		50% {
-			transform: translate(-5px, -8px) rotate(-1deg);
-		}
-	}
-	@keyframes float-c {
-		0%,
-		100% {
-			transform: translate(0, 0) rotate(0);
-		}
-		50% {
-			transform: translate(8px, -12px) rotate(1.5deg);
-		}
-	}
-	@keyframes float-h {
-		0%,
-		100% {
-			transform: translate(0, 0) rotate(0);
-		}
-		50% {
-			transform: translate(-10px, -5px) rotate(-2deg);
-		}
-	}
-	@keyframes float-s {
-		0%,
-		100% {
-			transform: translate(0, 0) rotate(0);
-		}
-		50% {
-			transform: translate(5px, 10px) rotate(2deg);
-		}
-	}
-	@keyframes float-t {
-		0%,
-		100% {
-			transform: translate(0, 0) rotate(0);
-		}
-		50% {
-			transform: translate(-8px, 15px) rotate(-1deg);
-		}
-	}
-	@keyframes float-o {
-		0%,
-		100% {
-			transform: translate(0, 0) rotate(0);
-		}
-		50% {
-			transform: translate(12px, 8px) rotate(1.5deg);
-		}
-	}
-	@keyframes float-n {
-		0%,
-		100% {
-			transform: translate(0, 0) rotate(0);
-		}
-		50% {
-			transform: translate(-15px, 10px) rotate(-1.5deg);
-		}
-	}
-	@keyframes float-e {
-		0%,
-		100% {
-			transform: translate(0, 0) rotate(0);
-		}
-		50% {
-			transform: translate(10px, 12px) rotate(2deg);
+			transform: translate(8px, -10px);
 		}
 	}
 
@@ -282,10 +175,9 @@
 			right: 5%;
 		}
 
-		/* Make focus effects more subtle on mobile (removed hover) */
+		/* Make focus effects more subtle on mobile */
 		.hero-letter:focus {
 			opacity: 0.15;
-			transform: scale(1.05);
 		}
 	}
 

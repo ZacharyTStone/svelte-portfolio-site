@@ -36,7 +36,7 @@ function detectUserLanguage(): SupportedLocale {
 			return storedLanguage as SupportedLocale;
 		}
 	} catch (e) {
-		console.warn('Unable to access localStorage:', e instanceof Error ? e.message : String(e));
+		// localStorage access failed, continue with browser detection
 	}
 
 	// Get browser language (e.g., 'en-US' or 'ja')
@@ -58,10 +58,7 @@ function saveLanguagePreference(language: string): void {
 	try {
 		localStorage.setItem(CONFIG.storageKey, language);
 	} catch (e) {
-		console.warn(
-			'Unable to save language preference to localStorage:',
-			e instanceof Error ? e.message : String(e)
-		);
+		// localStorage save failed, continue without saving
 	}
 }
 

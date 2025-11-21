@@ -16,7 +16,7 @@
 			try {
 				localStorage.setItem('userLanguage', newLocale);
 			} catch (e) {
-				console.warn('Unable to save language preference to localStorage');
+				// localStorage save failed, continue without saving
 			}
 		}
 	}
