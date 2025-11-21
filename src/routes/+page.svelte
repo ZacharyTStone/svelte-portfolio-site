@@ -2,44 +2,11 @@
 	import Card from '$lib/components/Card/Card.svelte';
 	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
 	import { HOME, TITLE_SUFFIX } from '$lib/params';
-	import { debounce, useTitle } from '$lib/utils/helpers';
+	import { useTitle } from '$lib/utils/helpers';
 	import { handleNavigation } from '$lib/utils/navigation';
-	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 
 	let { description, lastName, links, name, title } = HOME;
-
-	let tiltContainer: HTMLElement | null = null;
-	let mouseX = 0;
-	let mouseY = 0;
-
-	function calculateMousePosition(
-		event: MouseEvent,
-		container: HTMLElement
-	): { x: number; y: number } {
-		const rect = container.getBoundingClientRect();
-		const centerX = rect.left + rect.width / 2;
-		const centerY = rect.top + rect.height / 2;
-
-		return {
-			x: ((event.clientX - centerX) / (rect.width / 2)) * 5,
-			y: ((event.clientY - centerY) / (rect.height / 2)) * 5
-		};
-	}
-
-	const handleMouseMove = debounce((event: MouseEvent) => {
-		if (!tiltContainer) return;
-		const { x, y } = calculateMousePosition(event, tiltContainer);
-		mouseX = x;
-		mouseY = y;
-	}, 8); // ~120fps
-
-	onMount(() => {
-		document.addEventListener('mousemove', handleMouseMove);
-		return () => {
-			document.removeEventListener('mousemove', handleMouseMove);
-		};
-	});
 </script>
 
 <svelte:head>
@@ -50,8 +17,6 @@
 <HeroLetters />
 <div
 	class="hero-container relative items-center overflow-hidden bg-transparent"
-	bind:this={tiltContainer}
-	style="--mouse-x: {mouseX}deg; --mouse-y: {mouseY}deg;"
 	role="main"
 	aria-labelledby="hero-title"
 >
@@ -90,8 +55,9 @@
 		align-items: center;
 		position: relative;
 		overflow: hidden;
-		animation: fadeIn 1.5s ease-in;
+		animation: fadeIn 1s ease-in;
 		background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+		content-visibility: auto;
 	}
 
 	.asymmetric-grid {
@@ -103,12 +69,6 @@
 		padding: var(--space-2xl);
 		position: relative;
 		z-index: 2;
-		transform-style: preserve-3d;
-		will-change: transform;
-		transform: perspective(1000px) rotateX(calc(var(--mouse-y) * -0.1))
-			rotateY(calc(var(--mouse-x) * 0.1));
-		transition: transform 0.05s ease-out;
-		backface-visibility: hidden;
 		gap: var(--space-2xl);
 	}
 
@@ -119,16 +79,6 @@
 		justify-content: center;
 		padding: var(--space-xl);
 		position: relative;
-		will-change: transform;
-		backface-visibility: hidden;
-	}
-
-	.hero-content-left {
-		transform: translateZ(20px);
-	}
-
-	.hero-content-right {
-		transform: translateZ(40px);
 	}
 
 	.hero-title {
@@ -139,11 +89,8 @@
 		opacity: 0;
 		animation: flyIn 1s ease-out 0.5s forwards;
 		margin-bottom: var(--space-lg);
-		will-change: transform, opacity;
-		transform: translateZ(30px);
 		position: relative;
 		z-index: 3;
-		backface-visibility: hidden;
 		background: linear-gradient(135deg, var(--main-text) 0%, var(--accent-text) 100%);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
@@ -153,9 +100,6 @@
 	.last-name {
 		font-weight: var(--fw-light);
 		font-style: italic;
-		will-change: transform;
-		transform: translateZ(50px);
-		backface-visibility: hidden;
 		background: linear-gradient(135deg, var(--accent-text) 0%, var(--secondary-text) 100%);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
@@ -172,8 +116,6 @@
 		margin-bottom: var(--space-2xl);
 		position: relative;
 		z-index: 3;
-		will-change: transform, opacity;
-		backface-visibility: hidden;
 		color: var(--secondary-text);
 	}
 
@@ -190,9 +132,7 @@
 		background-color: var(--accent);
 		opacity: 0.1;
 		border-radius: var(--radius-xl);
-		transform-style: preserve-3d;
 		animation: floatAnimation 10s ease-in-out infinite alternate;
-		backface-visibility: hidden;
 		filter: blur(1px);
 	}
 
@@ -201,7 +141,7 @@
 		height: 100px;
 		bottom: 10%;
 		right: 20%;
-		transform: rotate(45deg) translateZ(10px);
+		transform: rotate(45deg);
 		animation-delay: 0.5s;
 		background: linear-gradient(135deg, var(--accent) 0%, transparent 70%);
 	}
@@ -211,7 +151,7 @@
 		height: 120px;
 		top: 10%;
 		left: 10%;
-		transform: rotate(-15deg) translateZ(-20px);
+		transform: rotate(-15deg);
 		border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
 		background: linear-gradient(45deg, var(--accent) 0%, transparent 70%);
 	}
@@ -227,7 +167,6 @@
 			gap: 1.5rem;
 			text-align: center;
 			padding: 0;
-			transform: none;
 		}
 
 		.hero-content-left,
@@ -235,7 +174,6 @@
 			padding: 0;
 			justify-content: center;
 			align-items: center;
-			transform: none;
 		}
 
 		.cta-button {
@@ -251,7 +189,6 @@
 		.hero-title {
 			text-align: center;
 			max-width: 100%;
-			transform: none;
 			margin: 0 auto 1rem;
 			white-space: nowrap;
 			font-size: 40px;
@@ -260,7 +197,6 @@
 
 		.last-name {
 			display: inline;
-			transform: none;
 		}
 
 		.hero-description {
@@ -269,32 +205,17 @@
 			line-height: 1.5;
 			max-width: 90%;
 			margin: 0 auto;
-			transform: none;
 		}
 	}
 
 	@keyframes flyIn {
 		0% {
-			transform: translate3d(0, 50px, 30px);
+			transform: translateY(30px);
 			opacity: 0;
 		}
 		100% {
-			transform: translate3d(0, 0, 30px);
+			transform: translateY(0);
 			opacity: 1;
-		}
-	}
-
-	/* Mobile-specific animation */
-	@media (max-width: 768px) {
-		@keyframes flyIn {
-			0% {
-				transform: translate3d(0, 30px, 0);
-				opacity: 0;
-			}
-			100% {
-				transform: translate3d(0, 0, 0);
-				opacity: 1;
-			}
 		}
 	}
 
@@ -307,15 +228,23 @@
 		}
 	}
 
+	/* Optimize rendering performance */
+	@media (prefers-reduced-motion: no-preference) {
+		.hero-container,
+		.asymmetric-grid {
+			contain: layout style paint;
+		}
+	}
+
 	@keyframes floatAnimation {
 		0% {
-			transform: translate3d(0, 0, 10px) rotate(45deg);
+			transform: translate(0, 0) rotate(45deg);
 		}
 		50% {
-			transform: translate3d(10px, -10px, 15px) rotate(47deg);
+			transform: translate(10px, -10px) rotate(47deg);
 		}
 		100% {
-			transform: translate3d(-5px, 5px, 10px) rotate(43deg);
+			transform: translate(-5px, 5px) rotate(43deg);
 		}
 	}
 
@@ -323,11 +252,6 @@
 	@media (prefers-reduced-motion: reduce) {
 		.hero-container {
 			animation: none;
-		}
-
-		.asymmetric-grid {
-			transform: none;
-			transition: none;
 		}
 
 		.hero-title,
@@ -342,3 +266,4 @@
 		}
 	}
 </style>
+

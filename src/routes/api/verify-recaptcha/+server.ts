@@ -1,4 +1,5 @@
 import { json } from '@sveltejs/kit';
+import { dev } from '$app/environment';
 import type { RequestHandler } from './$types';
 import type { RecaptchaVerificationResponse, VerificationRequest } from './types';
 
@@ -26,7 +27,10 @@ export const POST: RequestHandler = async ({ request }) => {
 		});
 
 		const recaptchaResult = (await recaptchaResponse.json()) as RecaptchaVerificationResponse;
-		console.log('reCAPTCHA verification result:', recaptchaResult);
+		
+		if (dev) {
+			console.log('reCAPTCHA verification result:', recaptchaResult);
+		}
 
 		// Check if verification was successful
 		if (!recaptchaResult.success) {
@@ -54,7 +58,10 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		return json({ success: true });
 	} catch (error) {
-		console.error('reCAPTCHA verification error:', error);
+		// Log error in development, but don't expose details in production
+		if (dev) {
+			console.error('reCAPTCHA verification error:', error);
+		}
 		return json({ success: false, error: 'Internal server error' }, { status: 500 });
 	}
 };

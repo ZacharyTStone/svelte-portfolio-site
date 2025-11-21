@@ -1,7 +1,9 @@
 <script lang="ts">
 	import Card from '$lib/components/Card/Card.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
-	import { toastStore } from '$lib/utils/toast';
+	import { logger } from '$lib/utils/logger';
+	import { loadScript } from '$lib/utils/scriptLoader';
+	import { isEmail } from '$lib/utils/helpers';
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import { fade } from 'svelte/transition';
@@ -9,7 +11,7 @@
 	// Define callback for reCAPTCHA
 	if (typeof window !== 'undefined') {
 		window.enableSubmit = () => {
-			console.log('reCAPTCHA verification complete');
+			logger.log('reCAPTCHA verification complete');
 			recaptchaVerified = true;
 		};
 	}
@@ -28,12 +30,12 @@
 	// Make sure this is a V2 Checkbox site key
 	const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
-	// Check if required variables are set (without logging their values)
+	// Check if required variables are set
 	const envVariablesPresent =
 		!!EMAILJS_PUBLIC_KEY && !!EMAILJS_SERVICE_ID && !!EMAILJS_TEMPLATE_ID && !!RECAPTCHA_SITE_KEY;
 
 	if (!envVariablesPresent) {
-		console.error('Missing required environment variables for contact form');
+		logger.error('Missing required environment variables for contact form');
 	}
 
 	// Form state
@@ -69,40 +71,46 @@
 	$: if (isSuccess) resetSuccessMessageAfterDelay();
 
 	// Clean up on component destruction
-	onMount(() => {
+	onMount(async () => {
 		mounted = true;
 
 		// Load EmailJS SDK
-		const script = document.createElement('script');
-		script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
-		script.async = true;
-		script.onload = () => {
-			window.emailjs.init(EMAILJS_PUBLIC_KEY);
-		};
-		document.head.appendChild(script);
+		try {
+			await loadScript({
+				src: 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js',
+				async: true,
+				onload: () => {
+					if (window.emailjs) {
+						window.emailjs.init(EMAILJS_PUBLIC_KEY);
+					}
+				}
+			});
+		} catch (error) {
+			logger.error('Failed to load EmailJS:', error);
+		}
 
-		// Load reCAPTCHA v2 checkbox version (not invisible)
-		const recaptchaScript = document.createElement('script');
-		recaptchaScript.src = 'https://www.google.com/recaptcha/api.js';
-		recaptchaScript.async = true;
-		recaptchaScript.defer = true;
-		recaptchaScript.onload = () => {
-			recaptchaReady = true;
-			console.log('reCAPTCHA is ready');
-		};
-		recaptchaScript.onerror = (error) => {
-			console.error('Error loading reCAPTCHA script:', error);
-		};
-
-		document.head.appendChild(recaptchaScript);
+		// Load reCAPTCHA v2 checkbox version
+		try {
+			await loadScript({
+				src: 'https://www.google.com/recaptcha/api.js',
+				async: true,
+				defer: true,
+				onload: () => {
+					recaptchaReady = true;
+					logger.log('reCAPTCHA is ready');
+				},
+				onerror: (error) => {
+					logger.error('Error loading reCAPTCHA script:', error);
+				}
+			});
+		} catch (error) {
+			logger.error('Failed to load reCAPTCHA:', error);
+		}
 
 		return () => {
 			if (successTimer) clearTimeout(successTimer);
 		};
 	});
-
-	// Email validation regex
-	const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 	// Form validation
 	function validateForm() {
@@ -116,7 +124,7 @@
 			return false;
 		}
 
-		if (!emailRegex.test(email)) {
+		if (!isEmail(email)) {
 			error = getTranslation('CONTACT.email_invalid');
 			return false;
 		}
@@ -133,11 +141,10 @@
 	// Get reCAPTCHA v2 response
 	function getRecaptchaResponse(): string {
 		if (!window.grecaptcha) {
-			console.error('reCAPTCHA not loaded yet');
+			logger.error('reCAPTCHA not loaded yet');
 			return '';
 		}
 
-		// Get the response from the checkbox
 		return window.grecaptcha.getResponse();
 	}
 
@@ -193,7 +200,11 @@
 				year: new Date().getFullYear().toString()
 			};
 
-			console.log('Sending email with reCAPTCHA token');
+			logger.log('Sending email with reCAPTCHA token');
+
+			if (!window.emailjs) {
+				throw new Error('EmailJS not initialized');
+			}
 
 			const response = await window.emailjs.send(
 				EMAILJS_SERVICE_ID,
@@ -201,7 +212,7 @@
 				templateParams
 			);
 
-			console.log('Email sent successfully:', response.status);
+			logger.log('Email sent successfully:', response.status);
 
 			// Reset form on success
 			name = '';
@@ -213,12 +224,10 @@
 				window.grecaptcha.reset();
 			}
 			isSuccess = true;
-			toastStore.success(getTranslation('CONTACT.success_message'));
 		} catch (err) {
-			console.error('Form submission error:', err);
+			logger.error('Form submission error:', err);
 			const errorMessage = getTranslation('CONTACT.submission_error');
 			error = errorMessage;
-			toastStore.error(errorMessage);
 
 			recaptchaVerified = false; // Reset reCAPTCHA verification status
 			// Reset the reCAPTCHA widget on error too

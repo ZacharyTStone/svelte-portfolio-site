@@ -4,8 +4,6 @@
 	import { HOME, NavBar } from '$lib/params';
 	import { theme, ThemeType, toggleTheme } from '$lib/stores/theme';
 	import { handleNavigation } from '$lib/utils/navigation';
-
-	import { toastStore } from '$lib/utils/toast';
 	import { _, locale } from 'svelte-i18n';
 	import Chip from '../Chip/Chip.svelte';
 	import UIcon from '../Icon/UIcon.svelte';
@@ -27,10 +25,8 @@
 	function toggleLanguage(): void {
 		if ($locale?.includes('en')) {
 			locale.set('ja');
-			toastStore.info($_(NavBar.japanese) + ' enabled');
 		} else {
 			locale.set('en');
-			toastStore.info($_(NavBar.english) + ' enabled');
 		}
 	}
 
@@ -64,9 +60,6 @@
 	function handleThemeToggle(): void {
 		const newTheme = $theme === ThemeType.DARK ? ThemeType.LIGHT : ThemeType.DARK;
 		toggleTheme(newTheme);
-		toastStore.info(
-			$_(newTheme === ThemeType.DARK ? NavBar.darkMode : NavBar.lightMode) + ' enabled'
-		);
 	}
 
 	const mobileItems: NavItem[] = [{ title: HOME.name, to: '/', icon: 'i-carbon-home' }, ...items];
