@@ -155,7 +155,9 @@
 		"server": "Server",
 		"project_tech": "Project Tech",
 		"skills": "Skills",
-		"frameworks": "Frameworks"
+		"frameworks": "Frameworks",
+		"build_tools": "Build Tools",
+		"performance": "Performance Optimization"
 	},
 	"CONTACT": {
 		"title": "Get in Touch",

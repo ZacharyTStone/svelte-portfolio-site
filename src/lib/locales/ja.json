@@ -153,7 +153,9 @@
 		"server": "サーバー",
 		"project_tech": "プロジェクト技術",
 		"skills": "スキル",
-		"frameworks": "フレームワーク"
+		"frameworks": "フレームワーク",
+		"build_tools": "ビルドツール",
+		"performance": "パフォーマンス最適化"
 	},
 	"CONTACT": {
 		"title": "お問い合わせ",

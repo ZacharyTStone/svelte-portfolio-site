@@ -1,6 +1,5 @@
-import Assets, { getAssetURL } from './data/assets';
+import Assets, { COLOR_ASSETS, getAssetURL } from './data/assets';
 import type { Asset, Skill } from './types';
-import { COLOR_ASSETS } from './data/assets';
 
 const s = (skill: Skill) => skill;
 
@@ -21,49 +20,67 @@ export type ArrayElementType<ArrayType extends readonly unknown[]> =
 const FRAMEWORKS: SkillInfoObject[] = [
 	{ label: 'React', link: 'https://reactjs.org/', icon: COLOR_ASSETS.React },
 	{ label: 'Next', link: 'https://nextjs.org/', icon: COLOR_ASSETS.Next },
-	{ label: 'Svelte', link: 'https://svelte.dev/', icon: COLOR_ASSETS.Svelte }
+	{ label: 'Svelte', link: 'https://svelte.dev/', icon: COLOR_ASSETS.Svelte },
+	{ label: 'SvelteKit', link: 'https://kit.svelte.dev/', icon: COLOR_ASSETS.Svelte },
+	{ label: 'Svelte 5', link: 'https://svelte.dev/', icon: COLOR_ASSETS.Svelte }
 ];
 
 const FE_TOOLS: SkillInfoObject[] = [
 	{ label: 'HTML', link: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
 	{ label: 'CSS', link: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
 	{ label: 'JavaScript', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
-	{ label: 'Typescript', link: 'https://www.typescriptlang.org/' },
+	{ label: 'Typescript', link: 'https://www.typescriptlang.org/', icon: COLOR_ASSETS.TypeScript },
 	{ label: 'Styled Components', link: 'https://styled-components.com/' },
 	{ label: 'Tailwind', link: 'https://tailwindcss.com/' },
 	{ label: 'Context API', link: 'https://reactjs.org/docs/context.html' },
-	{ label: 'Playwright', link: 'https://playwright.dev/' }
+	{ label: 'Redux', link: 'https://redux.js.org/' },
+	{ label: 'Playwright', link: 'https://playwright.dev/' },
+	{ label: 'Jest', link: 'https://jestjs.io/' },
+	{ label: 'Vite', link: 'https://vitejs.dev/' },
+	{ label: 'Webpack', link: 'https://webpack.js.org/' },
+	{ label: 'UnoCSS', link: 'https://unocss.dev/' },
+	{ label: 'SCSS/Sass', link: 'https://sass-lang.com/' },
+	{ label: 'npm', link: 'https://www.npmjs.com/' }
 ];
 
 const Backend: SkillInfoObject[] = [
 	{ label: 'Node', link: 'https://nodejs.org/en/' },
+	{ label: 'Express.js', link: 'https://expressjs.com/' },
 	{ label: 'REST', link: 'https://restfulapi.net/' },
 	{ label: 'GraphQL', link: 'https://graphql.org/' },
 	{ label: 'MongoDB', link: 'https://www.mongodb.com/' },
 	{ label: 'SQL', link: 'https://www.w3schools.com/sql/' },
-	{ label: 'Ably Web Sockets', link: 'https://www.ably.io/' }
+	{ label: 'Ably Web Sockets', link: 'https://www.ably.io/' },
+	{ label: 'Server-Side Rendering', link: 'https://kit.svelte.dev/docs/ssr' },
+	{ label: 'Static Site Generation', link: 'https://kit.svelte.dev/docs/adapter-static' },
+	{ label: 'Python', link: 'https://www.python.org/' },
+	{ label: 'OpenAI API', link: 'https://openai.com/api/' },
+	{ label: 'Auth0', link: 'https://auth0.com/' }
 ];
 
 const Server: SkillInfoObject[] = [
 	{ label: 'Heroku', link: 'https://www.heroku.com/' },
 	{ label: 'Netlify', link: 'https://www.netlify.com/' },
-	{ label: 'Vercel', link: 'https://vercel.com/' }
+	{ label: 'Vercel', link: 'https://vercel.com/' },
+	{ label: 'GitHub Actions', link: 'https://github.com/features/actions' }
 ];
 
 const Other: SkillInfoObject[] = [
 	{ label: 'Jira', link: 'https://www.atlassian.com/software/jira' },
 	{ label: 'Github', link: 'https://github.com/' },
 	{ label: 'Twilio', link: 'https://www.twilio.com/' },
-	{ label: 'Cursor', link: 'https://www.cursor.com/' }
+	{ label: 'Cursor', link: 'https://www.cursor.com/' },
+	{ label: 'EmailJS', link: 'https://www.emailjs.com/' },
+	{ label: 'Google reCAPTCHA', link: 'https://www.google.com/recaptcha/' },
+	{ label: 'svelte-i18n', link: 'https://github.com/kaisermann/svelte-i18n' },
+	{ label: 'Vercel Analytics', link: 'https://vercel.com/analytics' },
+	{ label: 'Performance Optimization', link: 'https://web.dev/performance/' }
 ];
-
-
 
 const Cyber: SkillInfoObject[] = [
 	{ label: 'OWASP ZAP', link: 'https://www.zaproxy.org/' },
 	{ label: 'Burp Suite', link: 'https://portswigger.net/burp' },
-	{ label: 'Kali Linux', link: 'https://www.kali.org/' },
-	
+	{ label: 'Kali Linux', link: 'https://www.kali.org/' }
 ];
 
 const FE_EXTRA_INFO: SkillExtraInfo[] = [
@@ -74,6 +91,25 @@ const FE_EXTRA_INFO: SkillExtraInfo[] = [
 	{
 		title: 'EXTRA_INFO_LABELS.tools',
 		content: FE_TOOLS
+	},
+	{
+		title: 'EXTRA_INFO_LABELS.build_tools',
+		content: [
+			{ label: 'Vite', link: 'https://vitejs.dev/' },
+			{ label: 'Webpack', link: 'https://webpack.js.org/' },
+			{ label: 'esbuild', link: 'https://esbuild.github.io/' },
+			{ label: 'Yarn', link: 'https://yarnpkg.com/' },
+			{ label: 'npm', link: 'https://www.npmjs.com/' }
+		]
+	},
+	{
+		title: 'EXTRA_INFO_LABELS.performance',
+		content: [
+			{ label: 'Code Splitting', link: 'https://vitejs.dev/guide/build.html#chunking-strategy' },
+			{ label: 'Image Optimization', link: 'https://kit.svelte.dev/docs/images' },
+			{ label: 'Bundle Compression', link: 'https://github.com/vbenjs/vite-plugin-compression' },
+			{ label: 'Tree Shaking', link: 'https://vitejs.dev/guide/build.html#chunking-strategy' }
+		]
 	}
 ];
 
@@ -94,8 +130,6 @@ const OTHER_EXTRA_INFO: SkillExtraInfo[] = [
 		content: Other
 	}
 ];
-
-
 
 const CYBER_EXTRA_INFO: SkillExtraInfo[] = [
 	{
@@ -161,13 +195,12 @@ const MY_SKILLS: Array<Skill> = [
 				label: 'Hacking Web Applications & Penetration Testing: Web Hacking',
 				link: 'https://www.udemy.com/certificate/UC-518b49d7-8a75-43bd-ae87-1dd891aa2ff4/'
 			},
-			{	
+			{
 				label: 'Hack The Box Bug Bounty Hunter (In Progress)',
 				link: 'https://www.hackthebox.com/profile/442531'
-			},
+			}
 		],
-		extraInfo: CYBER_EXTRA_INFO,
-		
+		extraInfo: CYBER_EXTRA_INFO
 	}),
 
 	s({
