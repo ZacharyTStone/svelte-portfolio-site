@@ -2,44 +2,11 @@
 	import Card from '$lib/components/Card/Card.svelte';
 	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
 	import { HOME, TITLE_SUFFIX } from '$lib/params';
-	import { debounce, useTitle } from '$lib/utils/helpers';
+	import { useTitle } from '$lib/utils/helpers';
 	import { handleNavigation } from '$lib/utils/navigation';
-	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 
 	let { description, lastName, links, name, title } = HOME;
-
-	let tiltContainer: HTMLElement | null = null;
-	let mouseX = 0;
-	let mouseY = 0;
-
-	function calculateMousePosition(
-		event: MouseEvent,
-		container: HTMLElement
-	): { x: number; y: number } {
-		const rect = container.getBoundingClientRect();
-		const centerX = rect.left + rect.width / 2;
-		const centerY = rect.top + rect.height / 2;
-
-		return {
-			x: ((event.clientX - centerX) / (rect.width / 2)) * 5,
-			y: ((event.clientY - centerY) / (rect.height / 2)) * 5
-		};
-	}
-
-	const handleMouseMove = debounce((event: MouseEvent) => {
-		if (!tiltContainer) return;
-		const { x, y } = calculateMousePosition(event, tiltContainer);
-		mouseX = x;
-		mouseY = y;
-	}, 8); // ~120fps
-
-	onMount(() => {
-		document.addEventListener('mousemove', handleMouseMove);
-		return () => {
-			document.removeEventListener('mousemove', handleMouseMove);
-		};
-	});
 </script>
 
 <svelte:head>
@@ -50,8 +17,6 @@
 <HeroLetters />
 <div
 	class="hero-container relative items-center overflow-hidden bg-transparent"
-	bind:this={tiltContainer}
-	style="--mouse-x: {mouseX}deg; --mouse-y: {mouseY}deg;"
 	role="main"
 	aria-labelledby="hero-title"
 >
@@ -103,11 +68,7 @@
 		padding: var(--space-2xl);
 		position: relative;
 		z-index: 2;
-		transform-style: preserve-3d;
-		will-change: transform;
-		transform: perspective(1000px) rotateX(calc(var(--mouse-y) * -0.1))
-			rotateY(calc(var(--mouse-x) * 0.1));
-		transition: transform 0.05s ease-out;
+		transform-style: flat;
 		backface-visibility: hidden;
 		gap: var(--space-2xl);
 	}
