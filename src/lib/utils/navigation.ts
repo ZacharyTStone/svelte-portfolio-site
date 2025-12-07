@@ -3,7 +3,7 @@ import { goto } from '$app/navigation';
 import { base } from '$app/paths';
 
 /**
- * Handle internal or external navigation
+ * Handle internal or external navigation with improved accessibility
  * @param event - The click event
  * @param to - The target path
  * @param external - Whether the link is external
@@ -22,7 +22,25 @@ export async function handleNavigation(
 
         try {
                 const path = to.startsWith(base) ? to : `${base}${to}`;
-                await goto(path);
+                await goto(path, {
+                        invalidateAll: false,
+                        noScroll: false
+                });
+                
+                // Focus management for accessibility
+                if (typeof window !== 'undefined') {
+                        // Scroll to top smoothly
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        
+                        // Focus on main content after navigation
+                        setTimeout(() => {
+                                const mainContent = document.getElementById('main-content');
+                                if (mainContent) {
+                                        mainContent.focus();
+                                        mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }
+                        }, 100);
+                }
         } catch (error) {
                 console.error('Navigation error:', error);
         }

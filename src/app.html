@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#000000" />
+		<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
 		<meta
 			name="description"
 			content="Zachary Stone - Full Stack Web Developer specialized in modern web technologies. View my projects, skills, and experience."
@@ -17,7 +18,7 @@
 		<meta name="Zachary Stone's Portfolio" content="Zachary Stone's web developer portfolio" />
 		<meta name="image" content="%sveltekit.assets%/icon.png" />
 
-		<!-- Google Fonts -->
+		<!-- Google Fonts with optimized loading -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -80,11 +81,26 @@
 				"@context": "https://schema.org",
 				"@type": "Person",
 				"name": "Zachary Stone",
+				"alternateName": "Zach Stone",
 				"url": "https://zstone.dev",
 				"image": "%sveltekit.assets%/icon.png",
 				"jobTitle": "Full Stack Web Developer",
-				"sameAs": ["https://github.com/zacharystone", "https://linkedin.com/in/zacharystone"],
-				"knowsAbout": ["JavaScript", "TypeScript", "React", "Svelte", "Node.js", "Web Development"]
+				"sameAs": [
+					"https://github.com/ZacharyTStone",
+					"https://www.linkedin.com/in/zacharystone42/"
+				],
+				"email": "zach.stone.developer@gmail.com",
+				"knowsAbout": [
+					"JavaScript",
+					"TypeScript",
+					"React",
+					"Svelte",
+					"Node.js",
+					"Web Development",
+					"Frontend Development",
+					"Backend Development"
+				],
+				"description": "Full Stack Web Developer specialized in modern web technologies"
 			}
 		</script>
 

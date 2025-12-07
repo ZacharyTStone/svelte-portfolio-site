@@ -108,6 +108,13 @@
 	--shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
 	overflow-y: scroll;
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		scroll-behavior: auto;
+	}
 }
 
 body {
@@ -116,6 +123,13 @@ body {
 	font-size: var(--fs-base);
 	line-height: var(--lh-normal);
 	font-weight: var(--fw-regular);
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body {
+		scroll-behavior: auto;
+	}
 }
 
 h1,

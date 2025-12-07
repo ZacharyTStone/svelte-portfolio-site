@@ -90,6 +90,10 @@
 			e.preventDefault();
 			onClick(e);
 		}
+		// Handle Escape key to blur focus
+		if (e.key === 'Escape' && el) {
+			el.blur();
+		}
 	}
 
 	// Determine correct ARIA role based on props

@@ -80,8 +80,12 @@
 		justify-content: center;
 		padding: var(--space-xl);
 		position: relative;
-		will-change: transform;
 		backface-visibility: hidden;
+	}
+	
+	.hero-content-left:hover,
+	.hero-content-right:hover {
+		will-change: transform;
 	}
 
 	.hero-content-left {
@@ -100,7 +104,6 @@
 		opacity: 0;
 		animation: flyIn 1s ease-out 0.5s forwards;
 		margin-bottom: var(--space-lg);
-		will-change: transform, opacity;
 		transform: translateZ(30px);
 		position: relative;
 		z-index: 3;
@@ -110,11 +113,14 @@
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
 	}
+	
+	.hero-title.animating {
+		will-change: transform, opacity;
+	}
 
 	.last-name {
 		font-weight: var(--fw-light);
 		font-style: italic;
-		will-change: transform;
 		transform: translateZ(50px);
 		backface-visibility: hidden;
 		background: linear-gradient(135deg, var(--accent-text) 0%, var(--secondary-text) 100%);
@@ -133,9 +139,12 @@
 		margin-bottom: var(--space-2xl);
 		position: relative;
 		z-index: 3;
-		will-change: transform, opacity;
 		backface-visibility: hidden;
 		color: var(--secondary-text);
+	}
+	
+	.hero-description.animating {
+		will-change: transform, opacity;
 	}
 
 	.cta-button {

@@ -3,7 +3,6 @@
 	import SocialLinks from '$lib/components/Contact/SocialLinks.svelte';
 	import LoadingProvider from '$lib/components/LoadingProvider.svelte';
 	import NavMenu from '$lib/components/NavMenu/NavMenu.svelte';
-	import Toast from '$lib/components/Toast.svelte';
 	import '$lib/index.scss';
 	import { onHydrated, theme, ThemeType } from '$lib/stores/theme';
 	import { inject } from '@vercel/analytics';
@@ -27,14 +26,12 @@
 
 <div class={`body contents ${$theme === ThemeType.DARK ? 'theme-dark' : 'theme-light'}`}>
 	<NavMenu />
-	<div class="content container">
+	<main id="main-content" class="content container" tabindex="-1">
 		<LoadingProvider transition={true}>
 			{@render children?.()}
 		</LoadingProvider>
 		<SocialLinks showOnMobile={true} showText={false} />
-	</div>
-
-	<Toast />
+	</main>
 </div>
 
 <style lang="scss">

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Card from '$lib/components/Card/Card.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
-	import { toastStore } from '$lib/utils/toast';
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import { fade } from 'svelte/transition';
@@ -213,12 +212,10 @@
 				window.grecaptcha.reset();
 			}
 			isSuccess = true;
-			toastStore.success(getTranslation('CONTACT.success_message'));
 		} catch (err) {
 			console.error('Form submission error:', err);
 			const errorMessage = getTranslation('CONTACT.submission_error');
 			error = errorMessage;
-			toastStore.error(errorMessage);
 
 			recaptchaVerified = false; // Reset reCAPTCHA verification status
 			// Reset the reCAPTCHA widget on error too

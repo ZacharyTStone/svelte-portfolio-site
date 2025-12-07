@@ -5,7 +5,6 @@
 	import { theme, ThemeType, toggleTheme } from '$lib/stores/theme';
 	import { handleNavigation } from '$lib/utils/navigation';
 
-	import { toastStore } from '$lib/utils/toast';
 	import { _, locale } from 'svelte-i18n';
 	import Chip from '../Chip/Chip.svelte';
 	import UIcon from '../Icon/UIcon.svelte';
@@ -27,10 +26,8 @@
 	function toggleLanguage(): void {
 		if ($locale?.includes('en')) {
 			locale.set('ja');
-			toastStore.info($_(NavBar.japanese) + ' enabled');
 		} else {
 			locale.set('en');
-			toastStore.info($_(NavBar.english) + ' enabled');
 		}
 	}
 
@@ -54,6 +51,21 @@
 		if (event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27) {
 			closeMenu();
 		}
+		// Handle arrow key navigation in mobile menu
+		if (isOpen && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
+			event.preventDefault();
+			const menuItems = document.querySelectorAll('.nav-link');
+			const currentIndex = Array.from(menuItems).findIndex((item) => item === document.activeElement);
+			let nextIndex: number;
+			
+			if (event.key === 'ArrowDown') {
+				nextIndex = currentIndex < menuItems.length - 1 ? currentIndex + 1 : 0;
+			} else {
+				nextIndex = currentIndex > 0 ? currentIndex - 1 : menuItems.length - 1;
+			}
+			
+			(menuItems[nextIndex] as HTMLElement)?.focus();
+		}
 	}
 
 	function handleItemClick(event: Event, item: NavItem): void {
@@ -64,9 +76,6 @@
 	function handleThemeToggle(): void {
 		const newTheme = $theme === ThemeType.DARK ? ThemeType.LIGHT : ThemeType.DARK;
 		toggleTheme(newTheme);
-		toastStore.info(
-			$_(newTheme === ThemeType.DARK ? NavBar.darkMode : NavBar.lightMode) + ' enabled'
-		);
 	}
 
 	const mobileItems: NavItem[] = [{ title: HOME.name, to: '/', icon: 'i-carbon-home' }, ...items];

@@ -84,10 +84,17 @@
 			class={classes}
 			{style}
 			onclick={onClick}
-			onkeydown={(e: KeyboardEvent) => e.key === 'Enter' && onClick?.()}
+			onkeydown={(e: KeyboardEvent) => {
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					onClick?.();
+				}
+			}}
 			{alt}
 			role={onClick != null ? 'button' : undefined}
 			loading={lazy ? 'lazy' : 'eager'}
+			decoding="async"
+			fetchpriority={lazy ? 'low' : 'high'}
 		/>
 	{:else if loading}
 		<div
