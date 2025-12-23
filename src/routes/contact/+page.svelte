@@ -93,12 +93,6 @@
 		}
 	}
 
-	.additional-info {
-		margin-top: 20px;
-		padding-top: 20px;
-		border-top: 1px solid var(--border);
-	}
-
 	@media (max-width: 768px) {
 		.social-links {
 			flex-direction: column;

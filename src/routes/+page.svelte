@@ -82,7 +82,7 @@
 		position: relative;
 		backface-visibility: hidden;
 	}
-	
+
 	.hero-content-left:hover,
 	.hero-content-right:hover {
 		will-change: transform;
@@ -112,9 +112,6 @@
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
-	}
-	
-	.hero-title.animating {
 		will-change: transform, opacity;
 	}
 
@@ -141,10 +138,6 @@
 		z-index: 3;
 		backface-visibility: hidden;
 		color: var(--secondary-text);
-	}
-	
-	.hero-description.animating {
-		will-change: transform, opacity;
 	}
 
 	.cta-button {

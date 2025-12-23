@@ -3,6 +3,8 @@
 
 	const bubble = createBubbler();
 	import { onMount } from 'svelte';
+	import { preloadData } from '$app/navigation';
+	import { base } from '$app/paths';
 
 	let el: HTMLElement | undefined = $state();
 
@@ -46,18 +48,18 @@
 			el.style.setProperty('--size', size);
 		}
 
-		// Prefetch route on hover for internal links
+		// Prefetch route data on hover for internal links using SvelteKit's preloadData
 		if (href && !newTab && el) {
-			const handleMouseEnter = () => {
+			const handleMouseEnter = async () => {
 				if (href && href.startsWith('/')) {
-					// Use SvelteKit's prefetch
-					const link = el as HTMLAnchorElement;
-					if (link && link.href) {
-						// Trigger prefetch by creating a temporary link
-						const prefetchLink = document.createElement('link');
-						prefetchLink.rel = 'prefetch';
-						prefetchLink.href = link.href;
-						document.head.appendChild(prefetchLink);
+					try {
+						// Construct the full path with base
+						const path = href.startsWith(base) ? href : `${base}${href}`;
+						// Use SvelteKit's preloadData to prefetch route data
+						await preloadData(path);
+					} catch (error) {
+						// Silently fail if prefetch fails (e.g., route doesn't exist)
+						// This prevents console errors for invalid routes
 					}
 				}
 			};

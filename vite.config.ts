@@ -37,8 +37,26 @@ const config: UserConfig = {
 		chunkSizeWarningLimit: 1000,
 		rollupOptions: {
 			output: {
-				manualChunks: {
-					vendor: ['svelte', 'svelte-i18n', '@vercel/analytics', '@vercel/speed-insights']
+				manualChunks: (id) => {
+					// Split vendor chunks for better caching
+					if (id.includes('node_modules')) {
+						// Separate large libraries
+						if (id.includes('svelte-i18n')) {
+							return 'i18n';
+						}
+						if (id.includes('@vercel')) {
+							return 'analytics';
+						}
+						if (id.includes('svelte')) {
+							return 'svelte';
+						}
+						// Other node_modules
+						return 'vendor';
+					}
+					// Split large local modules
+					if (id.includes('$lib/data/assets')) {
+						return 'assets';
+					}
 				}
 			}
 		},

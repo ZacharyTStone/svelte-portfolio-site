@@ -6,6 +6,8 @@ import { locale, waitLocale } from 'svelte-i18n';
 import { isLoading } from '$lib/i18n';
 import type { LayoutLoad } from './$types';
 
+// Load analytics synchronously to ensure accurate tracking
+// Vercel Analytics is lightweight and non-blocking, so performance impact is minimal
 inject({ mode: dev ? 'development' : 'production' });
 
 export const load: LayoutLoad = async () => {

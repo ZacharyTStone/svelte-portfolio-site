@@ -27,19 +27,29 @@
 	let failed = $state(false);
 	let loading = $state(true);
 	let element: HTMLElement | null = null;
-	let isIntersecting = $state(false);
+	let useNativeLazy = $state(false);
 
 	onMount(() => {
 		if (!lazy) {
+			// For non-lazy images, load immediately
 			loadImage();
 			return;
 		}
 
+		// Use native lazy loading with IntersectionObserver as fallback for better performance
+		// Only use IntersectionObserver if native lazy loading isn't supported
+		if ('loading' in HTMLImageElement.prototype) {
+			// Browser supports native lazy loading, use it
+			useNativeLazy = true;
+			loadImage();
+			return;
+		}
+
+		// Fallback: Use IntersectionObserver for browsers without native lazy loading
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
-						isIntersecting = true;
 						loadImage();
 						observer.unobserve(entry.target);
 					}
@@ -57,14 +67,19 @@
 		return () => {
 			if (element) {
 				observer.unobserve(element);
+				observer.disconnect();
 			}
 		};
 	});
 
 	function loadImage() {
+		if (!src) return;
+		
 		const img = new Image();
 		img.src = src;
 		loading = true;
+		loaded = false;
+		failed = false;
 
 		img.onload = () => {
 			loading = false;
@@ -92,7 +107,7 @@
 			}}
 			{alt}
 			role={onClick != null ? 'button' : undefined}
-			loading={lazy ? 'lazy' : 'eager'}
+			loading={lazy && useNativeLazy ? 'lazy' : 'eager'}
 			decoding="async"
 			fetchpriority={lazy ? 'low' : 'high'}
 		/>
@@ -102,6 +117,7 @@
 			style={`min-height: ${loadingHeight}; min-width: ${loadingWidth}`}
 			aria-label="Loading image"
 			role="status"
+			aria-live="polite"
 		></div>
 	{:else if failed}
 		<div

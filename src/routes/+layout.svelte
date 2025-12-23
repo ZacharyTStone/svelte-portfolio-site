@@ -16,11 +16,10 @@
 
 	let { children }: Props = $props();
 
-	inject({ mode: dev ? 'development' : 'production' });
-	injectSpeedInsights();
-
 	onMount(() => {
 		onHydrated();
+		// Speed Insights loads synchronously - it's lightweight and designed to not block
+		injectSpeedInsights();
 	});
 </script>
 
