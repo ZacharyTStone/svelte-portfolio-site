@@ -2,8 +2,6 @@
 	import type { Icons } from '$lib/utils';
 	import { viewBox } from './Icons';
 
-	let el = $state<SVGElement | undefined>(undefined);
-
 	interface Props {
 		size?: string;
 		color?: string;
@@ -14,7 +12,6 @@
 </script>
 
 <svg
-	bind:this={el}
 	class="inline-block"
 	viewBox={viewBox(icon)}
 	fill={color}

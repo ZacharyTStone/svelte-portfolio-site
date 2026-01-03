@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { onMount, onDestroy } from 'svelte';
 	import type { Skill } from '$lib/types';
 	import { getAssetURL } from '$lib/data/assets';
@@ -29,7 +27,7 @@
 		clearInterval(timeout);
 	});
 
-	run(() => {
+	$effect(() => {
 		if (element) {
 			element.scroll({
 				left: index * 150,

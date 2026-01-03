@@ -164,6 +164,11 @@
 		background-color: var(--secondary);
 	}
 
+	.breadcrumb-link:focus-visible {
+		outline: 2px solid var(--accent-text);
+		outline-offset: 2px;
+	}
+
 	.breadcrumb-current {
 		color: var(--accent-text);
 		font-size: var(--fs-sm);

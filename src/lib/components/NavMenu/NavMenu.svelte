@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { HOME, NavBar } from '$lib/params';
 	import { theme, ThemeType, toggleTheme } from '$lib/stores/theme';
 	import { handleNavigation } from '$lib/utils/navigation';
@@ -35,7 +35,7 @@
 	let activeSection = $state('');
 
 	$effect(() => {
-		activeSection = $page.url.pathname;
+		activeSection = page.url.pathname;
 	});
 
 	function toggleMenu(): void {
@@ -48,7 +48,7 @@
 
 	// Close menu on Escape key press
 	function handleKeyDown(event: KeyboardEvent) {
-		if (event.key === 'Escape' || event.key === 'Esc' || event.keyCode === 27) {
+		if (event.key === 'Escape') {
 			closeMenu();
 		}
 		// Handle arrow key navigation in mobile menu
@@ -68,17 +68,10 @@
 		}
 	}
 
-	function handleItemClick(event: Event, item: NavItem): void {
-		isOpen = false;
-		handleNavigation(event, item.to);
-	}
-
 	function handleThemeToggle(): void {
 		const newTheme = $theme === ThemeType.DARK ? ThemeType.LIGHT : ThemeType.DARK;
 		toggleTheme(newTheme);
 	}
-
-	const mobileItems: NavItem[] = [{ title: HOME.name, to: '/', icon: 'i-carbon-home' }, ...items];
 </script>
 
 <div class="nav-menu">

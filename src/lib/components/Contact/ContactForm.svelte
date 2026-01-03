@@ -36,17 +36,16 @@
 	}
 
 	// Form state
-	let name = '';
-	let email = '';
-	let message = '';
-	let isSubmitting = false;
-	let isSuccess = false;
-	let error = '';
-	let honeypot = ''; // Anti-spam honeypot field
-	let recaptchaToken = '';
-	let recaptchaReady = false;
-	let recaptchaVerified = false; // New state to track if reCAPTCHA is verified
-	let mounted = false;
+	let name = $state('');
+	let email = $state('');
+	let message = $state('');
+	let isSubmitting = $state(false);
+	let isSuccess = $state(false);
+	let error = $state('');
+	let honeypot = $state(''); // Anti-spam honeypot field
+	let recaptchaToken = $state('');
+	let recaptchaVerified = $state(false); // Track if reCAPTCHA is verified
+	let mounted = $state(false);
 
 	// Set up success message timer handling
 	let successTimer: ReturnType<typeof setTimeout> | null = null;
@@ -65,7 +64,11 @@
 	}
 
 	// Watch for success state changes
-	$: if (isSuccess) resetSuccessMessageAfterDelay();
+	$effect(() => {
+		if (isSuccess) {
+			resetSuccessMessageAfterDelay();
+		}
+	});
 
 	// Clean up on component destruction
 	onMount(() => {
@@ -86,7 +89,6 @@
 		recaptchaScript.async = true;
 		recaptchaScript.defer = true;
 		recaptchaScript.onload = () => {
-			recaptchaReady = true;
 			console.log('reCAPTCHA is ready');
 		};
 		recaptchaScript.onerror = (error) => {
@@ -141,7 +143,9 @@
 	}
 
 	// Handle form submission
-	async function handleSubmit() {
+	async function handleSubmit(e: SubmitEvent) {
+		e.preventDefault();
+
 		// Reset states
 		error = '';
 		isSubmitting = true;
@@ -236,14 +240,14 @@
 			</h2>
 
 			{#if isSuccess}
-				<div class="success-message" in:fade={{ duration: 300 }}>
+				<div class="success-message" role="status" aria-live="polite" in:fade={{ duration: 300 }}>
 					<UIcon icon="i-carbon-checkmark-filled" classes="text-2em" />
 					<p>{getTranslation('CONTACT.success_message')}</p>
 				</div>
 			{:else}
-				<form on:submit|preventDefault={handleSubmit} class="contact-form-fields">
+				<form onsubmit={handleSubmit} class="contact-form-fields">
 					{#if error}
-						<div class="error-message" in:fade={{ duration: 200 }}>
+						<div class="error-message" role="alert" aria-live="assertive" in:fade={{ duration: 200 }}>
 							<UIcon icon="i-carbon-warning-filled" classes="text-1.5em" />
 							<p>{error}</p>
 						</div>

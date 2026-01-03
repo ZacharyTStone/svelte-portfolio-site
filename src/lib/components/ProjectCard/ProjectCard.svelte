@@ -82,4 +82,22 @@
 	.project-container:hover {
 		transform: translateY(-4px);
 	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.project-container {
+			transition: none !important;
+		}
+
+		.project-container:hover {
+			transform: none !important;
+		}
+
+		.project-container :global(img) {
+			transition: none !important;
+		}
+
+		.project-container:hover :global(img) {
+			transform: none !important;
+		}
+	}
 </style>

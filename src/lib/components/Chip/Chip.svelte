@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 	import { onMount } from 'svelte';
 	import { preloadData } from '$app/navigation';
 	import { base } from '$app/paths';
@@ -77,12 +74,16 @@
 	this={href ? 'a' : 'button'}
 	bind:this={el}
 	{href}
-	class={className}
-	onclick={onClick || bubble('click')}
-	onkeydown={bubble('keydown')}
-	onkeypress={bubble('keypress')}
-	onkeyup={bubble('keyup')}
+	class="chip {className}"
+	onclick={onClick}
 	target={newTab ? '_blank' : undefined}
 >
 	{@render children?.()}
 </svelte:element>
+
+<style>
+	.chip:focus-visible {
+		outline: 2px solid var(--accent-text);
+		outline-offset: 2px;
+	}
+</style>

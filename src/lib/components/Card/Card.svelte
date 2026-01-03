@@ -156,6 +156,11 @@
 			no-repeat right 40% / 40% var(--bg-img);
 		font-family: var(--text-f);
 
+		&:focus-visible {
+			outline: 2px solid var(--accent-text);
+			outline-offset: 2px;
+		}
+
 		&:hover {
 			transform: perspective(1000px) rotateX(var(--rot-x)) rotateY(var(--rot-y)) scale(var(--scale));
 			border-color: var(--border-hover);
