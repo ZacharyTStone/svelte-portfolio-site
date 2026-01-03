@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { untrack } from 'svelte';
+	import { onMount } from 'svelte';
 	import CommonPage from './CommonPage.svelte';
 	import Input from '../Input/Input.svelte';
 	import { browser } from '$app/environment';
@@ -22,29 +21,7 @@
 
 	let { title = 'Title', search = $bindable(''), children, onsearch }: Props = $props();
 
-	const dispatch = createEventDispatcher<{
-		search: { search: string };
-	}>();
-
 	let mounted = $state(false);
-
-	/**
-	 * Handle search input change
-	 */
-	function handleSearchChange(currentSearch: string): void {
-		const trimmedSearch = currentSearch.trim().toLowerCase();
-
-		// Dispatch the search event for parent components
-		dispatch('search', { search: trimmedSearch });
-
-		// Call the event handler if provided
-		if (onsearch) {
-			onsearch(new CustomEvent('search', { detail: { search: trimmedSearch } }));
-		}
-
-		// Update URL if in browser
-		updateURL(trimmedSearch);
-	}
 
 	/**
 	 * Update URL with search parameter
@@ -63,9 +40,20 @@
 		}
 	}
 
-	run(() => {
+	$effect(() => {
 		const currentSearch = search;
-		handleSearchChange(currentSearch);
+		const trimmedSearch = currentSearch.trim().toLowerCase();
+
+		// Use untrack to avoid recursive reactive updates
+		untrack(() => {
+			// Call the event handler if provided
+			if (onsearch) {
+				onsearch(new CustomEvent('search', { detail: { search: trimmedSearch } }));
+			}
+
+			// Update URL if in browser
+			updateURL(trimmedSearch);
+		});
 	});
 
 	onMount(() => {
