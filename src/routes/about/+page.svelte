@@ -2,6 +2,7 @@
 	import Card from '$lib/components/Card/Card.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import CommonPage from '$lib/components/Page/CommonPage.svelte';
+	import GitHubContributions from '$lib/components/GitHubContributions/GitHubContributions.svelte';
 	import { HOME } from '$lib/params';
        import { handleNavigation } from '$lib/utils/navigation';
 	import { onMount } from 'svelte';
@@ -72,7 +73,16 @@
 						</div>
 					</div>
 
-					<div class="hidden md:block w-px my-12 bg-border" style="animation-delay: 0.8s;"></div>
+					<!-- GitHub Contributions Graph -->
+					<div class="flex-1 flex flex-col gap-6" in:fade={{ delay: 600, duration: 300 }}>
+						<div class="mx-auto w-full max-w-[800px]">
+							<GitHubContributions
+								username="ZacharyTStone"
+								weeks={53}
+								title="My GitHub Activity"
+							/>
+						</div>
+					</div>
 
 				</div>
 			{/if}
