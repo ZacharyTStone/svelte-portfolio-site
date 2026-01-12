@@ -1,21 +1,36 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { preloadData } from '$app/navigation';
 	import { base } from '$app/paths';
+	import { onMount } from 'svelte';
 
 	let el: HTMLElement | undefined = $state();
 
-	import { _ } from 'svelte-i18n';
-	interface Props {
+	/**
+	 * Chip component props with improved TypeScript types
+	 */
+	export interface ChipProps {
+		/** Whether the chip is in an active state */
 		active?: boolean;
+		/** Size of the chip */
 		size?: string;
+		/** Additional CSS classes */
 		classes?: string;
+		/** URL to navigate to (makes chip a link) */
 		href?: string;
+		/** Whether link should open in a new tab */
 		newTab?: boolean;
+		/** Child content */
 		children?: import('svelte').Snippet;
+		/** Custom border radius */
 		borderRadius?: string;
+		/** Hide the border */
 		hideBorder?: boolean;
+		/** Click handler function */
 		onClick?: (e: MouseEvent) => void;
+		/** ARIA label for accessibility */
+		ariaLabel?: string;
+		/** ARIA current state (for navigation) */
+		ariaCurrent?: 'page' | 'step' | 'location' | 'date' | 'time' | boolean;
 	}
 
 	let {
@@ -27,16 +42,18 @@
 		children,
 		borderRadius,
 		hideBorder = false,
-		onClick
-	}: Props = $props();
+		onClick,
+		ariaLabel,
+		ariaCurrent
+	}: ChipProps = $props();
 
 	let className = $derived(
-		`row-center  py-[5px] px-[15px] m-[2.5px] decoration-none inline-block ${
+		`row-center py-[5px] px-[15px] m-[2.5px] decoration-none inline-block ${
 			hideBorder ? 'border-none' : `border-[1px] border-solid border-[var(--border)]`
 		} tracking-wider text-[0.9em] text-[var(--tertiary-text)] duration-[150ms] font-light ${
 			borderRadius ? `rounded-[${borderRadius}]` : 'rounded-[20px]'
-		} rainbow-hover  ${active ? '' : 'bg-transparent hover:border-[var(--border-hover)]'}
-		${onClick ? 'cursor: pointer;' : ''}
+		} rainbow-hover ${active ? 'border-[var(--border-hover)]' : 'bg-transparent hover:border-[var(--border-hover)]'}
+		${onClick || href ? 'cursor-pointer' : ''}
 		${classes}`
 	);
 
@@ -69,7 +86,6 @@
 	});
 </script>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
 <svelte:element
 	this={href ? 'a' : 'button'}
 	bind:this={el}
@@ -77,6 +93,11 @@
 	class="chip {className}"
 	onclick={onClick}
 	target={newTab ? '_blank' : undefined}
+	rel={newTab && href ? 'noopener noreferrer' : undefined}
+	aria-label={ariaLabel}
+	aria-current={ariaCurrent}
+	aria-pressed={!href && active ? 'true' : undefined}
+	tabindex={onClick || href ? 0 : undefined}
 >
 	{@render children?.()}
 </svelte:element>

@@ -12,3 +12,13 @@ declare module '*.md' {
 	const content: string;
 	export default content;
 }
+
+// LinkedIn Platform API types
+declare global {
+	interface Window {
+		IN?: {
+			init: () => void;
+			parse: () => void;
+		};
+	}
+}

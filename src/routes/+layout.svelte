@@ -3,8 +3,12 @@
 	import SocialLinks from '$lib/components/Contact/SocialLinks.svelte';
 	import LoadingProvider from '$lib/components/LoadingProvider.svelte';
 	import NavMenu from '$lib/components/NavMenu/NavMenu.svelte';
+	import ReadingProgress from '$lib/components/ReadingProgress/ReadingProgress.svelte';
+	import ScrollToTop from '$lib/components/ScrollToTop/ScrollToTop.svelte';
 	import '$lib/index.scss';
 	import { onHydrated, theme, ThemeType } from '$lib/stores/theme';
+	import { createKeyboardHandler, commonShortcuts } from '$lib/utils/keyboard';
+	import { measurePageLoad } from '$lib/utils/performance';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import { onMount } from 'svelte';
@@ -20,10 +24,22 @@
 		onHydrated();
 		// Speed Insights loads synchronously - it's lightweight and designed to not block
 		injectSpeedInsights();
+		
+		// Initialize keyboard shortcuts
+		const keyboardHandler = createKeyboardHandler(commonShortcuts);
+		document.addEventListener('keydown', keyboardHandler);
+		
+		// Initialize performance monitoring
+		measurePageLoad();
+		
+		return () => {
+			document.removeEventListener('keydown', keyboardHandler);
+		};
 	});
 </script>
 
 <div class={`body contents ${$theme === ThemeType.DARK ? 'theme-dark' : 'theme-light'}`}>
+	<ReadingProgress />
 	<NavMenu />
 	<main id="main-content" class="content container" tabindex="-1">
 		<LoadingProvider transition={true}>
@@ -31,6 +47,7 @@
 		</LoadingProvider>
 		<SocialLinks showOnMobile={true} showText={false} />
 	</main>
+	<ScrollToTop />
 </div>
 
 <style lang="scss">

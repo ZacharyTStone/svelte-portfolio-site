@@ -4,10 +4,12 @@
 	import { HOME, NavBar } from '$lib/params';
 	import { theme, ThemeType, toggleTheme } from '$lib/stores/theme';
 	import { handleNavigation } from '$lib/utils/navigation';
+	import { FocusTrap } from '$lib/utils/keyboard';
 
 	import { _, locale } from 'svelte-i18n';
 	import Chip from '../Chip/Chip.svelte';
 	import UIcon from '../Icon/UIcon.svelte';
+	import { onMount } from 'svelte';
 
 	interface NavItem {
 		title: string;
@@ -33,6 +35,8 @@
 
 	let isOpen = $state(false);
 	let activeSection = $state('');
+	let mobileMenuElement: HTMLElement | null = null;
+	let focusTrap: FocusTrap | null = null;
 
 	$effect(() => {
 		activeSection = page.url.pathname;
@@ -44,7 +48,21 @@
 
 	function closeMenu(): void {
 		isOpen = false;
+		if (focusTrap) {
+			focusTrap.destroy();
+			focusTrap = null;
+		}
 	}
+
+	// Initialize focus trap when mobile menu opens
+	$effect(() => {
+		if (isOpen && mobileMenuElement) {
+			focusTrap = new FocusTrap(mobileMenuElement);
+		} else if (focusTrap) {
+			focusTrap.destroy();
+			focusTrap = null;
+		}
+	});
 
 	// Close menu on Escape key press
 	function handleKeyDown(event: KeyboardEvent) {
@@ -170,6 +188,7 @@
 		></div>
 		<div
 			id="mobile-menu"
+			bind:this={mobileMenuElement}
 			class="mobile-menu {isOpen ? 'open' : ''}"
 			role="menu"
 			aria-hidden={!isOpen}
