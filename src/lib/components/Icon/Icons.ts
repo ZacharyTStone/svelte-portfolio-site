@@ -1,6 +1,6 @@
 import { Icons } from '$lib/utils';
 
-const ICON_VIEWBOX: Partial<Record<Icons, string>> = {
+const ICON_VIEWBOX: Partial<Record<string, string>> = {
 	[Icons.Youtube]: '0 0 461.001 461.001',
 	[Icons.Facebook]: '0 0 408.788 408.788',
 	[Icons.GitHub]: '0 0 16 16',
@@ -8,6 +8,6 @@ const ICON_VIEWBOX: Partial<Record<Icons, string>> = {
 	[Icons.Code]: '0 0 16 16'
 };
 
-export const viewBox = (icon: Icons): string => {
+export const viewBox = (icon: string): string => {
 	return ICON_VIEWBOX[icon] ?? '0 0 24 24';
 };

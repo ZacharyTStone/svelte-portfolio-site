@@ -15,8 +15,8 @@
 		search?: string;
 		/** Child content */
 		children?: import('svelte').Snippet;
-		/** Search event handler */
-		onsearch?: (event: CustomEvent<{ search: string }>) => void;
+		/** Search callback - receives the trimmed search string */
+		onsearch?: (search: string) => void;
 	}
 
 	let { title = 'Title', search = $bindable(''), children, onsearch }: Props = $props();
@@ -28,7 +28,7 @@
 	 */
 	function updateURL(searchValue: string): void {
 		if (browser && mounted) {
-			let searchParams = new URLSearchParams(window.location.search);
+			const searchParams = new URLSearchParams(window.location.search);
 			searchParams.set('q', searchValue);
 
 			const url = `${window.location.protocol}//${window.location.host}${
@@ -46,9 +46,9 @@
 
 		// Use untrack to avoid recursive reactive updates
 		untrack(() => {
-			// Call the event handler if provided
+			// Call the callback if provided
 			if (onsearch) {
-				onsearch(new CustomEvent('search', { detail: { search: trimmedSearch } }));
+				onsearch(trimmedSearch);
 			}
 
 			// Update URL if in browser
@@ -57,7 +57,7 @@
 	});
 
 	onMount(() => {
-		let searchParams = new URLSearchParams(window.location.search);
+		const searchParams = new URLSearchParams(window.location.search);
 		search = searchParams.get('q') ?? '';
 		mounted = true;
 	});

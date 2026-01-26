@@ -11,6 +11,12 @@
 		href: string;
 	}
 
+	interface PageDataWithItem {
+		skill?: { name: string };
+		project?: { name: string };
+		experience?: { name: string };
+	}
+
 	// Define NAVBAR as a top-level constant before any reactive statements
 	const NAVBAR = {
 		home: 'NAVBAR.home',
@@ -60,7 +66,7 @@
 			else {
 				// For dynamic routes, try to get the actual name from page data
 				try {
-					const pageData = $page.data as any;
+					const pageData = $page.data as PageDataWithItem;
 					if (isLast && pageData) {
 						// Check for skill, project, or experience data
 						if (pageData.skill?.name) {

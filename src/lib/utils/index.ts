@@ -47,13 +47,12 @@ export {
 	formatPageTitle,
 	isValidEmail,
 	formatExperiencePeriod,
-	onHover,
 	changeColorOpacity,
 	useImage,
 	useTitle,
 	isEmail,
-        generateRandomHexColor,
-        calculateExperiencePeriod,
-        RANDOM_COLORS
+	generateRandomHexColor,
+	calculateExperiencePeriod,
+	RANDOM_COLORS
 } from './helpers';
 

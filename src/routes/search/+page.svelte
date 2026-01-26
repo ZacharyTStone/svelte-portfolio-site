@@ -1,37 +1,50 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
-	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
-	import { SEARCH } from '$lib/params';
-	import SearchPage from '$lib/components/Page/SearchPage.svelte';
-	import MY_EXPERIENCES from '$lib/experiences.params';
-	import MY_PROJECTS from '$lib/projects.params';
-	import MY_SKILLS from '$lib/skills.params';
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
+	import SearchPage from '$lib/components/Page/SearchPage.svelte';
+	import MY_EXPERIENCES from '$lib/experiences.params';
+	import { SEARCH } from '$lib/params';
+	import MY_PROJECTS from '$lib/projects.params';
+	import MY_SKILLS from '$lib/skills.params';
+	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 
 	const { title } = SEARCH;
 
-	interface Item<T = any> {
+	interface ExtraInfoContent {
+		label: string;
+		link?: string;
+	}
+
+	interface ExtraInfo {
+		title: string;
+		content: ExtraInfoContent[];
+	}
+
+	interface ItemData {
+		name: string;
+		slug: string;
+		extraInfo?: ExtraInfo[];
+	}
+
+	interface Item {
 		icon: string;
 		name: string;
-		data: T;
+		data: ItemData;
 		to: string;
 	}
 
 	let query = $state('');
-	let result: Array<Item> = $state([]);
 
 	/**
 	 * Filters items based on the current search query
 	 */
-	function filterItems<T extends { name: string; label?: string; skills?: any }>(
+	function filterItems<T extends { name: string; label?: string; skills?: unknown }>(
 		items: T[],
 		searchQuery: string
 	): T[] {
-		const containsQuery = (value: any, depth: number): boolean => {
+		const containsQuery = (value: unknown, depth: number): boolean => {
 			if (depth > 8) return false;
 
 			if (typeof value === 'string') {
@@ -42,7 +55,9 @@
 			} else if (typeof value === 'object' && value !== null) {
 				return (
 					Object.values(value).some((nestedValue) => containsQuery(nestedValue, depth + 1)) ||
-					Object.keys(value).some((key) => containsQuery(value[key], depth + 1))
+					Object.keys(value).some((key) =>
+						containsQuery((value as Record<string, unknown>)[key], depth + 1)
+					)
 				);
 			}
 			return false;
@@ -54,20 +69,24 @@
 	/**
 	 * Generates Item objects from data arrays
 	 */
-	function generateItems<T>(items: T[], icon: string, toFn: (data: T) => string): Item<T>[] {
-		return items.map<Item<T>>((data) => ({
+	function generateItems<T extends ItemData>(
+		items: T[],
+		icon: string,
+		toFn: (data: T) => string
+	): Item[] {
+		return items.map((data) => ({
 			data,
 			icon,
-			name: (data as any).name,
+			name: data.name,
 			to: toFn(data)
 		}));
 	}
 
 	/**
-	 * Handle search event
+	 * Handle search callback
 	 */
-	function handleSearch(e: CustomEvent<{ search: string }>) {
-		query = e.detail.search;
+	function handleSearch(searchValue: string) {
+		query = searchValue;
 	}
 
 	/**
@@ -77,42 +96,44 @@
 		return label.toLowerCase().includes(searchQuery.toLowerCase());
 	}
 
-	onMount(() => {
-		let searchParams = new URLSearchParams(window.location.search);
-		query = searchParams.get('q') ?? '';
-	});
-
-	run(() => {
-		result = [];
-		// Store query in a closure variable to avoid referencing it directly in the reactive context
+	// Derived search results
+	let result = $derived.by(() => {
+		const items: Item[] = [];
 		const currentQuery = query;
 
 		// Generate items for projects
-		result.push(
+		items.push(
 			...generateItems(
 				filterItems(MY_PROJECTS, currentQuery),
 				'i-carbon-cube',
-				(data) => `projects/${(data as any).slug}`
+				(data) => `projects/${data.slug}`
 			)
 		);
 
 		// Generate items for skills
-		result.push(
+		items.push(
 			...generateItems(
 				filterItems(MY_SKILLS, currentQuery),
 				'i-carbon-software-resource-cluster',
-				(data) => `skills/${(data as any).slug}`
+				(data) => `skills/${data.slug}`
 			)
 		);
 
 		// Generate items for experiences
-		result.push(
+		items.push(
 			...generateItems(
 				filterItems(MY_EXPERIENCES, currentQuery),
 				'i-carbon-development',
-				(data) => `experience/${(data as any).slug}`
+				(data) => `experience/${data.slug}`
 			)
 		);
+
+		return items;
+	});
+
+	onMount(() => {
+		const searchParams = new URLSearchParams(window.location.search);
+		query = searchParams.get('q') ?? '';
 	});
 </script>
 

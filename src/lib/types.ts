@@ -36,7 +36,7 @@ export interface SkillInfoSection {
 	content: Array<{
 		label: string;
 		link?: string;
-		icon: Asset;
+		icon?: Asset;
 	}>;
 }
 

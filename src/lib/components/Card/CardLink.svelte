@@ -6,8 +6,8 @@
 	interface Props {
 		label: string;
 		to: string;
-		icon_path: any;
-		icon_color: string;
+		icon_path?: string;
+		icon_color?: string;
 	}
 
 	let {

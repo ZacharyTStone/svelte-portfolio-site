@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import Chip from '$lib/components/Chip/Chip.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import ProjectCard from '$lib/components/ProjectCard/ProjectCard.svelte';
@@ -11,7 +9,6 @@
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import { fade } from 'svelte/transition';
-	import { writable } from 'svelte/store';
 
 	interface SkillFilter extends Skill {
 		isSelected?: boolean;
@@ -26,12 +23,27 @@
 	);
 
 	let search = $state('');
-	let displayed: Array<Project> = $state([]);
-	const visibleItems = writable(new Set());
+	let visibleItems = $state(new Set<number>());
 	let isInitialized = $state(false);
 	const staggerDelay = 100;
 	let featuredTitleVisible = $state(false);
 	let otherTitleVisible = $state(false);
+
+	// Derived state for filtered/searched projects
+	let displayed = $derived.by(() => {
+		const selectedFilters = filters.filter((tech) => tech.isSelected);
+		const trimmedSearch = search.trim().toLowerCase();
+
+		return items.filter((project) => {
+			const isFiltered =
+				selectedFilters.length === 0 ||
+				selectedFilters.every((tech) => project.skills.some((skill) => skill.slug === tech.slug));
+			const isSearched =
+				trimmedSearch.length === 0 || $_(project.name).trim().toLowerCase().includes(trimmedSearch);
+
+			return isFiltered && isSearched && !project.dont_show;
+		});
+	});
 
 	const isSelected = (slug: string): boolean =>
 		filters.some((item) => item.slug === slug && item.isSelected);
@@ -45,32 +57,23 @@
 		});
 	};
 
-	const updateDisplayedProjects = () => {
-		const selectedFilters = filters.filter((tech) => tech.isSelected);
-		const trimmedSearch = search.trim().toLowerCase();
-
-		displayed = items.filter((project) => {
-			const isFiltered =
-				selectedFilters.length === 0 ||
-				selectedFilters.every((tech) => project.skills.some((skill) => skill.slug === tech.slug));
-			const isSearched =
-				trimmedSearch.length === 0 || $_(project.name).trim().toLowerCase().includes(trimmedSearch);
-
-			return isFiltered && isSearched && !project.dont_show;
-		});
+	const onSearch = (searchValue: string) => {
+		search = searchValue;
 	};
 
-	const onSearch = (e: CustomEvent<{ search: string }>) => {
-		search = e.detail.search;
-	};
+	onMount(() => {
+		const queryParams = new URLSearchParams(location.search);
+		const item = queryParams.get('item');
+		if (item) {
+			search = item;
+		}
 
-	const initializeProjects = () => {
+		// Initialize stagger animation with proper cleanup
 		isInitialized = true;
-
 		let index = 0;
 		const interval = setInterval(() => {
 			if (index < displayed.length) {
-				visibleItems.update((set) => new Set([...set, index]));
+				visibleItems = new Set([...visibleItems, index]);
 				index++;
 			} else {
 				clearInterval(interval);
@@ -83,22 +86,15 @@
 				otherTitleVisible = true;
 			}, 300);
 		}, 200);
-	};
 
-	onMount(() => {
-		const queryParams = new URLSearchParams(location.search);
-		const item = queryParams.get('item');
-		if (item) {
-			search = item;
-		}
-
-		initializeProjects();
+		// Cleanup interval on unmount
+		return () => {
+			clearInterval(interval);
+		};
 	});
-
-	run(updateDisplayedProjects);
 </script>
 
-<SearchPage {title} on:search={onSearch}>
+<SearchPage {title} onsearch={onSearch}>
 	<div class="projects-filters">
 		<div class="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-3 overflow-y-auto">
 			<Chip
@@ -139,7 +135,7 @@
 		{/if}
 		<div class="projects-list mt-5 mx-auto">
 			{#each displayed.filter((project) => project.featured) as project, index (project.slug)}
-				{#if $visibleItems.has(index)}
+				{#if visibleItems.has(index)}
 					<div in:fade={{ duration: 300 }}>
 						<ProjectCard {project} />
 					</div>
@@ -160,7 +156,7 @@
 		{/if}
 		<div class="projects-list mt-5 mx-auto">
 			{#each displayed.filter((project) => !project.featured) as project, index (project.slug)}
-				{#if $visibleItems.has(index)}
+				{#if visibleItems.has(index)}
 					<div in:fade={{ duration: 300 }}>
 						<ProjectCard {project} />
 					</div>

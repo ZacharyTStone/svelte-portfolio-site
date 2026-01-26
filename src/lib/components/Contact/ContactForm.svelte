@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { dev } from '$app/environment';
 	import Card from '$lib/components/Card/Card.svelte';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import { onMount } from 'svelte';
@@ -8,7 +9,7 @@
 	// Define callback for reCAPTCHA
 	if (typeof window !== 'undefined') {
 		window.enableSubmit = () => {
-			console.log('reCAPTCHA verification complete');
+			if (dev) console.log('reCAPTCHA verification complete');
 			recaptchaVerified = true;
 		};
 	}
@@ -89,7 +90,7 @@
 		recaptchaScript.async = true;
 		recaptchaScript.defer = true;
 		recaptchaScript.onload = () => {
-			console.log('reCAPTCHA is ready');
+			if (dev) console.log('reCAPTCHA is ready');
 		};
 		recaptchaScript.onerror = (error) => {
 			console.error('Error loading reCAPTCHA script:', error);
@@ -196,7 +197,7 @@
 				year: new Date().getFullYear().toString()
 			};
 
-			console.log('Sending email with reCAPTCHA token');
+			if (dev) console.log('Sending email with reCAPTCHA token');
 
 			const response = await window.emailjs.send(
 				EMAILJS_SERVICE_ID,
@@ -204,7 +205,7 @@
 				templateParams
 			);
 
-			console.log('Email sent successfully:', response.status);
+			if (dev) console.log('Email sent successfully:', response.status);
 
 			// Reset form on success
 			name = '';

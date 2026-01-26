@@ -5,26 +5,27 @@
 	import { EXPERIENCES } from '$lib/params';
 	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
-	import { writable } from 'svelte/store';
-
 	import { _ } from 'svelte-i18n';
+
 	const { items, title } = EXPERIENCES;
 
-	const visibleItems = writable(new Set());
+	let visibleItems = $state(new Set<number>());
 
 	onMount(() => {
 		let index = 0;
 		const interval = setInterval(() => {
 			if (index < items.length) {
-				visibleItems.update((set) => {
-					set.add(index);
-					return set;
-				});
+				visibleItems = new Set([...visibleItems, index]);
 				index++;
 			} else {
 				clearInterval(interval);
 			}
 		}, 300);
+
+		// Cleanup interval on unmount
+		return () => {
+			clearInterval(interval);
+		};
 	});
 </script>
 
@@ -34,7 +35,7 @@
 			class="w-[0.5px] hidden lg:flex top-0 bottom-0 py-50px bg-[var(--border)] absolute rounded"
 		></div>
 		{#each items as job, index (job.slug)}
-			{#if $visibleItems.has(index)}
+			{#if visibleItems.has(index)}
 				<div
 					class={`flex ${
 						index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
