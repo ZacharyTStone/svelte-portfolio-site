@@ -149,9 +149,86 @@
 					transition: none;
 				}
 			}
+
+			/* Initial loading overlay - prevents content flash before locale detection */
+			#initial-loader {
+				position: fixed;
+				inset: 0;
+				z-index: 99999;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+			}
+
+			#initial-loader.hidden {
+				opacity: 0;
+				visibility: hidden;
+				pointer-events: none;
+			}
+
+			/* Theme-aware loader background */
+			[data-theme="dark"] #initial-loader {
+				background: #0f0f0f;
+			}
+
+			[data-theme="light"] #initial-loader {
+				background: #fafafa;
+			}
+
+			/* Simple loading spinner */
+			.loader-spinner {
+				width: 40px;
+				height: 40px;
+				border: 3px solid transparent;
+				border-radius: 50%;
+				animation: spin 1s linear infinite;
+			}
+
+			[data-theme="dark"] .loader-spinner {
+				border-top-color: #60a5fa;
+				border-right-color: rgba(96, 165, 250, 0.3);
+			}
+
+			[data-theme="light"] .loader-spinner {
+				border-top-color: #3b82f6;
+				border-right-color: rgba(59, 130, 246, 0.3);
+			}
+
+			@keyframes spin {
+				to {
+					transform: rotate(360deg);
+				}
+			}
+
+			/* Hide main content until locale is ready */
+			body:not(.locale-ready) #main-content {
+				visibility: hidden;
+			}
+
+			/* Ensure animations don't run until locale is ready (except loader) */
+			body:not(.locale-ready) #main-content,
+			body:not(.locale-ready) #main-content * {
+				animation-play-state: paused !important;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				#initial-loader {
+					transition: none;
+				}
+				.loader-spinner {
+					animation: none;
+					border: 3px solid currentColor;
+					opacity: 0.5;
+				}
+			}
 		</style>
 	</head>
 	<body data-sveltekit-preload-data="hover" data-sveltekit-preload-code="hover">
+		<!-- Initial loader shown until locale is ready -->
+		<div id="initial-loader" aria-label="Loading">
+			<div class="loader-spinner"></div>
+		</div>
 		<script>
 			// Immediately executed function to set the theme (critical, inline for performance)
 			(function () {
@@ -164,6 +241,30 @@
 				localStorage.setItem('zach-stone-portfolio-theme', themeToUse);
 				document.documentElement.setAttribute('data-theme', themeToUse);
 			})();
+
+			// Global function to hide loader (called from Svelte when locale is ready)
+			window.__hideInitialLoader = function() {
+				if (window.__loaderHidden) return;
+				window.__loaderHidden = true;
+
+				const loader = document.getElementById('initial-loader');
+				if (loader) {
+					loader.classList.add('hidden');
+					// Remove from DOM after transition
+					setTimeout(function() {
+						loader.remove();
+					}, 300);
+				}
+				document.body.classList.add('locale-ready');
+			};
+
+			// Fallback: hide loader after 3 seconds if something goes wrong
+			// This ensures the page is always accessible
+			setTimeout(function() {
+				if (!window.__loaderHidden) {
+					window.__hideInitialLoader();
+				}
+			}, 3000);
 		</script>
 		<!-- DNS prefetch for external resources -->
 		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />

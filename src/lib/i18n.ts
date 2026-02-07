@@ -22,6 +22,24 @@ register('en', () => import('./locales/en.json'));
 // Create a loading state store to prevent stuttering
 export const isLoading = writable(true);
 
+// Track if locale has been fully initialized
+export const localeReady = writable(false);
+
+/**
+ * Hides the initial loader overlay and reveals the page content
+ * This is called after locale detection and translations are loaded
+ */
+export function hideInitialLoader(): void {
+	if (!browser) return;
+
+	// Call the global function defined in app.html
+	if (typeof window !== 'undefined' && typeof (window as Window & { __hideInitialLoader?: () => void }).__hideInitialLoader === 'function') {
+		(window as Window & { __hideInitialLoader?: () => void }).__hideInitialLoader?.();
+	}
+
+	localeReady.set(true);
+}
+
 /**
  * Detects the user's preferred language based on stored preferences and browser settings
  * @returns The detected locale or default locale if no supported locale is found

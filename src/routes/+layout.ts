@@ -3,7 +3,7 @@ import { inject } from '@vercel/analytics';
 import { browser } from '$app/environment';
 import '$lib/i18n'; // Import to initialize. Important :)
 import { locale, waitLocale } from 'svelte-i18n';
-import { isLoading } from '$lib/i18n';
+import { isLoading, hideInitialLoader } from '$lib/i18n';
 import type { LayoutLoad } from './$types';
 
 // Load analytics synchronously to ensure accurate tracking
@@ -28,6 +28,15 @@ export const load: LayoutLoad = async () => {
 
 	// Mark loading as complete
 	isLoading.set(false);
+
+	// Hide the initial loader overlay and reveal the page
+	// This ensures animations only start after the correct locale is set
+	if (browser) {
+		// Small delay to ensure translations are rendered before revealing
+		requestAnimationFrame(() => {
+			hideInitialLoader();
+		});
+	}
 
 	return {};
 };

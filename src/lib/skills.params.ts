@@ -1,12 +1,7 @@
 import Assets, { COLOR_ASSETS, getAssetURL } from './data/assets';
-import type { Asset, Skill } from './types';
+import type { Asset, Skill, SkillInfoSection } from './types';
 
 const s = (skill: Skill) => skill;
-
-interface SkillExtraInfo {
-	title: string;
-	content: any[];
-}
 
 interface SkillInfoObject {
 	label: string;
@@ -83,7 +78,7 @@ const Cyber: SkillInfoObject[] = [
 	{ label: 'Kali Linux', link: 'https://www.kali.org/' }
 ];
 
-const FE_EXTRA_INFO: SkillExtraInfo[] = [
+const FE_EXTRA_INFO: SkillInfoSection[] = [
 	{
 		title: 'EXTRA_INFO_LABELS.frameworks',
 		content: FRAMEWORKS
@@ -113,7 +108,7 @@ const FE_EXTRA_INFO: SkillExtraInfo[] = [
 	}
 ];
 
-const BE_EXTRA_INFO: SkillExtraInfo[] = [
+const BE_EXTRA_INFO: SkillInfoSection[] = [
 	{
 		title: 'EXTRA_INFO_LABELS.backend',
 		content: Backend
@@ -124,14 +119,14 @@ const BE_EXTRA_INFO: SkillExtraInfo[] = [
 	}
 ];
 
-const OTHER_EXTRA_INFO: SkillExtraInfo[] = [
+const OTHER_EXTRA_INFO: SkillInfoSection[] = [
 	{
 		title: 'EXTRA_INFO_LABELS.tools',
 		content: Other
 	}
 ];
 
-const CYBER_EXTRA_INFO: SkillExtraInfo[] = [
+const CYBER_EXTRA_INFO: SkillInfoSection[] = [
 	{
 		title: 'EXTRA_INFO_LABELS.tools',
 		content: Cyber

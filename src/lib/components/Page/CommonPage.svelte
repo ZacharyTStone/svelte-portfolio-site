@@ -5,10 +5,12 @@
 	import { _ } from 'svelte-i18n';
 	import { browser } from '$app/environment';
 
-	let { title = $bindable('Title'), children } = $props<{
+	interface Props {
 		title?: string;
-		children: () => any;
-	}>();
+		children?: import('svelte').Snippet;
+	}
+
+	let { title = 'Title', children }: Props = $props();
 
 	// Safe translation function for SSR
 	function safeTranslate(key: string): string {
@@ -30,6 +32,6 @@
 	<Breadcrumbs />
 	<MainTitle>{translatedTitle}</MainTitle>
 	<div class="col gap-5 flex-1">
-		{@render children()}
+		{@render children?.()}
 	</div>
 </div>

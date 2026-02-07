@@ -16,32 +16,7 @@ export const countMonths = (from: Date, to: Date = new Date()): number => {
 	return monthsInFirstYear + monthsInBetween + monthsInLastYear;
 };
 
-export const onHover = (ev: MouseEvent, el: HTMLElement, tiltDegree: number = 10): void => {
-	if (!el || !ev) return;
-
-	const target = ev.currentTarget as HTMLElement;
-	if (!target) return;
-
-	const rect = target.getBoundingClientRect();
-	const { clientX, clientY } = ev;
-	const { left, top, width, height } = rect;
-
-	// Set drop shadow position
-	el.style.setProperty('--drop-x', `${clientX - left}px`);
-	el.style.setProperty('--drop-y', `${clientY - top}px`);
-
-	// Calculate center points
-	const centerX = rect.x + width / 2;
-	const centerY = rect.y + height / 2;
-
-	// Calculate rotation
-	const rotateX = ((-1 * tiltDegree * (clientY - centerY)) / (height / 2)).toFixed(2);
-	const rotateY = ((tiltDegree * (clientX - centerX)) / (width / 2)).toFixed(2);
-
-	// Apply rotation
-	el.style.setProperty('--rot-x', `${rotateX}deg`);
-	el.style.setProperty('--rot-y', `${rotateY}deg`);
-};
+// Note: onHover was removed - use handleTiltEffect from animation.ts instead
 
 /**
  * Changes the opacity of a hex color
@@ -235,11 +210,11 @@ export function calculateExperiencePeriod(
  * @param wait The number of milliseconds to delay
  * @returns A debounced version of the provided function
  */
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: Parameters<T>) => void>(
 	func: T,
 	wait: number
 ): (...args: Parameters<T>) => void {
-	let timeout: number;
+	let timeout: ReturnType<typeof setTimeout>;
 	return function (...args: Parameters<T>) {
 		clearTimeout(timeout);
 		timeout = setTimeout(() => func(...args), wait);

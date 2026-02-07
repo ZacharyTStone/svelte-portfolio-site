@@ -38,7 +38,7 @@
 
 				<div class="flex-1 flex flex-col gap-6">
 					<div class="contact-info" in:fade={{ duration: 300, delay: 200 }}>
-						<Card classes={['w-full']}>
+						<Card classes="w-full">
 							<h2 class="text-xl font-semibold mb-4 md:text-2xl">
 								{$_('CONTACT.connect_title')}
 							</h2>
