@@ -22,6 +22,7 @@ export const NavBar = {
 	blog: 'NAVBAR.blog',
 	search: 'NAVBAR.search',
 	contact: 'NAVBAR.contact',
+	resume: 'NAVBAR.resume',
 	japanese: 'NAVBAR.japanese',
 	english: 'NAVBAR.english',
 	lightMode: 'NAVBAR.lightMode',

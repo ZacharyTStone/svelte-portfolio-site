@@ -15,11 +15,20 @@
 		"blog": "ブログ",
 		"search": "検索",
 		"contact": "お問い合わせ",
+		"resume": "履歴書",
 		"japanese": "日本語",
 		"english": "英語",
 		"lightMode": "ライトモード",
 		"darkMode": "ダークモード",
 		"enabled": "有効"
+	},
+	"RESUME": {
+		"englishTitle": "英語履歴書",
+		"japaneseTitle": "日本語履歴書",
+		"openInNewTab": "新しいタブで開く",
+		"openEnglishInNewTab": "英語履歴書を新しいタブで開く",
+		"openJapaneseInNewTab": "日本語履歴書を新しいタブで開く",
+		"download": "ダウンロード"
 	},
 	"EXPERIENCES": {
 		"cta": "経歴を見る",
