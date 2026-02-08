@@ -58,7 +58,7 @@
 									{$_('ABOUT.full_about')}
 								</p>
 							</Card>
-							<div class="mt-3 grid grid-cols-1 md:grid-cols-[auto,1fr] items-start gap-3">
+							<div class="mt-3 grid grid-cols-1 md:grid-cols-2 items-start gap-3">
 								<Card
 									classes={'inline-flex'}
 									ariaLabel={$_('SKILLS.cta')}
@@ -67,6 +67,16 @@
 									<div class="flex items-center gap-2">
 										<UIcon icon="i-carbon-software-resource-cluster" />
 										<span>{$_('SKILLS.cta')}</span>
+									</div>
+								</Card>
+								<Card
+									classes={'inline-flex'}
+									ariaLabel={$_('RESUME.cta')}
+									onClick={(e) => handleNavigation(e, '/resume')}
+								>
+									<div class="flex items-center gap-2">
+										<UIcon icon="i-carbon-document" />
+										<span>{$_('RESUME.cta')}</span>
 									</div>
 								</Card>
 							</div>

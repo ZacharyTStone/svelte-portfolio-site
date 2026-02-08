@@ -28,7 +28,8 @@
 		"openInNewTab": "Open in new tab",
 		"openEnglishInNewTab": "Open English resume in new tab",
 		"openJapaneseInNewTab": "Open Japanese resume (履歴書) in new tab",
-		"download": "Download"
+		"download": "Download",
+		"cta": "View my resume"
 	},
 	"ABOUT": {
 		"cta": "Learn More About Me",

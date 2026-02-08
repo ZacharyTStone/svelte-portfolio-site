@@ -28,7 +28,8 @@
 		"openInNewTab": "新しいタブで開く",
 		"openEnglishInNewTab": "英語履歴書を新しいタブで開く",
 		"openJapaneseInNewTab": "日本語履歴書を新しいタブで開く",
-		"download": "ダウンロード"
+		"download": "ダウンロード",
+		"cta": "履歴書を見る"
 	},
 	"EXPERIENCES": {
 		"cta": "経歴を見る",
