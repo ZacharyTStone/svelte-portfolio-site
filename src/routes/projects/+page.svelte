@@ -138,7 +138,7 @@
 				Placeholder
 			</div>
 		{/if}
-		<div class="projects-list mt-5 mx-auto">
+		<div class="projects-list mt-5 mx-auto" class:single-item={featuredCount === 1}>
 			{#each displayed.filter((project) => project.featured) as project, index (project.slug)}
 				{#if visibleItems.has(index)}
 					<div in:fade={{ duration: 300 }}>
@@ -159,7 +159,7 @@
 				Placeholder
 			</div>
 		{/if}
-		<div class="projects-list mt-5 mx-auto">
+		<div class="projects-list mt-5 mx-auto" class:single-item={otherCount === 1}>
 			{#each displayed.filter((project) => !project.featured) as project, index (project.slug)}
 				{#if visibleItems.has(index)}
 					<div in:fade={{ duration: 300 }}>
@@ -185,6 +185,11 @@
 		@media (max-width: 850px) {
 			grid-template-columns: repeat(1, 1fr);
 			gap: 70px;
+		}
+
+		&.single-item {
+			display: flex;
+			justify-content: center;
 		}
 	}
 </style>
