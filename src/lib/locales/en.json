@@ -15,11 +15,21 @@
 		"blog": "Blog",
 		"search": "Search",
 		"contact": "Contact",
+		"resume": "Resume",
 		"japanese": "Japanese",
 		"english": "English",
 		"lightMode": "Light Mode",
 		"darkMode": "Dark Mode",
 		"enabled": "enabled"
+	},
+	"RESUME": {
+		"englishTitle": "English Resume",
+		"japaneseTitle": "Japanese Resume (履歴書)",
+		"openInNewTab": "Open in new tab",
+		"openEnglishInNewTab": "Open English resume in new tab",
+		"openJapaneseInNewTab": "Open Japanese resume (履歴書) in new tab",
+		"download": "Download",
+		"cta": "View my resume"
 	},
 	"ABOUT": {
 		"cta": "Learn More About Me",

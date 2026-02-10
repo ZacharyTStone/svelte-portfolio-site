@@ -22,6 +22,7 @@
 		{ title: NavBar.skills, to: '/skills', icon: 'i-carbon-software-resource-cluster' },
 		{ title: NavBar.personal, to: '/projects', icon: 'i-carbon-cube' },
 		{ title: NavBar.career, to: '/experience', icon: 'i-carbon-development' },
+		{ title: NavBar.resume, to: '/resume', icon: 'i-carbon-document' },
 		{ title: NavBar.contact, to: '/contact', icon: 'i-carbon-email' }
 	];
 
@@ -241,6 +242,18 @@
 					>
 						<UIcon icon="i-carbon-development" alt="Experience icon" />
 						<span>{$_('NAVBAR.career')}</span>
+					</a>
+				</li>
+				<li class="nav-item" role="none">
+					<a
+						href="/resume"
+						class="nav-link {activeSection === '/resume' ? 'active' : ''}"
+						role="menuitem"
+						aria-current={activeSection === '/resume' ? 'page' : undefined}
+						onclick={closeMenu}
+					>
+						<UIcon icon="i-carbon-document" alt="Resume icon" />
+						<span>{$_('NAVBAR.resume')}</span>
 					</a>
 				</li>
 				<li class="nav-item" role="none">
