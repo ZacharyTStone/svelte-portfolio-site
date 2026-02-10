@@ -161,7 +161,7 @@ const MY_PROJECTS: Array<Project> = [
 		english: true,
 		japanese: true,
 		featured_reason: 'PROJECTS.AI_FLASHCARDS.featured_reason',
-		featured: true,
+		featured: false,
 		screenshots: [
 			{ src: getAssetURL(Assets.Anki1), label: '' },
 			{ src: getAssetURL(Assets.Anki2), label: '' },
@@ -249,7 +249,7 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.IMMERSE_IN_JAPAN.type',
 		english: true,
 		japanese: false,
-		featured: true,
+		featured: false,
 		featured_reason: 'PROJECTS.IMMERSE_IN_JAPAN.featured_reason',
 		screenshots: [
 			{ src: getAssetURL(Assets.Immerse1), label: '' },

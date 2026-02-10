@@ -102,7 +102,9 @@
 	"PROJECTS": {
 		"title": "プロジェクト",
 		"no_filter_option": "フィルターなし",
+		"featured_project": "おすすめプロジェクト",
 		"featured_projects": "おすすめプロジェクト",
+		"other_project": "その他のプロジェクト",
 		"other_projects": "その他のプロジェクト",
 		"live_site": "ウェブサイト",
 		"MY_ANIME_COLLECTION": {

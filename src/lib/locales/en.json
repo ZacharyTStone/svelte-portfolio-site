@@ -105,7 +105,9 @@
 	"PROJECTS": {
 		"title": "Projects",
 		"no_filter_option": "No Filters",
+		"featured_project": "Featured Project",
 		"featured_projects": "Featured Projects",
+		"other_project": "Other Project",
 		"other_projects": "Other Projects",
 		"live_site": "Website",
 		"MY_ANIME_COLLECTION": {

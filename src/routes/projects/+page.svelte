@@ -45,6 +45,11 @@
 		});
 	});
 
+	let featuredCount = $derived(displayed.filter((p) => p.featured).length);
+	let otherCount = $derived(displayed.filter((p) => !p.featured).length);
+	let featuredTitle = $derived(featuredCount === 1 ? 'PROJECTS.featured_project' : 'PROJECTS.featured_projects');
+	let otherTitle = $derived(otherCount === 1 ? 'PROJECTS.other_project' : 'PROJECTS.other_projects');
+
 	const isSelected = (slug: string): boolean =>
 		filters.some((item) => item.slug === slug && item.isSelected);
 
@@ -126,7 +131,7 @@
 				class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto"
 				in:fade={{ duration: 300 }}
 			>
-				{$_(PROJECTS.featured_projects ?? 'Featured Projects')}
+				{$_(featuredTitle)}
 			</h4>
 		{:else}
 			<div class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto opacity-0">
@@ -147,7 +152,7 @@
 				class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto"
 				in:fade={{ duration: 300 }}
 			>
-				{$_(PROJECTS.other_projects ?? 'Other Projects')}
+				{$_(otherTitle)}
 			</h4>
 		{:else}
 			<div class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto opacity-0">
