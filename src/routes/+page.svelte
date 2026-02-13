@@ -56,7 +56,7 @@
 		position: relative;
 		overflow: hidden;
 		animation: fadeIn 1.5s ease-in;
-		background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+		background: radial-gradient(circle at 50% 50%, var(--accent-brand-muted) 0%, transparent 55%);
 	}
 
 	.asymmetric-grid {

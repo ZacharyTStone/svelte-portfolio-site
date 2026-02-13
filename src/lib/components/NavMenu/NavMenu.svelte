@@ -280,9 +280,11 @@
 		position: sticky;
 		top: 0px;
 		z-index: 10;
-		padding: 4px 5px;
-		border-bottom: 1px solid var(--secondary);
-		background-color: var(--main);
+		padding: 6px 8px;
+		border-bottom: 1px solid var(--border);
+		background-color: var(--secondary-opaque);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
 		height: max-content;
 		font-family: var(--text-f);
 		font-weight: var(--fw-medium);
