@@ -32,10 +32,9 @@
 				loadingWidth="320px"
 			/>
 			{#if project.featured}
-				<div
-					class="absolute top-3 right-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 py-1 rounded-full text-xs font-medium shadow-lg"
-				>
-					⭐ Featured
+				<div class="featured-badge" aria-label={$_(project.name) + ' — ' + $_('PROJECTS.featured_badge')}>
+					<span class="featured-badge-icon" aria-hidden="true">⭐</span>
+					<span class="featured-badge-text">{$_('PROJECTS.featured_badge')}</span>
 				</div>
 			{/if}
 		</div>
@@ -68,6 +67,33 @@
 </div>
 
 <style>
+	.featured-badge {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.75rem;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		background: linear-gradient(135deg, #eab308 0%, #d97706 100%);
+		color: #fff;
+		border: 1px solid rgba(255, 255, 255, 0.35);
+		padding: 0.35rem 0.65rem;
+		border-radius: var(--radius-lg);
+		font-size: var(--fs-sm);
+		font-weight: var(--fw-semibold);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+		letter-spacing: 0.02em;
+	}
+
+	.featured-badge-icon {
+		font-style: normal;
+		line-height: 1;
+	}
+
+	.featured-badge-text {
+		text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	}
+
 	.line-clamp-2 {
 		display: -webkit-box;
 		-webkit-line-clamp: 2;

@@ -105,6 +105,7 @@
 	"PROJECTS": {
 		"title": "Projects",
 		"no_filter_option": "No Filters",
+		"featured_badge": "Featured",
 		"featured_project": "Featured Project",
 		"featured_projects": "Featured Projects",
 		"other_project": "Other Project",

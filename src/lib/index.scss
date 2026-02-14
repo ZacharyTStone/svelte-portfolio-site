@@ -31,10 +31,10 @@
 	--code-constant: #f08d49;
 	--code-operator: #016464;
 
-	/* Brand accent – subtle blue for highlights, links, hero gradient */
-	--accent-brand: #6b8ab5;
-	--accent-brand-muted: rgba(107, 138, 181, 0.12);
-	--accent-brand-rgb: 107, 138, 181;
+	/* Brand accent – neutral gray tones (no strong color) */
+	--accent-brand: #71717a;
+	--accent-brand-muted: rgba(255, 255, 255, 0.04);
+	--accent-brand-rgb: 113, 113, 122;
 
 	/* Link colors */
 	--link: var(--accent-brand);
@@ -204,7 +204,7 @@ small {
 	--tertiary: var(--dark-2);
 	--tertiary-hover: var(--dark-3);
 	--accent: var(--accent-brand-muted);
-	--accent-hover: rgba(107, 138, 181, 0.2);
+	--accent-hover: rgba(255, 255, 255, 0.08);
 
 	--main-text: var(--light-0);
 	--main-text-hover: var(--light-1);
@@ -213,14 +213,14 @@ small {
 	--secondary-text-hover: #d4d4d8;
 	--tertiary-text: var(--light-2);
 	--tertiary-text-hover: var(--light-3);
-	--accent-text: #94a9c4;
-	--accent-text-hover: #b8c9dc;
+	--accent-text: #d4d4d8;
+	--accent-text-hover: #e4e4e7;
 
 	--border: rgba(255, 255, 255, 0.06);
 	--border-hover: rgba(255, 255, 255, 0.12);
 	--main-60: var(--dark-0-60);
 	--hover: rgba(255, 255, 255, 0.06);
-	--active: rgba(107, 138, 181, 0.1);
+	--active: rgba(255, 255, 255, 0.08);
 }
 
 :root[data-theme='light'] {
@@ -233,8 +233,8 @@ small {
 	--secondary-hover: var(--light-2);
 	--tertiary: var(--light-2);
 	--tertiary-hover: var(--light-3);
-	--accent: var(--accent-brand-muted);
-	--accent-hover: rgba(107, 138, 181, 0.15);
+	--accent: rgba(0, 0, 0, 0.04);
+	--accent-hover: rgba(0, 0, 0, 0.06);
 
 	--main-text: #18181b;
 	--main-text-hover: var(--dark-1);
@@ -243,14 +243,14 @@ small {
 	--secondary-text-hover: #3f3f46;
 	--tertiary-text: var(--dark-2);
 	--tertiary-text-hover: var(--dark-3);
-	--accent-text: #5a7a9e;
-	--accent-text-hover: #4a6a8e;
+	--accent-text: #52525b;
+	--accent-text-hover: #3f3f46;
 
 	--border: rgba(0, 0, 0, 0.08);
 	--border-hover: rgba(0, 0, 0, 0.18);
 	--main-60: var(--light-0-60);
 	--hover: rgba(0, 0, 0, 0.05);
-	--active: rgba(107, 138, 181, 0.1);
+	--active: rgba(0, 0, 0, 0.06);
 }
 
 .container {

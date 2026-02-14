@@ -26,15 +26,13 @@
 	let visibleItems = $state(new Set<number>());
 	let isInitialized = $state(false);
 	const staggerDelay = 100;
-	let featuredTitleVisible = $state(false);
-	let otherTitleVisible = $state(false);
 
-	// Derived state for filtered/searched projects
+	// Derived state for filtered/searched projects (featured first, then rest)
 	let displayed = $derived.by(() => {
 		const selectedFilters = filters.filter((tech) => tech.isSelected);
 		const trimmedSearch = search.trim().toLowerCase();
 
-		return items.filter((project) => {
+		const filtered = items.filter((project) => {
 			const isFiltered =
 				selectedFilters.length === 0 ||
 				selectedFilters.every((tech) => project.skills.some((skill) => skill.slug === tech.slug));
@@ -43,12 +41,9 @@
 
 			return isFiltered && isSearched && !project.dont_show;
 		});
-	});
 
-	let featuredCount = $derived(displayed.filter((p) => p.featured).length);
-	let otherCount = $derived(displayed.filter((p) => !p.featured).length);
-	let featuredTitle = $derived(featuredCount === 1 ? 'PROJECTS.featured_project' : 'PROJECTS.featured_projects');
-	let otherTitle = $derived(otherCount === 1 ? 'PROJECTS.other_project' : 'PROJECTS.other_projects');
+		return [...filtered.filter((p) => p.featured), ...filtered.filter((p) => !p.featured)];
+	});
 
 	const isSelected = (slug: string): boolean =>
 		filters.some((item) => item.slug === slug && item.isSelected);
@@ -73,7 +68,6 @@
 			search = item;
 		}
 
-		// Initialize stagger animation with proper cleanup
 		isInitialized = true;
 		let index = 0;
 		const interval = setInterval(() => {
@@ -85,17 +79,7 @@
 			}
 		}, staggerDelay);
 
-		setTimeout(() => {
-			featuredTitleVisible = true;
-			setTimeout(() => {
-				otherTitleVisible = true;
-			}, 300);
-		}, 200);
-
-		// Cleanup interval on unmount
-		return () => {
-			clearInterval(interval);
-		};
+		return () => clearInterval(interval);
 	});
 </script>
 
@@ -126,41 +110,8 @@
 			<p class="font-300">Could not find anything...</p>
 		</div>
 	{:else if isInitialized}
-		{#if featuredTitleVisible}
-			<h4
-				class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto"
-				in:fade={{ duration: 300 }}
-			>
-				{$_(featuredTitle)}
-			</h4>
-		{:else}
-			<div class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto opacity-0">
-				Placeholder
-			</div>
-		{/if}
-		<div class="projects-list mt-5 mx-auto" class:single-item={featuredCount === 1}>
-			{#each displayed.filter((project) => project.featured) as project, index (project.slug)}
-				{#if visibleItems.has(index)}
-					<div in:fade={{ duration: 300 }}>
-						<ProjectCard {project} />
-					</div>
-				{/if}
-			{/each}
-		</div>
-		{#if otherTitleVisible}
-			<h4
-				class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto"
-				in:fade={{ duration: 300 }}
-			>
-				{$_(otherTitle)}
-			</h4>
-		{:else}
-			<div class="text-[var(--accent-text)] text-1.5em font-300 m-y-12 mx-auto opacity-0">
-				Placeholder
-			</div>
-		{/if}
-		<div class="projects-list mt-5 mx-auto" class:single-item={otherCount === 1}>
-			{#each displayed.filter((project) => !project.featured) as project, index (project.slug)}
+		<div class="projects-list mt-5 mx-auto">
+			{#each displayed as project, index (project.slug)}
 				{#if visibleItems.has(index)}
 					<div in:fade={{ duration: 300 }}>
 						<ProjectCard {project} />
@@ -185,11 +136,6 @@
 		@media (max-width: 850px) {
 			grid-template-columns: repeat(1, 1fr);
 			gap: 70px;
-		}
-
-		&.single-item {
-			display: flex;
-			justify-content: center;
 		}
 	}
 </style>

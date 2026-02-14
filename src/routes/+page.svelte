@@ -116,14 +116,15 @@
 	}
 
 	.last-name {
-		font-weight: var(--fw-light);
+		font-weight: var(--fw-medium);
 		font-style: italic;
 		transform: translateZ(50px);
 		backface-visibility: hidden;
-		background: linear-gradient(135deg, var(--accent-text) 0%, var(--secondary-text) 100%);
+		background: linear-gradient(135deg, var(--secondary-text) 0%, var(--tertiary-text) 100%);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
+		opacity: 0.95;
 	}
 
 	.hero-description {
