@@ -7,7 +7,7 @@ const BASE_URL = 'https://zstone.dev';
 export const prerender = true;
 
 export function GET() {
-	const staticRoutes = ['/', '/about', '/projects', '/experience', '/skills', '/contact', '/search'];
+	const staticRoutes = ['/', '/search'];
 
 	const projectRoutes = MY_PROJECTS.map((p) => `/projects/${p.slug}`);
 	const experienceRoutes = MY_EXPERIENCES.map((e) => `/experience/${e.slug}`);

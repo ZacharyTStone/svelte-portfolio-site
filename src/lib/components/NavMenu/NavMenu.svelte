@@ -3,7 +3,6 @@
 	import { page } from '$app/state';
 	import { HOME, NavBar } from '$lib/params';
 	import { theme, ThemeType, toggleTheme } from '$lib/stores/theme';
-	import { handleNavigation } from '$lib/utils/navigation';
 	import { FocusTrap } from '$lib/utils/keyboard';
 
 	import { _, locale } from 'svelte-i18n';
@@ -18,12 +17,12 @@
 	}
 
 	const items: NavItem[] = [
-		{ title: NavBar.about, to: '/about', icon: 'i-carbon-user' },
-		{ title: NavBar.skills, to: '/skills', icon: 'i-carbon-software-resource-cluster' },
-		{ title: NavBar.personal, to: '/projects', icon: 'i-carbon-cube' },
-		{ title: NavBar.career, to: '/experience', icon: 'i-carbon-development' },
-		{ title: NavBar.resume, to: '/resume', icon: 'i-carbon-document' },
-		{ title: NavBar.contact, to: '/contact', icon: 'i-carbon-email' }
+		{ title: NavBar.about, to: '/#about', icon: 'i-carbon-user' },
+		{ title: NavBar.skills, to: '/#skills', icon: 'i-carbon-software-resource-cluster' },
+		{ title: NavBar.personal, to: '/#projects', icon: 'i-carbon-cube' },
+		{ title: NavBar.career, to: '/#experience', icon: 'i-carbon-development' },
+		{ title: NavBar.resume, to: '/#resume', icon: 'i-carbon-document' },
+		{ title: NavBar.contact, to: '/#contact', icon: 'i-carbon-email' }
 	];
 
 	function toggleLanguage(): void {
@@ -43,6 +42,24 @@
 		activeSection = page.url.pathname;
 	});
 
+	function handleSectionNav(e: Event, target: string): void {
+		e.preventDefault();
+		closeMenu();
+
+		const isHome = page.url.pathname === '/';
+		const hash = target.replace('/', '');
+
+		if (isHome && hash.startsWith('#')) {
+			const el = document.querySelector(hash);
+			if (el) {
+				el.scrollIntoView({ behavior: 'smooth' });
+				history.replaceState(null, '', target);
+			}
+		} else {
+			window.location.href = base + target;
+		}
+	}
+
 	function toggleMenu(): void {
 		isOpen = !isOpen;
 	}
@@ -55,7 +72,6 @@
 		}
 	}
 
-	// Initialize focus trap when mobile menu opens
 	$effect(() => {
 		if (isOpen && mobileMenuElement) {
 			focusTrap = new FocusTrap(mobileMenuElement);
@@ -65,24 +81,24 @@
 		}
 	});
 
-	// Close menu on Escape key press
 	function handleKeyDown(event: KeyboardEvent) {
 		if (event.key === 'Escape') {
 			closeMenu();
 		}
-		// Handle arrow key navigation in mobile menu
 		if (isOpen && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
 			event.preventDefault();
 			const menuItems = document.querySelectorAll('.nav-link');
-			const currentIndex = Array.from(menuItems).findIndex((item) => item === document.activeElement);
+			const currentIndex = Array.from(menuItems).findIndex(
+				(item) => item === document.activeElement
+			);
 			let nextIndex: number;
-			
+
 			if (event.key === 'ArrowDown') {
 				nextIndex = currentIndex < menuItems.length - 1 ? currentIndex + 1 : 0;
 			} else {
 				nextIndex = currentIndex > 0 ? currentIndex - 1 : menuItems.length - 1;
 			}
-			
+
 			(menuItems[nextIndex] as HTMLElement)?.focus();
 		}
 	}
@@ -98,7 +114,14 @@
 		<Chip
 			classes="hidden md:flexinline-flex items-center !text-[var(--secondary-text)] rainbow-hover gap-2 md:inline-flex hidden"
 			href="/"
-			onClick={(e) => handleNavigation(e, '/')}
+			onClick={(e) => {
+				e.preventDefault();
+				if (page.url.pathname === '/') {
+					window.scrollTo({ top: 0, behavior: 'smooth' });
+				} else {
+					window.location.href = base + '/';
+				}
+			}}
 			newTab={false}
 			borderRadius="0px"
 			hideBorder={true}
@@ -126,7 +149,7 @@
 				<Chip
 					classes="inline-flex items-center !text-[var(--secondary-text)] rainbow-hover nav-item"
 					href={item.to}
-					onClick={(e) => handleNavigation(e, item.to)}
+					onClick={(e) => handleSectionNav(e, item.to)}
 					newTab={false}
 					borderRadius="0px"
 					hideBorder={true}
@@ -199,75 +222,35 @@
 				<li class="nav-item" role="none">
 					<a
 						href="/"
-						class="nav-link {activeSection === '/' ? 'active' : ''}"
+						class="nav-link"
 						role="menuitem"
-						aria-current={activeSection === '/' ? 'page' : undefined}
-						onclick={closeMenu}
+						onclick={(e) => {
+							e.preventDefault();
+							closeMenu();
+							if (page.url.pathname === '/') {
+								window.scrollTo({ top: 0, behavior: 'smooth' });
+							} else {
+								window.location.href = base + '/';
+							}
+						}}
 					>
 						<UIcon icon="i-carbon-home" alt="Home icon" />
 						<span>{$_('NAVBAR.home')}</span>
 					</a>
 				</li>
-				<li class="nav-item" role="none">
-					<a
-						href="/projects"
-						class="nav-link {activeSection === '/projects' ? 'active' : ''}"
-						role="menuitem"
-						aria-current={activeSection === '/projects' ? 'page' : undefined}
-						onclick={closeMenu}
-					>
-						<UIcon icon="i-carbon-code" alt="Projects icon" />
-						<span>{$_('NAVBAR.personal')}</span>
-					</a>
-				</li>
-				<li class="nav-item" role="none">
-					<a
-						href="/about"
-						class="nav-link {activeSection === '/about' ? 'active' : ''}"
-						role="menuitem"
-						aria-current={activeSection === '/about' ? 'page' : undefined}
-						onclick={closeMenu}
-					>
-						<UIcon icon="i-carbon-user" alt="About icon" />
-						<span>{$_('NAVBAR.about')}</span>
-					</a>
-				</li>
-				<li class="nav-item" role="none">
-					<a
-						href="/experience"
-						class="nav-link {activeSection === '/experience' ? 'active' : ''}"
-						role="menuitem"
-						aria-current={activeSection === '/experience' ? 'page' : undefined}
-						onclick={closeMenu}
-					>
-						<UIcon icon="i-carbon-development" alt="Experience icon" />
-						<span>{$_('NAVBAR.career')}</span>
-					</a>
-				</li>
-				<li class="nav-item" role="none">
-					<a
-						href="/resume"
-						class="nav-link {activeSection === '/resume' ? 'active' : ''}"
-						role="menuitem"
-						aria-current={activeSection === '/resume' ? 'page' : undefined}
-						onclick={closeMenu}
-					>
-						<UIcon icon="i-carbon-document" alt="Resume icon" />
-						<span>{$_('NAVBAR.resume')}</span>
-					</a>
-				</li>
-				<li class="nav-item" role="none">
-					<a
-						href="/contact"
-						class="nav-link {activeSection === '/contact' ? 'active' : ''}"
-						role="menuitem"
-						aria-current={activeSection === '/contact' ? 'page' : undefined}
-						onclick={closeMenu}
-					>
-						<UIcon icon="i-carbon-email" alt="Contact icon" />
-						<span>{$_('NAVBAR.contact')}</span>
-					</a>
-				</li>
+				{#each items as item}
+					<li class="nav-item" role="none">
+						<a
+							href={item.to}
+							class="nav-link"
+							role="menuitem"
+							onclick={(e) => handleSectionNav(e, item.to)}
+						>
+							<UIcon icon={item.icon} alt={$_(item.title)} />
+							<span>{$_(item.title)}</span>
+						</a>
+					</li>
+				{/each}
 			</ul>
 		</div>
 	{/if}
@@ -439,7 +422,6 @@
 		}
 	}
 
-	/* Reduced motion support */
 	@media (prefers-reduced-motion: reduce) {
 		.mobile-menu-backdrop {
 			animation: none;

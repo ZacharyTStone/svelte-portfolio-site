@@ -1,12 +1,16 @@
 <script lang="ts">
-	import Card from '$lib/components/Card/Card.svelte';
 	import HeroLetters from '$lib/components/Page/HeroLetters.svelte';
+	import AboutSection from '$lib/components/Sections/AboutSection.svelte';
+	import SkillsSection from '$lib/components/Sections/SkillsSection.svelte';
+	import ProjectsSection from '$lib/components/Sections/ProjectsSection.svelte';
+	import ExperienceSection from '$lib/components/Sections/ExperienceSection.svelte';
+	import ResumeSection from '$lib/components/Sections/ResumeSection.svelte';
+	import ContactSection from '$lib/components/Sections/ContactSection.svelte';
 	import { HOME, TITLE_SUFFIX } from '$lib/params';
 	import { useTitle } from '$lib/utils/helpers';
-	import { handleNavigation } from '$lib/utils/navigation';
 	import { _ } from 'svelte-i18n';
 
-	let { description, lastName, links, name, title } = HOME;
+	let { description, lastName, name, title } = HOME;
 </script>
 
 <svelte:head>
@@ -14,6 +18,7 @@
 	<meta name="description" content={$_(description)} />
 </svelte:head>
 
+<!-- Hero -->
 <HeroLetters />
 <div
 	class="hero-container relative items-center overflow-hidden bg-transparent"
@@ -32,19 +37,22 @@
 			<h3 class="hero-description font-text text-accent-text">
 				{$_(description)}
 			</h3>
-			<div class="cta-button">
-				<Card
-					nofade={true}
-					enhanced3d={true}
-					onClick={(e) => handleNavigation(e, '/about')}
-					ariaLabel={$_('ABOUT.cta')}
-				>
-					{$_('ABOUT.cta')}
-				</Card>
-			</div>
+			<a href="#about" class="cta-link">
+				<span class="cta-btn">{$_('ABOUT.cta')}</span>
+			</a>
 			<div class="floating-element shape-2" aria-hidden="true"></div>
 		</div>
 	</div>
+</div>
+
+<!-- All Sections -->
+<div class="spa-sections">
+	<AboutSection />
+	<SkillsSection />
+	<ProjectsSection />
+	<ExperienceSection />
+	<ResumeSection />
+	<ContactSection />
 </div>
 
 <style>
@@ -141,12 +149,35 @@
 		color: var(--secondary-text);
 	}
 
-	.cta-button {
+	.cta-link {
 		opacity: 0;
 		animation: flyIn 1s ease-out 1.5s forwards;
 		align-self: flex-start;
 		position: relative;
 		z-index: 3;
+		text-decoration: none;
+	}
+
+	.cta-btn {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.75rem 1.5rem;
+		border: 1px solid var(--main-text-subtle);
+		border-radius: 15px;
+		color: var(--main-text);
+		font-family: var(--text-f);
+		font-size: var(--fs-base);
+		font-weight: var(--fw-medium);
+		letter-spacing: var(--ls-wide);
+		transition: all 0.3s ease;
+		background: transparent;
+		cursor: pointer;
+	}
+
+	.cta-btn:hover {
+		border-color: var(--border-hover);
+		background: var(--hover);
+		transform: translateY(-2px);
 	}
 
 	.floating-element {
@@ -180,6 +211,29 @@
 		background: linear-gradient(45deg, var(--accent) 0%, transparent 70%);
 	}
 
+	/* SPA Sections container */
+	.spa-sections {
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* Global section styles */
+	:global(.spa-section) {
+		scroll-margin-top: 60px;
+		padding: 4rem 1rem;
+		max-width: 1200px;
+		margin: 0 auto;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	:global(.spa-section:nth-child(even)) {
+		background: var(--accent);
+		max-width: 100%;
+		padding-left: calc((100% - 1200px) / 2 + 1rem);
+		padding-right: calc((100% - 1200px) / 2 + 1rem);
+	}
+
 	@media (max-width: 768px) {
 		.hero-container {
 			padding: 0;
@@ -202,10 +256,9 @@
 			transform: none;
 		}
 
-		.cta-button {
+		.cta-link {
 			align-self: center;
 			margin-top: 1rem;
-			width: 100%;
 		}
 
 		.floating-element {
@@ -235,6 +288,16 @@
 			margin: 0 auto;
 			transform: none;
 		}
+
+		:global(.spa-section) {
+			padding: 3rem 1rem;
+			scroll-margin-top: 50px;
+		}
+
+		:global(.spa-section:nth-child(even)) {
+			padding-left: 1rem;
+			padding-right: 1rem;
+		}
 	}
 
 	@keyframes flyIn {
@@ -248,7 +311,6 @@
 		}
 	}
 
-	/* Mobile-specific animation */
 	@media (max-width: 768px) {
 		@keyframes flyIn {
 			0% {
@@ -283,7 +345,6 @@
 		}
 	}
 
-	/* Reduced motion support */
 	@media (prefers-reduced-motion: reduce) {
 		.hero-container {
 			animation: none;
@@ -296,7 +357,7 @@
 
 		.hero-title,
 		.hero-description,
-		.cta-button {
+		.cta-link {
 			animation: none;
 			opacity: 1;
 		}
