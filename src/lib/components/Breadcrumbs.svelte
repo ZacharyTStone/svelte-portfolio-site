@@ -41,21 +41,27 @@
 		}
 	}
 
+	const SECTION_ROUTES: Record<string, string> = {
+		about: '/#about',
+		projects: '/#projects',
+		skills: '/#skills',
+		experience: '/#experience',
+		contact: '/#contact',
+		resume: '/#resume'
+	};
+
 	let breadcrumbs: BreadcrumbItem[] = $derived.by(() => {
 		const pathname = $page.url.pathname;
 		const segments = pathname.split('/').filter(Boolean);
 		const items: BreadcrumbItem[] = [{ label: safeTranslate(NAVBAR.home), href: `${base}/` }];
 
 		if (segments.length === 0) {
-			return items.slice(0, 1); // Just home
+			return items.slice(0, 1);
 		}
 
-		let currentPath = '';
 		segments.forEach((segment, index) => {
-			currentPath += `/${segment}`;
 			const isLast = index === segments.length - 1;
 
-			// Get label from route or segment
 			let label = segment;
 			if (segment === 'about') label = safeTranslate(NAVBAR.about);
 			else if (segment === 'projects') label = safeTranslate(NAVBAR.personal);
@@ -64,11 +70,9 @@
 			else if (segment === 'contact') label = safeTranslate(NAVBAR.contact);
 			else if (segment === 'search') label = safeTranslate(NAVBAR.search);
 			else {
-				// For dynamic routes, try to get the actual name from page data
 				try {
 					const pageData = $page.data as PageDataWithItem;
 					if (isLast && pageData) {
-						// Check for skill, project, or experience data
 						if (pageData.skill?.name) {
 							label = safeTranslate(pageData.skill.name);
 						} else if (pageData.project?.name) {
@@ -76,23 +80,21 @@
 						} else if (pageData.experience?.name) {
 							label = safeTranslate(pageData.experience.name);
 						} else {
-							// Fallback: capitalize first letter
 							label = segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' ');
 						}
 					} else {
-						// For non-last segments, capitalize first letter
 						label = segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' ');
 					}
 				} catch (e) {
-					// Fallback if page data access fails
 					label = segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' ');
 				}
 			}
 
 			if (!isLast) {
-				items.push({ label, href: `${base}${currentPath}` });
+				const sectionHref = SECTION_ROUTES[segment];
+				items.push({ label, href: sectionHref ? `${base}${sectionHref}` : `${base}/${segment}` });
 			} else {
-				items.push({ label, href: '' }); // Current page, no link
+				items.push({ label, href: '' });
 			}
 		});
 

@@ -14,12 +14,21 @@ const config = {
 		adapter: adapter({
 			fallback: '404.html',
 			static: '',
-			precompress: true // Enable precompression for static files
+			precompress: true
 		}),
 		paths: {
 			base: process.env.NODE_ENV === 'production' ? base : ''
 		},
-		inlineStyleThreshold: 5000, // Inline styles less than 5kb
+		prerender: {
+			handleHttpError({ path, message }) {
+				const spaRedirects = ['/about', '/skills', '/projects', '/experience', '/resume', '/contact'];
+				if (spaRedirects.includes(path)) {
+					return;
+				}
+				throw new Error(message);
+			}
+		},
+		inlineStyleThreshold: 5000,
 		csp: {
 			mode: 'auto'
 		}
