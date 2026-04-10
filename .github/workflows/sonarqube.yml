@@ -39,6 +39,7 @@ permissions:
 jobs:
   Analysis:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]' && github.repository_owner == 'ZacharyTStone'
 
     steps:
       - name: Analyze with SonarQube
