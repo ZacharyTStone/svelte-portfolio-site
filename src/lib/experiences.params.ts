@@ -9,7 +9,7 @@ const RAW_EXPERIENCES: Array<Experience> = [
 		contract: ContractType.FullTime,
 		type: 'EXPERIENCES.interac.type',
 		location: 'EXPERIENCES.interac.location',
-		period: { from: new Date(2018, 7), to: new Date(2021, 6) },
+		period: { from: new Date(2018, 7), to: new Date(2021, 7) },
 		skills: getSkills('japanese'),
 		name: 'EXPERIENCES.interac.name',
 		color: '#ffffff',

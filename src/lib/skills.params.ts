@@ -27,6 +27,7 @@ const FE_TOOLS: SkillInfoObject[] = [
 	{ label: 'Typescript', link: 'https://www.typescriptlang.org/', icon: COLOR_ASSETS.TypeScript },
 	{ label: 'Styled Components', link: 'https://styled-components.com/' },
 	{ label: 'Tailwind', link: 'https://tailwindcss.com/' },
+	{ label: 'AG Grid', link: 'https://www.ag-grid.com/' },
 	{ label: 'Context API', link: 'https://reactjs.org/docs/context.html' },
 	{ label: 'Redux', link: 'https://redux.js.org/' },
 	{ label: 'Playwright', link: 'https://playwright.dev/' },
@@ -63,6 +64,10 @@ const Server: SkillInfoObject[] = [
 const Other: SkillInfoObject[] = [
 	{ label: 'Jira', link: 'https://www.atlassian.com/software/jira' },
 	{ label: 'Github', link: 'https://github.com/' },
+	{ label: 'Sentry', link: 'https://sentry.io/' },
+	{ label: 'LogRocket', link: 'https://logrocket.com/' },
+	{ label: 'Mixpanel', link: 'https://mixpanel.com/' },
+	{ label: 'LaunchDarkly', link: 'https://launchdarkly.com/' },
 	{ label: 'Twilio', link: 'https://www.twilio.com/' },
 	{ label: 'Cursor', link: 'https://www.cursor.com/' },
 	{ label: 'EmailJS', link: 'https://www.emailjs.com/' },
@@ -212,24 +217,34 @@ const MY_SKILLS: Array<Skill> = [
 		name: 'SKILLS.japanese.name',
 		certifications: [
 			{
-				label: 'Japanese Language Proficiency Test level N2 （日本語能力試験レベルN2）',
-				date: '07/21/2021',
+				label: 'Japanese Language Proficiency Test level N1 （日本語能力試験レベルN1）',
+				date: '01/2026',
 				provider: 'Japan Foundation'
 			},
 			{
-				label: 'Kanji Kentei Level 10 (漢字検定レベル10)',
-				date: '07/21/2021',
+				label: 'Japanese Language Proficiency Test level N2 （日本語能力試験レベルN2）',
+				date: '07/2021',
 				provider: 'Japan Foundation'
+			},
+			{
+				label: 'Kanji Kentei Level 8 (漢字検定レベル8)',
+				date: '03/2025',
+				provider: 'Japan Kanji Aptitude Testing Foundation'
 			},
 			{
 				label: 'Kanji Kentei Level 9 (漢字検定レベル9)',
-				date: '11/24/2024',
-				provider: 'Japan Foundation'
+				date: '10/2024',
+				provider: 'Japan Kanji Aptitude Testing Foundation'
+			},
+			{
+				label: 'Kanji Kentei Level 10 (漢字検定レベル10) 満点合格',
+				date: '10/2020',
+				provider: 'Japan Kanji Aptitude Testing Foundation'
 			},
 			{
 				label:
 					'1st Place in RYUKA Speech Contest at Kobe University (神戸大学のRYUKAスピーチコンテスト 最優秀賞)',
-				date: '2024',
+				date: '11/2024',
 				provider: 'Kobe University',
 				link: 'https://www.youtube.com/watch?v=jkPv_Z7iO_4&ab_channel=ZachStone'
 			}

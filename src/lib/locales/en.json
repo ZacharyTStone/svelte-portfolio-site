@@ -3,7 +3,7 @@
 		"title": "Home",
 		"name": "Zach",
 		"lastName": "Stone",
-		"description": "I'm a senior frontend engineer based in Japan.",
+		"description": "Senior Frontend Engineer | Japan · Remote · Timezone Flexible",
 		"connect_cta": "Let's Connect!"
 	},
 	"NAVBAR": {
@@ -34,7 +34,7 @@
 	"ABOUT": {
 		"cta": "Learn More About Me",
 		"title": "About Me",
-		"full_about": "Passionate Senior Frontend Engineer with 4+ years of experience developing scalable, high-performance web applications using tools like React, Next.js, Javascript, and TypeScript. Passionate about crafting clean UIs with CSS libraries such as Styled Components and Tailwind CSS.  Proven track record in enhancing developer workflows, leading technical initiatives, and collaborating cross-functionally with engineering, QA, design, and product teams to deliver exceptional projects. Fluent in Japanese (JLPT N2), with a growing interest in backend development and cybersecurity.",
+		"full_about": "Senior Frontend Engineer with a focus on architecture, observability, and high-velocity reliability. I specialize in taking full ownership of complex frontend systems, bridging the gap between design and production-ready code. Based in Japan, I work effectively across any timezone with a product-first mindset and a commitment to developer excellence. Fluent in Japanese (JLPT N1).",
 		"socials": "Connect with me"
 	},
 	"EXPERIENCES": {
@@ -42,14 +42,14 @@
 		"title": "Experiences",
 		"interac": {
 			"name": "Assistant Language Teacher",
-			"description": "As an ALT (Assistant Language Teacher) at Interac, I taught English to Japanese students in public schools.",
+			"description": "As an ALT (Assistant Language Teacher) at Interac, I taught English to Japanese students in public schools. This was the starting point of my life in Japan and my Japanese language journey.",
 			"type": "English Teaching Agency",
 			"location": "Fukushima, Japan"
 		},
 		"rapptr": {
 			"name": "Frontend Engineer",
 			"quote": "From app strategy, design and development to launch and ongoing tailored support, we are with you every step of the way – continuously refining and evolving your product.",
-			"description": "Acomplishments: \n\n- Implemented a reusable project component library update based on a Figma file.\n\n- Developed an embeddable widget involving extensive research and coordination with various companies' engineering teams.\n\n- Enhanced QA processes, including improved instructions, weekly code reviews, and a dedicated testing environment.\n\n- Significantly refactored the codebase, reducing tech debt. While not the goal, it removed over 50,000 lines of code.",
+			"description": "Product agency building web and mobile products for early-stage and growth-stage startups.\n\n- Cut feature scaffolding time by ~50% with a Figma-synchronised design system. Designed and shipped 20+ primitives adopted across teams, eliminating the recurring cost of design-development drift on every new feature.\n\n- Solved cross-origin isolation to ship an embeddable third-party widget. Led the full technical design, cross-origin isolation strategy, and production rollout.",
 			"type": "App And Website Agency",
 			"location": "New York, NY"
 		},
@@ -58,11 +58,11 @@
 			"quote": "Sellfire is an all-in-one sales platform for inside sales teams. It offers all the necessary features in one software, including dial functions, real-time reporting, coaching and development, pipeline management, and automated lead management. Sellfire supports team scaling while improving sales performance. With real-time call coaching and report display, it quickly identifies and improves sales opportunities. By using Sellfire, sales teams can operate efficiently and effectively, accelerating business growth.",
 			"type": "SAAS Startup",
 			"location": "Austin, TX",
-			"description": "Worked part-time as a front-end engineer for Sellfire while attending a Japanese language school in Japan."
+			"description": "Worked part-time as a front-end engineer for Sellfire while attending a Japanese language school in Japan. Contributed to the core product development and began laying the groundwork for improved frontend practices."
 		},
 		"sellfire2": {
 			"name": "Senior Frontend Engineer",
-			"description": "Worked full-time as a Senior Frontend Engineer for Sellfire.",
+			"description": "Sole senior frontend engineer, 10-repo multi-product codebase.\n\n- Built observability from zero. Designed and shipped a Sentry + PagerDuty detection and routing layer that cut MTTR from days/weeks to minutes, transferring ownership of many production issues from customers to engineering.\n\n- Replaced weekly manual QA with automated feedback in under 15 minutes. Architected CI/CD quality gates using GitHub Actions and Playwright E2E triggered on every staging deployment, catching regressions before they reached production.\n\n- Led React 16 → 18 migration including updating six core libraries. Eliminated legacy build tooling, reduced bundle size, and cut load times measurably. Received unsolicited customer feedback: \"It's much faster. No lag at all.\"\n\n- Introduced Gitflow and async-first review norms across all primary repositories, reducing cycle time and enabling teammates across timezones to ship independently without waiting on synchronous coordination.",
 			"quote": "Sellfire is an all-in-one sales platform for inside sales teams. It offers all the necessary features in one software, including dial functions, real-time reporting, coaching and development, pipeline management, and automated lead management. Sellfire supports team scaling while improving sales performance. With real-time call coaching and report display, it quickly identifies and improves sales opportunities. By using Sellfire, sales teams can operate efficiently and effectively, accelerating business growth.",
 			"type": "SAAS Startup",
 			"location": "Austin, TX"
