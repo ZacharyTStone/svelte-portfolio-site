@@ -108,7 +108,7 @@
 </script>
 
 {#if breadcrumbs.length > 1}
-	<nav class="breadcrumbs" aria-label="Breadcrumb">
+	<nav class="breadcrumbs" aria-label={safeTranslate('COMMON.breadcrumb')}>
 		<ol class="breadcrumbs-list">
 			{#each breadcrumbs as crumb, index}
 				<li class="breadcrumb-item">

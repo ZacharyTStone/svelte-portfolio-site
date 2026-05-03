@@ -1,8 +1,18 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
+	import { _ } from 'svelte-i18n';
 	import Card from '../Card/Card.svelte';
 	import UIcon from '../Icon/UIcon.svelte';
+
+	function safeT(key: string, values?: Record<string, string | number>): string {
+		if (!browser) return key.split('.').pop() || key;
+		try {
+			return $_(key, values ? { values } : undefined);
+		} catch {
+			return key.split('.').pop() || key;
+		}
+	}
 
 	/**
 	 * GitHub Contributions Graph Component
@@ -180,14 +190,14 @@
 		<div class="flex items-center gap-2 mb-4">
 			<UIcon icon="i-carbon-logo-github" classes="text-2em text-[var(--accent-text)]" alt="GitHub" />
 			<h3 class="text-xl font-semibold md:text-2xl">
-				{title || `${username}'s GitHub Activity`}
+				{title || safeT('GITHUB.activity_title', { username })}
 			</h3>
 		</div>
-		
+
 		{#if isLoading && showLoading}
 			<div class="loading-state">
 				<div class="loading-spinner"></div>
-				<p class="text-sm text-[var(--tertiary-text)]">Loading contributions...</p>
+				<p class="text-sm text-[var(--tertiary-text)]">{safeT('GITHUB.loading')}</p>
 			</div>
 		{:else if error}
 			<div class="error-state">
@@ -198,15 +208,15 @@
 			<div class="github-stats">
 				<div class="stat-item">
 					<span class="stat-value">{totalContributions.toLocaleString()}</span>
-					<span class="stat-label">Total Contributions</span>
+					<span class="stat-label">{safeT('GITHUB.total_contributions')}</span>
 				</div>
 				<div class="stat-item">
 					<span class="stat-value">{currentStreak}</span>
-					<span class="stat-label">Current Streak</span>
+					<span class="stat-label">{safeT('GITHUB.current_streak')}</span>
 				</div>
 				<div class="stat-item">
 					<span class="stat-value">{longestStreak}</span>
-					<span class="stat-label">Longest Streak</span>
+					<span class="stat-label">{safeT('GITHUB.longest_streak')}</span>
 				</div>
 			</div>
 
@@ -238,7 +248,7 @@
 				
 				<!-- Legend -->
 				<div class="github-legend">
-					<span class="legend-label">Less</span>
+					<span class="legend-label">{safeT('GITHUB.legend_less')}</span>
 					<div class="legend-squares">
 						<div class="legend-square bg-[var(--tertiary)]"></div>
 						<div class="legend-square bg-[#0e4429]"></div>
@@ -246,7 +256,7 @@
 						<div class="legend-square bg-[#26a641]"></div>
 						<div class="legend-square bg-[#39d353]"></div>
 					</div>
-					<span class="legend-label">More</span>
+					<span class="legend-label">{safeT('GITHUB.legend_more')}</span>
 				</div>
 			</div>
 
@@ -258,8 +268,8 @@
 					rel="noopener noreferrer"
 					class="github-profile-link"
 				>
-					<UIcon icon="i-carbon-arrow-right" classes="text-1em" alt="View" />
-					<span>View GitHub Profile</span>
+					<UIcon icon="i-carbon-arrow-right" classes="text-1em" alt="" />
+					<span>{safeT('GITHUB.view_profile')}</span>
 				</a>
 			</div>
 		{/if}

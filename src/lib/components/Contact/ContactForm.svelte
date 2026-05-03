@@ -153,7 +153,7 @@
 
 		// Check for missing environment variables
 		if (!envVariablesPresent) {
-			error = 'Server configuration error. Please contact the site owner.';
+			error = getTranslation('CONTACT.server_config_error');
 			isSubmitting = false;
 			return;
 		}
@@ -301,14 +301,14 @@
 					></div>
 
 					<div class="recaptcha-notice">
-						This site is protected by reCAPTCHA and the Google
+						{getTranslation('CONTACT.recaptcha_notice_prefix')}
 						<a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"
-							>Privacy Policy</a
+							>{getTranslation('CONTACT.recaptcha_notice_privacy')}</a
 						>
-						and
+						{getTranslation('CONTACT.recaptcha_notice_and')}
 						<a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer"
-							>Terms of Service</a
-						> apply.
+							>{getTranslation('CONTACT.recaptcha_notice_terms')}</a
+						> {getTranslation('CONTACT.recaptcha_notice_suffix')}
 					</div>
 
 					<button type="submit" class="submit-button" disabled={isSubmitting || !recaptchaVerified}>

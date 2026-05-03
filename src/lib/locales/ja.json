@@ -3,7 +3,7 @@
 		"title": "ホーム",
 		"name": "ザック",
 		"lastName": "ストーン",
-		"description": "シニアフロントエンドエンジニア | 日本 ・ リモート ・ タイムゾーン柔軟",
+		"description": "シニアフロントエンドエンジニア | 日本 ・ リモート ・ タイムゾーン対応可",
 		"connect_cta": "つながりましょう！"
 	},
 	"NAVBAR": {
@@ -20,7 +20,24 @@
 		"english": "英語",
 		"lightMode": "ライトモード",
 		"darkMode": "ダークモード",
-		"enabled": "有効"
+		"enabled": "有効",
+		"toggle_menu": "メニューを切り替える",
+		"close_menu": "メニューを閉じる",
+		"menu": "メニュー"
+	},
+	"COMMON": {
+		"breadcrumb": "パンくずリスト",
+		"section_navigation": "セクションナビゲーション",
+		"social_links": "ソーシャルリンク",
+		"reading_progress": "閲覧進捗",
+		"scroll_to_top": "トップへ戻る",
+		"loading_image": "画像を読み込み中",
+		"failed_to_load_image": "画像の読み込みに失敗しました",
+		"close_modal": "閉じる",
+		"redirecting_to": "リダイレクト中：",
+		"could_not_load_experience": "経験データを読み込めませんでした…",
+		"could_not_load_project": "プロジェクトデータを読み込めませんでした…",
+		"now": "現在"
 	},
 	"RESUME": {
 		"englishTitle": "英語履歴書",
@@ -31,9 +48,52 @@
 		"download": "ダウンロード",
 		"cta": "履歴書を見る"
 	},
+	"ABOUT": {
+		"cta": "私についてもっと知る",
+		"title": "自己紹介",
+		"full_about": "シニアフロントエンドエンジニアとして、アーキテクチャ設計・CI/CD・オブザーバビリティを重視した開発を得意としています。複雑なフロントエンドシステムのオーナーシップを持ち、デザインを本番品質のコードに落とし込む橋渡しを担っています。日本を拠点に、プロダクト優先の思考とエンジニアリングへのこだわりを持ち、あらゆるタイムゾーンで効果的に業務を遂行します。日本語能力試験N1取得。",
+		"socials": "私とつながる",
+		"mark_meta": "シニアフロントエンドエンジニア<br />日本・リモート",
+		"heading_prefix": "私が担うのは",
+		"heading_complex_systems": "複雑なフロントエンドシステム",
+		"heading_and_ship_with": "そしてそれらを",
+		"heading_observability": "可観測性",
+		"heading_velocity": "スピード",
+		"heading_and": "そして",
+		"heading_reliability": "信頼性",
+		"heading_period": "を備えてリリースします。",
+		"fact_based_in": "拠点",
+		"fact_based_in_value": "日本",
+		"fact_language": "言語",
+		"fact_language_value": "JLPT N1",
+		"fact_timezones": "タイムゾーン",
+		"fact_timezones_value": "柔軟",
+		"github_label": "GitHub",
+		"github_subtitle": "直近26週間"
+	},
+	"HERO": {
+		"available_label": "シニアフロントエンドの案件を募集中",
+		"cta_view_work": "実績を見る",
+		"cta_get_in_touch": "お問い合わせ",
+		"scroll_to_about": "Aboutセクションへスクロール",
+		"scroll_to_explore": "スクロールして探索"
+	},
 	"EXPERIENCES": {
 		"cta": "経歴を見る",
 		"title": "経歴",
+		"eyebrow": "02 — 経歴",
+		"heading_prefix": "キャリアを通じて大切にしてきたのは",
+		"heading_ownership": "オーナーシップ",
+		"heading_outcomes": "計測可能な成果",
+		"heading_and": "そして",
+		"heading_impact": "ビジネスインパクト",
+		"heading_period": "。",
+		"currently_shipping": "現在進行中",
+		"completed": "完了",
+		"spec_role": "役割",
+		"spec_where": "勤務地",
+		"spec_type": "職種",
+		"scroll_hint": "スクロールして各役職を見る",
 		"interac": {
 			"name": "アシスタント言語教師",
 			"description": "インタラックのALTとして、公立学校で日本の学生に英語を教えていました。日本での生活と日本語学習の原点となった職歴です。",
@@ -48,13 +108,6 @@
 			"description": "アーリー〜グロースステージのスタートアップ向けにWebおよびモバイルプロダクトを受託開発。\n\n・Figma連携コンポーネントライブラリ（20以上のプリミティブ）を設計・構築。新機能スキャフォールディング時間を約50%削減し、デザイン〜実装間のドリフトを解消。\n・サードパーティ埋め込みウィジェットをゼロから設計・実装。クロスオリジン分離戦略を含む技術設計から本番展開まで一貫して担当。"
 		},
 		"sellfire": {
-			"name": "フロントエンドエンジニア",
-			"quote": "Sellfireはインサイドセールスチーム向けのオールインワン営業プラットフォームです。ダイアル機能、リアルタイムレポーティング、コーチングと開発、パイプライン管理、リードの自動管理など、すべての必要な機能を一つのソフトウェアで提供します。Sellfireは、営業パフォーマンスを向上させながら、チームの規模拡大をサポートします。リアルタイムでのコールコーチングやレポート表示により、販売機会を迅速に見つけ出し、改善することが可能です。Sellfireを利用することで、営業チームは効率的かつ効果的に動き、ビジネスの成長を加速させることができます。",
-			"type": "アプリとウェブサイトエンジニアリング",
-			"location": "アメリカ、テキサス州オースティン",
-			"description": "日本で語学学校に通いながら、Sellfireのフロントエンドエンジニアとしてパートタイムで勤務。コア製品の開発に貢献し、フロントエンドの実践方法の改善に向けた基礎固めを開始しました。"
-		},
-		"sellfire2": {
 			"name": "シニアフロントエンドエンジニア",
 			"quote": "Sellfireはインサイドセールスチーム向けのオールインワン営業プラットフォームです。ダイアル機能、リアルタイムレポーティング、コーチングと開発、パイプライン管理、リードの自動管理など、すべての必要な機能を一つのソフトウェアで提供します。Sellfireは、営業パフォーマンスを向上させながら、チームの規模拡大をサポートします。リアルタイムでのコールコーチングやレポート表示により、販売機会を迅速に見つけ出し、改善することが可能です。Sellfireを利用することで、営業チームは効率的かつ効果的に動き、ビジネスの成長を加速させることができます。",
 			"type": "アプリとウェブサイトエンジニアリング",
@@ -62,15 +115,14 @@
 			"description": "唯一のシニアフロントエンドエンジニアとして、10以上のリポジトリを持つマルチプロダクト構成のフロントエンド全領域を担当。\n\n・Sentry + PagerDutyによる可観測性基盤をゼロから構築。MTTRを数日〜数週間から数分に短縮。\n・GitHub Actions + Playwright E2Eによる自動品質ゲートを設計・導入。週次の手動QAを廃止し、15分以内の自動フィードバックに置き換えた。\n・React 16→18移行（コアライブラリ6本含む）を主導。バンドルサイズ削減・ロード時間改善を達成。顧客から「体感で速くなった」との自発的なフィードバックを受領。\n・全主要リポジトリにGitflowと非同期レビュー規範を導入。異なるタイムゾーンのメンバーが同期不要で自律的にリリースできる体制を構築。"
 		}
 	},
-	"ABOUT": {
-		"cta": "私についてもっと知る",
-		"title": "自己紹介",
-		"full_about": "シニアフロントエンドエンジニアとして、アーキテクチャ設計・CI/CD・オブザーバビリティを重視した開発を得意としています。複雑なフロントエンドシステムの全責任を持ち、デザインからプロダクション品質のコードへの橋渡しを専門としています。日本を拠点に、プロダクト第一の考え方とエンジニアリングの卓越性へのコミットメントを持ち、あらゆるタイムゾーンで効果的に業務を遂行します。日本語能力試験N1取得。",
-		"socials": "私とつながる"
-	},
 	"SKILLS": {
 		"cta": "スキルを見る",
 		"title": "スキル",
+		"eyebrow": "04 — スキル",
+		"heading_prefix": "本番投入してきた",
+		"heading_accent": "技術スタック",
+		"sub": "フロントエンドの深さ、バックエンドの素養、そしてチームを加速させる開発ツール。",
+		"explore": "詳細 →",
 		"fe": {
 			"name": "フロントエンド(ウェブ)"
 		},
@@ -92,7 +144,12 @@
 	},
 	"SEARCH": {
 		"title": "検索",
-		"prompt": "スキル、プロジェクト名、またはツールを入力してください。"
+		"prompt": "スキル、プロジェクト名、またはツールを入力してください。",
+		"results_label": "検索結果",
+		"no_results": "「{query}」に一致する結果はありませんでした",
+		"placeholder": "検索...",
+		"aria_label": "プロジェクト・スキル・経歴を検索",
+		"meta_description": "プロジェクト、スキル、経歴を検索"
 	},
 	"CONTRACT": {
 		"FullTime": "正社員",
@@ -111,6 +168,15 @@
 		"other_project": "その他のプロジェクト",
 		"other_projects": "その他のプロジェクト",
 		"live_site": "ウェブサイト",
+		"eyebrow": "03 — 主な作品",
+		"heading_prefix": "私が",
+		"heading_accent": "作ったもの",
+		"counter_label": "プロジェクト",
+		"open_case": "詳細を見る",
+		"hint": "ドラッグ・スクロール・トラックパッド・スワイプで操作",
+		"track_label": "プロジェクトショーケース — 横スクロールまたはドラッグ",
+		"screenshot_alt": "プロジェクトのスクリーンショット",
+		"view_larger_screenshot": "拡大表示",
 		"MY_ANIME_COLLECTION": {
 			"name": "マイ・アニメ・コレクション",
 			"description": "マイ・アニメ・コレクションは、お気に入りのアニメを探索し、カスタムプレイリストを作成できる無料アプリです。",
@@ -174,7 +240,7 @@
 	},
 	"CONTACT": {
 		"title": "お問い合わせ",
-		"meta_description": "ザックストーン - ウェブ開発者・エンジニアへのお問い合わせ",
+		"meta_description": "ザック・ストーン - ウェブ開発者・エンジニアへのお問い合わせ",
 		"name": "お名前",
 		"name_placeholder": "お名前",
 		"email": "メールアドレス",
@@ -192,6 +258,35 @@
 		"recaptcha_error": "reCAPTCHA認証に失敗しました。もう一度お試しください。",
 		"recaptcha_verification_failed": "ボットと判断されました。後でもう一度試すか、ソーシャルメディアからご連絡ください。",
 		"connect_title": "他の連絡方法",
-		"connect_description": "以下のプラットフォームからもご連絡いただけます："
+		"connect_description": "以下のプラットフォームからもご連絡いただけます：",
+		"eyebrow": "05 — お問い合わせ",
+		"headline_prefix": "一緒に作りましょう、",
+		"headline_accent": "価値ある",
+		"headline_suffix": "プロダクトを",
+		"footer_built_with": "SvelteKit · Motion · Lenis で構築",
+		"recaptcha_notice_prefix": "このサイトは reCAPTCHA で保護されており、Google の",
+		"recaptcha_notice_privacy": "プライバシーポリシー",
+		"recaptcha_notice_and": "と",
+		"recaptcha_notice_terms": "利用規約",
+		"recaptcha_notice_suffix": "が適用されます。",
+		"server_config_error": "サーバー設定エラー。サイト管理者にご連絡ください。"
+	},
+	"GITHUB": {
+		"loading": "コントリビューションを読み込み中...",
+		"total_contributions": "総コントリビューション数",
+		"current_streak": "現在の連続記録",
+		"longest_streak": "最長連続記録",
+		"legend_less": "少ない",
+		"legend_more": "多い",
+		"view_profile": "GitHubプロフィールを見る",
+		"activity_title": "{username}のGitHubアクティビティ"
+	},
+	"RAIL": {
+		"intro": "イントロ",
+		"about": "自己紹介",
+		"experience": "経歴",
+		"work": "作品",
+		"skills": "スキル",
+		"contact": "連絡先"
 	}
 }

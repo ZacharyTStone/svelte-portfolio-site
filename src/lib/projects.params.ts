@@ -41,8 +41,6 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.MY_ANIME_COLLECTION.type',
 		english: true,
 		japanese: true,
-		featured: true,
-		featured_reason: 'PROJECTS.MY_ANIME_COLLECTION.featured_reason',
 		screenshots: [
 			{ src: getAssetURL(Assets.Mac1), label: '' },
 			{ src: getAssetURL(Assets.Mac2), label: '' },
@@ -84,8 +82,6 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.HAKU.type',
 		english: true,
 		japanese: false,
-		featured: false,
-		featured_reason: 'PROJECTS.HAKU.featured_reason',
 		screenshots: [
 			{ src: getAssetURL(Assets.Haku1), label: '' },
 			{ src: getAssetURL(Assets.Haku2), label: '' },
@@ -122,9 +118,6 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.ZACH_STONE.type',
 		english: true,
 		japanese: false,
-		// featured: true,
-		featured_reason: 'PROJECTS.ZACH_STONE.featured_reason',
-		// dont_show: true
 		screenshots: [
 			{ src: getAssetURL(Assets.Blog1), label: '' },
 			{ src: getAssetURL(Assets.Blog2), label: '' },
@@ -160,8 +153,6 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.AI_FLASHCARDS.type',
 		english: true,
 		japanese: true,
-		featured_reason: 'PROJECTS.AI_FLASHCARDS.featured_reason',
-		featured: false,
 		screenshots: [
 			{ src: getAssetURL(Assets.Anki1), label: '' },
 			{ src: getAssetURL(Assets.Anki2), label: '' },
@@ -223,7 +214,6 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.JAPANESE_QUIZ.type',
 		english: false,
 		japanese: true,
-		featured_reason: 'PROJECTS.JAPANESE_QUIZ.featured_reason',
 		screenshots: [
 			{ src: getAssetURL(Assets.Prefecture1), label: '' },
 			{ src: getAssetURL(Assets.Prefecture2), label: '' }
@@ -249,8 +239,6 @@ const MY_PROJECTS: Array<Project> = [
 		type: 'PROJECTS.IMMERSE_IN_JAPAN.type',
 		english: true,
 		japanese: false,
-		featured: false,
-		featured_reason: 'PROJECTS.IMMERSE_IN_JAPAN.featured_reason',
 		screenshots: [
 			{ src: getAssetURL(Assets.Immerse1), label: '' },
 			{ src: getAssetURL(Assets.Immerse2), label: '' }

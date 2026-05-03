@@ -36,7 +36,7 @@
 {#if data.experience === undefined}
 	<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)]">
 		<UIcon icon="i-carbon-cube" classes="text-3.5em" />
-		<p class="font-300">Could not load experience data...</p>
+		<p class="font-300">{$_('COMMON.could_not_load_experience')}</p>
 	</div>
 {:else}
 	<div class="flex flex-col items-center overflow-x-hidden p-5 md:p-0">

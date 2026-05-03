@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
+	import { _ } from 'svelte-i18n';
 	import Image from '../Image/Image.svelte';
 
 	let { screenshots = [] as { src: string; label?: string }[] } = $props();
@@ -7,13 +9,22 @@
 	let selectedImage = $state('');
 	let selectedLabel = $state('');
 
+	function safeT(key: string): string {
+		if (!browser) return key.split('.').pop() || key;
+		try {
+			return $_(key);
+		} catch {
+			return key.split('.').pop() || key;
+		}
+	}
+
 	function openModal(imageSrc: string, label?: string) {
 		selectedImage = imageSrc;
-		selectedLabel = label || 'Project Screenshot';
+		selectedLabel = label || safeT('PROJECTS.screenshot_alt');
 		isModalOpen = true;
 		// Set focus trap when modal opens
 		setTimeout(() => {
-			const closeButton = document.querySelector('[aria-label="Close Modal"]');
+			const closeButton = document.querySelector('[data-screenshot-close]');
 			if (closeButton instanceof HTMLElement) {
 				closeButton.focus();
 			}
@@ -47,11 +58,11 @@
 			onkeydown={(e: KeyboardEvent) => e.key === 'Enter' && openModal(item.src, item.label)}
 			role="button"
 			tabindex="0"
-			aria-label={item.label || 'View larger screenshot'}
+			aria-label={item.label || safeT('PROJECTS.view_larger_screenshot')}
 		>
 			<Image
 				src={item.src}
-				alt={item.label || 'Project screenshot'}
+				alt={item.label || safeT('PROJECTS.screenshot_alt')}
 				classes="w-100% h-100% rounded-md"
 				loadingHeight="150px"
 			/>
@@ -83,10 +94,11 @@
 		/>
 		<button
 			onclick={closeModal}
-			aria-label="Close Modal"
+			aria-label={safeT('COMMON.close_modal')}
+			data-screenshot-close
 			tabIndex={0}
 			class="absolute top-0 right-0 m-4 text-black text-3xl bg-white p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-			style="width: 50px; height: 50px;">X</button
+			style="width: 50px; height: 50px;">×</button
 		>
 	</div>
 {/if}

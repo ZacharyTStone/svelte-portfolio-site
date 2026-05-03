@@ -46,7 +46,7 @@
 	{#if data.project === undefined}
 		<div class="p-5 col-center gap-3 m-y-auto text-[var(--accent-text)]">
 			<UIcon icon="i-carbon-cube" classes="text-3.5em" />
-			<p class="font-300">Could not load project data...</p>
+			<p class="font-300">{$_('COMMON.could_not_load_project')}</p>
 		</div>
 	{:else}
 		<div class="flex flex-col items-center overflow-x-hidden">

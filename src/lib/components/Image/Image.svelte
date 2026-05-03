@@ -1,5 +1,16 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
+	import { _ } from 'svelte-i18n';
+
+	function safeT(key: string): string {
+		if (!browser) return key.split('.').pop() || key;
+		try {
+			return $_(key);
+		} catch {
+			return key.split('.').pop() || key;
+		}
+	}
 
 	interface Props {
 		src?: string;
@@ -115,7 +126,7 @@
 		<div
 			class={classes + ' skeleton'}
 			style={`min-height: ${loadingHeight}; min-width: ${loadingWidth}`}
-			aria-label="Loading image"
+			aria-label={safeT('COMMON.loading_image')}
 			role="status"
 			aria-live="polite"
 		></div>
@@ -123,7 +134,7 @@
 		<div
 			class={classes + ' skeleton error'}
 			style={`min-height: ${loadingHeight}; min-width: ${loadingWidth}`}
-			aria-label="Failed to load image"
+			aria-label={safeT('COMMON.failed_to_load_image')}
 			role="alert"
 		></div>
 	{/if}

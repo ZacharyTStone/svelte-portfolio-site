@@ -217,27 +217,27 @@ const MY_SKILLS: Array<Skill> = [
 		name: 'SKILLS.japanese.name',
 		certifications: [
 			{
-				label: 'Japanese Language Proficiency Test level N1 （日本語能力試験レベルN1）',
+				label: 'Japanese Language Proficiency Test level N1 （日本語能力試験N1）',
 				date: '01/2026',
 				provider: 'Japan Foundation'
 			},
 			{
-				label: 'Japanese Language Proficiency Test level N2 （日本語能力試験レベルN2）',
+				label: 'Japanese Language Proficiency Test level N2 （日本語能力試験N2）',
 				date: '07/2021',
 				provider: 'Japan Foundation'
 			},
 			{
-				label: 'Kanji Kentei Level 8 (漢字検定レベル8)',
+				label: 'Kanji Kentei Level 8 (漢字検定8級)',
 				date: '03/2025',
 				provider: 'Japan Kanji Aptitude Testing Foundation'
 			},
 			{
-				label: 'Kanji Kentei Level 9 (漢字検定レベル9)',
+				label: 'Kanji Kentei Level 9 (漢字検定9級)',
 				date: '10/2024',
 				provider: 'Japan Kanji Aptitude Testing Foundation'
 			},
 			{
-				label: 'Kanji Kentei Level 10 (漢字検定レベル10) 満点合格',
+				label: 'Kanji Kentei Level 10 (漢字検定10級) 満点合格',
 				date: '10/2020',
 				provider: 'Japan Kanji Aptitude Testing Foundation'
 			},

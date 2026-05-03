@@ -20,7 +20,24 @@
 		"english": "English",
 		"lightMode": "Light Mode",
 		"darkMode": "Dark Mode",
-		"enabled": "enabled"
+		"enabled": "enabled",
+		"toggle_menu": "Toggle menu",
+		"close_menu": "Close menu",
+		"menu": "Menu"
+	},
+	"COMMON": {
+		"breadcrumb": "Breadcrumb",
+		"section_navigation": "Section navigation",
+		"social_links": "Social links",
+		"reading_progress": "Reading progress",
+		"scroll_to_top": "Scroll to top",
+		"loading_image": "Loading image",
+		"failed_to_load_image": "Failed to load image",
+		"close_modal": "Close",
+		"redirecting_to": "Redirecting to",
+		"could_not_load_experience": "Could not load experience data...",
+		"could_not_load_project": "Could not load project data...",
+		"now": "Now"
 	},
 	"RESUME": {
 		"englishTitle": "English Resume",
@@ -35,11 +52,48 @@
 		"cta": "Learn More About Me",
 		"title": "About Me",
 		"full_about": "Senior Frontend Engineer with a focus on architecture, observability, and high-velocity reliability. I specialize in taking full ownership of complex frontend systems, bridging the gap between design and production-ready code. Based in Japan, I work effectively across any timezone with a product-first mindset and a commitment to developer excellence. Fluent in Japanese (JLPT N1).",
-		"socials": "Connect with me"
+		"socials": "Connect with me",
+		"mark_meta": "Senior Frontend Engineer<br />Japan · Remote",
+		"heading_prefix": "I take ownership of",
+		"heading_complex_systems": "complex frontend systems",
+		"heading_and_ship_with": "and ship them with",
+		"heading_observability": "observability",
+		"heading_velocity": "velocity",
+		"heading_and": "and",
+		"heading_reliability": "reliability",
+		"heading_period": ".",
+		"fact_based_in": "Based in",
+		"fact_based_in_value": "Japan",
+		"fact_language": "Language",
+		"fact_language_value": "JLPT N1",
+		"fact_timezones": "Timezones",
+		"fact_timezones_value": "Flexible",
+		"github_label": "GitHub",
+		"github_subtitle": "Last 26 weeks"
+	},
+	"HERO": {
+		"available_label": "Available for senior frontend roles",
+		"cta_view_work": "View Selected Work",
+		"cta_get_in_touch": "Get in touch",
+		"scroll_to_about": "Scroll to about section",
+		"scroll_to_explore": "Scroll to explore"
 	},
 	"EXPERIENCES": {
 		"cta": "See Where I've Worked",
 		"title": "Experiences",
+		"eyebrow": "02 — Experience",
+		"heading_prefix": "A career built around",
+		"heading_ownership": "ownership",
+		"heading_outcomes": "measurable outcomes",
+		"heading_and": "and",
+		"heading_impact": "business impact",
+		"heading_period": ".",
+		"currently_shipping": "Currently shipping",
+		"completed": "Completed",
+		"spec_role": "Role",
+		"spec_where": "Where",
+		"spec_type": "Type",
+		"scroll_hint": "Scroll down to step through each role",
 		"interac": {
 			"name": "Assistant Language Teacher",
 			"description": "As an ALT (Assistant Language Teacher) at Interac, I taught English to Japanese students in public schools. This was the starting point of my life in Japan and my Japanese language journey.",
@@ -54,23 +108,21 @@
 			"location": "New York, NY"
 		},
 		"sellfire": {
-			"name": "Frontend Engineer",
+			"name": "Senior Frontend Engineer",
 			"quote": "Sellfire is an all-in-one sales platform for inside sales teams. It offers all the necessary features in one software, including dial functions, real-time reporting, coaching and development, pipeline management, and automated lead management. Sellfire supports team scaling while improving sales performance. With real-time call coaching and report display, it quickly identifies and improves sales opportunities. By using Sellfire, sales teams can operate efficiently and effectively, accelerating business growth.",
 			"type": "SAAS Startup",
 			"location": "Austin, TX",
-			"description": "Worked part-time as a front-end engineer for Sellfire while attending a Japanese language school in Japan. Contributed to the core product development and began laying the groundwork for improved frontend practices."
-		},
-		"sellfire2": {
-			"name": "Senior Frontend Engineer",
-			"description": "Sole senior frontend engineer, 10-repo multi-product codebase.\n\n- Built observability from zero. Designed and shipped a Sentry + PagerDuty detection and routing layer that cut MTTR from days/weeks to minutes, transferring ownership of many production issues from customers to engineering.\n\n- Replaced weekly manual QA with automated feedback in under 15 minutes. Architected CI/CD quality gates using GitHub Actions and Playwright E2E triggered on every staging deployment, catching regressions before they reached production.\n\n- Led React 16 → 18 migration including updating six core libraries. Eliminated legacy build tooling, reduced bundle size, and cut load times measurably. Received unsolicited customer feedback: \"It's much faster. No lag at all.\"\n\n- Introduced Gitflow and async-first review norms across all primary repositories, reducing cycle time and enabling teammates across timezones to ship independently without waiting on synchronous coordination.",
-			"quote": "Sellfire is an all-in-one sales platform for inside sales teams. It offers all the necessary features in one software, including dial functions, real-time reporting, coaching and development, pipeline management, and automated lead management. Sellfire supports team scaling while improving sales performance. With real-time call coaching and report display, it quickly identifies and improves sales opportunities. By using Sellfire, sales teams can operate efficiently and effectively, accelerating business growth.",
-			"type": "SAAS Startup",
-			"location": "Austin, TX"
+			"description": "Sole senior frontend engineer, 10-repo multi-product codebase.\n\n- Built observability from zero. Designed and shipped a Sentry + PagerDuty detection and routing layer that cut MTTR from days/weeks to minutes, transferring ownership of many production issues from customers to engineering.\n\n- Replaced weekly manual QA with automated feedback in under 15 minutes. Architected CI/CD quality gates using GitHub Actions and Playwright E2E triggered on every staging deployment, catching regressions before they reached production.\n\n- Led React 16 → 18 migration including updating six core libraries. Eliminated legacy build tooling, reduced bundle size, and cut load times measurably. Received unsolicited customer feedback: \"It's much faster. No lag at all.\"\n\n- Introduced Gitflow and async-first review norms across all primary repositories, reducing cycle time and enabling teammates across timezones to ship independently without waiting on synchronous coordination."
 		}
 	},
 	"SKILLS": {
 		"cta": "See My Skills",
 		"title": "Skills",
+		"eyebrow": "04 — Skills",
+		"heading_prefix": "Stack I've shipped",
+		"heading_accent": "production with",
+		"sub": "Frontend depth, backend fluency, and the dev-tools that move teams faster.",
+		"explore": "Explore →",
 		"fe": {
 			"name": "Frontend Web"
 		},
@@ -92,7 +144,12 @@
 	},
 	"SEARCH": {
 		"title": "Search",
-		"prompt": "Try typing a skill, name, or tool."
+		"prompt": "Try typing a skill, name, or tool.",
+		"results_label": "Search results",
+		"no_results": "Oops! Nothing to show for '{query}'",
+		"placeholder": "Search...",
+		"aria_label": "Search through projects, skills and experiences",
+		"meta_description": "Search through projects, skills, and experiences"
 	},
 	"CONTRACT": {
 		"FullTime": "Full-time",
@@ -111,6 +168,15 @@
 		"other_project": "Other Project",
 		"other_projects": "Other Projects",
 		"live_site": "Website",
+		"eyebrow": "03 — Selected Work",
+		"heading_prefix": "Things I've",
+		"heading_accent": "built",
+		"counter_label": "Projects",
+		"open_case": "Open case",
+		"hint": "Drag, scroll wheel, trackpad, or swipe sideways",
+		"track_label": "Project showcases — scroll or drag sideways",
+		"screenshot_alt": "Project screenshot",
+		"view_larger_screenshot": "View larger screenshot",
 		"MY_ANIME_COLLECTION": {
 			"name": "My Anime Collection",
 			"description": "My Anime Collection is a free anime tracker where you can explore and create custom playlists of your favorite anime.",
@@ -192,6 +258,35 @@
 		"recaptcha_error": "reCAPTCHA verification failed. Please try again.",
 		"recaptcha_verification_failed": "You appear to be a bot. Please try again later or contact me through social media.",
 		"connect_title": "Connect With Me",
-		"connect_description": "You can also reach me through any of these platforms:"
+		"connect_description": "You can also reach me through any of these platforms:",
+		"eyebrow": "05 — Contact",
+		"headline_prefix": "Let's build",
+		"headline_accent": "something",
+		"headline_suffix": "worth shipping",
+		"footer_built_with": "Built with SvelteKit · Motion · Lenis",
+		"recaptcha_notice_prefix": "This site is protected by reCAPTCHA and the Google",
+		"recaptcha_notice_privacy": "Privacy Policy",
+		"recaptcha_notice_and": "and",
+		"recaptcha_notice_terms": "Terms of Service",
+		"recaptcha_notice_suffix": "apply.",
+		"server_config_error": "Server configuration error. Please contact the site owner."
+	},
+	"GITHUB": {
+		"loading": "Loading contributions...",
+		"total_contributions": "Total Contributions",
+		"current_streak": "Current Streak",
+		"longest_streak": "Longest Streak",
+		"legend_less": "Less",
+		"legend_more": "More",
+		"view_profile": "View GitHub Profile",
+		"activity_title": "{username}'s GitHub Activity"
+	},
+	"RAIL": {
+		"intro": "Intro",
+		"about": "About",
+		"experience": "Experience",
+		"work": "Work",
+		"skills": "Skills",
+		"contact": "Contact"
 	}
 }

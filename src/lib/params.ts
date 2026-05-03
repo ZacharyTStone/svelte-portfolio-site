@@ -26,7 +26,10 @@ export const NavBar = {
 	japanese: 'NAVBAR.japanese',
 	english: 'NAVBAR.english',
 	lightMode: 'NAVBAR.lightMode',
-	darkMode: 'NAVBAR.darkMode'
+	darkMode: 'NAVBAR.darkMode',
+	toggle_menu: 'NAVBAR.toggle_menu',
+	close_menu: 'NAVBAR.close_menu',
+	menu: 'NAVBAR.menu'
 };
 
 export const getPlatfromIcon = (platform: Platform): Icons => {
@@ -72,9 +75,7 @@ export const HOME: HomePageParams = {
 export const PROJECTS: ProjectPageParams = {
 	title: 'PROJECTS.title',
 	items: MY_PROJECTS,
-	no_filter_option: 'PROJECTS.no_filter_option',
-	featured_projects: 'PROJECTS.featured_projects',
-	other_projects: 'PROJECTS.other_projects'
+	no_filter_option: 'PROJECTS.no_filter_option'
 };
 
 export const EXPERIENCES: ExperiencePageParams = {

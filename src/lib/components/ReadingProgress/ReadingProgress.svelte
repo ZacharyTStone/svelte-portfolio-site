@@ -1,5 +1,16 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
+	import { _ } from 'svelte-i18n';
+
+	function safeT(key: string): string {
+		if (!browser) return key.split('.').pop() || key;
+		try {
+			return $_(key);
+		} catch {
+			return key.split('.').pop() || key;
+		}
+	}
 
 	let progress = $state(0);
 	let el: HTMLElement | null = null;
@@ -37,7 +48,7 @@
 	aria-valuenow={progress}
 	aria-valuemin="0"
 	aria-valuemax="100"
-	aria-label="Reading progress"
+	aria-label={safeT('COMMON.reading_progress')}
 >
 	<div class="reading-progress-bar" style="width: {progress}%"></div>
 </div>
@@ -56,9 +67,9 @@
 
 	.reading-progress-bar {
 		height: 100%;
-		background: linear-gradient(90deg, var(--accent-text) 0%, var(--accent) 100%);
+		background: linear-gradient(90deg, var(--accent-electric) 0%, #8fbcff 100%);
 		transition: width 0.1s ease-out;
-		box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.5);
+		box-shadow: 0 0 10px rgba(var(--accent-electric-rgb), 0.5);
 	}
 
 	/* Reduced motion support */

@@ -61,34 +61,16 @@ const RAW_EXPERIENCES: Array<Experience> = [
 	{
 		slug: 'sellfire',
 		company: 'Sellfire',
-		contract: ContractType.PartTime,
+		contract: ContractType.FullTime,
 		type: 'EXPERIENCES.sellfire.type',
 		location: 'EXPERIENCES.sellfire.location',
-		period: { from: new Date(2024, 6), to: new Date(2024, 11) },
+		period: { from: new Date(2024, 6) },
 		skills: getSkills('fe', 'be', 'dev-tools'),
 		name: 'EXPERIENCES.sellfire.name',
 		color: '#ffffff',
 		links: [{ to: 'https://sellfire.com/', label: 'Sellfire', newTab: true }],
 		quote: {
 			text: 'EXPERIENCES.sellfire.quote',
-			link: { to: 'https://sellfire.com/', label: 'Sellfire', newTab: true }
-		},
-		logo: Assets.Sellfire,
-		shortDescription: 'test'
-	},
-	{
-		slug: 'sellfire2',
-		company: 'Sellfire',
-		contract: ContractType.FullTime,
-		type: 'EXPERIENCES.sellfire2.type',
-		location: 'EXPERIENCES.sellfire2.location',
-		period: { from: new Date(2024, 11) },
-		skills: getSkills('fe', 'be', 'dev-tools'),
-		name: 'EXPERIENCES.sellfire2.name',
-		color: '#ffffff',
-		links: [{ to: 'https://sellfire.com/', label: 'Sellfire', newTab: true }],
-		quote: {
-			text: 'EXPERIENCES.sellfire2.quote',
 			link: { to: 'https://sellfire.com/', label: 'Sellfire', newTab: true }
 		},
 		logo: Assets.Sellfire,

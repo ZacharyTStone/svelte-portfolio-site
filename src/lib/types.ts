@@ -113,8 +113,6 @@ export interface Project extends Item {
 	video?: string;
 	english?: boolean;
 	japanese?: boolean;
-	featured?: boolean;
-	featured_reason?: string;
 	description_is_markdown?: boolean;
 	dont_show?: boolean;
 }
@@ -149,8 +147,6 @@ export interface PageParams {
 export interface PageWithSearchParams<T> extends PageParams {
 	items: Array<T>;
 	no_filter_option?: string;
-	featured_projects?: string;
-	other_projects?: string;
 }
 
 /**

@@ -36,13 +36,18 @@
 	--accent-brand-muted: rgba(255, 255, 255, 0.04);
 	--accent-brand-rgb: 113, 113, 122;
 
+	/* Signature accent — soft electric blue */
+	--accent-electric: #6aa6ff;
+	--accent-electric-rgb: 106, 166, 255;
+	--accent-electric-glow: rgba(106, 166, 255, 0.18);
+	--accent-electric-soft: rgba(106, 166, 255, 0.08);
+
 	/* Link colors */
 	--link: var(--accent-brand);
 
-	/* RGB variants for animations */
+	/* RGB variants for animations — overridden per-theme below */
 	--accent-rgb: var(--accent-brand-rgb);
-	--main-rgb: 0, 0, 0;
-	--main-text-rgb: 255, 255, 255;
+	--main-rgb: 10, 10, 12;
 
 	/* Opacity variants */
 	--dark-0-60: rgba(0, 0, 0, 0.6);
@@ -51,6 +56,17 @@
 	/* Typography */
 	--text-f: 'Outfit', sans-serif;
 	--title-f: 'Playfair Display', serif;
+	--mono-f: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+	/* Display sizes — oversized, fluid for SPA section openers */
+	--fs-display-sm: clamp(2.75rem, 6vw, 4.5rem);
+	--fs-display-md: clamp(3.5rem, 9vw, 7rem);
+	--fs-display-lg: clamp(4rem, 12vw, 10rem);
+
+	/* SPA layout offsets */
+	--nav-h: 60px;
+	--scroll-anchor-offset: calc(var(--nav-h) + 12px);
+	--space-section: clamp(5rem, 10vh, 9rem);
 
 	/* Font sizes */
 	--fs-xs: 0.75rem;
@@ -123,12 +139,11 @@
 }
 
 body {
-	margin: 0px;
+	margin: 0;
 	font-family: var(--text-f);
 	font-size: var(--fs-base);
 	line-height: var(--lh-normal);
 	font-weight: var(--fw-regular);
-	scroll-behavior: smooth;
 }
 
 /* Focus ring uses brand accent for visibility and consistency */
@@ -196,10 +211,12 @@ small {
 :root[data-theme='dark'] {
 	color-scheme: dark;
 
-	--main: #0c0c0e;
+	--main-rgb: 10, 10, 12;
+	--main: #0a0a0c;
+	--main-elevated: #101013;
 	--main-hover: var(--dark-1);
 	--secondary: var(--dark-1);
-	--secondary-opaque: rgba(30, 30, 30, 0.92);
+	--secondary-opaque: rgba(10, 10, 12, 0.72);
 	--secondary-hover: var(--dark-2);
 	--tertiary: var(--dark-2);
 	--tertiary-hover: var(--dark-3);
@@ -226,7 +243,9 @@ small {
 :root[data-theme='light'] {
 	color-scheme: light;
 
+	--main-rgb: 250, 250, 250;
 	--main: #fafafa;
+	--main-elevated: #ffffff;
 	--main-hover: var(--light-1);
 	--secondary: var(--light-1);
 	--secondary-opaque: rgba(250, 250, 250, 0.92);
@@ -271,6 +290,28 @@ small {
 		max-width: 100%;
 		padding: 0 1rem;
 	}
+}
+
+/* SPA section anchor offset — keeps section headings clear of sticky nav */
+.spa-section {
+	scroll-margin-top: var(--scroll-anchor-offset);
+}
+
+/* Display type helper — used by SPA section openers and hero */
+.display-type {
+	font-family: var(--title-f);
+	letter-spacing: var(--ls-tighter);
+	line-height: 0.95;
+	font-weight: var(--fw-bold);
+}
+
+/* Monospace eyebrow label — used for section numbers */
+.mono-eyebrow {
+	font-family: var(--mono-f);
+	font-size: var(--fs-xs);
+	letter-spacing: var(--ls-widest);
+	text-transform: uppercase;
+	color: var(--accent-electric);
 }
 
 @keyframes fadeInLeft {
@@ -363,15 +404,6 @@ small {
 	}
 	100% {
 		color: #ff0000;
-	}
-}
-
-@keyframes shimmer {
-	0% {
-		background-position: -300%;
-	}
-	100% {
-		background-position: 300%;
 	}
 }
 

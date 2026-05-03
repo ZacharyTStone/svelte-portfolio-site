@@ -69,7 +69,7 @@
 						class="resume-embed-wrapper mx-auto w-full max-w-[900px] rounded-lg overflow-hidden border border-[var(--secondary)]"
 					>
 						<iframe
-							title="English Resume"
+							title={$_('RESUME.englishTitle')}
 							src={ENGLISH_EMBED_URL}
 							class="resume-iframe"
 							frameborder="0"
@@ -102,7 +102,7 @@
 						class="resume-embed-wrapper resume-embed-sheet mx-auto w-full max-w-[900px] rounded-lg overflow-hidden border border-[var(--secondary)]"
 					>
 						<iframe
-							title="Japanese Resume (履歴書)"
+							title={$_('RESUME.japaneseTitle')}
 							src={JAPANESE_EMBED_URL}
 							class="resume-iframe"
 							frameborder="0"

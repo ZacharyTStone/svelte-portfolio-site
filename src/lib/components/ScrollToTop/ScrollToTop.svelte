@@ -1,7 +1,18 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
+	import { _ } from 'svelte-i18n';
 	import UIcon from '../Icon/UIcon.svelte';
 	import { theme, ThemeType } from '$lib/stores/theme';
+
+	function safeT(key: string): string {
+		if (!browser) return key.split('.').pop() || key;
+		try {
+			return $_(key);
+		} catch {
+			return key.split('.').pop() || key;
+		}
+	}
 
 	let isVisible = $state(false);
 	let scrollY = $state(0);
@@ -45,10 +56,10 @@
 		class="scroll-to-top"
 		onclick={scrollToTop}
 		onkeydown={handleKeydown}
-		aria-label="Scroll to top"
-		title="Scroll to top (or press Home key)"
+		aria-label={safeT('COMMON.scroll_to_top')}
+		title={safeT('COMMON.scroll_to_top')}
 	>
-		<UIcon icon="i-carbon-arrow-up" classes="text-1.5em" alt="Scroll to top" />
+		<UIcon icon="i-carbon-arrow-up" classes="text-1.5em" alt="" />
 	</button>
 {/if}
 

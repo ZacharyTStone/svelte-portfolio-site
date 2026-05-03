@@ -1,9 +1,19 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
 	import { onMount } from 'svelte';
+	import { _ } from 'svelte-i18n';
 	import CommonPage from './CommonPage.svelte';
 	import Input from '../Input/Input.svelte';
 	import { browser } from '$app/environment';
+
+	function safeT(key: string): string {
+		if (!browser) return key.split('.').pop() || key;
+		try {
+			return $_(key);
+		} catch {
+			return key.split('.').pop() || key;
+		}
+	}
 
 	/**
 	 * Component props interface
@@ -67,8 +77,8 @@
 	<div class="w-100% row" role="search">
 		<Input
 			bind:value={search}
-			placeholder={'Search...'}
-			aria-label="Search through projects, skills and experiences"
+			placeholder={safeT('SEARCH.placeholder')}
+			aria-label={safeT('SEARCH.aria_label')}
 		/>
 	</div>
 	<div class="w-100% col flex-1">

@@ -138,8 +138,8 @@
 </script>
 
 <svelte:head>
-	<title>{title} | Portfolio</title>
-	<meta name="description" content="Search through projects, skills, and experiences" />
+	<title>{$_(title)} | Zach Stone</title>
+	<meta name="description" content={$_('SEARCH.meta_description')} />
 </svelte:head>
 
 <SearchPage {title} onsearch={handleSearch}>
@@ -161,11 +161,11 @@
 			aria-live="polite"
 		>
 			<UIcon icon="i-carbon-cube" classes="text-2em" ariaHidden={true} />
-			<span>Oops! Nothing to show for '{query}'</span>
+			<span>{$_('SEARCH.no_results', { values: { query } })}</span>
 		</div>
 	{:else}
 		<!-- Display search results -->
-		<div class="flex flex-row flex-wrap gap-1" role="list" aria-label="Search results">
+		<div class="flex flex-row flex-wrap gap-1" role="list" aria-label={$_('SEARCH.results_label')}>
 			{#each result as { data, icon, name, to }}
 				<Chip href={`${base}/${to}`} classes="flex flex-row items-center gap-2" newTab={false}>
 					<UIcon {icon} ariaHidden={true} />
