@@ -312,9 +312,15 @@
 	}
 
 	.nav-actions {
-		display: flex;
+		display: none;
 		align-items: center;
 		gap: 0.25rem;
+	}
+
+	@media (min-width: 768px) {
+		.nav-actions {
+			display: flex;
+		}
 	}
 
 	.nav-action {
