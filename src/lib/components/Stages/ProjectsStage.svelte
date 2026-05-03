@@ -95,7 +95,7 @@
 <style lang="scss">
 	.projects-stage {
 		position: relative;
-		padding-block: clamp(5rem, 12vh, 9rem);
+		padding-block: clamp(4rem, 10vh, 7rem);
 		scroll-margin-top: var(--scroll-anchor-offset);
 	}
 

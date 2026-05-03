@@ -116,7 +116,7 @@
 	.contact-stage {
 		position: relative;
 		min-height: 100dvh;
-		padding-block: clamp(6rem, 14vh, 10rem) clamp(3rem, 6vh, 4rem);
+		padding-block: clamp(4rem, 10vh, 7rem) clamp(3rem, 6vh, 4rem);
 		scroll-margin-top: var(--scroll-anchor-offset);
 		overflow: hidden;
 		isolation: isolate;
@@ -168,7 +168,7 @@
 	.contact-headline {
 		font-family: var(--text-f);
 		font-weight: var(--fw-extrabold);
-		font-size: clamp(2.5rem, 9vw, 9rem);
+		font-size: clamp(2rem, 5.5vw, 5.5rem);
 		line-height: 0.92;
 		letter-spacing: -0.045em;
 		color: var(--main-text);

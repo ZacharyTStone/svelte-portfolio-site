@@ -81,7 +81,7 @@
 <style lang="scss">
 	.skills-stage {
 		position: relative;
-		padding-block: clamp(6rem, 14vh, 10rem);
+		padding-block: clamp(4rem, 10vh, 7rem);
 		scroll-margin-top: var(--scroll-anchor-offset);
 		max-width: 1400px;
 		margin: 0 auto;

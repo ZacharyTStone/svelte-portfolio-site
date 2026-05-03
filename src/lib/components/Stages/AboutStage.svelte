@@ -97,7 +97,7 @@
 <style lang="scss">
 	.about-stage {
 		position: relative;
-		padding-block: clamp(4rem, 10vh, 7rem) clamp(5rem, 12vh, 9rem);
+		padding-block: clamp(3.5rem, 8vh, 6rem) clamp(4rem, 10vh, 7rem);
 		scroll-margin-top: var(--scroll-anchor-offset);
 	}
 
@@ -126,7 +126,7 @@
 
 	.about-mark-num {
 		font-family: var(--mono-f);
-		font-size: clamp(5rem, 12vw, 9rem);
+		font-size: clamp(3rem, 7vw, 6rem);
 		font-weight: var(--fw-light);
 		line-height: 0.9;
 		letter-spacing: -0.04em;

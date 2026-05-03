@@ -390,7 +390,7 @@
 	.hero-name {
 		font-family: var(--text-f);
 		font-weight: var(--fw-extrabold);
-		font-size: clamp(3.5rem, 14vw, 13rem);
+		font-size: clamp(3.5rem, 11vw, 10rem);
 		line-height: 0.88;
 		letter-spacing: -0.04em;
 		margin: 0;
