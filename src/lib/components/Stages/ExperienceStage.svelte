@@ -641,24 +641,31 @@
 		}
 		.experience-pin {
 			position: static;
+			display: block;
 			height: auto;
 			padding-block: clamp(3rem, 8vh, 5rem);
 			overflow: visible;
 		}
 		.experience-track-wrap {
+			display: block;
 			overflow-x: auto;
+			overflow-y: visible;
 			scroll-snap-type: x mandatory;
 			-webkit-overflow-scrolling: touch;
+			height: auto;
 		}
 		.experience-track {
 			transform: none !important;
 			padding-inline: clamp(1rem, 4vw, 2rem);
+			height: auto;
+			padding-block: 1rem;
 		}
 		.job-feature {
 			scroll-snap-align: center;
-			flex: 0 0 88vw;
+			flex: 0 0 min(88vw, 540px);
 			grid-template-columns: 1fr;
-			min-height: auto;
+			height: auto;
+			min-height: 400px;
 			transform: none !important;
 			opacity: 1 !important;
 			filter: none !important;

@@ -131,7 +131,7 @@
 			/>
 		</button>
 
-		<ul class="hidden md:flex nav-list" role="list">
+		<ul class="nav-list" role="list">
 			{#each items as item}
 				{@const active = isItemActive(item)}
 				<li>
@@ -268,13 +268,19 @@
 	}
 
 	.nav-list {
-		display: flex;
+		display: none;
 		gap: 0.25rem;
 		list-style: none;
 		padding: 0;
 		margin: 0;
 		flex: 1;
 		justify-content: center;
+	}
+
+	@media (min-width: 768px) {
+		.nav-list {
+			display: flex;
+		}
 	}
 
 	.nav-link {
@@ -312,15 +318,9 @@
 	}
 
 	.nav-actions {
-		display: none;
+		display: flex;
 		align-items: center;
 		gap: 0.25rem;
-	}
-
-	@media (min-width: 768px) {
-		.nav-actions {
-			display: flex;
-		}
 	}
 
 	.nav-action {

@@ -236,6 +236,8 @@
 		border: 1px solid var(--border);
 		border-radius: var(--radius-lg);
 		background: rgba(255, 255, 255, 0.015);
+		min-width: 0;
+		overflow: hidden;
 	}
 
 	:global(:root[data-theme='light']) .about-graph {

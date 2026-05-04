@@ -280,6 +280,8 @@
 	.github-contributions-card {
 		padding: 1.5rem;
 		overflow-x: auto;
+		max-width: 100%;
+		box-sizing: border-box;
 	}
 
 	.github-contributions-header {
