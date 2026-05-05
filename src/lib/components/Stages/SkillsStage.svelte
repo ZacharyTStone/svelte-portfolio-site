@@ -214,14 +214,27 @@
 		letter-spacing: var(--ls-wide);
 		color: var(--secondary-text);
 		margin: 0;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
+		min-width: 0;
 	}
 
 	.skill-row-cta {
 		flex-shrink: 0;
 		color: var(--secondary-text);
 		transition: color 240ms ease;
+	}
+
+	@media (max-width: 480px) {
+		.skill-row-link {
+			padding: 0.75rem 1rem;
+			gap: 0.75rem;
+		}
+		.skill-row-cta {
+			display: none;
+		}
+		.skill-row-logo-wrap {
+			width: 36px;
+			height: 36px;
+			padding: 8px;
+		}
 	}
 </style>

@@ -479,6 +479,32 @@
 		}
 	}
 
+	@media (max-width: 480px) {
+		.github-stats {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 0.5rem;
+		}
+
+		.stat-value {
+			font-size: var(--fs-lg);
+		}
+
+		.stat-label {
+			font-size: 0.65rem;
+		}
+
+		.github-day {
+			width: 8px;
+			height: 8px;
+		}
+
+		.legend-square {
+			width: 8px;
+			height: 8px;
+		}
+	}
+
 	/* Reduced motion support */
 	@media (prefers-reduced-motion: reduce) {
 		.github-day {
