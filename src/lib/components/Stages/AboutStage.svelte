@@ -107,8 +107,9 @@
 		gap: clamp(2rem, 6vw, 5rem);
 		max-width: 1400px;
 		margin: 0 auto;
-		padding-inline: clamp(1.5rem, 6vw, 6rem);
+		padding-inline: clamp(1rem, 5vw, 6rem);
 		align-items: start;
+		min-width: 0;
 	}
 
 	/* Sticky stencil mark ─────────────────── */
@@ -169,13 +170,15 @@
 
 	.about-heading {
 		font-family: var(--title-f);
-		font-size: clamp(1.75rem, 3.6vw, 3.5rem);
+		font-size: clamp(1.5rem, 5.2vw, 3.5rem);
 		font-weight: var(--fw-medium);
-		line-height: 1.15;
+		line-height: 1.2;
 		letter-spacing: -0.015em;
 		color: var(--main-text);
 		margin: 0;
 		max-width: 22ch;
+		overflow-wrap: anywhere;
+		word-break: break-word;
 	}
 
 	.accent {
@@ -185,11 +188,12 @@
 
 	.about-paragraph {
 		font-family: var(--text-f);
-		font-size: clamp(1.05rem, 1.35vw, 1.2rem);
-		line-height: 1.75;
+		font-size: clamp(1rem, 1.35vw, 1.2rem);
+		line-height: 1.7;
 		color: var(--secondary-text);
 		max-width: 60ch;
 		font-weight: var(--fw-regular);
+		overflow-wrap: anywhere;
 	}
 
 	/* Facts row ──────────────────────────── */
@@ -237,12 +241,14 @@
 		border-radius: var(--radius-lg);
 		background: rgba(255, 255, 255, 0.015);
 		min-width: 0;
-		overflow-x: auto;
+		max-width: 100%;
+		overflow: hidden;
 	}
 
 	@media (max-width: 600px) {
 		.about-graph {
-			padding: 1rem;
+			padding: 0.85rem;
+			border-radius: var(--radius-md);
 		}
 	}
 
@@ -266,14 +272,39 @@
 	/* Mobile: stack columns ─────────────── */
 	@media (max-width: 900px) {
 		.about-grid {
-			grid-template-columns: 1fr;
-			gap: 2rem;
+			grid-template-columns: minmax(0, 1fr);
+			gap: 1.5rem;
 		}
 		.about-mark {
 			position: static;
 		}
 		.about-mark-num {
-			font-size: clamp(4rem, 16vw, 6rem);
+			font-size: clamp(3rem, 14vw, 5rem);
+		}
+		.about-content {
+			min-width: 0;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.about-stage {
+			padding-block: clamp(2.5rem, 6vh, 4rem);
+		}
+		.about-content {
+			gap: 1.5rem;
+		}
+		.about-facts {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 1rem;
+			padding-block: 0.85rem 1rem;
+		}
+		.fact-v {
+			font-size: var(--fs-lg);
+		}
+		.about-graph-header {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.35rem;
 		}
 	}
 </style>

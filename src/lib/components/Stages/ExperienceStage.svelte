@@ -634,7 +634,7 @@
 		color: var(--secondary-text);
 	}
 
-	/* Mobile fallback: scroll-snap carousel, no pin ───── */
+	/* Mobile fallback: vertical stack, no pin, no horizontal scroll ───── */
 	@media (max-width: 900px) {
 		.experience-stage {
 			height: auto;
@@ -643,39 +643,73 @@
 			position: static;
 			display: block;
 			height: auto;
-			padding-block: clamp(3rem, 8vh, 5rem);
+			padding-block: clamp(2.5rem, 7vh, 4rem);
+			padding-inline: 0;
 			overflow: visible;
+		}
+		.experience-header {
+			padding-inline: clamp(1rem, 5vw, 1.75rem);
+			margin-bottom: 1.5rem;
+		}
+		.experience-header-row {
+			align-items: flex-start;
+			gap: 1rem;
+		}
+		.experience-counter {
+			display: none;
 		}
 		.experience-track-wrap {
 			display: block;
-			overflow-x: auto;
-			overflow-y: visible;
-			scroll-snap-type: x mandatory;
-			-webkit-overflow-scrolling: touch;
+			overflow: visible;
 			height: auto;
 		}
 		.experience-track {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
 			transform: none !important;
-			padding-inline: clamp(1rem, 4vw, 2rem);
+			padding-inline: clamp(1rem, 5vw, 1.75rem);
+			padding-block: 0;
 			height: auto;
-			padding-block: 1rem;
+			width: 100%;
+			max-width: 100%;
+		}
+		.experience-track-spacer {
+			display: none;
 		}
 		.job-feature {
-			scroll-snap-align: center;
-			flex: 0 0 min(88vw, 540px);
-			grid-template-columns: 1fr;
+			flex: 1 1 auto;
+			width: 100%;
+			max-width: 100%;
+			grid-template-columns: minmax(0, 1fr);
 			height: auto;
-			min-height: 400px;
+			min-height: 0;
+			padding: 1.25rem;
+			gap: 1.25rem;
 			transform: none !important;
 			opacity: 1 !important;
 			filter: none !important;
+			backdrop-filter: none;
+			-webkit-backdrop-filter: none;
+		}
+		.job-meta {
+			gap: 1rem;
+		}
+		.job-spec {
+			margin-top: 0.5rem;
+			padding-top: 1rem;
 		}
 		.job-body {
 			max-height: none;
 			overflow-y: visible;
+			padding-right: 0;
+			gap: 0.75rem;
 		}
 		.job-range {
-			font-size: clamp(2rem, 8vw, 3rem);
+			font-size: clamp(1.5rem, 7vw, 2.25rem);
+		}
+		.job-title {
+			font-size: clamp(1.15rem, 5vw, 1.5rem);
 		}
 		.experience-footer {
 			display: none;

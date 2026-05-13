@@ -102,7 +102,8 @@
 	.projects-inner {
 		max-width: 1400px;
 		margin: 0 auto;
-		padding-inline: clamp(1.5rem, 6vw, 6rem);
+		padding-inline: clamp(1rem, 5vw, 6rem);
+		min-width: 0;
 	}
 
 	.projects-header {
@@ -119,13 +120,14 @@
 
 	.projects-title {
 		font-family: var(--title-f);
-		font-size: clamp(1.75rem, 3.6vw, 3.5rem);
+		font-size: clamp(1.5rem, 5vw, 3.5rem);
 		font-weight: var(--fw-medium);
-		line-height: 1.12;
+		line-height: 1.15;
 		letter-spacing: -0.015em;
 		color: var(--main-text);
 		margin: 0.4rem 0 0 0;
 		max-width: 24ch;
+		overflow-wrap: anywhere;
 	}
 
 	.accent {
@@ -186,7 +188,26 @@
 
 	@media (max-width: 640px) {
 		.projects-grid {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(0, 1fr);
+			gap: 1rem;
+		}
+		.projects-header {
+			margin-bottom: 1.75rem;
+		}
+		.projects-stage {
+			padding-block: clamp(2.5rem, 7vh, 5rem);
+		}
+		.showcase-meta {
+			padding: 1rem;
+			gap: 0.55rem;
+		}
+		.showcase-title {
+			font-size: 1.15rem;
+		}
+		.showcase-desc {
+			font-size: var(--fs-sm);
+			-webkit-line-clamp: 4;
+			line-clamp: 4;
 		}
 	}
 

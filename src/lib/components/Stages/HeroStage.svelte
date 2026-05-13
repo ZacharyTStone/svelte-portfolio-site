@@ -187,7 +187,7 @@
 		min-height: 100dvh;
 		height: 100dvh;
 		padding-block: clamp(4rem, 10vh, 8rem) clamp(2rem, 5vh, 4rem);
-		padding-inline: clamp(1.5rem, 6vw, 6rem);
+		padding-inline: clamp(1rem, 5vw, 6rem);
 	}
 
 	.hero-content {
@@ -637,9 +637,29 @@
 			position: static;
 			height: auto;
 			min-height: calc(100dvh - var(--nav-h));
+			padding-block: clamp(2rem, 6vh, 4rem) clamp(2rem, 5vh, 3rem);
+		}
+		.hero-content {
+			gap: 1.25rem;
 		}
 		.hero-name {
-			font-size: clamp(3rem, 18vw, 6rem);
+			font-size: clamp(2.75rem, 15vw, 5.5rem);
+			letter-spacing: -0.03em;
+		}
+		.hero-tagline {
+			font-size: 1rem;
+			line-height: 1.6;
+		}
+		.hero-meta {
+			gap: 0.85rem;
+			font-size: var(--fs-xs);
+		}
+		.hero-cta-row {
+			gap: 0.5rem;
+		}
+		.cta {
+			padding: 0.8em 1.2em;
+			font-size: var(--fs-xs);
 		}
 		.hero-scroll-cue {
 			display: none;

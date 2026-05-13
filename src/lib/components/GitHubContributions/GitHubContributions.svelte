@@ -279,13 +279,16 @@
 <style lang="scss">
 	.github-contributions-card {
 		padding: 1.5rem;
-		overflow-x: auto;
 		max-width: 100%;
+		width: 100%;
+		min-width: 0;
 		box-sizing: border-box;
+		overflow: hidden;
 	}
 
 	.github-contributions-header {
 		width: 100%;
+		min-width: 0;
 	}
 
 	.loading-state,
@@ -342,6 +345,8 @@
 
 	.github-graph-container {
 		margin: 2rem 0;
+		max-width: 100%;
+		min-width: 0;
 	}
 
 	.github-graph {
@@ -349,7 +354,11 @@
 		gap: 3px;
 		margin-bottom: 1rem;
 		overflow-x: auto;
+		overflow-y: hidden;
 		padding-bottom: 0.5rem;
+		-webkit-overflow-scrolling: touch;
+		max-width: 100%;
+		scrollbar-width: thin;
 	}
 
 	.github-week {
@@ -457,15 +466,20 @@
 	/* Responsive */
 	@media (max-width: 768px) {
 		.github-contributions-card {
-			padding: 1rem;
+			padding: 0.75rem;
 		}
 
 		.github-stats {
 			gap: 1rem;
+			margin-bottom: 1.25rem;
 		}
 
 		.stat-value {
 			font-size: var(--fs-xl);
+		}
+
+		.github-graph-container {
+			margin: 1.25rem 0;
 		}
 
 		.github-day {
@@ -480,18 +494,33 @@
 	}
 
 	@media (max-width: 480px) {
+		.github-contributions-card {
+			padding: 0.5rem;
+		}
+
+		.github-contributions-header :global(h3) {
+			font-size: var(--fs-base);
+		}
+
 		.github-stats {
 			display: grid;
-			grid-template-columns: repeat(3, 1fr);
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 			gap: 0.5rem;
 		}
 
+		.stat-item {
+			min-width: 0;
+		}
+
 		.stat-value {
-			font-size: var(--fs-lg);
+			font-size: var(--fs-base);
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 
 		.stat-label {
 			font-size: 0.65rem;
+			line-height: 1.2;
 		}
 
 		.github-day {
@@ -502,6 +531,15 @@
 		.legend-square {
 			width: 8px;
 			height: 8px;
+		}
+
+		.github-legend {
+			justify-content: center;
+		}
+
+		.github-link {
+			margin-top: 1rem;
+			padding-top: 1rem;
 		}
 	}
 

@@ -155,10 +155,11 @@
 	.contact-inner {
 		max-width: 1400px;
 		margin: 0 auto;
-		padding-inline: clamp(1.5rem, 6vw, 6rem);
+		padding-inline: clamp(1rem, 5vw, 6rem);
 		display: flex;
 		flex-direction: column;
 		gap: clamp(2rem, 5vh, 3.5rem);
+		min-width: 0;
 	}
 
 	.contact-eyebrow {
@@ -168,14 +169,15 @@
 	.contact-headline {
 		font-family: var(--text-f);
 		font-weight: var(--fw-extrabold);
-		font-size: clamp(2rem, 5.5vw, 5.5rem);
-		line-height: 0.92;
-		letter-spacing: -0.045em;
+		font-size: clamp(1.85rem, 7.5vw, 5.5rem);
+		line-height: 0.98;
+		letter-spacing: -0.035em;
 		color: var(--main-text);
 		margin: 0;
 		max-width: 16ch;
 		transform-origin: left center;
 		will-change: transform;
+		overflow-wrap: anywhere;
 	}
 
 	.contact-headline .accent {
@@ -289,6 +291,7 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
+		min-width: 0;
 	}
 
 	:global(.channel-arrow) {
@@ -321,8 +324,31 @@
 
 	@media (max-width: 900px) {
 		.contact-grid {
-			grid-template-columns: 1fr;
+			grid-template-columns: minmax(0, 1fr);
 			gap: 2.5rem;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.contact-stage {
+			padding-block: clamp(2.5rem, 6vh, 4rem) clamp(2rem, 5vh, 3rem);
+			min-height: auto;
+		}
+		.contact-copy {
+			gap: 1.5rem;
+		}
+		.channel {
+			grid-template-columns: 32px 1fr 14px;
+			gap: 0.65rem;
+			padding: 0.85rem 0.9rem;
+		}
+		.channel-icon {
+			width: 32px;
+			height: 32px;
+		}
+		.contact-footer {
+			padding-top: 1.5rem;
+			font-size: var(--fs-xs);
 		}
 	}
 
