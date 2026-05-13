@@ -634,22 +634,22 @@
 		color: var(--secondary-text);
 	}
 
-	/* Mobile fallback: vertical stack, no pin, no horizontal scroll ───── */
+	/* Mobile: vertical stack, no pin, no horizontal scroll ───── */
 	@media (max-width: 900px) {
 		.experience-stage {
-			height: auto;
+			height: auto !important;
 		}
 		.experience-pin {
 			position: static;
 			display: block;
 			height: auto;
-			padding-block: clamp(2.5rem, 7vh, 4rem);
+			padding-block: clamp(3rem, 8vh, 5rem);
 			padding-inline: 0;
 			overflow: visible;
 		}
 		.experience-header {
-			padding-inline: clamp(1rem, 5vw, 1.75rem);
-			margin-bottom: 1.5rem;
+			padding-inline: clamp(1.25rem, 5vw, 2rem);
+			margin-bottom: 1.75rem;
 		}
 		.experience-header-row {
 			align-items: flex-start;
@@ -664,52 +664,73 @@
 			height: auto;
 		}
 		.experience-track {
-			display: flex;
-			flex-direction: column;
-			gap: 1rem;
+			display: block !important;
+			gap: 0;
 			transform: none !important;
-			padding-inline: clamp(1rem, 5vw, 1.75rem);
+			padding-inline: clamp(1.25rem, 5vw, 2rem);
 			padding-block: 0;
 			height: auto;
 			width: 100%;
 			max-width: 100%;
+			transition: none !important;
 		}
 		.experience-track-spacer {
-			display: none;
+			display: none !important;
 		}
 		.job-feature {
-			flex: 1 1 auto;
-			width: 100%;
-			max-width: 100%;
+			display: flex !important;
+			flex-direction: column;
+			flex: 0 0 auto !important;
+			width: 100% !important;
+			max-width: 100% !important;
+			min-width: 0 !important;
 			grid-template-columns: minmax(0, 1fr);
 			height: auto;
 			min-height: 0;
 			padding: 1.25rem;
 			gap: 1.25rem;
+			margin-bottom: 1rem;
 			transform: none !important;
 			opacity: 1 !important;
 			filter: none !important;
 			backdrop-filter: none;
 			-webkit-backdrop-filter: none;
+			box-sizing: border-box;
 		}
 		.job-meta {
 			gap: 1rem;
+			min-width: 0;
 		}
 		.job-spec {
 			margin-top: 0.5rem;
 			padding-top: 1rem;
 		}
+		.spec-row {
+			grid-template-columns: 56px minmax(0, 1fr);
+		}
+		.spec-v {
+			overflow-wrap: anywhere;
+		}
 		.job-body {
 			max-height: none;
 			overflow-y: visible;
 			padding-right: 0;
-			gap: 0.75rem;
+			gap: 0.85rem;
+			min-width: 0;
 		}
 		.job-range {
-			font-size: clamp(1.5rem, 7vw, 2.25rem);
+			font-size: clamp(1.6rem, 7vw, 2.25rem);
 		}
 		.job-title {
-			font-size: clamp(1.15rem, 5vw, 1.5rem);
+			font-size: clamp(1.2rem, 5vw, 1.55rem);
+			overflow-wrap: anywhere;
+		}
+		.job-lead,
+		.job-win-text {
+			overflow-wrap: anywhere;
+		}
+		.job-win {
+			grid-template-columns: 26px minmax(0, 1fr);
 		}
 		.experience-footer {
 			display: none;
