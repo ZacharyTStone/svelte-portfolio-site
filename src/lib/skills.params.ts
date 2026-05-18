@@ -25,6 +25,8 @@ const FE_TOOLS: SkillInfoObject[] = [
 	{ label: 'CSS', link: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
 	{ label: 'JavaScript', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
 	{ label: 'Typescript', link: 'https://www.typescriptlang.org/', icon: COLOR_ASSETS.TypeScript },
+	{ label: 'GraphQL', link: 'https://graphql.org/' },
+	{ label: 'Apollo Client', link: 'https://www.apollographql.com/docs/react/' },
 	{ label: 'Styled Components', link: 'https://styled-components.com/' },
 	{ label: 'Tailwind', link: 'https://tailwindcss.com/' },
 	{ label: 'AG Grid', link: 'https://www.ag-grid.com/' },
@@ -46,7 +48,9 @@ const Backend: SkillInfoObject[] = [
 	{ label: 'GraphQL', link: 'https://graphql.org/' },
 	{ label: 'MongoDB', link: 'https://www.mongodb.com/' },
 	{ label: 'SQL', link: 'https://www.w3schools.com/sql/' },
-	{ label: 'Ably Web Sockets', link: 'https://www.ably.io/' },
+	{ label: 'WebSockets', link: 'https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API' },
+	{ label: 'Ably', link: 'https://www.ably.io/' },
+	{ label: 'Twilio', link: 'https://www.twilio.com/' },
 	{ label: 'Server-Side Rendering', link: 'https://kit.svelte.dev/docs/ssr' },
 	{ label: 'Static Site Generation', link: 'https://kit.svelte.dev/docs/adapter-static' },
 	{ label: 'Python', link: 'https://www.python.org/' },
@@ -81,6 +85,15 @@ const Cyber: SkillInfoObject[] = [
 	{ label: 'OWASP ZAP', link: 'https://www.zaproxy.org/' },
 	{ label: 'Burp Suite', link: 'https://portswigger.net/burp' },
 	{ label: 'Kali Linux', link: 'https://www.kali.org/' }
+];
+
+const AiTooling: SkillInfoObject[] = [
+	{ label: 'Claude Code', link: 'https://www.anthropic.com/claude-code' },
+	{ label: 'Anthropic Claude API', link: 'https://docs.anthropic.com/' },
+	{ label: 'Agentic Skill Authoring', link: 'https://docs.anthropic.com/' },
+	{ label: 'LLM Integration', link: 'https://www.anthropic.com/' },
+	{ label: 'AI-assisted Developer Tooling', link: 'https://www.anthropic.com/claude-code' },
+	{ label: 'Cursor', link: 'https://www.cursor.com/' }
 ];
 
 const FE_EXTRA_INFO: SkillInfoSection[] = [
@@ -137,6 +150,13 @@ const CYBER_EXTRA_INFO: SkillInfoSection[] = [
 		content: Cyber
 	}
 ];
+
+const AI_TOOLING_EXTRA_INFO: SkillInfoSection[] = [
+	{
+		title: 'EXTRA_INFO_LABELS.tools',
+		content: AiTooling
+	}
+];
 const MY_SKILLS: Array<Skill> = [
 	s({
 		slug: 'fe',
@@ -179,6 +199,13 @@ const MY_SKILLS: Array<Skill> = [
 				link: 'https://www.freecodecamp.org/certification/zachinjapan/javascript-algorithms-and-data-structures'
 			}
 		]
+	}),
+	s({
+		slug: 'ai-tooling',
+		color: 'electric',
+		logo: Assets.DevTools,
+		name: 'SKILLS.ai-tooling.name',
+		extraInfo: AI_TOOLING_EXTRA_INFO
 	}),
 	s({
 		slug: 'cyber-security',
