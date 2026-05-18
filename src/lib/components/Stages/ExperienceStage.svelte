@@ -15,6 +15,7 @@
 	let trackEl: HTMLElement | undefined = $state();
 	let progressEl: HTMLElement | undefined = $state();
 	const panelEls: HTMLElement[] = [];
+	const bodyEls: HTMLElement[] = [];
 
 	let activeIndex = $state(0);
 
@@ -89,9 +90,40 @@
 			}
 		});
 
+		// Let wheel events scroll the inner body when there is overflow, and only
+		// bubble to the page (advancing the horizontal pin) once the body is at its
+		// top/bottom edge in the wheel direction. Skip if reduced-motion or pin
+		// inactive (mobile flow already uses native scroll).
+		const isWide = typeof window !== 'undefined' && window.matchMedia('(min-width: 901px)').matches;
+		const reduce =
+			typeof window !== 'undefined' &&
+			window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const wheelBodies = isWide && !reduce ? bodyEls.filter(Boolean) : [];
+
+		function onBodyWheel(e: WheelEvent) {
+			const body = e.currentTarget as HTMLElement;
+			const dy = e.deltaY;
+			if (!dy) return;
+			const atTop = body.scrollTop <= 0;
+			const atBottom = body.scrollTop + body.clientHeight >= body.scrollHeight - 1;
+			const canScroll = (dy > 0 && !atBottom) || (dy < 0 && !atTop);
+			if (canScroll) {
+				body.scrollTop += dy;
+				e.preventDefault();
+				e.stopPropagation();
+			}
+		}
+
+		for (const b of wheelBodies) {
+			b.addEventListener('wheel', onBodyWheel, { passive: false });
+		}
+
 		return () => {
 			cancel();
 			cleanup?.();
+			for (const b of wheelBodies) {
+				b.removeEventListener('wheel', onBodyWheel);
+			}
 		};
 	});
 </script>
@@ -177,7 +209,15 @@
 							</dl>
 						</aside>
 
-						<div class="job-body">
+						<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+						<div
+							bind:this={bodyEls[i]}
+							class="job-body"
+							tabindex="0"
+							role="region"
+							aria-label="{exp.company} role details"
+							data-lenis-prevent
+						>
 							<div class="job-eyebrow">
 								<span class="job-company">{exp.company}</span>
 							</div>
@@ -498,7 +538,23 @@
 		min-width: 0;
 		min-height: 0;
 		overflow-y: auto;
+		overscroll-behavior: contain;
 		padding-right: 0.5rem;
+		/* Fade out top/bottom edges so users see there's more content to scroll. */
+		mask-image: linear-gradient(
+			to bottom,
+			transparent 0,
+			#000 1.25rem,
+			#000 calc(100% - 1.25rem),
+			transparent 100%
+		);
+		-webkit-mask-image: linear-gradient(
+			to bottom,
+			transparent 0,
+			#000 1.25rem,
+			#000 calc(100% - 1.25rem),
+			transparent 100%
+		);
 
 		scrollbar-width: thin;
 		scrollbar-color: var(--border) transparent;
@@ -510,6 +566,12 @@
 			background: var(--border);
 			border-radius: 999px;
 		}
+	}
+
+	.job-body:focus-visible {
+		outline: 1px solid var(--accent-electric);
+		outline-offset: 4px;
+		border-radius: var(--radius-sm);
 	}
 
 	.job-eyebrow {
@@ -714,9 +776,12 @@
 		.job-body {
 			max-height: none;
 			overflow-y: visible;
+			overscroll-behavior: auto;
 			padding-right: 0;
 			gap: 0.85rem;
 			min-width: 0;
+			mask-image: none;
+			-webkit-mask-image: none;
 		}
 		.job-range {
 			font-size: clamp(1.6rem, 7vw, 2.25rem);
@@ -767,6 +832,9 @@
 		.job-body {
 			max-height: none;
 			overflow-y: visible;
+			overscroll-behavior: auto;
+			mask-image: none;
+			-webkit-mask-image: none;
 		}
 		.experience-footer {
 			display: none;
