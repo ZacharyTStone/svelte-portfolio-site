@@ -216,7 +216,6 @@
 							tabindex="0"
 							role="region"
 							aria-label="{exp.company} role details"
-							data-lenis-prevent
 						>
 							<div class="job-eyebrow">
 								<span class="job-company">{exp.company}</span>
@@ -538,7 +537,6 @@
 		min-width: 0;
 		min-height: 0;
 		overflow-y: auto;
-		overscroll-behavior: contain;
 		padding-right: 0.5rem;
 		/* Fade out top/bottom edges so users see there's more content to scroll. */
 		mask-image: linear-gradient(
