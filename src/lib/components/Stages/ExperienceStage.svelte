@@ -716,8 +716,16 @@
 			align-items: flex-start;
 			gap: 0.75rem;
 		}
+		/* Without min-width:0, the flex item won't shrink below its max-content
+		   (which is the title's max-width: 30ch). That forces the whole section
+		   wider than the viewport and clips everything on the right. */
+		.experience-header-row > * {
+			min-width: 0;
+			flex: 1 1 auto;
+		}
 		.experience-title {
-			font-size: clamp(1.2rem, 5.5vw, 2rem);
+			font-size: clamp(1.1rem, 4.8vw, 1.75rem);
+			max-width: 100%;
 		}
 		.experience-counter {
 			display: none;
@@ -815,6 +823,9 @@
 			min-width: 0;
 			mask-image: none;
 			-webkit-mask-image: none;
+		}
+		.job-lead {
+			max-width: 100%;
 		}
 		.job-title {
 			font-size: clamp(1.15rem, 4.5vw, 1.5rem);
