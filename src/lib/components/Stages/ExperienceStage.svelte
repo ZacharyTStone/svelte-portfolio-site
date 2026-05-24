@@ -695,169 +695,235 @@
 		color: var(--secondary-text);
 	}
 
-	/* Mobile: vertical stack, no pin, no horizontal scroll ───── */
+	/* ─── MOBILE: full reset, no horizontal overflow ───────────── */
 	@media (max-width: 900px) {
+		/* Hard fence — nothing can bleed out of the section horizontally */
 		.experience-stage {
 			height: auto !important;
-		}
-		.experience-pin {
-			position: static;
-			display: block;
-			height: auto;
-			padding-block: clamp(2rem, 6vh, 4rem);
-			padding-inline: 0;
-			overflow: visible;
-		}
-		.experience-header {
-			padding-inline: clamp(1rem, 5vw, 2rem);
-			margin-bottom: 1.5rem;
-		}
-		.experience-header-row {
-			align-items: flex-start;
-			gap: 0.75rem;
-		}
-		.experience-title {
-			font-size: clamp(1.2rem, 5.5vw, 2rem);
-		}
-		.experience-counter {
-			display: none;
-		}
-		.experience-track-wrap {
-			display: block;
-			overflow: visible;
-			height: auto;
-		}
-		.experience-track {
-			display: flex !important;
-			flex-direction: column;
-			gap: 1rem;
-			transform: none !important;
-			padding-inline: clamp(1rem, 5vw, 2rem);
-			padding-block: 0;
-			height: auto;
+			overflow-x: clip;
 			width: 100%;
-			max-width: 100%;
-			transition: none !important;
 		}
-		.experience-track-spacer {
+
+		.experience-pin {
+			position: static !important;
+			display: block !important;
+			height: auto !important;
+			overflow: visible !important;
+			padding: clamp(2rem, 6vh, 4rem) 0 !important;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		/* Header — pad inline here, width 100% so it can never be wider than the viewport */
+		.experience-header {
+			width: 100% !important;
+			max-width: 100% !important;
+			padding-inline: clamp(1rem, 5vw, 1.5rem) !important;
+			margin: 0 0 1.5rem 0 !important;
+			box-sizing: border-box;
+			overflow: hidden;
+		}
+
+		.experience-header-row {
+			display: flex !important;
+			flex-direction: column !important;
+			align-items: flex-start !important;
+			gap: 0.4rem !important;
+			width: 100%;
+			min-width: 0;
+		}
+
+		/* Force the inner div AND title to never exceed container */
+		.experience-header-row > div {
+			width: 100% !important;
+			min-width: 0 !important;
+		}
+
+		.experience-title {
+			font-size: clamp(1rem, 4.5vw, 1.5rem) !important;
+			max-width: 100% !important;
+			width: 100% !important;
+			overflow-wrap: break-word !important;
+			word-break: break-word !important;
+			box-sizing: border-box;
+		}
+
+		.experience-counter {
 			display: none !important;
 		}
-		.job-feature {
+
+		/* Track wrapper → plain block */
+		.experience-track-wrap {
+			display: block !important;
+			overflow: visible !important;
+			height: auto !important;
+			width: 100%;
+		}
+
+		/* Track → vertical stack of cards */
+		.experience-track {
 			display: flex !important;
-			flex-direction: column;
-			flex: 0 0 auto !important;
+			flex-direction: column !important;
+			align-items: stretch !important;
+			gap: 1rem !important;
+			transform: none !important;
+			padding: 0 clamp(1rem, 5vw, 1.5rem) !important;
+			height: auto !important;
 			width: 100% !important;
 			max-width: 100% !important;
 			min-width: 0 !important;
-			grid-template-columns: minmax(0, 1fr);
-			height: auto;
-			min-height: 0;
-			padding: clamp(1rem, 4vw, 1.5rem);
-			gap: 1.25rem;
-			margin-bottom: 0;
+			transition: none !important;
+			box-sizing: border-box !important;
+		}
+
+		.experience-track-spacer {
+			display: none !important;
+		}
+
+		/* Card — full width, auto height, solid bg */
+		.job-feature {
+			display: flex !important;
+			flex-direction: column !important;
+			width: 100% !important;
+			max-width: 100% !important;
+			min-width: 0 !important;
+			flex: 0 0 auto !important;
+			height: auto !important;
+			min-height: 0 !important;
+			padding: clamp(0.9rem, 4vw, 1.25rem) !important;
+			gap: 1rem !important;
+			backdrop-filter: none !important;
+			-webkit-backdrop-filter: none !important;
 			transform: none !important;
 			opacity: 1 !important;
 			filter: none !important;
-			backdrop-filter: none;
-			-webkit-backdrop-filter: none;
-			box-sizing: border-box;
-			/* solid background since there's no blur on mobile */
-			background: var(--main-elevated, var(--secondary));
+			background: var(--main-elevated, var(--secondary)) !important;
+			box-sizing: border-box !important;
+			overflow: hidden !important;
 		}
-		:global(:root[data-theme='light']) .job-feature {
-			background: var(--main-elevated, #ffffff);
-		}
-		.job-meta {
-			display: grid;
-			grid-template-columns: auto 1fr;
-			grid-template-rows: auto auto;
-			column-gap: 1rem;
-			row-gap: 0.75rem;
-			align-items: start;
-			min-width: 0;
-		}
-		.job-range {
-			grid-column: 1 / -1;
-			font-size: clamp(1.4rem, 6vw, 2rem);
-		}
-		.job-status {
-			grid-column: 1 / -1;
-		}
-		.job-logo-wrap {
-			grid-row: 3;
-			grid-column: 1;
-			width: 52px;
-			height: 52px;
-			padding: 10px;
-		}
-		.job-spec {
-			grid-row: 3;
-			grid-column: 2;
-			margin: 0;
-			padding-top: 0;
-			border-top: none;
-			gap: 0.5rem;
-		}
-		.spec-row {
-			grid-template-columns: 48px minmax(0, 1fr);
-			gap: 0.4rem;
-		}
-		.spec-v {
-			overflow-wrap: anywhere;
-			font-size: var(--fs-xs);
-		}
-		.job-body {
-			max-height: none;
-			overflow-y: visible;
-			overscroll-behavior: auto;
-			padding-right: 0;
-			gap: 0.75rem;
-			min-width: 0;
-			mask-image: none;
-			-webkit-mask-image: none;
-		}
-		.job-title {
-			font-size: clamp(1.15rem, 4.5vw, 1.5rem);
-			overflow-wrap: anywhere;
-		}
-		.job-lead {
-			font-size: clamp(0.9rem, 3.5vw, 1rem);
-			overflow-wrap: anywhere;
-		}
-		.job-win-text {
-			overflow-wrap: anywhere;
-			font-size: clamp(0.875rem, 3vw, 0.95rem);
-		}
-		.job-win {
-			grid-template-columns: 22px minmax(0, 1fr);
-			gap: 0.65rem;
-		}
-		.job-stack {
-			margin-top: 0.5rem;
-			padding-top: 1rem;
-		}
-		.experience-footer {
-			display: none;
-		}
-	}
 
-	@media (max-width: 480px) {
-		.experience-pin {
-			padding-block: 1.75rem clamp(2rem, 6vh, 3.5rem);
+		:global(:root[data-theme='light']) .job-feature {
+			background: var(--main-elevated, #ffffff) !important;
 		}
+
+		/* Meta section → plain flex column */
 		.job-meta {
-			grid-template-columns: 1fr;
+			display: flex !important;
+			flex-direction: column !important;
+			gap: 0.75rem !important;
+			min-width: 0 !important;
+			width: 100% !important;
 		}
+
+		.job-range {
+			font-size: clamp(1.25rem, 5.5vw, 1.75rem) !important;
+			overflow-wrap: anywhere !important;
+			width: 100%;
+		}
+
+		.job-status {
+			width: 100%;
+		}
+
 		.job-logo-wrap {
-			grid-row: auto;
-			grid-column: auto;
+			width: 48px !important;
+			height: 48px !important;
+			padding: 8px !important;
 		}
+
 		.job-spec {
-			grid-row: auto;
-			grid-column: auto;
-			border-top: 1px solid var(--border);
-			padding-top: 0.75rem;
-			margin-top: 0.25rem;
+			margin: 0 !important;
+			padding-top: 0.75rem !important;
+			border-top: 1px solid var(--border) !important;
+			gap: 0.5rem !important;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		.spec-row {
+			grid-template-columns: 52px minmax(0, 1fr) !important;
+			gap: 0.4rem !important;
+		}
+
+		.spec-k {
+			font-size: 0.65rem !important;
+		}
+
+		.spec-v {
+			overflow-wrap: anywhere !important;
+			word-break: break-word !important;
+			font-size: var(--fs-xs) !important;
+			min-width: 0;
+		}
+
+		/* Body → fully visible, no scroll, no mask */
+		.job-body {
+			max-height: none !important;
+			overflow-y: visible !important;
+			overscroll-behavior: auto !important;
+			padding-right: 0 !important;
+			gap: 0.75rem !important;
+			min-width: 0 !important;
+			width: 100% !important;
+			mask-image: none !important;
+			-webkit-mask-image: none !important;
+			display: flex !important;
+			flex-direction: column !important;
+		}
+
+		.job-eyebrow {
+			flex-wrap: wrap;
+		}
+
+		.job-title {
+			font-size: clamp(1.05rem, 4.5vw, 1.4rem) !important;
+			overflow-wrap: break-word !important;
+			word-break: break-word !important;
+			width: 100%;
+		}
+
+		.job-lead {
+			font-size: clamp(0.875rem, 3.5vw, 1rem) !important;
+			overflow-wrap: break-word !important;
+			word-break: break-word !important;
+			max-width: 100% !important;
+			width: 100%;
+		}
+
+		.job-wins {
+			width: 100%;
+		}
+
+		.job-win {
+			display: grid !important;
+			grid-template-columns: 22px minmax(0, 1fr) !important;
+			gap: 0.5rem !important;
+			width: 100%;
+		}
+
+		.job-win-text {
+			overflow-wrap: break-word !important;
+			word-break: break-word !important;
+			font-size: clamp(0.85rem, 3vw, 0.95rem) !important;
+			min-width: 0;
+		}
+
+		.job-stack {
+			display: flex !important;
+			flex-wrap: wrap !important;
+			gap: 0.35rem !important;
+			margin-top: 0.5rem !important;
+			padding-top: 0.75rem !important;
+			width: 100%;
+		}
+
+		.job-stack-chip {
+			font-size: 0.65rem !important;
+			padding: 0.25em 0.55em !important;
+		}
+
+		.experience-footer {
+			display: none !important;
 		}
 	}
 
