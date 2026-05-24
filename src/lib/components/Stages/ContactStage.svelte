@@ -323,19 +323,35 @@
 	}
 
 	@media (max-width: 900px) {
+		.contact-stage {
+			min-height: auto;
+			padding-block: clamp(3rem, 8vh, 5rem) clamp(2rem, 5vh, 3.5rem);
+		}
 		.contact-grid {
 			grid-template-columns: minmax(0, 1fr);
-			gap: 2.5rem;
+			gap: 2rem;
+		}
+		.contact-headline {
+			font-size: clamp(1.65rem, 7vw, 3.5rem);
 		}
 	}
 
 	@media (max-width: 600px) {
 		.contact-stage {
-			padding-block: clamp(2.5rem, 6vh, 4rem) clamp(2rem, 5vh, 3rem);
-			min-height: auto;
+			padding-block: 2rem clamp(1.5rem, 5vh, 2.5rem);
+		}
+		.contact-inner {
+			gap: clamp(1.25rem, 4vh, 2rem);
+		}
+		.contact-headline {
+			font-size: clamp(1.5rem, 8vw, 2.75rem);
+			line-height: 1.05;
 		}
 		.contact-copy {
-			gap: 1.5rem;
+			gap: 1.25rem;
+		}
+		.contact-paragraph {
+			font-size: clamp(0.95rem, 3.5vw, 1.05rem);
 		}
 		.channel {
 			grid-template-columns: 32px 1fr 14px;
