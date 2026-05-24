@@ -637,12 +637,40 @@
 			position: static;
 			height: auto;
 			min-height: calc(100dvh - var(--nav-h));
+			/* reduce the generous desktop block padding */
+			padding-block: clamp(2.5rem, 8vh, 5rem) clamp(1.5rem, 4vh, 3rem);
+			padding-inline: clamp(1rem, 5vw, 2rem);
 		}
 		.hero-name {
-			font-size: clamp(3rem, 14vw, 5.5rem);
+			font-size: clamp(2.75rem, 13vw, 5rem);
+		}
+		.hero-tagline {
+			font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+			max-width: 100%;
+		}
+		.hero-cta-row {
+			gap: 0.65rem;
+		}
+		.cta {
+			padding: 0.85em 1.3em;
+			font-size: var(--fs-xs);
+		}
+		/* scroll cue is absolutely positioned — parent is static on mobile,
+		   so it falls outside the normal flow and can overlap content below */
+		.hero-scroll-cue {
+			display: none;
 		}
 		.cursor-orb {
 			display: none;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.hero-name {
+			font-size: clamp(2.5rem, 12.5vw, 4rem);
+		}
+		.hero-content {
+			gap: 1rem;
 		}
 	}
 

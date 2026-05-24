@@ -242,7 +242,9 @@
 		background: rgba(255, 255, 255, 0.015);
 		min-width: 0;
 		max-width: 100%;
+		/* clip vertically but allow the graph to scroll horizontally */
 		overflow: hidden;
+		overflow-x: auto;
 	}
 
 	@media (max-width: 600px) {
@@ -271,6 +273,9 @@
 
 	/* Mobile: stack columns ─────────────── */
 	@media (max-width: 900px) {
+		.about-stage {
+			padding-block: clamp(2rem, 6vh, 4rem);
+		}
 		.about-grid {
 			grid-template-columns: minmax(0, 1fr);
 			gap: 1.5rem;
@@ -279,22 +284,44 @@
 			position: static;
 		}
 		.about-mark-num {
-			font-size: clamp(3rem, 14vw, 5rem);
+			font-size: clamp(2.5rem, 12vw, 4.5rem);
+		}
+		.about-mark-meta {
+			font-size: var(--fs-xs);
 		}
 		.about-content {
 			min-width: 0;
+			gap: clamp(1.5rem, 4vw, 2.5rem);
+		}
+		.about-heading {
+			font-size: clamp(1.35rem, 5vw, 2.5rem);
 		}
 	}
 
 	@media (max-width: 600px) {
 		.about-stage {
-			padding-block: clamp(2.5rem, 6vh, 4rem);
+			padding-block: 1.75rem clamp(2rem, 6vh, 3.5rem);
+		}
+		.about-mark-inner {
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 0.5rem 1rem;
+		}
+		.about-mark-num {
+			font-size: clamp(2rem, 10vw, 3.5rem);
+		}
+		.about-mark-line {
+			display: none;
+		}
+		.about-mark-meta {
+			width: 100%;
 		}
 		.about-content {
-			gap: 1.5rem;
+			gap: 1.25rem;
 		}
 		.about-facts {
-			grid-template-columns: minmax(0, 1fr);
+			grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
 			gap: 1rem;
 			padding-block: 0.85rem 1rem;
 		}

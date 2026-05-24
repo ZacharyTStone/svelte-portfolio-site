@@ -216,7 +216,6 @@
 							tabindex="0"
 							role="region"
 							aria-label="{exp.company} role details"
-							data-lenis-prevent
 						>
 							<div class="job-eyebrow">
 								<span class="job-company">{exp.company}</span>
@@ -705,17 +704,20 @@
 			position: static;
 			display: block;
 			height: auto;
-			padding-block: clamp(3rem, 8vh, 5rem);
+			padding-block: clamp(2rem, 6vh, 4rem);
 			padding-inline: 0;
 			overflow: visible;
 		}
 		.experience-header {
-			padding-inline: clamp(1.25rem, 5vw, 2rem);
-			margin-bottom: 1.75rem;
+			padding-inline: clamp(1rem, 5vw, 2rem);
+			margin-bottom: 1.5rem;
 		}
 		.experience-header-row {
 			align-items: flex-start;
-			gap: 1rem;
+			gap: 0.75rem;
+		}
+		.experience-title {
+			font-size: clamp(1.2rem, 5.5vw, 2rem);
 		}
 		.experience-counter {
 			display: none;
@@ -726,10 +728,11 @@
 			height: auto;
 		}
 		.experience-track {
-			display: block !important;
-			gap: 0;
+			display: flex !important;
+			flex-direction: column;
+			gap: 1rem;
 			transform: none !important;
-			padding-inline: clamp(1.25rem, 5vw, 2rem);
+			padding-inline: clamp(1rem, 5vw, 2rem);
 			padding-block: 0;
 			height: auto;
 			width: 100%;
@@ -749,56 +752,112 @@
 			grid-template-columns: minmax(0, 1fr);
 			height: auto;
 			min-height: 0;
-			padding: 1.25rem;
+			padding: clamp(1rem, 4vw, 1.5rem);
 			gap: 1.25rem;
-			margin-bottom: 1rem;
+			margin-bottom: 0;
 			transform: none !important;
 			opacity: 1 !important;
 			filter: none !important;
 			backdrop-filter: none;
 			-webkit-backdrop-filter: none;
 			box-sizing: border-box;
+			/* solid background since there's no blur on mobile */
+			background: var(--main-elevated, var(--secondary));
+		}
+		:global(:root[data-theme='light']) .job-feature {
+			background: var(--main-elevated, #ffffff);
 		}
 		.job-meta {
-			gap: 1rem;
+			display: grid;
+			grid-template-columns: auto 1fr;
+			grid-template-rows: auto auto;
+			column-gap: 1rem;
+			row-gap: 0.75rem;
+			align-items: start;
 			min-width: 0;
 		}
+		.job-range {
+			grid-column: 1 / -1;
+			font-size: clamp(1.4rem, 6vw, 2rem);
+		}
+		.job-status {
+			grid-column: 1 / -1;
+		}
+		.job-logo-wrap {
+			grid-row: 3;
+			grid-column: 1;
+			width: 52px;
+			height: 52px;
+			padding: 10px;
+		}
 		.job-spec {
-			margin-top: 0.5rem;
-			padding-top: 1rem;
+			grid-row: 3;
+			grid-column: 2;
+			margin: 0;
+			padding-top: 0;
+			border-top: none;
+			gap: 0.5rem;
 		}
 		.spec-row {
-			grid-template-columns: 56px minmax(0, 1fr);
+			grid-template-columns: 48px minmax(0, 1fr);
+			gap: 0.4rem;
 		}
 		.spec-v {
 			overflow-wrap: anywhere;
+			font-size: var(--fs-xs);
 		}
 		.job-body {
 			max-height: none;
 			overflow-y: visible;
 			overscroll-behavior: auto;
 			padding-right: 0;
-			gap: 0.85rem;
+			gap: 0.75rem;
 			min-width: 0;
 			mask-image: none;
 			-webkit-mask-image: none;
 		}
-		.job-range {
-			font-size: clamp(1.6rem, 7vw, 2.25rem);
-		}
 		.job-title {
-			font-size: clamp(1.2rem, 5vw, 1.55rem);
+			font-size: clamp(1.15rem, 4.5vw, 1.5rem);
 			overflow-wrap: anywhere;
 		}
-		.job-lead,
+		.job-lead {
+			font-size: clamp(0.9rem, 3.5vw, 1rem);
+			overflow-wrap: anywhere;
+		}
 		.job-win-text {
 			overflow-wrap: anywhere;
+			font-size: clamp(0.875rem, 3vw, 0.95rem);
 		}
 		.job-win {
-			grid-template-columns: 26px minmax(0, 1fr);
+			grid-template-columns: 22px minmax(0, 1fr);
+			gap: 0.65rem;
+		}
+		.job-stack {
+			margin-top: 0.5rem;
+			padding-top: 1rem;
 		}
 		.experience-footer {
 			display: none;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.experience-pin {
+			padding-block: 1.75rem clamp(2rem, 6vh, 3.5rem);
+		}
+		.job-meta {
+			grid-template-columns: 1fr;
+		}
+		.job-logo-wrap {
+			grid-row: auto;
+			grid-column: auto;
+		}
+		.job-spec {
+			grid-row: auto;
+			grid-column: auto;
+			border-top: 1px solid var(--border);
+			padding-top: 0.75rem;
+			margin-top: 0.25rem;
 		}
 	}
 
