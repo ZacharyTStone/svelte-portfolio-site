@@ -66,7 +66,7 @@ export const HOME: HomePageParams = {
 		},
 		{
 			platform: Platform.Email,
-			link: 'mailto: zach.stone.developer@gmail.com',
+			link: 'mailto:zach.stone.developer@gmail.com',
 			newTab: true
 		}
 	]

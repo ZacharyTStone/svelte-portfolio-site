@@ -19,11 +19,11 @@
 	}
 
 	const subtitleBySlug: Record<string, string> = {
-		fe: 'React · Next · Svelte · TypeScript · Apollo · Tailwind · AG Grid',
-		be: 'Node · Express · REST · GraphQL · WebSockets · SQL',
+		fe: 'React · Next.js · Svelte · SvelteKit · TypeScript · Apollo Client · Tailwind · AG Grid',
+		be: 'Node.js · GraphQL · REST · WebSockets · Apollo · Ably · Twilio · SQL',
 		'ai-tooling': 'Claude Code · Anthropic API · Agentic skill authoring · LLM integration',
-		'cyber-security': 'OWASP · Burp · ZAP · CSP · Bug Bounty in progress',
-		'dev-tools': 'GitHub Actions · Playwright · Sentry · LogRocket · LaunchDarkly',
+		'cyber-security': 'OWASP ZAP · Burp Suite · Kali Linux · CSP · Security headers',
+		'dev-tools': 'GitHub Actions · Playwright · Sentry · PagerDuty · New Relic · LogRocket · LaunchDarkly',
 		japanese: 'JLPT N1 · Kanji Kentei · Speech contest 1st place'
 	};
 

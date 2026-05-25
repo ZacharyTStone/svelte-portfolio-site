@@ -69,6 +69,8 @@ const Other: SkillInfoObject[] = [
 	{ label: 'Jira', link: 'https://www.atlassian.com/software/jira' },
 	{ label: 'Github', link: 'https://github.com/' },
 	{ label: 'Sentry', link: 'https://sentry.io/' },
+	{ label: 'PagerDuty', link: 'https://www.pagerduty.com/' },
+	{ label: 'New Relic', link: 'https://newrelic.com/' },
 	{ label: 'LogRocket', link: 'https://logrocket.com/' },
 	{ label: 'Mixpanel', link: 'https://mixpanel.com/' },
 	{ label: 'LaunchDarkly', link: 'https://launchdarkly.com/' },
@@ -242,6 +244,13 @@ const MY_SKILLS: Array<Skill> = [
 		color: 'orange',
 		logo: Assets.Japan,
 		name: 'SKILLS.japanese.name',
+		courses: [
+			{
+				label: 'Business Japanese Course',
+				date: '01/2025',
+				provider: 'Interculture Language Academy'
+			}
+		],
 		certifications: [
 			{
 				label: 'Japanese Language Proficiency Test level N1 （日本語能力試験N1）',

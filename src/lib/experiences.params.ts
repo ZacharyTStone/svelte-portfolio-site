@@ -21,7 +21,7 @@ const RAW_EXPERIENCES: Array<Experience> = [
 			}
 		],
 		logo: Assets.Interac,
-		shortDescription: 'test',
+		shortDescription: 'English language educator in public schools across Fukushima, Japan — the beginning of my Japan journey and path to JLPT N1.',
 		screenshots: [{ src: getAssetURL(Assets.Alt1), label: '' }]
 	},
 	{
@@ -50,7 +50,7 @@ const RAW_EXPERIENCES: Array<Experience> = [
 			}
 		},
 		logo: Assets.Rapptr,
-		shortDescription: 'test',
+		shortDescription: 'Frontend engineer at a NYC product agency, shipping production systems for early-stage and growth-stage startups.',
 
 		screenshots: [
 			{ src: getAssetURL(Assets.Rapptr1), label: '' },
@@ -74,7 +74,7 @@ const RAW_EXPERIENCES: Array<Experience> = [
 			link: { to: 'https://sellfire.com/', label: 'Sellfire', newTab: true }
 		},
 		logo: Assets.Sellfire,
-		shortDescription: 'test'
+		shortDescription: 'Sole senior engineer owning security, observability, CI/CD, and AI-assisted developer tooling at a B2B sales engagement platform.'
 	}
 ];
 
