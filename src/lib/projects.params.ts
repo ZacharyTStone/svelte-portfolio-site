@@ -5,6 +5,25 @@ import { generateRandomHexColor } from './utils';
 
 const MY_PROJECTS: Array<Project> = [
 	{
+		slug: 'seasons',
+		color: generateRandomHexColor(),
+		description: 'PROJECTS.SEASONS.description',
+		shortDescription: 'PROJECTS.SEASONS.shortDescription',
+		links: [
+			{
+				to: 'https://www.myseasons.app/',
+				label: 'PROJECTS.live_site',
+				newTab: true
+			}
+		],
+		logo: Assets.Quote,
+		name: 'PROJECTS.SEASONS.name',
+		skills: getSkills('fe', 'be', 'dev-tools'),
+		type: 'PROJECTS.SEASONS.type',
+		english: true,
+		japanese: false
+	},
+	{
 		slug: 'my-anime-collection',
 		color: generateRandomHexColor(),
 		description: 'PROJECTS.MY_ANIME_COLLECTION.description',
@@ -55,6 +74,7 @@ const MY_PROJECTS: Array<Project> = [
 
 	{
 		slug: 'haku',
+		dont_show: true,
 		color: generateRandomHexColor(),
 		description: 'PROJECTS.HAKU.description',
 		shortDescription: 'PROJECTS.HAKU.shortDescription',
@@ -92,6 +112,7 @@ const MY_PROJECTS: Array<Project> = [
 	},
 	{
 		slug: 'zach-in-japan',
+		dont_show: true,
 		color: generateRandomHexColor(),
 		description: 'PROJECTS.ZACH_STONE.description',
 		shortDescription: 'PROJECTS.ZACH_STONE.shortDescription',
@@ -127,6 +148,7 @@ const MY_PROJECTS: Array<Project> = [
 	},
 	{
 		slug: 'ai-flashcards',
+		dont_show: true,
 		color: generateRandomHexColor(),
 		description: 'PROJECTS.AI_FLASHCARDS.description',
 		shortDescription: 'PROJECTS.AI_FLASHCARDS.shortDescription',
@@ -187,6 +209,7 @@ const MY_PROJECTS: Array<Project> = [
 	// },
 	{
 		slug: 'japanese-quiz',
+		dont_show: true,
 		color: generateRandomHexColor(),
 		description: 'PROJECTS.JAPANESE_QUIZ.description',
 		shortDescription: 'PROJECTS.JAPANESE_QUIZ.shortDescription',
@@ -221,6 +244,7 @@ const MY_PROJECTS: Array<Project> = [
 	},
 	{
 		slug: 'immerse-in-japan',
+		dont_show: true,
 		color: generateRandomHexColor(),
 		description: 'PROJECTS.IMMERSE_IN_JAPAN.description',
 		shortDescription: 'PROJECTS.IMMERSE_IN_JAPAN.shortDescription',
