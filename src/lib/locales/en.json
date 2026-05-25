@@ -181,6 +181,13 @@
 		"track_label": "Project showcases — scroll or drag sideways",
 		"screenshot_alt": "Project screenshot",
 		"view_larger_screenshot": "View larger screenshot",
+		"SEASONS": {
+			"name": "Seasons",
+			"description": "Seasons is a sequencing system for personal goals. It gives every goal a home on your Life Map — off-season you rank them and pick what moves, in-season one goal gets the focus. When the season closes, the record tells you what's next.",
+			"shortDescription": "A goal sequencing system — one focus at a time.",
+			"type": "SaaS Product",
+			"featured_reason": "Top Project"
+		},
 		"MY_ANIME_COLLECTION": {
 			"name": "My Anime Collection",
 			"description": "My Anime Collection is a free anime tracker where you can explore and create custom playlists of your favorite anime.",
