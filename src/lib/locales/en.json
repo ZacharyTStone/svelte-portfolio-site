@@ -176,6 +176,7 @@
 		"heading_accent": "built",
 		"counter_label": "Projects",
 		"open_case": "Open case",
+		"scroll_hint": "Scroll down to step through each project",
 		"hint": "Drag, scroll wheel, trackpad, or swipe sideways",
 		"track_label": "Project showcases — scroll or drag sideways",
 		"screenshot_alt": "Project screenshot",

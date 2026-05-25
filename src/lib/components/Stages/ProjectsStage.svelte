@@ -5,10 +5,16 @@
 	import { PROJECTS } from '$lib/params';
 	import type { Project } from '$lib/types';
 	import { isCoarsePointer, prefersReducedMotion } from '$lib/utils/motion';
+	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 
 	const visibleProjects = PROJECTS.items.filter((p) => !p.dont_show);
 	const projectCount = visibleProjects.length;
+
+	let sectionEl: HTMLElement | undefined = $state();
+	let stackCardEls: HTMLElement[] = [];
+	let activeIndex = $state(0);
+	let stackProgress = $state(0);
 
 	function safeT(key: string): string {
 		if (!browser) return key.split('.').pop() || key;
@@ -26,12 +32,16 @@
 		return getAssetURL(project.logo);
 	}
 
+	function easeInQuart(t: number): number {
+		return t * t * t * t;
+	}
+
 	/** Svelte action: subtle 3-D tilt + specular glare that follows the cursor. */
 	function tilt(node: HTMLElement) {
 		if (typeof window === 'undefined') return {};
 		if (prefersReducedMotion() || isCoarsePointer()) return {};
 
-		const STRENGTH = 6;
+		const STRENGTH = 5;
 		const glare = node.querySelector('.showcase-glare') as HTMLElement | null;
 
 		function onMove(e: MouseEvent) {
@@ -41,7 +51,7 @@
 			const dx = (e.clientX - rect.left - cx) / cx;
 			const dy = (e.clientY - rect.top - cy) / cy;
 
-			node.style.transform = `perspective(700px) rotateY(${dx * STRENGTH}deg) rotateX(${-dy * STRENGTH}deg) translateY(-4px)`;
+			node.style.transform = `perspective(900px) rotateY(${dx * STRENGTH}deg) rotateX(${-dy * STRENGTH}deg) translateY(-3px)`;
 			node.style.transition = 'transform 60ms linear';
 
 			if (glare) {
@@ -68,15 +78,171 @@
 			}
 		};
 	}
+
+	onMount(() => {
+		if (typeof window === 'undefined') return;
+
+		const isWide = window.matchMedia('(min-width: 901px)').matches;
+		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		if (!isWide || reduced) return;
+
+		let rafId: number;
+		const n = projectCount;
+
+		function updateStack() {
+			if (!sectionEl) return;
+			const rect = sectionEl.getBoundingClientRect();
+			const scrollTotal = sectionEl.offsetHeight - window.innerHeight;
+			if (scrollTotal <= 0) return;
+
+			const scrolled = Math.max(0, -rect.top);
+			const p = Math.min(1, scrolled / scrollTotal);
+			const activeFloat = p * n;
+			const newActive = Math.min(n - 1, Math.floor(activeFloat));
+			const cardProgress = activeFloat - newActive;
+
+			activeIndex = newActive;
+			stackProgress = p;
+
+			stackCardEls.forEach((card, i) => {
+				if (!card) return;
+				const diff = i - newActive;
+				let ty = 0,
+					scale = 1,
+					opacity = 1;
+
+				if (diff < 0) {
+					ty = -108;
+					scale = 0.9;
+					opacity = 0;
+				} else if (diff === 0) {
+					if (cardProgress > 0.6) {
+						const t = easeInQuart((cardProgress - 0.6) / 0.4);
+						ty = -108 * t;
+						scale = 1 - 0.1 * t;
+						opacity = 1 - t;
+					}
+				} else {
+					const clampedDiff = Math.min(diff, 4);
+					ty = clampedDiff * 2.8;
+					scale = 1 - clampedDiff * 0.04;
+					opacity = Math.max(0, 1 - clampedDiff * 0.28);
+				}
+
+				card.style.transform = `translateY(${ty}%) scale(${scale})`;
+				card.style.opacity = String(Math.max(0, Math.min(1, opacity)));
+				card.style.zIndex = String(n - i);
+			});
+		}
+
+		function onScroll() {
+			cancelAnimationFrame(rafId);
+			rafId = requestAnimationFrame(updateStack);
+		}
+
+		window.addEventListener('scroll', onScroll, { passive: true });
+		updateStack();
+
+		return () => {
+			window.removeEventListener('scroll', onScroll);
+			cancelAnimationFrame(rafId);
+		};
+	});
 </script>
 
-<section id="projects" class="projects-stage" aria-labelledby="projects-heading">
+<section
+	bind:this={sectionEl}
+	id="projects"
+	class="projects-stage"
+	style="--project-count: {projectCount}"
+	aria-labelledby="projects-heading"
+>
+	<!-- ── DESKTOP: Stacked scroll-driven stack ─────────────── -->
+	<div class="projects-pin" aria-hidden="false">
+		<header class="pin-header">
+			<div class="projects-header-row">
+				<div>
+					<div class="mono-eyebrow">{safeT('PROJECTS.eyebrow')}</div>
+					<h2 id="projects-heading" class="projects-title">
+						{safeT('PROJECTS.heading_prefix')}
+						<span class="accent">{safeT('PROJECTS.heading_accent')}</span>
+					</h2>
+				</div>
+				<div class="projects-counter mono-eyebrow" aria-live="polite">
+					<span class="projects-counter-label">{safeT('PROJECTS.counter_label')}</span>
+					<span class="projects-counter-num">
+						{(activeIndex + 1).toString().padStart(2, '0')} / {projectCount.toString().padStart(2, '0')}
+					</span>
+				</div>
+			</div>
+		</header>
+
+		<div class="stack-viewport">
+			{#each visibleProjects as project, i (project.slug)}
+				<div class="stack-card" bind:this={stackCardEls[i]} style="--card-i: {i}">
+					<div class="stack-card-inner" use:tilt>
+						<div class="showcase-glare" aria-hidden="true"></div>
+
+						<div class="stack-left">
+							<div class="stack-meta-top">
+								<span class="stack-eyebrow mono-eyebrow">{safeT(project.type ?? '')}</span>
+								<span class="stack-card-index mono-eyebrow" aria-hidden="true">
+									{(i + 1).toString().padStart(2, '0')} / {projectCount.toString().padStart(2, '0')}
+								</span>
+							</div>
+							<h3 class="stack-title">{safeT(project.name)}</h3>
+							<p class="stack-desc">{safeT(project.shortDescription)}</p>
+							{#if project.project_skills?.length}
+								<div class="stack-tags">
+									{#each project.project_skills.slice(0, 5) as tag}
+										<span class="showcase-tag">{tag.label}</span>
+									{/each}
+									{#if (project.project_skills.length ?? 0) > 5}
+										<span class="showcase-tag-more">+{project.project_skills.length - 5}</span>
+									{/if}
+								</div>
+							{/if}
+							<a href="/projects/{project.slug}" class="stack-cta">
+								<span>{safeT('PROJECTS.open_case')}</span>
+								<UIcon icon="i-carbon-arrow-up-right" classes="text-1.05em" alt="" />
+							</a>
+						</div>
+
+						<div class="stack-right">
+							<img
+								class="stack-image"
+								src={pickImage(project)}
+								alt={safeT(project.name)}
+								loading={i < 2 ? 'eager' : 'lazy'}
+								decoding="async"
+							/>
+						</div>
+					</div>
+				</div>
+			{/each}
+		</div>
+
+		<footer class="pin-footer">
+			<div class="pin-progress-track">
+				<div
+					class="pin-progress-fill"
+					style="transform: scaleX({stackProgress.toFixed(4)})"
+				></div>
+			</div>
+			<div class="pin-scroll-hint mono-eyebrow">
+				<UIcon icon="i-carbon-arrow-down" classes="text-1em" alt="" />
+				<span>{safeT('PROJECTS.scroll_hint')}</span>
+			</div>
+		</footer>
+	</div>
+
+	<!-- ── MOBILE: existing CSS grid ───────────────────────── -->
 	<div class="projects-inner">
 		<header class="projects-header">
 			<div class="projects-header-row">
 				<div>
 					<div class="mono-eyebrow">{safeT('PROJECTS.eyebrow')}</div>
-					<h2 id="projects-heading" class="projects-title">
+					<h2 class="projects-title" aria-hidden="true">
 						{safeT('PROJECTS.heading_prefix')}
 						<span class="accent">{safeT('PROJECTS.heading_accent')}</span>
 					</h2>
@@ -138,21 +304,52 @@
 </section>
 
 <style lang="scss">
+	/* ─── Section ──────────────────────────────────────── */
 	.projects-stage {
 		position: relative;
-		padding-block: clamp(4rem, 10vh, 7rem);
 		scroll-margin-top: var(--scroll-anchor-offset);
 	}
 
-	.projects-inner {
-		max-width: 1400px;
-		margin: 0 auto;
-		padding-inline: clamp(1rem, 5vw, 6rem);
-		min-width: 0;
+	/* ─── Desktop: tall section for scroll-driven stack ── */
+	@media (min-width: 901px) {
+		.projects-stage {
+			height: calc(var(--project-count, 6) * 85vh + 20vh);
+		}
+
+		.projects-inner {
+			display: none;
+		}
 	}
 
-	.projects-header {
-		margin-bottom: clamp(2.5rem, 6vh, 4rem);
+	/* ─── Mobile: normal document flow ─────────────────── */
+	@media (max-width: 900px) {
+		.projects-stage {
+			padding-block: clamp(2.5rem, 7vh, 5rem);
+		}
+
+		.projects-pin {
+			display: none;
+		}
+	}
+
+	/* ─── Sticky pin ────────────────────────────────────── */
+	.projects-pin {
+		position: sticky;
+		top: var(--nav-h);
+		height: calc(100dvh - var(--nav-h));
+		display: grid;
+		grid-template-rows: auto minmax(0, 1fr) auto;
+		gap: clamp(0.6rem, 1.5vh, 1.25rem);
+		padding-block: clamp(1rem, 2.5vh, 1.75rem);
+		overflow: hidden;
+	}
+
+	/* ─── Pin header ────────────────────────────────────── */
+	.pin-header {
+		max-width: 1500px;
+		margin: 0 auto;
+		padding-inline: clamp(1.5rem, 6vw, 6rem);
+		width: 100%;
 	}
 
 	.projects-header-row {
@@ -165,13 +362,13 @@
 
 	.projects-title {
 		font-family: var(--title-f);
-		font-size: clamp(1.5rem, 5vw, 3.5rem);
+		font-size: clamp(1.5rem, 2.6vw, 2.5rem);
 		font-weight: var(--fw-medium);
 		line-height: 1.15;
 		letter-spacing: -0.015em;
 		color: var(--main-text);
-		margin: 0.4rem 0 0 0;
-		max-width: 24ch;
+		margin: 0.35rem 0 0 0;
+		max-width: 26ch;
 		overflow-wrap: anywhere;
 	}
 
@@ -187,12 +384,235 @@
 		color: var(--secondary-text);
 	}
 
+	.projects-counter-label {
+		font-size: var(--fs-xs);
+	}
+
 	.projects-counter-num {
-		font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+		font-size: clamp(1.5rem, 2.4vw, 2.1rem);
 		color: var(--accent-electric);
 		font-weight: var(--fw-light);
 		line-height: 1;
 		font-variant-numeric: tabular-nums;
+	}
+
+	/* ─── Stack viewport ────────────────────────────────── */
+	.stack-viewport {
+		position: relative;
+		overflow: hidden;
+		min-height: 0;
+	}
+
+	/* ─── Stack card ─────────────────────────────────────── */
+	.stack-card {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: clamp(1.5rem, 6vw, 6rem);
+		right: clamp(1.5rem, 6vw, 6rem);
+		will-change: transform, opacity;
+		transform-origin: center top;
+	}
+
+	.stack-card-inner {
+		height: 100%;
+		display: grid;
+		grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+		gap: clamp(1.5rem, 3vw, 3rem);
+		background: rgba(255, 255, 255, 0.025);
+		border: 1px solid var(--border);
+		border-radius: clamp(1rem, 1.6vw, 1.5rem);
+		overflow: hidden;
+		position: relative;
+		transition: border-color 280ms ease, box-shadow 280ms ease;
+		backdrop-filter: blur(14px) saturate(140%);
+		-webkit-backdrop-filter: blur(14px) saturate(140%);
+		transform-style: preserve-3d;
+	}
+
+	:global(:root[data-theme='light']) .stack-card-inner {
+		background: rgba(255, 255, 255, 0.65);
+	}
+
+	.stack-card-inner:hover {
+		border-color: var(--accent-electric);
+		box-shadow: 0 30px 80px -30px rgba(106, 166, 255, 0.4);
+	}
+
+	/* Specular glare */
+	.showcase-glare {
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 300ms ease;
+		z-index: 2;
+		mix-blend-mode: screen;
+	}
+
+	:global(:root[data-theme='light']) .showcase-glare {
+		mix-blend-mode: overlay;
+	}
+
+	/* ─── Stack left column ─────────────────────────────── */
+	.stack-left {
+		display: flex;
+		flex-direction: column;
+		gap: clamp(1rem, 2vh, 1.75rem);
+		padding: clamp(1.75rem, 3vw, 3rem);
+		justify-content: center;
+		min-width: 0;
+		position: relative;
+		z-index: 1;
+	}
+
+	.stack-meta-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	.stack-eyebrow {
+		color: var(--accent-electric);
+	}
+
+	.stack-card-index {
+		color: var(--secondary-text);
+		opacity: 0.5;
+	}
+
+	.stack-title {
+		font-family: var(--title-f);
+		font-size: clamp(1.6rem, 3vw, 2.8rem);
+		font-weight: var(--fw-semibold);
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+		color: var(--main-text);
+		margin: 0;
+		overflow-wrap: anywhere;
+	}
+
+	.stack-desc {
+		font-family: var(--text-f);
+		font-size: clamp(0.95rem, 1.15vw, 1.1rem);
+		line-height: 1.65;
+		color: var(--secondary-text);
+		margin: 0;
+		max-width: 52ch;
+	}
+
+	.stack-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+
+	.stack-cta {
+		margin-top: 0.25rem;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-family: var(--mono-f);
+		font-size: var(--fs-xs);
+		letter-spacing: var(--ls-widest);
+		text-transform: uppercase;
+		color: var(--accent-electric);
+		text-decoration: none;
+		align-self: flex-start;
+		padding: 0.6em 1.1em;
+		border: 1px solid var(--accent-electric);
+		border-radius: 999px;
+		transition: background 240ms ease, color 240ms ease;
+
+		&:hover {
+			background: var(--accent-electric);
+			color: #0a0a0c;
+		}
+	}
+
+	/* ─── Stack right column ────────────────────────────── */
+	.stack-right {
+		position: relative;
+		overflow: hidden;
+		background: var(--main-elevated);
+	}
+
+	.stack-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.stack-card-inner:hover .stack-image {
+		transform: scale(1.04);
+	}
+
+	/* ─── Pin footer (progress) ─────────────────────────── */
+	.pin-footer {
+		max-width: 1500px;
+		margin: 0 auto;
+		padding-inline: clamp(1.5rem, 6vw, 6rem);
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.pin-progress-track {
+		height: 2px;
+		background: var(--border);
+		border-radius: 999px;
+		overflow: hidden;
+	}
+
+	.pin-progress-fill {
+		height: 100%;
+		width: 100%;
+		background: var(--accent-electric);
+		transform-origin: left center;
+		transform: scaleX(0);
+		will-change: transform;
+		box-shadow: 0 0 10px var(--accent-electric-glow);
+		transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.pin-scroll-hint {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--secondary-text);
+	}
+
+	/* ─── Reduced motion: skip stack, show grid ─────────── */
+	@media (prefers-reduced-motion: reduce) {
+		@media (min-width: 901px) {
+			.projects-stage {
+				height: auto;
+				padding-block: clamp(4rem, 10vh, 7rem);
+			}
+			.projects-pin {
+				display: none;
+			}
+			.projects-inner {
+				display: block;
+			}
+		}
+	}
+
+	/* ─── Mobile grid (projects-inner) ─────────────────── */
+	.projects-inner {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding-inline: clamp(1rem, 5vw, 6rem);
+		min-width: 0;
+	}
+
+	.projects-header {
+		margin-bottom: clamp(2.5rem, 6vh, 4rem);
 	}
 
 	/* Grid ─────────────────────────────────── */
@@ -231,19 +651,7 @@
 		}
 	}
 
-	@media (max-width: 900px) {
-		.projects-stage {
-			padding-block: clamp(2.5rem, 7vh, 5rem);
-		}
-		.projects-title {
-			font-size: clamp(1.35rem, 5.5vw, 2.5rem);
-		}
-	}
-
 	@media (max-width: 640px) {
-		.projects-stage {
-			padding-block: 2rem clamp(2.5rem, 7vh, 4rem);
-		}
 		.projects-inner {
 			padding-inline: clamp(0.85rem, 4vw, 1.5rem);
 		}
@@ -306,22 +714,6 @@
 		box-shadow: 0 24px 60px -20px rgba(106, 166, 255, 0.45);
 	}
 
-	/* Specular glare overlay — position updated by tilt action */
-	.showcase-glare {
-		position: absolute;
-		inset: 0;
-		border-radius: inherit;
-		opacity: 0;
-		pointer-events: none;
-		transition: opacity 300ms ease;
-		z-index: 2;
-		mix-blend-mode: screen;
-	}
-
-	:global(:root[data-theme='light']) .showcase-glare {
-		mix-blend-mode: overlay;
-	}
-
 	.showcase-frame {
 		position: relative;
 		aspect-ratio: 16 / 10;
@@ -363,18 +755,6 @@
 		-webkit-backdrop-filter: blur(6px);
 		border-radius: 999px;
 		color: rgba(255, 255, 255, 0.9);
-		font-size: var(--fs-xs);
-		letter-spacing: var(--ls-widest);
-	}
-
-	.showcase-badge {
-		position: absolute;
-		top: 0.85rem;
-		right: 0.85rem;
-		padding: 0.35rem 0.65rem;
-		background: var(--accent-electric);
-		color: #0a0a0c;
-		border-radius: 999px;
 		font-size: var(--fs-xs);
 		letter-spacing: var(--ls-widest);
 	}
