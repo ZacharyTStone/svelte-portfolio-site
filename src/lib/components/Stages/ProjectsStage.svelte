@@ -109,29 +109,48 @@
 				const diff = i - newActive;
 				let ty = 0,
 					scale = 1,
-					opacity = 1;
+					opacity = 0;
 
 				if (diff < 0) {
-					ty = -108;
+					// Exited: instantly hidden above
+					ty = -110;
 					scale = 0.9;
 					opacity = 0;
+					card.style.zIndex = '0';
 				} else if (diff === 0) {
-					if (cardProgress > 0.6) {
-						const t = easeInQuart((cardProgress - 0.6) / 0.4);
-						ty = -108 * t;
+					// Active card
+					card.style.zIndex = String(n + 1);
+					if (cardProgress > 0.55) {
+						const t = easeInQuart((cardProgress - 0.55) / 0.45);
+						ty = -110 * t;
 						scale = 1 - 0.1 * t;
 						opacity = 1 - t;
+					} else {
+						opacity = 1;
+					}
+				} else if (diff === 1) {
+					// Next card: fades in as active card exits
+					card.style.zIndex = String(n);
+					if (cardProgress > 0.55) {
+						const t = easeInQuart((cardProgress - 0.55) / 0.45);
+						ty = 4 - 4 * t; // slides up from 4% to 0%
+						scale = 0.97 + 0.03 * t;
+						opacity = t;
+					} else {
+						ty = 4;
+						scale = 0.97;
+						opacity = 0;
 					}
 				} else {
-					const clampedDiff = Math.min(diff, 4);
-					ty = clampedDiff * 2.8;
-					scale = 1 - clampedDiff * 0.04;
-					opacity = Math.max(0, 1 - clampedDiff * 0.28);
+					// All other waiting cards: invisible
+					ty = 4;
+					scale = 0.94;
+					opacity = 0;
+					card.style.zIndex = String(n - diff);
 				}
 
 				card.style.transform = `translateY(${ty}%) scale(${scale})`;
 				card.style.opacity = String(Math.max(0, Math.min(1, opacity)));
-				card.style.zIndex = String(n - i);
 			});
 		}
 
@@ -310,10 +329,26 @@
 		scroll-margin-top: var(--scroll-anchor-offset);
 	}
 
+	/* ─── Sticky pin (base — desktop only via media query below) ── */
+	.projects-pin {
+		display: none; /* hidden by default; desktop @media below enables it */
+		position: sticky;
+		top: var(--nav-h);
+		height: calc(100dvh - var(--nav-h));
+		grid-template-rows: auto minmax(0, 1fr) auto;
+		gap: clamp(0.6rem, 1.5vh, 1.25rem);
+		padding-block: clamp(1rem, 2.5vh, 1.75rem);
+		overflow: hidden;
+	}
+
 	/* ─── Desktop: tall section for scroll-driven stack ── */
 	@media (min-width: 901px) {
 		.projects-stage {
 			height: calc(var(--project-count, 6) * 85vh + 20vh);
+		}
+
+		.projects-pin {
+			display: grid; /* enable the sticky pin on desktop */
 		}
 
 		.projects-inner {
@@ -326,22 +361,6 @@
 		.projects-stage {
 			padding-block: clamp(2.5rem, 7vh, 5rem);
 		}
-
-		.projects-pin {
-			display: none;
-		}
-	}
-
-	/* ─── Sticky pin ────────────────────────────────────── */
-	.projects-pin {
-		position: sticky;
-		top: var(--nav-h);
-		height: calc(100dvh - var(--nav-h));
-		display: grid;
-		grid-template-rows: auto minmax(0, 1fr) auto;
-		gap: clamp(0.6rem, 1.5vh, 1.25rem);
-		padding-block: clamp(1rem, 2.5vh, 1.75rem);
-		overflow: hidden;
 	}
 
 	/* ─── Pin header ────────────────────────────────────── */
@@ -419,19 +438,14 @@
 		display: grid;
 		grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
 		gap: clamp(1.5rem, 3vw, 3rem);
-		background: rgba(255, 255, 255, 0.025);
+		/* Opaque background prevents text from underlying cards bleeding through */
+		background: var(--main-elevated);
 		border: 1px solid var(--border);
 		border-radius: clamp(1rem, 1.6vw, 1.5rem);
 		overflow: hidden;
 		position: relative;
 		transition: border-color 280ms ease, box-shadow 280ms ease;
-		backdrop-filter: blur(14px) saturate(140%);
-		-webkit-backdrop-filter: blur(14px) saturate(140%);
 		transform-style: preserve-3d;
-	}
-
-	:global(:root[data-theme='light']) .stack-card-inner {
-		background: rgba(255, 255, 255, 0.65);
 	}
 
 	.stack-card-inner:hover {
@@ -588,18 +602,16 @@
 	}
 
 	/* ─── Reduced motion: skip stack, show grid ─────────── */
-	@media (prefers-reduced-motion: reduce) {
-		@media (min-width: 901px) {
-			.projects-stage {
-				height: auto;
-				padding-block: clamp(4rem, 10vh, 7rem);
-			}
-			.projects-pin {
-				display: none;
-			}
-			.projects-inner {
-				display: block;
-			}
+	@media (min-width: 901px) and (prefers-reduced-motion: reduce) {
+		.projects-stage {
+			height: auto;
+			padding-block: clamp(4rem, 10vh, 7rem);
+		}
+		.projects-pin {
+			display: none;
+		}
+		.projects-inner {
+			display: block;
 		}
 	}
 
