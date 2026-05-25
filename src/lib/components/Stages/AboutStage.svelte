@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import GitHubContributions from '$lib/components/GitHubContributions/GitHubContributions.svelte';
-	import { onIdle, prefersReducedMotion, setupReveals } from '$lib/utils/motion';
+	import { onIdle, setupReveals } from '$lib/utils/motion';
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 
@@ -24,38 +24,9 @@
 		{ k: 'ABOUT.fact_timezones', v: 'ABOUT.fact_timezones_value' }
 	];
 
-	const achievementStats: Array<{
-		num: number | null;
-		suffix?: string;
-		value?: string;
-		label: string;
-		sub: string;
-	}> = [
-		{ num: 110, suffix: '/100', label: 'MDN Security Score', sub: 'lifted from 25/100 (D−)' },
-		{ num: 50, suffix: 'kB', label: 'JS Bundle Saved', sub: 'gzip · barrel import cleanup' },
-		{ num: 15, suffix: ' min', label: 'CI/CD Feedback Loop', sub: 'was: manual weekly QA' },
-		{ num: null, value: 'Days → Min', label: 'Mean Time to Resolve', sub: 'Sentry + PagerDuty overhaul' }
-	];
-
-	function animateCount(el: HTMLElement, target: number, suffix: string, duration = 1200) {
-		if (prefersReducedMotion()) {
-			el.textContent = target + suffix;
-			return;
-		}
-		const start = performance.now();
-		const tick = (now: number) => {
-			const p = Math.min((now - start) / duration, 1);
-			const eased = 1 - Math.pow(1 - p, 3);
-			el.textContent = Math.round(eased * target) + suffix;
-			if (p < 1) requestAnimationFrame(tick);
-		};
-		requestAnimationFrame(tick);
-	}
-
 	onMount(() => {
 		mounted = true;
 		let cleanupReveals: (() => void) | null = null;
-		let statsObserver: IntersectionObserver | null = null;
 
 		const cancel = onIdle(() => {
 			const els = revealEls.filter(Boolean);
@@ -64,33 +35,11 @@
 					cleanupReveals = cleanup;
 				});
 			}
-
-			// Trigger number counters when the stats block enters view
-			if (typeof IntersectionObserver !== 'undefined') {
-				statsObserver = new IntersectionObserver(
-					(entries) => {
-						for (const entry of entries) {
-							if (!entry.isIntersecting) continue;
-							entry.target.querySelectorAll('[data-count-to]').forEach((el) => {
-								const htmlEl = el as HTMLElement;
-								const target = parseInt(htmlEl.dataset.countTo ?? '0', 10);
-								const suffix = htmlEl.dataset.suffix ?? '';
-								animateCount(htmlEl, target, suffix);
-							});
-							statsObserver?.unobserve(entry.target);
-						}
-					},
-					{ threshold: 0.4 }
-				);
-				const statsEl = revealEls[2];
-				if (statsEl) statsObserver.observe(statsEl);
-			}
 		});
 
 		return () => {
 			cancel();
 			cleanupReveals?.();
-			statsObserver?.disconnect();
 		};
 	});
 </script>
@@ -123,24 +72,7 @@
 				{safeT('ABOUT.full_about')}
 			</div>
 
-			<!-- Achievement stats -->
-			<div bind:this={revealEls[2]} class="about-stats">
-				{#each achievementStats as stat, i}
-					<div class="stat-card" style="--stat-i: {i}">
-						<div class="stat-value">
-							{#if stat.num !== null}
-								<span data-count-to="{stat.num}" data-suffix="{stat.suffix ?? ''}">0{stat.suffix}</span>
-							{:else}
-								<span>{stat.value}</span>
-							{/if}
-						</div>
-						<div class="stat-label">{stat.label}</div>
-						<div class="stat-sub">{stat.sub}</div>
-					</div>
-				{/each}
-			</div>
-
-			<dl bind:this={revealEls[3]} class="about-facts">
+			<dl bind:this={revealEls[2]} class="about-facts">
 				{#each factKeys as fact}
 					<div class="fact">
 						<dt class="fact-k">{safeT(fact.k)}</dt>
@@ -150,7 +82,7 @@
 			</dl>
 
 			{#if mounted}
-				<div bind:this={revealEls[4]} class="about-graph">
+				<div bind:this={revealEls[3]} class="about-graph">
 					<div class="about-graph-header">
 						<span class="mono-eyebrow">{safeT('ABOUT.github_label')}</span>
 						<span class="about-graph-sub">{safeT('ABOUT.github_subtitle')}</span>
@@ -262,65 +194,6 @@
 		max-width: 60ch;
 		font-weight: var(--fw-regular);
 		overflow-wrap: anywhere;
-	}
-
-	/* Achievement stat cards ──────────────── */
-	.about-stats {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
-		gap: 0.85rem;
-	}
-
-	.stat-card {
-		display: flex;
-		flex-direction: column;
-		gap: 0.35rem;
-		padding: 1.2rem 1.35rem;
-		background: rgba(106, 166, 255, 0.04);
-		border: 1px solid rgba(106, 166, 255, 0.18);
-		border-radius: var(--radius-md);
-		transition:
-			border-color 220ms ease,
-			background 220ms ease,
-			box-shadow 220ms ease;
-
-		&:hover {
-			border-color: rgba(106, 166, 255, 0.5);
-			background: rgba(106, 166, 255, 0.08);
-			box-shadow: 0 8px 24px -12px rgba(106, 166, 255, 0.3);
-		}
-	}
-
-	:global(:root[data-theme='light']) .stat-card {
-		background: rgba(106, 166, 255, 0.06);
-		border-color: rgba(106, 166, 255, 0.22);
-	}
-
-	.stat-value {
-		font-family: var(--mono-f);
-		font-size: clamp(1.5rem, 2.8vw, 2.1rem);
-		font-weight: var(--fw-bold);
-		line-height: 1;
-		color: var(--accent-electric);
-		letter-spacing: -0.02em;
-		font-variant-numeric: tabular-nums;
-	}
-
-	.stat-label {
-		font-family: var(--text-f);
-		font-size: var(--fs-sm);
-		font-weight: var(--fw-medium);
-		color: var(--main-text);
-		line-height: 1.3;
-		margin-top: 0.15rem;
-	}
-
-	.stat-sub {
-		font-family: var(--mono-f);
-		font-size: var(--fs-xs);
-		letter-spacing: var(--ls-wide);
-		color: var(--secondary-text);
-		line-height: 1.4;
 	}
 
 	/* Facts row ──────────────────────────── */
@@ -446,16 +319,6 @@
 		}
 		.about-content {
 			gap: 1.25rem;
-		}
-		.about-stats {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 0.65rem;
-		}
-		.stat-card {
-			padding: 0.9rem 1rem;
-		}
-		.stat-value {
-			font-size: clamp(1.25rem, 5.5vw, 1.75rem);
 		}
 		.about-facts {
 			grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));

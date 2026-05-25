@@ -4,6 +4,7 @@
 	import { getAssetURL } from '$lib/data/assets';
 	import { PROJECTS } from '$lib/params';
 	import type { Project } from '$lib/types';
+	import { isCoarsePointer, prefersReducedMotion } from '$lib/utils/motion';
 	import { _ } from 'svelte-i18n';
 
 	const visibleProjects = PROJECTS.items.filter((p) => !p.dont_show);
@@ -23,6 +24,49 @@
 			return project.screenshots[0].src;
 		}
 		return getAssetURL(project.logo);
+	}
+
+	/** Svelte action: subtle 3-D tilt + specular glare that follows the cursor. */
+	function tilt(node: HTMLElement) {
+		if (typeof window === 'undefined') return {};
+		if (prefersReducedMotion() || isCoarsePointer()) return {};
+
+		const STRENGTH = 6;
+		const glare = node.querySelector('.showcase-glare') as HTMLElement | null;
+
+		function onMove(e: MouseEvent) {
+			const rect = node.getBoundingClientRect();
+			const cx = rect.width / 2;
+			const cy = rect.height / 2;
+			const dx = (e.clientX - rect.left - cx) / cx;
+			const dy = (e.clientY - rect.top - cy) / cy;
+
+			node.style.transform = `perspective(700px) rotateY(${dx * STRENGTH}deg) rotateX(${-dy * STRENGTH}deg) translateY(-4px)`;
+			node.style.transition = 'transform 60ms linear';
+
+			if (glare) {
+				const gx = ((e.clientX - rect.left) / rect.width) * 100;
+				const gy = ((e.clientY - rect.top) / rect.height) * 100;
+				glare.style.background = `radial-gradient(circle at ${gx}% ${gy}%, rgba(255,255,255,0.1) 0%, transparent 65%)`;
+				glare.style.opacity = '1';
+			}
+		}
+
+		function onLeave() {
+			node.style.transform = '';
+			node.style.transition = 'transform 480ms cubic-bezier(0.16,1,0.3,1)';
+			if (glare) glare.style.opacity = '0';
+		}
+
+		node.addEventListener('mousemove', onMove, { passive: true });
+		node.addEventListener('mouseleave', onLeave);
+
+		return {
+			destroy() {
+				node.removeEventListener('mousemove', onMove);
+				node.removeEventListener('mouseleave', onLeave);
+			}
+		};
 	}
 </script>
 
@@ -47,7 +91,8 @@
 		<ul class="projects-grid">
 			{#each visibleProjects as project, i (project.slug)}
 				<li class="projects-grid-item" style="--card-i: {i}">
-					<a href="/projects/{project.slug}" class="showcase">
+					<a href="/projects/{project.slug}" class="showcase" use:tilt>
+						<div class="showcase-glare" aria-hidden="true"></div>
 						<div class="showcase-frame">
 							<img
 								class="showcase-image"
@@ -245,9 +290,11 @@
 		border: 1px solid var(--border);
 		border-radius: clamp(0.85rem, 1.4vw, 1.4rem);
 		overflow: hidden;
-		transition: border-color 280ms ease, box-shadow 280ms ease, transform 280ms ease;
+		position: relative;
+		transition: border-color 280ms ease, box-shadow 280ms ease, transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
 		backdrop-filter: blur(10px);
 		-webkit-backdrop-filter: blur(10px);
+		transform-style: preserve-3d;
 	}
 
 	:global(:root[data-theme='light']) .showcase {
@@ -256,8 +303,23 @@
 
 	.showcase:hover {
 		border-color: var(--accent-electric);
-		box-shadow: 0 24px 48px -22px rgba(106, 166, 255, 0.4);
-		transform: translateY(-3px);
+		box-shadow: 0 24px 60px -20px rgba(106, 166, 255, 0.45);
+	}
+
+	/* Specular glare overlay — position updated by tilt action */
+	.showcase-glare {
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 300ms ease;
+		z-index: 2;
+		mix-blend-mode: screen;
+	}
+
+	:global(:root[data-theme='light']) .showcase-glare {
+		mix-blend-mode: overlay;
 	}
 
 	.showcase-frame {

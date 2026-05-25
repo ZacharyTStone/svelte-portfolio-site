@@ -539,19 +539,17 @@
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		padding-right: 0.5rem;
-		/* Fade out top/bottom edges so users see there's more content to scroll. */
+		/* Fade bottom edge only — top fade was clipping the company pill. */
 		mask-image: linear-gradient(
 			to bottom,
-			transparent 0,
-			#000 1.25rem,
-			#000 calc(100% - 1.25rem),
+			#000 0,
+			#000 calc(100% - 1.5rem),
 			transparent 100%
 		);
 		-webkit-mask-image: linear-gradient(
 			to bottom,
-			transparent 0,
-			#000 1.25rem,
-			#000 calc(100% - 1.25rem),
+			#000 0,
+			#000 calc(100% - 1.5rem),
 			transparent 100%
 		);
 
