@@ -63,6 +63,7 @@ import rapptr2 from '$lib/assets/images/experiences/rapptr2.jpeg';
 import rapptr3 from '$lib/assets/images/experiences/rapptr3.jpeg';
 
 import immerse from '$lib/assets/images/projects/immerse.webp';
+import seasons from '$lib/assets/images/projects/seasons.png';
 
 import imerse1 from '$lib/assets/images/projects/screenshots/immerse1.png';
 import imerse2 from '$lib/assets/images/projects/screenshots/immerse2.png';
@@ -93,6 +94,7 @@ export const COLOR_ASSETS = {
 	TypeScript: { light: TypeScript, dark: TypeScript },
 	Mobile: { light: Mobile, dark: Mobile },
 	Immerse: { light: immerse, dark: immerse },
+	Seasons: { light: seasons, dark: seasons },
 	// start of screenshots
 	Mac1: { light: mac1, dark: mac1 },
 	Mac2: { light: mac2, dark: mac2 },

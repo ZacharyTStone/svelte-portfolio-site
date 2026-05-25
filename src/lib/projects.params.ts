@@ -16,7 +16,7 @@ const MY_PROJECTS: Array<Project> = [
 				newTab: true
 			}
 		],
-		logo: Assets.Quote,
+		logo: Assets.Seasons,
 		name: 'PROJECTS.SEASONS.name',
 		skills: getSkills('fe', 'be', 'dev-tools'),
 		type: 'PROJECTS.SEASONS.type',
