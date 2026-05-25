@@ -19,6 +19,12 @@ const MY_PROJECTS: Array<Project> = [
 		logo: Assets.Seasons,
 		name: 'PROJECTS.SEASONS.name',
 		skills: getSkills('fe', 'be', 'dev-tools'),
+		project_skills: [
+			{ label: 'Next.js', to: 'https://nextjs.org/', newTab: true },
+			{ label: 'TypeScript', to: 'https://www.typescriptlang.org/', newTab: true },
+			{ label: 'Supabase', to: 'https://supabase.com/', newTab: true },
+			{ label: 'Tailwind CSS', to: 'https://tailwindcss.com/', newTab: true }
+		],
 		type: 'PROJECTS.SEASONS.type',
 		english: true,
 		japanese: false
