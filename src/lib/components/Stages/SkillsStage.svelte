@@ -104,6 +104,9 @@
 		margin: 0 auto;
 		padding-inline: clamp(1rem, 5vw, 6rem);
 		min-width: 0;
+		/* Contain the marquee's negative margin-inline so it doesn't
+		   widen the page's scrollable area on mobile */
+		overflow-x: clip;
 	}
 
 	.skills-header {
@@ -214,6 +217,8 @@
 		opacity: 0;
 		animation: skill-rise 600ms ease forwards;
 		animation-delay: calc(100ms + var(--tile-i, 0) * 60ms);
+		min-width: 0;
+		width: 100%;
 	}
 
 	@keyframes skill-rise {
@@ -239,6 +244,9 @@
 		text-decoration: none;
 		color: inherit;
 		transition: border-color 240ms ease;
+		width: 100%;
+		box-sizing: border-box;
+		min-width: 0;
 	}
 
 	:global(:root[data-theme='light']) .skill-row-link {
@@ -297,6 +305,9 @@
 		color: var(--secondary-text);
 		margin: 0;
 		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	.skill-row-cta {
