@@ -18,12 +18,19 @@
 		}
 	}
 
+	const MARQUEE_TECH = [
+		'React', 'Next.js', 'SvelteKit', 'TypeScript', 'GraphQL', 'Node.js',
+		'GitHub Actions', 'Playwright', 'Sentry', 'PagerDuty', 'New Relic',
+		'Claude Code', 'Anthropic API', 'Tailwind CSS', 'AG Grid',
+		'WebSockets', 'Vite', 'LaunchDarkly', 'LogRocket', 'Apollo Client'
+	];
+
 	const subtitleBySlug: Record<string, string> = {
-		fe: 'React · Next · Svelte · TypeScript · Apollo · Tailwind · AG Grid',
-		be: 'Node · Express · REST · GraphQL · WebSockets · SQL',
+		fe: 'React · Next.js · Svelte · SvelteKit · TypeScript · Apollo Client · Tailwind · AG Grid',
+		be: 'Node.js · GraphQL · REST · WebSockets · Apollo · Ably · Twilio · SQL',
 		'ai-tooling': 'Claude Code · Anthropic API · Agentic skill authoring · LLM integration',
-		'cyber-security': 'OWASP · Burp · ZAP · CSP · Bug Bounty in progress',
-		'dev-tools': 'GitHub Actions · Playwright · Sentry · LogRocket · LaunchDarkly',
+		'cyber-security': 'OWASP ZAP · Burp Suite · Kali Linux · CSP · Security headers',
+		'dev-tools': 'GitHub Actions · Playwright · Sentry · PagerDuty · New Relic · LogRocket · LaunchDarkly',
 		japanese: 'JLPT N1 · Kanji Kentei · Speech contest 1st place'
 	};
 
@@ -54,6 +61,15 @@
 			{safeT('SKILLS.sub')}
 		</p>
 	</header>
+
+	<!-- Infinite marquee of technologies -->
+	<div class="marquee-wrap" aria-hidden="true">
+		<div class="marquee-track">
+			{#each [...MARQUEE_TECH, ...MARQUEE_TECH] as item}
+				<span class="marquee-item">{item}</span>
+			{/each}
+		</div>
+	</div>
 
 	<ul class="skills-list">
 		{#each items as skill, i (skill.slug)}
@@ -88,6 +104,9 @@
 		margin: 0 auto;
 		padding-inline: clamp(1rem, 5vw, 6rem);
 		min-width: 0;
+		/* Contain the marquee's negative margin-inline so it doesn't
+		   widen the page's scrollable area on mobile */
+		overflow-x: clip;
 	}
 
 	.skills-header {
@@ -122,6 +141,69 @@
 		margin: 0;
 	}
 
+	/* Tech marquee ─────────────────────────── */
+	.marquee-wrap {
+		overflow: hidden;
+		margin-bottom: clamp(2rem, 5vh, 3rem);
+		border-top: 1px solid var(--border);
+		border-bottom: 1px solid var(--border);
+		padding-block: 0.85rem;
+		/* bleed to section edges */
+		margin-inline: calc(-1 * clamp(1rem, 5vw, 6rem));
+		padding-inline: 2rem;
+		mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+		-webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+	}
+
+	.marquee-track {
+		display: flex;
+		width: max-content;
+		gap: 0;
+		animation: marquee-scroll 38s linear infinite;
+	}
+
+	.marquee-wrap:hover .marquee-track {
+		animation-play-state: paused;
+	}
+
+	@keyframes marquee-scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	.marquee-item {
+		font-family: var(--mono-f);
+		font-size: var(--fs-xs);
+		letter-spacing: var(--ls-widest);
+		text-transform: uppercase;
+		color: var(--secondary-text);
+		white-space: nowrap;
+		flex-shrink: 0;
+		padding-inline: 1.25rem;
+		position: relative;
+
+		&::after {
+			content: '·';
+			position: absolute;
+			right: -0.15rem;
+			color: var(--accent-electric);
+			opacity: 0.4;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.marquee-track {
+			animation: none;
+			flex-wrap: wrap;
+			gap: 0.5rem 0;
+			width: 100%;
+		}
+	}
+
 	.skills-list {
 		list-style: none;
 		padding: 0;
@@ -135,6 +217,8 @@
 		opacity: 0;
 		animation: skill-rise 600ms ease forwards;
 		animation-delay: calc(100ms + var(--tile-i, 0) * 60ms);
+		min-width: 0;
+		width: 100%;
 	}
 
 	@keyframes skill-rise {
@@ -160,6 +244,9 @@
 		text-decoration: none;
 		color: inherit;
 		transition: border-color 240ms ease;
+		width: 100%;
+		box-sizing: border-box;
+		min-width: 0;
 	}
 
 	:global(:root[data-theme='light']) .skill-row-link {
@@ -218,6 +305,9 @@
 		color: var(--secondary-text);
 		margin: 0;
 		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	.skill-row-cta {

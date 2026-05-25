@@ -3,7 +3,7 @@
 		"title": "Home",
 		"name": "Zach",
 		"lastName": "Stone",
-		"description": "Senior Software Engineer · Frontend Focus · AI Tooling & Developer Productivity · Japan",
+		"description": "Senior Software Engineer · Frontend Focus · Observability & AI Tooling · Japan · Remote",
 		"connect_cta": "Let's Connect!"
 	},
 	"NAVBAR": {
@@ -53,14 +53,14 @@
 		"title": "About Me",
 		"full_about": "Senior software engineer with a frontend focus, based in Japan. Outside of high-velocity feature work, I specialize in the work that makes teams faster and more reliable — observability, developer tooling, CI/CD, and AI-assisted workflows. Comfortable working across the stack when the problem calls for it. Bilingual in English and Japanese (JLPT N1).",
 		"socials": "Connect with me",
-		"mark_meta": "Senior Software Engineer<br />Frontend · AI Tooling<br />Japan · Remote",
+		"mark_meta": "Senior Software Engineer<br />Frontend · CI/CD · AI Tooling<br />Japan · Remote",
 		"heading_prefix": "I make",
 		"heading_complex_systems": "teams faster",
 		"heading_and_ship_with": "through",
 		"heading_observability": "observability",
-		"heading_velocity": "developer tooling",
+		"heading_velocity": "CI/CD",
 		"heading_and": "and",
-		"heading_reliability": "AI-assisted workflows",
+		"heading_reliability": "AI-assisted developer tooling",
 		"heading_period": ".",
 		"fact_based_in": "Based in",
 		"fact_based_in_value": "Japan",
@@ -96,7 +96,7 @@
 		"scroll_hint": "Scroll down to step through each role",
 		"interac": {
 			"name": "Assistant Language Teacher",
-			"description": "As an ALT (Assistant Language Teacher) at Interac, I taught English to Japanese students in public schools. This was the starting point of my life in Japan and my Japanese language journey.",
+			"description": "As an ALT (Assistant Language Teacher) at Interac, I taught English across public schools in Fukushima Prefecture. This role was the foundation of my life in Japan and the beginning of the journey that led to JLPT N1.",
 			"type": "English Teaching Agency",
 			"location": "Fukushima, Japan"
 		},
@@ -176,6 +176,7 @@
 		"heading_accent": "built",
 		"counter_label": "Projects",
 		"open_case": "Open case",
+		"scroll_hint": "Scroll down to step through each project",
 		"hint": "Drag, scroll wheel, trackpad, or swipe sideways",
 		"track_label": "Project showcases — scroll or drag sideways",
 		"screenshot_alt": "Project screenshot",

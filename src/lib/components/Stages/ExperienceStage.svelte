@@ -19,6 +19,12 @@
 
 	let activeIndex = $state(0);
 
+	const COMPANY_BG = [
+		'rgba(106, 166, 255, 0.07)',
+		'rgba(80, 140, 255, 0.04)',
+		'rgba(140, 140, 180, 0.03)'
+	];
+
 	function safeT(key: string): string {
 		if (!browser) return key.split('.').pop() || key;
 		try {
@@ -133,9 +139,11 @@
 	id="experience"
 	class="experience-stage"
 	style:--experience-stage-height={stageScrollHeight}
+	style:--exp-ambient={COMPANY_BG[activeIndex] ?? COMPANY_BG[0]}
 	aria-labelledby="experience-heading"
 >
 	<div class="experience-pin">
+		<div class="experience-ambient" aria-hidden="true"></div>
 		<header class="experience-header">
 			<div class="experience-header-row">
 				<div>
@@ -272,6 +280,15 @@
 		scroll-margin-top: var(--scroll-anchor-offset);
 	}
 
+	.experience-ambient {
+		position: absolute;
+		inset: 0;
+		background: radial-gradient(ellipse 90% 80% at 20% 45%, var(--exp-ambient, transparent) 0%, transparent 65%);
+		pointer-events: none;
+		transition: background 900ms cubic-bezier(0.4, 0, 0.2, 1);
+		z-index: 0;
+	}
+
 	.experience-pin {
 		position: sticky;
 		top: var(--nav-h);
@@ -281,6 +298,13 @@
 		gap: clamp(0.85rem, 2vh, 1.5rem);
 		padding-block: clamp(1rem, 3vh, 2rem);
 		overflow: hidden;
+	}
+
+	.experience-header,
+	.experience-track-wrap,
+	.experience-footer {
+		position: relative;
+		z-index: 1;
 	}
 
 	.experience-header {
@@ -539,19 +563,17 @@
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		padding-right: 0.5rem;
-		/* Fade out top/bottom edges so users see there's more content to scroll. */
+		/* Fade bottom edge only — top fade was clipping the company pill. */
 		mask-image: linear-gradient(
 			to bottom,
-			transparent 0,
-			#000 1.25rem,
-			#000 calc(100% - 1.25rem),
+			#000 0,
+			#000 calc(100% - 1.5rem),
 			transparent 100%
 		);
 		-webkit-mask-image: linear-gradient(
 			to bottom,
-			transparent 0,
-			#000 1.25rem,
-			#000 calc(100% - 1.25rem),
+			#000 0,
+			#000 calc(100% - 1.5rem),
 			transparent 100%
 		);
 
