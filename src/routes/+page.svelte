@@ -44,17 +44,20 @@
 </div>
 
 <style lang="scss">
-	/* Break out of the parent .container 1200px max-width so SPA stages can be
-	   full-bleed. The ancestor body uses overflow-x: clip to suppress horizontal
-	   scrollbars; this is safe and well-supported. */
+	/* On the home page the parent <main> has no .container max-width, so there
+	   is nothing to break out of.  Using width:100% (instead of 100vw) avoids
+	   the margin-inline: calc(50% – 50vw) trick which shifts content to the
+	   right whenever any upstream element causes even 1–2 px of horizontal
+	   overflow — the root cause of cards being clipped on mobile. */
 	.spa-root {
 		position: relative;
-		width: 100vw;
-		margin-inline: calc(50% - 50vw);
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		isolation: isolate;
 		background: var(--main);
 		color: var(--main-text);
+		/* Prevent any stray child from widening the page */
+		overflow-x: clip;
 	}
 </style>
