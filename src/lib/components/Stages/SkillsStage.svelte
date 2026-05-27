@@ -101,6 +101,8 @@
 		padding-block: clamp(4rem, 10vh, 7rem);
 		scroll-margin-top: var(--scroll-anchor-offset);
 		max-width: 1400px;
+		width: 100%;
+		box-sizing: border-box;
 		margin: 0 auto;
 		padding-inline: clamp(1rem, 5vw, 6rem);
 		min-width: 0;
@@ -328,6 +330,31 @@
 			width: 36px;
 			height: 36px;
 			padding: 8px;
+		}
+	}
+
+	/* Hard guard: on any mobile viewport, ensure the stage and its cards
+	   never exceed the available width. */
+	@media (max-width: 768px) {
+		.skills-stage {
+			max-width: 100%;
+			padding-inline: clamp(0.75rem, 4vw, 1.25rem);
+		}
+
+		.skills-list {
+			width: 100%;
+			max-width: 100%;
+		}
+
+		.skill-row {
+			width: 100%;
+			max-width: 100%;
+		}
+
+		.skill-row-link {
+			width: 100%;
+			max-width: 100%;
+			box-sizing: border-box;
 		}
 	}
 </style>
