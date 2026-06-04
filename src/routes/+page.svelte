@@ -5,6 +5,7 @@
 	import ExperienceStage from '$lib/components/Stages/ExperienceStage.svelte';
 	import HeroStage from '$lib/components/Stages/HeroStage.svelte';
 	import ProjectsStage from '$lib/components/Stages/ProjectsStage.svelte';
+	import ResumeStage from '$lib/components/Stages/ResumeStage.svelte';
 	import SkillsStage from '$lib/components/Stages/SkillsStage.svelte';
 	import { HOME, TITLE_SUFFIX } from '$lib/params';
 	import { setupActiveSectionObserver } from '$lib/stores/activeSection';
@@ -40,6 +41,7 @@
 	<ExperienceStage />
 	<ProjectsStage />
 	<SkillsStage />
+	<ResumeStage />
 	<ContactStage />
 </div>
 
