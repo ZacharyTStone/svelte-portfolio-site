@@ -27,15 +27,15 @@
 
 	// English resume (Google Doc)
 	const ENGLISH_EMBED_URL =
-		'https://docs.google.com/document/d/e/2PACX-1vRVDXfDkTn6AvxeU70wXzjhsJs-7qY6J7EQjOGz0307qjrXFy04sPbnb4r0_MxnDIJo9YnGshQeqMFx/pub?embedded=true';
+		'https://docs.google.com/document/d/1HYvcN-oshInv0VPZSSp8-VtYEDZT1ON24ocUq-lcmVs/preview';
 	const ENGLISH_VIEW_URL =
-		'https://docs.google.com/document/d/e/2PACX-1vRVDXfDkTn6AvxeU70wXzjhsJs-7qY6J7EQjOGz0307qjrXFy04sPbnb4r0_MxnDIJo9YnGshQeqMFx/pub';
+		'https://docs.google.com/document/d/1HYvcN-oshInv0VPZSSp8-VtYEDZT1ON24ocUq-lcmVs/edit?usp=sharing';
 
-	// Japanese resume (Google Sheet) - published embed
+	// Japanese resume (Google Doc)
 	const JAPANESE_EMBED_URL =
-		'https://docs.google.com/spreadsheets/d/e/2PACX-1vQeQn4d1KAeHMUwJvOjODjy0LvM4X84VHBD94ddJfqxtEnSpz01YPqLd4nNh-c24A/pubhtml?widget=true&headers=false';
+		'https://docs.google.com/document/d/1HYvcN-oshInv0VPZSSp8-VtYEDZT1ON24ocUq-lcmVs/preview';
 	const JAPANESE_VIEW_URL =
-		'https://docs.google.com/spreadsheets/d/e/2PACX-1vQeQn4d1KAeHMUwJvOjODjy0LvM4X84VHBD94ddJfqxtEnSpz01YPqLd4nNh-c24A/pubhtml?widget=true&headers=false';
+		'https://docs.google.com/document/d/1HYvcN-oshInv0VPZSSp8-VtYEDZT1ON24ocUq-lcmVs/edit?usp=sharing';
 </script>
 
 <svelte:head>
@@ -99,7 +99,7 @@
 						</a>
 					</div>
 					<div
-						class="resume-embed-wrapper resume-embed-sheet mx-auto w-full max-w-[900px] rounded-lg overflow-hidden border border-[var(--secondary)]"
+						class="resume-embed-wrapper mx-auto w-full max-w-[900px] rounded-lg overflow-hidden border border-[var(--secondary)]"
 					>
 						<iframe
 							title={$_('RESUME.japaneseTitle')}
