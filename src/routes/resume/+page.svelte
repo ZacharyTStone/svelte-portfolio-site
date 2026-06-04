@@ -31,11 +31,11 @@
 	const ENGLISH_VIEW_URL =
 		'https://docs.google.com/document/d/1HYvcN-oshInv0VPZSSp8-VtYEDZT1ON24ocUq-lcmVs/edit?usp=sharing';
 
-	// Japanese resume (Google Doc)
+	// Japanese resume (Google Spreadsheet)
 	const JAPANESE_EMBED_URL =
-		'https://docs.google.com/document/d/1HYvcN-oshInv0VPZSSp8-VtYEDZT1ON24ocUq-lcmVs/preview';
+		'https://docs.google.com/spreadsheets/d/1xsdFj-6_5OMu8eJFDS2kbxg-9DxuLcvelCAkPWl13Z8/preview';
 	const JAPANESE_VIEW_URL =
-		'https://docs.google.com/document/d/1HYvcN-oshInv0VPZSSp8-VtYEDZT1ON24ocUq-lcmVs/edit?usp=sharing';
+		'https://docs.google.com/spreadsheets/d/1xsdFj-6_5OMu8eJFDS2kbxg-9DxuLcvelCAkPWl13Z8/edit?usp=sharing';
 </script>
 
 <svelte:head>

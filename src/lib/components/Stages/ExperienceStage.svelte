@@ -475,7 +475,7 @@
 	.job-status {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.6rem;
+		gap: 0.85rem;
 		font-family: var(--mono-f);
 		font-size: var(--fs-xs);
 		letter-spacing: var(--ls-widest);
