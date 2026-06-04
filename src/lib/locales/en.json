@@ -1,303 +1,309 @@
 {
-	"HOME": {
-		"title": "Home",
-		"name": "Zach",
-		"lastName": "Stone",
-		"description": "Senior Software Engineer · Frontend Focus · Observability & AI Tooling · Japan · Remote",
-		"connect_cta": "Let's Connect!"
-	},
-	"NAVBAR": {
-		"home": "Home",
-		"about": "About",
-		"personal": "Projects",
-		"skills": "Skills",
-		"career": "Experience",
-		"blog": "Blog",
-		"search": "Search",
-		"contact": "Contact",
-		"resume": "Resume",
-		"japanese": "Japanese",
-		"english": "English",
-		"lightMode": "Light Mode",
-		"darkMode": "Dark Mode",
-		"enabled": "enabled",
-		"toggle_menu": "Toggle menu",
-		"close_menu": "Close menu",
-		"menu": "Menu"
-	},
-	"COMMON": {
-		"breadcrumb": "Breadcrumb",
-		"section_navigation": "Section navigation",
-		"social_links": "Social links",
-		"reading_progress": "Reading progress",
-		"scroll_to_top": "Scroll to top",
-		"loading_image": "Loading image",
-		"failed_to_load_image": "Failed to load image",
-		"close_modal": "Close",
-		"redirecting_to": "Redirecting to",
-		"could_not_load_experience": "Could not load experience data...",
-		"could_not_load_project": "Could not load project data...",
-		"now": "Now"
-	},
-	"RESUME": {
-		"englishTitle": "English Resume",
-		"japaneseTitle": "Japanese Resume (履歴書)",
-		"openInNewTab": "Open in new tab",
-		"openEnglishInNewTab": "Open English resume in new tab",
-		"openJapaneseInNewTab": "Open Japanese resume (履歴書) in new tab",
-		"download": "Download",
-		"cta": "View my resume"
-	},
-	"ABOUT": {
-		"cta": "Learn More About Me",
-		"title": "About Me",
-		"full_about": "Senior software engineer with a frontend focus, based in Japan. Outside of high-velocity feature work, I specialize in the work that makes teams faster and more reliable — observability, developer tooling, CI/CD, and AI-assisted workflows. Comfortable working across the stack when the problem calls for it. Bilingual in English and Japanese (JLPT N1).",
-		"socials": "Connect with me",
-		"mark_meta": "Senior Software Engineer<br />Frontend · CI/CD · AI Tooling<br />Japan · Remote",
-		"heading_prefix": "I make",
-		"heading_complex_systems": "teams faster",
-		"heading_and_ship_with": "through",
-		"heading_observability": "observability",
-		"heading_velocity": "CI/CD",
-		"heading_and": "and",
-		"heading_reliability": "AI-assisted developer tooling",
-		"heading_period": ".",
-		"fact_based_in": "Based in",
-		"fact_based_in_value": "Japan",
-		"fact_language": "Language",
-		"fact_language_value": "JLPT N1",
-		"fact_timezones": "Timezones",
-		"fact_timezones_value": "Flexible",
-		"github_label": "GitHub",
-		"github_subtitle": "Last 26 weeks"
-	},
-	"HERO": {
-		"available_label": "Available for senior engineering roles",
-		"cta_view_work": "View Selected Work",
-		"cta_get_in_touch": "Get in touch",
-		"scroll_to_about": "Scroll to about section",
-		"scroll_to_explore": "Scroll to explore"
-	},
-	"EXPERIENCES": {
-		"cta": "See Where I've Worked",
-		"title": "Experiences",
-		"eyebrow": "02 — Experience",
-		"heading_prefix": "A career built around",
-		"heading_ownership": "ownership",
-		"heading_outcomes": "measurable outcomes",
-		"heading_and": "and",
-		"heading_impact": "business impact",
-		"heading_period": ".",
-		"currently_shipping": "Currently shipping",
-		"completed": "Completed",
-		"spec_role": "Role",
-		"spec_where": "Where",
-		"spec_type": "Type",
-		"scroll_hint": "Scroll down to step through each role",
-		"interac": {
-			"name": "Assistant Language Teacher",
-			"description": "As an ALT (Assistant Language Teacher) at Interac, I taught English across public schools in Fukushima Prefecture. This role was the foundation of my life in Japan and the beginning of the journey that led to JLPT N1.",
-			"type": "English Teaching Agency",
-			"location": "Fukushima, Japan"
-		},
-		"rapptr": {
-			"name": "Frontend Engineer",
-			"quote": "From app strategy, design and development to launch and ongoing tailored support, we are with you every step of the way – continuously refining and evolving your product.",
-			"description": "Product agency building web and mobile products for early-stage and growth-stage startups.\n\n- Delivered production systems across multiple client products, collaborating directly with startup founders and engineering teams to scope features, align on technical requirements, and ship to production timelines.\n\n- Built a Figma-synchronized design system of 20+ primitives adopted across client teams — cutting feature scaffolding time by ~50% and eliminating recurring design-development drift on every new product.\n\n- Architected and shipped an embeddable third-party widget from zero, owning the full technical design, cross-origin isolation strategy, and production rollout. The widget became a core platform offering and opened a new client integration channel.",
-			"type": "App And Website Agency",
-			"location": "New York, NY"
-		},
-		"sellfire": {
-			"name": "Senior Software Engineer",
-			"quote": "Sellfire is an all-in-one sales platform for inside sales teams. It offers all the necessary features in one software, including dial functions, real-time reporting, coaching and development, pipeline management, and automated lead management. Sellfire supports team scaling while improving sales performance. With real-time call coaching and report display, it quickly identifies and improves sales opportunities. By using Sellfire, sales teams can operate efficiently and effectively, accelerating business growth.",
-			"type": "B2B SaaS — Sales Engagement Platform",
-			"location": "Austin, TX (Remote)",
-			"description": "Sole senior engineer, 10-repo multi-product codebase.\n\n- Built the team's Claude Code workflow from scratch. Authored production skills used across engineering — create-jira-ticket (turn any Sentry, PagerDuty, Slack URL, or text into a fully cross-linked Jira ticket with sprint assignment), csp-add (auto-allowlists CDN domains), add-test-ids (adds Playwright-friendly test IDs), and co-authored a weekly reliability review skill that consolidates data from New Relic, PagerDuty, Sentry, and Jira into a single Notion page.\n\n- Took app.sellfire.com's MDN Observatory security score from 25/100 (D−) to 110/100 (A+). Shipped a strict Content Security Policy and modern security headers (HSTS, Permissions-Policy, Referrer-Policy). Built a detection layer that captures violations in Sentry, embeds a runnable csp-add Claude command directly in the alert, and pages the on-call engineer — turning each fix into a copy-paste.\n\n- Built observability from zero. Almost every production issue was customer-reported. Designed and shipped a Sentry + PagerDuty detection and routing layer that cut mean time to resolution (MTTR) from days/weeks to minutes, transferring ownership of many production issues from customers to engineering.\n\n- Led React 16 → 18 migration including updating six core libraries. Eliminated legacy build tooling and cut the main JavaScript bundle by ~50 kB (gzipped) through barrel-import cleanup and removing unused dependencies, measurably reducing page load times. Received unsolicited customer feedback to match: \"It's much faster. No lag at all.\"\n\n- Replaced weekly manual QA test runs with automated feedback in under 15 minutes. Architected CI/CD quality gates using GitHub Actions and Playwright E2E triggered on every staging deployment, catching regressions before they reached production."
-		}
-	},
-	"SKILLS": {
-		"cta": "See My Skills",
-		"title": "Skills",
-		"eyebrow": "04 — Skills",
-		"heading_prefix": "Stack I've shipped",
-		"heading_accent": "production with",
-		"sub": "Frontend depth, backend fluency, and the AI tooling and dev-tools that move teams faster.",
-		"explore": "Explore →",
-		"fe": {
-			"name": "Frontend Web"
-		},
-		"be": {
-			"name": "Backend Web"
-		},
-		"ai-tooling": {
-			"name": "AI & Agentic Tooling"
-		},
-		"cyber-security": {
-			"name": "Cybersecurity"
-		},
-		"dev-tools": {
-			"name": "Dev Tools"
-		},
-		"japanese": {
-			"name": "Japanese"
-		},
-		"mobile": {
-			"name": "Mobile Development"
-		}
-	},
-	"SEARCH": {
-		"title": "Search",
-		"prompt": "Try typing a skill, name, or tool.",
-		"results_label": "Search results",
-		"no_results": "Oops! Nothing to show for '{query}'",
-		"placeholder": "Search...",
-		"aria_label": "Search through projects, skills and experiences",
-		"meta_description": "Search through projects, skills, and experiences"
-	},
-	"CONTRACT": {
-		"FullTime": "Full-time",
-		"PartTime": "Part-time",
-		"SelfEmployed": "Self-employed",
-		"Freelance": "Freelance",
-		"Contract": "Contract",
-		"Internship": "Internship"
-	},
-	"PROJECTS": {
-		"title": "Projects",
-		"no_filter_option": "No Filters",
-		"featured_badge": "Featured",
-		"featured_project": "Featured Project",
-		"featured_projects": "Featured Projects",
-		"other_project": "Other Project",
-		"other_projects": "Other Projects",
-		"live_site": "Website",
-		"eyebrow": "03 — Selected Work",
-		"heading_prefix": "Things I've",
-		"heading_accent": "built",
-		"counter_label": "Projects",
-		"open_case": "Open case",
-		"scroll_hint": "Scroll down to step through each project",
-		"hint": "Drag, scroll wheel, trackpad, or swipe sideways",
-		"track_label": "Project showcases — scroll or drag sideways",
-		"screenshot_alt": "Project screenshot",
-		"view_larger_screenshot": "View larger screenshot",
-		"SEASONS": {
-			"name": "Seasons",
-			"description": "Seasons is a sequencing system for personal goals. It gives every goal a home on your Life Map — off-season you rank them and pick what moves, in-season one goal gets the focus. When the season closes, the record tells you what's next.",
-			"shortDescription": "A goal sequencing system — one focus at a time.",
-			"type": "SaaS Product",
-			"featured_reason": "Top Project"
-		},
-		"MY_ANIME_COLLECTION": {
-			"name": "My Anime Collection",
-			"description": "My Anime Collection is a free anime tracker where you can explore and create custom playlists of your favorite anime.",
-			"shortDescription": "Find and keep track of your favorite anime.",
-			"type": "Web Application",
-			"featured_reason": "Best Overall"
-		},
-		"ZACH_STONE": {
-			"name": "Zach Stone",
-			"description": "My blog. Read about coding concepts, Japan, and all things related to being a web developer.",
-			"shortDescription": "My blog. Read about coding concepts, Japan, and all things related to being a web developer.",
-			"type": "Web Application",
-			"featured_reason": "Most Personal"
-		},
-		"HAKU": {
-			"name": "HAKU",
-			"description": "Track and compare jobs during the interview process.",
-			"shortDescription": "Track and compare jobs during the interview process.",
-			"type": "Web Application",
-			"featured_reason": "Highest Business Value"
-		},
-		"AI_FLASHCARDS": {
-			"name": "Infinite Flashcards",
-			"description": "This project is a Python script that generates Anki flashcards from a word list using OpenAI. \n The generated cards include word readings, example sentences, and basic definitions. \n This Python script significantly simplifies the process of creating new cards, allowing learners to focus on studying rather than card creation.",
-			"shortDescription": "Generate Anki flashcards from a word list or essay using OpenAI.",
-			"type": "Python Script",
-			"featured_reason": "Most Useful"
-		},
-		"RIFFS": {
-			"name": "Riffs!",
-			"description": "A place to share your new songs, covers, and musical ideas with the world.",
-			"shortDescription": "A place to share your new songs, covers, and musical ideas with the world.",
-			"type": "Web Application"
-		},
-		"JAPANESE_QUIZ": {
-			"name": "Prefecture Quiz",
-			"description": "Test your knowledge of Japanese prefectures with this fun quiz.",
-			"shortDescription": "Test your knowledge of Japanese prefectures with this fun quiz.",
-			"type": "Web Application",
-			"featured_reason": "Most Fun"
-		},
-		"IMMERSE_IN_JAPAN": {
-			"name": "Immerse In Japan",
-			"description": "A website to help Japanese learners find new language-learning tools and content tailored to their skill level.",
-			"shortDescription": "A website to help Japanese learners find new language-learning tools and content tailored to their skill level.",
-			"type": "Web Application",
-			"featured_reason": "Most Useful"
-		}
-	},
-	"EXTRA_INFO_LABELS": {
-		"certifications": "Certifications",
-		"courses": "Completed Courses",
-		"tools": "Tools",
-		"backend": "Backend",
-		"server": "Server",
-		"project_tech": "Project Tech",
-		"skills": "Skills",
-		"frameworks": "Frameworks",
-		"build_tools": "Build Tools",
-		"performance": "Performance Optimization"
-	},
-	"CONTACT": {
-		"title": "Get in Touch",
-		"meta_description": "Contact Zach Stone - Web Developer and Engineer",
-		"name": "Name",
-		"name_placeholder": "Your name",
-		"email": "Email",
-		"email_placeholder": "your@email.com",
-		"message": "Message",
-		"message_placeholder": "Your message...",
-		"submit": "Send Message",
-		"submitting": "Sending...",
-		"success_message": "Thanks for reaching out! I'll get back to you as soon as possible.",
-		"name_required": "Please enter your name",
-		"email_required": "Please enter your email",
-		"email_invalid": "Please enter a valid email address",
-		"message_required": "Please enter a message",
-		"submission_error": "Something went wrong. Please try again.",
-		"recaptcha_error": "reCAPTCHA verification failed. Please try again.",
-		"recaptcha_verification_failed": "You appear to be a bot. Please try again later or contact me through social media.",
-		"connect_title": "Connect With Me",
-		"connect_description": "You can also reach me through any of these platforms:",
-		"eyebrow": "05 — Contact",
-		"headline_prefix": "Let's build",
-		"headline_accent": "something",
-		"headline_suffix": "worth shipping",
-		"footer_built_with": "Built with SvelteKit · Motion · Lenis",
-		"recaptcha_notice_prefix": "This site is protected by reCAPTCHA and the Google",
-		"recaptcha_notice_privacy": "Privacy Policy",
-		"recaptcha_notice_and": "and",
-		"recaptcha_notice_terms": "Terms of Service",
-		"recaptcha_notice_suffix": "apply.",
-		"server_config_error": "Server configuration error. Please contact the site owner."
-	},
-	"GITHUB": {
-		"loading": "Loading contributions...",
-		"total_contributions": "Total Contributions",
-		"current_streak": "Current Streak",
-		"longest_streak": "Longest Streak",
-		"legend_less": "Less",
-		"legend_more": "More",
-		"view_profile": "View GitHub Profile",
-		"activity_title": "{username}'s GitHub Activity"
-	},
-	"RAIL": {
-		"intro": "Intro",
-		"about": "About",
-		"experience": "Experience",
-		"work": "Work",
-		"skills": "Skills",
-		"contact": "Contact"
-	}
+  "HOME": {
+    "title": "Home",
+    "name": "Zach",
+    "lastName": "Stone",
+    "description": "Senior Software Engineer · Frontend Focus · Observability & AI Tooling · Japan · Remote",
+    "connect_cta": "Let's Connect!"
+  },
+  "NAVBAR": {
+    "home": "Home",
+    "about": "About",
+    "personal": "Projects",
+    "skills": "Skills",
+    "career": "Experience",
+    "blog": "Blog",
+    "search": "Search",
+    "contact": "Contact",
+    "resume": "Resume",
+    "japanese": "Japanese",
+    "english": "English",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "enabled": "enabled",
+    "toggle_menu": "Toggle menu",
+    "close_menu": "Close menu",
+    "menu": "Menu"
+  },
+  "COMMON": {
+    "breadcrumb": "Breadcrumb",
+    "section_navigation": "Section navigation",
+    "social_links": "Social links",
+    "reading_progress": "Reading progress",
+    "scroll_to_top": "Scroll to top",
+    "loading_image": "Loading image",
+    "failed_to_load_image": "Failed to load image",
+    "close_modal": "Close",
+    "redirecting_to": "Redirecting to",
+    "could_not_load_experience": "Could not load experience data...",
+    "could_not_load_project": "Could not load project data...",
+    "now": "Now"
+  },
+  "RESUME": {
+    "englishTitle": "English Resume",
+    "japaneseTitle": "Japanese Resume (履歴書)",
+    "openInNewTab": "Open in new tab",
+    "openEnglishInNewTab": "Open English resume in new tab",
+    "openJapaneseInNewTab": "Open Japanese resume (履歴書) in new tab",
+    "download": "Download",
+    "cta": "View my resume",
+    "eyebrow": "CREDENTIALS",
+    "heading_prefix": "My",
+    "heading_accent": "Resume",
+    "subtitle": "Available in English and Japanese. Click to open in a new tab.",
+    "englishDesc": "Full professional resume in English covering experience, skills, and education.",
+    "japaneseDesc": "日本語の職務経歴書・履歴書です。スキル、経験、学歴を網羅しています。"
+  },
+  "ABOUT": {
+    "cta": "Learn More About Me",
+    "title": "About Me",
+    "full_about": "Senior software engineer with a frontend focus, based in Japan. Outside of high-velocity feature work, I specialize in the work that makes teams faster and more reliable — observability, developer tooling, CI/CD, and AI-assisted workflows. Comfortable working across the stack when the problem calls for it. Bilingual in English and Japanese (JLPT N1).",
+    "socials": "Connect with me",
+    "mark_meta": "Senior Software Engineer<br />Frontend · CI/CD · AI Tooling<br />Japan · Remote",
+    "heading_prefix": "I make",
+    "heading_complex_systems": "teams faster",
+    "heading_and_ship_with": "through",
+    "heading_observability": "observability",
+    "heading_velocity": "CI/CD",
+    "heading_and": "and",
+    "heading_reliability": "AI-assisted developer tooling",
+    "heading_period": ".",
+    "fact_based_in": "Based in",
+    "fact_based_in_value": "Japan",
+    "fact_language": "Language",
+    "fact_language_value": "JLPT N1",
+    "fact_timezones": "Timezones",
+    "fact_timezones_value": "Flexible",
+    "github_label": "GitHub",
+    "github_subtitle": "Last 26 weeks"
+  },
+  "HERO": {
+    "available_label": "Available for senior engineering roles",
+    "cta_view_work": "View Selected Work",
+    "cta_get_in_touch": "Get in touch",
+    "scroll_to_about": "Scroll to about section",
+    "scroll_to_explore": "Scroll to explore"
+  },
+  "EXPERIENCES": {
+    "cta": "See Where I've Worked",
+    "title": "Experiences",
+    "eyebrow": "02 — Experience",
+    "heading_prefix": "A career built around",
+    "heading_ownership": "ownership",
+    "heading_outcomes": "measurable outcomes",
+    "heading_and": "and",
+    "heading_impact": "business impact",
+    "heading_period": ".",
+    "currently_shipping": "Currently shipping",
+    "completed": "Completed",
+    "spec_role": "Role",
+    "spec_where": "Where",
+    "spec_type": "Type",
+    "scroll_hint": "Scroll down to step through each role",
+    "interac": {
+      "name": "Assistant Language Teacher",
+      "description": "As an ALT (Assistant Language Teacher) at Interac, I taught English across public schools in Fukushima Prefecture. This role was the foundation of my life in Japan and the beginning of the journey that led to JLPT N1.",
+      "type": "English Teaching Agency",
+      "location": "Fukushima, Japan"
+    },
+    "rapptr": {
+      "name": "Frontend Engineer",
+      "quote": "From app strategy, design and development to launch and ongoing tailored support, we are with you every step of the way – continuously refining and evolving your product.",
+      "description": "Product agency building web and mobile products for early-stage and growth-stage startups.\n\n- Delivered production systems across multiple client products, collaborating directly with startup founders and engineering teams to scope features, align on technical requirements, and ship to production timelines.\n\n- Built a Figma-synchronized design system of 20+ primitives adopted across client teams — cutting feature scaffolding time by ~50% and eliminating recurring design-development drift on every new product.\n\n- Architected and shipped an embeddable third-party widget from zero, owning the full technical design, cross-origin isolation strategy, and production rollout. The widget became a core platform offering and opened a new client integration channel.",
+      "type": "App And Website Agency",
+      "location": "New York, NY"
+    },
+    "sellfire": {
+      "name": "Senior Software Engineer",
+      "quote": "Sellfire is an all-in-one sales platform for inside sales teams. It offers all the necessary features in one software, including dial functions, real-time reporting, coaching and development, pipeline management, and automated lead management. Sellfire supports team scaling while improving sales performance. With real-time call coaching and report display, it quickly identifies and improves sales opportunities. By using Sellfire, sales teams can operate efficiently and effectively, accelerating business growth.",
+      "type": "B2B SaaS — Sales Engagement Platform",
+      "location": "Austin, TX (Remote)",
+      "description": "Sole senior engineer, 10-repo multi-product codebase.\n\n- Built the team's Claude Code workflow from scratch. Authored production skills used across engineering — create-jira-ticket (turn any Sentry, PagerDuty, Slack URL, or text into a fully cross-linked Jira ticket with sprint assignment), csp-add (auto-allowlists CDN domains), add-test-ids (adds Playwright-friendly test IDs), and co-authored a weekly reliability review skill that consolidates data from New Relic, PagerDuty, Sentry, and Jira into a single Notion page.\n\n- Took app.sellfire.com's MDN Observatory security score from 25/100 (D−) to 110/100 (A+). Shipped a strict Content Security Policy and modern security headers (HSTS, Permissions-Policy, Referrer-Policy). Built a detection layer that captures violations in Sentry, embeds a runnable csp-add Claude command directly in the alert, and pages the on-call engineer — turning each fix into a copy-paste.\n\n- Built observability from zero. Almost every production issue was customer-reported. Designed and shipped a Sentry + PagerDuty detection and routing layer that cut mean time to resolution (MTTR) from days/weeks to minutes, transferring ownership of many production issues from customers to engineering.\n\n- Led React 16 → 18 migration including updating six core libraries. Eliminated legacy build tooling and cut the main JavaScript bundle by ~50 kB (gzipped) through barrel-import cleanup and removing unused dependencies, measurably reducing page load times. Received unsolicited customer feedback to match: \"It's much faster. No lag at all.\"\n\n- Replaced weekly manual QA test runs with automated feedback in under 15 minutes. Architected CI/CD quality gates using GitHub Actions and Playwright E2E triggered on every staging deployment, catching regressions before they reached production."
+    }
+  },
+  "SKILLS": {
+    "cta": "See My Skills",
+    "title": "Skills",
+    "eyebrow": "04 — Skills",
+    "heading_prefix": "Stack I've shipped",
+    "heading_accent": "production with",
+    "sub": "Frontend depth, backend fluency, and the AI tooling and dev-tools that move teams faster.",
+    "explore": "Explore →",
+    "fe": {
+      "name": "Frontend Web"
+    },
+    "be": {
+      "name": "Backend Web"
+    },
+    "ai-tooling": {
+      "name": "AI & Agentic Tooling"
+    },
+    "cyber-security": {
+      "name": "Cybersecurity"
+    },
+    "dev-tools": {
+      "name": "Dev Tools"
+    },
+    "japanese": {
+      "name": "Japanese"
+    },
+    "mobile": {
+      "name": "Mobile Development"
+    }
+  },
+  "SEARCH": {
+    "title": "Search",
+    "prompt": "Try typing a skill, name, or tool.",
+    "results_label": "Search results",
+    "no_results": "Oops! Nothing to show for '{query}'",
+    "placeholder": "Search...",
+    "aria_label": "Search through projects, skills and experiences",
+    "meta_description": "Search through projects, skills, and experiences"
+  },
+  "CONTRACT": {
+    "FullTime": "Full-time",
+    "PartTime": "Part-time",
+    "SelfEmployed": "Self-employed",
+    "Freelance": "Freelance",
+    "Contract": "Contract",
+    "Internship": "Internship"
+  },
+  "PROJECTS": {
+    "title": "Projects",
+    "no_filter_option": "No Filters",
+    "featured_badge": "Featured",
+    "featured_project": "Featured Project",
+    "featured_projects": "Featured Projects",
+    "other_project": "Other Project",
+    "other_projects": "Other Projects",
+    "live_site": "Website",
+    "eyebrow": "03 — Selected Work",
+    "heading_prefix": "Things I've",
+    "heading_accent": "built",
+    "counter_label": "Projects",
+    "open_case": "Open case",
+    "scroll_hint": "Scroll down to step through each project",
+    "hint": "Drag, scroll wheel, trackpad, or swipe sideways",
+    "track_label": "Project showcases — scroll or drag sideways",
+    "screenshot_alt": "Project screenshot",
+    "view_larger_screenshot": "View larger screenshot",
+    "SEASONS": {
+      "name": "Seasons",
+      "description": "Seasons is a sequencing system for personal goals. It gives every goal a home on your Life Map — off-season you rank them and pick what moves, in-season one goal gets the focus. When the season closes, the record tells you what's next.",
+      "shortDescription": "A goal sequencing system — one focus at a time.",
+      "type": "SaaS Product",
+      "featured_reason": "Top Project"
+    },
+    "MY_ANIME_COLLECTION": {
+      "name": "My Anime Collection",
+      "description": "My Anime Collection is a free anime tracker where you can explore and create custom playlists of your favorite anime.",
+      "shortDescription": "Find and keep track of your favorite anime.",
+      "type": "Web Application",
+      "featured_reason": "Best Overall"
+    },
+    "ZACH_STONE": {
+      "name": "Zach Stone",
+      "description": "My blog. Read about coding concepts, Japan, and all things related to being a web developer.",
+      "shortDescription": "My blog. Read about coding concepts, Japan, and all things related to being a web developer.",
+      "type": "Web Application",
+      "featured_reason": "Most Personal"
+    },
+    "HAKU": {
+      "name": "HAKU",
+      "description": "Track and compare jobs during the interview process.",
+      "shortDescription": "Track and compare jobs during the interview process.",
+      "type": "Web Application",
+      "featured_reason": "Highest Business Value"
+    },
+    "AI_FLASHCARDS": {
+      "name": "Infinite Flashcards",
+      "description": "This project is a Python script that generates Anki flashcards from a word list using OpenAI. \n The generated cards include word readings, example sentences, and basic definitions. \n This Python script significantly simplifies the process of creating new cards, allowing learners to focus on studying rather than card creation.",
+      "shortDescription": "Generate Anki flashcards from a word list or essay using OpenAI.",
+      "type": "Python Script",
+      "featured_reason": "Most Useful"
+    },
+    "RIFFS": {
+      "name": "Riffs!",
+      "description": "A place to share your new songs, covers, and musical ideas with the world.",
+      "shortDescription": "A place to share your new songs, covers, and musical ideas with the world.",
+      "type": "Web Application"
+    },
+    "JAPANESE_QUIZ": {
+      "name": "Prefecture Quiz",
+      "description": "Test your knowledge of Japanese prefectures with this fun quiz.",
+      "shortDescription": "Test your knowledge of Japanese prefectures with this fun quiz.",
+      "type": "Web Application",
+      "featured_reason": "Most Fun"
+    },
+    "IMMERSE_IN_JAPAN": {
+      "name": "Immerse In Japan",
+      "description": "A website to help Japanese learners find new language-learning tools and content tailored to their skill level.",
+      "shortDescription": "A website to help Japanese learners find new language-learning tools and content tailored to their skill level.",
+      "type": "Web Application",
+      "featured_reason": "Most Useful"
+    }
+  },
+  "EXTRA_INFO_LABELS": {
+    "certifications": "Certifications",
+    "courses": "Completed Courses",
+    "tools": "Tools",
+    "backend": "Backend",
+    "server": "Server",
+    "project_tech": "Project Tech",
+    "skills": "Skills",
+    "frameworks": "Frameworks",
+    "build_tools": "Build Tools",
+    "performance": "Performance Optimization"
+  },
+  "CONTACT": {
+    "title": "Get in Touch",
+    "meta_description": "Contact Zach Stone - Web Developer and Engineer",
+    "name": "Name",
+    "name_placeholder": "Your name",
+    "email": "Email",
+    "email_placeholder": "your@email.com",
+    "message": "Message",
+    "message_placeholder": "Your message...",
+    "submit": "Send Message",
+    "submitting": "Sending...",
+    "success_message": "Thanks for reaching out! I'll get back to you as soon as possible.",
+    "name_required": "Please enter your name",
+    "email_required": "Please enter your email",
+    "email_invalid": "Please enter a valid email address",
+    "message_required": "Please enter a message",
+    "submission_error": "Something went wrong. Please try again.",
+    "recaptcha_error": "reCAPTCHA verification failed. Please try again.",
+    "recaptcha_verification_failed": "You appear to be a bot. Please try again later or contact me through social media.",
+    "connect_title": "Connect With Me",
+    "connect_description": "You can also reach me through any of these platforms:",
+    "eyebrow": "05 — Contact",
+    "headline_prefix": "Let's build",
+    "headline_accent": "something",
+    "headline_suffix": "worth shipping",
+    "footer_built_with": "Built with SvelteKit · Motion · Lenis",
+    "recaptcha_notice_prefix": "This site is protected by reCAPTCHA and the Google",
+    "recaptcha_notice_privacy": "Privacy Policy",
+    "recaptcha_notice_and": "and",
+    "recaptcha_notice_terms": "Terms of Service",
+    "recaptcha_notice_suffix": "apply.",
+    "server_config_error": "Server configuration error. Please contact the site owner."
+  },
+  "GITHUB": {
+    "loading": "Loading contributions...",
+    "total_contributions": "Total Contributions",
+    "current_streak": "Current Streak",
+    "longest_streak": "Longest Streak",
+    "legend_less": "Less",
+    "legend_more": "More",
+    "view_profile": "View GitHub Profile",
+    "activity_title": "{username}'s GitHub Activity"
+  },
+  "RAIL": {
+    "intro": "Intro",
+    "about": "About",
+    "experience": "Experience",
+    "work": "Work",
+    "skills": "Skills",
+    "contact": "Contact"
+  }
 }
