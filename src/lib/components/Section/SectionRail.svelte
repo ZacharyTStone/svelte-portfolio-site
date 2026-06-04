@@ -14,6 +14,7 @@
 		{ id: 'experience', labelKey: 'RAIL.experience' },
 		{ id: 'projects', labelKey: 'RAIL.work' },
 		{ id: 'skills', labelKey: 'RAIL.skills' },
+		{ id: 'resume', labelKey: 'RAIL.resume' },
 		{ id: 'contact', labelKey: 'RAIL.contact' }
 	];
 
@@ -125,7 +126,7 @@
 
 	.rail-label {
 		position: absolute;
-		right: calc(100% - 0.5rem);
+		right: calc(100% + 0.35rem);
 		white-space: nowrap;
 		pointer-events: none;
 		opacity: 0;
