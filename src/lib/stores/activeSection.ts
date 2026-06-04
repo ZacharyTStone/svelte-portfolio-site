@@ -8,6 +8,7 @@ export const SPA_SECTION_IDS = [
 	'experience',
 	'projects',
 	'skills',
+	'resume',
 	'contact'
 ] as const;
 
