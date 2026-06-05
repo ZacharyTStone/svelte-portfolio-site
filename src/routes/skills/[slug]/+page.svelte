@@ -42,7 +42,7 @@
 
 		const skill = data.skill;
 
-		MY_PROJECTS.forEach((item) => {
+		MY_PROJECTS.filter((p) => !p.dont_show).forEach((item) => {
 			if (item.skills.some((tech) => tech.slug === skill.slug)) {
 				out.push({
 					img: getAssetURL(item.logo),
@@ -60,7 +60,7 @@
 					display: item.name,
 					name: item.name,
 					type: 'experience',
-					url: `/experience/${item.slug}`
+					url: `/#experience`
 				});
 			}
 		});
