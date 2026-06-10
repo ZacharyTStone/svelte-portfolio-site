@@ -101,10 +101,10 @@
 		const items: Item[] = [];
 		const currentQuery = query;
 
-		// Generate items for projects
+		// Generate items for projects (exclude hidden projects)
 		items.push(
 			...generateItems(
-				filterItems(MY_PROJECTS, currentQuery),
+				filterItems(MY_PROJECTS.filter((p) => !p.dont_show), currentQuery),
 				'i-carbon-cube',
 				(data) => `projects/${data.slug}`
 			)
@@ -119,12 +119,12 @@
 			)
 		);
 
-		// Generate items for experiences
+		// Generate items for experiences (link to landing page section)
 		items.push(
 			...generateItems(
 				filterItems(MY_EXPERIENCES, currentQuery),
 				'i-carbon-development',
-				(data) => `experience/${data.slug}`
+				() => `#experience`
 			)
 		);
 
