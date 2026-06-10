@@ -235,7 +235,7 @@
 
 {#if mounted}
 	<div class="contact-form" in:fade={{ duration: 300 }}>
-		<Card classes={'w-full'} tiltDegree={0}>
+		<Card classes={'w-full'}>
 			<h2 class="text-xl font-semibold mb-4 md:text-2xl">
 				{getTranslation('CONTACT.title')}
 			</h2>
@@ -248,7 +248,12 @@
 			{:else}
 				<form onsubmit={handleSubmit} class="contact-form-fields">
 					{#if error}
-						<div class="error-message" role="alert" aria-live="assertive" in:fade={{ duration: 200 }}>
+						<div
+							class="error-message"
+							role="alert"
+							aria-live="assertive"
+							in:fade={{ duration: 200 }}
+						>
 							<UIcon icon="i-carbon-warning-filled" classes="text-1.5em" />
 							<p>{error}</p>
 						</div>
@@ -308,7 +313,8 @@
 						{getTranslation('CONTACT.recaptcha_notice_and')}
 						<a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer"
 							>{getTranslation('CONTACT.recaptcha_notice_terms')}</a
-						> {getTranslation('CONTACT.recaptcha_notice_suffix')}
+						>
+						{getTranslation('CONTACT.recaptcha_notice_suffix')}
 					</div>
 
 					<button type="submit" class="submit-button" disabled={isSubmitting || !recaptchaVerified}>

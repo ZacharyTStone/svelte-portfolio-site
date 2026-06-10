@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { getAssetURL } from '$lib/data/assets';
 	import type { Experience } from '$lib/types';
-       import { calculateExperiencePeriod } from '$lib/utils/helpers';
-       import { handleNavigation } from '$lib/utils/navigation';
+	import { calculateExperiencePeriod } from '$lib/utils/helpers';
+	import { handleNavigation } from '$lib/utils/navigation';
 	import { _, locale } from 'svelte-i18n';
 	import Card from '../Card/Card.svelte';
 	import CardLogo from '../Card/CardLogo.svelte';
@@ -27,7 +27,6 @@
 
 <Card
 	margin="0px 0px 20px 0px"
-	tiltDegree={2}
 	onClick={(e) => handleNavigation(e, `/experience/${experience.slug}`)}
 >
 	<div class="col md:flex-row items-start gap-5 md:gap-1">

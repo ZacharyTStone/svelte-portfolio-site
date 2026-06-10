@@ -4,26 +4,13 @@
 	 *
 	 * - Particles drift toward the camera; scroll velocity warps them into
 	 *   light streaks (forward when scrolling down, backward when scrolling up).
-	 * - The hue of the whole scene eases toward a per-section target, and is
-	 *   published as `--scene-hue` / `--accent-electric-rgb` on :root so the
-	 *   site's accent color travels with you.
 	 * - No-op on prefers-reduced-motion. Pauses when the tab is hidden.
 	 */
-	import { activeSection } from '$lib/stores/activeSection';
 	import { isCoarsePointer, isNarrowViewport, prefersReducedMotion } from '$lib/utils/motion';
 	import { onMount } from 'svelte';
 
-	const SECTION_HUES: Record<string, number> = {
-		hero: 216, // electric blue
-		about: 190, // cyan
-		experience: 250, // indigo
-		projects: 285, // violet
-		skills: 170, // teal
-		resume: 210, // blue
-		contact: 320 // magenta finale
-	};
-
-	const DEFAULT_HUE = 216;
+	/** Fixed scene hue — matches the site's electric-blue accent. */
+	const HUE = 216;
 
 	let canvasEl: HTMLCanvasElement | undefined = $state();
 
@@ -34,15 +21,6 @@
 		prevSx: number;
 		prevSy: number;
 		hasPrev: boolean;
-	}
-
-	function hslToRgbTriplet(h: number, s: number, l: number): string {
-		const sat = s / 100;
-		const lig = l / 100;
-		const k = (n: number) => (n + h / 30) % 12;
-		const a = sat * Math.min(lig, 1 - lig);
-		const f = (n: number) => lig - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
-		return [f(0), f(8), f(4)].map((v) => Math.round(v * 255)).join(', ');
 	}
 
 	onMount(() => {
@@ -86,21 +64,6 @@
 			p.hasPrev = false;
 		}
 
-		let targetHue = SECTION_HUES[document.location.hash.slice(1)] ?? DEFAULT_HUE;
-		let hue = targetHue;
-		let appliedHue = Number.NaN;
-
-		const unsubscribe = activeSection.subscribe((id) => {
-			targetHue = SECTION_HUES[id] ?? DEFAULT_HUE;
-		});
-
-		function publishHue() {
-			if (Math.abs(hue - appliedHue) < 0.3) return;
-			appliedHue = hue;
-			root.style.setProperty('--scene-hue', hue.toFixed(1));
-			root.style.setProperty('--accent-electric-rgb', hslToRgbTriplet(hue, 100, 71));
-		}
-
 		let lastScrollY = window.scrollY;
 		let velocity = 0; // smoothed, signed px/s
 		let lastTime = 0;
@@ -126,7 +89,7 @@
 				const cy = fy * height;
 				const r = fr * Math.max(width, height);
 				const g = ctx!.createRadialGradient(cx, cy, 0, cx, cy, r);
-				g.addColorStop(0, `hsla(${hue.toFixed(1)}, 85%, ${dark ? 62 : 52}%, ${baseAlpha * am})`);
+				g.addColorStop(0, `hsla(${HUE}, 85%, ${dark ? 62 : 52}%, ${baseAlpha * am})`);
 				g.addColorStop(1, 'hsla(0, 0%, 0%, 0)');
 				ctx!.fillStyle = g;
 				ctx!.fillRect(cx - r, cy - r, r * 2, r * 2);
@@ -143,10 +106,6 @@
 			const rawV = (sy - lastScrollY) / Math.max(dt, 0.001);
 			lastScrollY = sy;
 			velocity += (rawV - velocity) * 0.085;
-
-			// Hue eases toward the active section's atmosphere.
-			hue += (targetHue - hue) * Math.min(1, dt * 2.2);
-			publishHue();
 
 			ctx!.clearRect(0, 0, width, height);
 			drawAurora(now / 1000);
@@ -182,8 +141,8 @@
 				const alpha = (0.06 + depth * 0.3) * (dark ? 1 : 0.22);
 				const size = 0.4 + depth * 1.3;
 				const color = dark
-					? `hsla(${hue.toFixed(1)}, 70%, 80%, ${alpha.toFixed(3)})`
-					: `hsla(${hue.toFixed(1)}, 65%, 45%, ${alpha.toFixed(3)})`;
+					? `hsla(${HUE}, 70%, 80%, ${alpha.toFixed(3)})`
+					: `hsla(${HUE}, 65%, 45%, ${alpha.toFixed(3)})`;
 
 				if (p.hasPrev) {
 					ctx!.strokeStyle = color;
@@ -228,9 +187,6 @@
 			cancelAnimationFrame(rafId);
 			window.removeEventListener('resize', resize);
 			document.removeEventListener('visibilitychange', onVisibility);
-			unsubscribe();
-			root.style.removeProperty('--scene-hue');
-			root.style.removeProperty('--accent-electric-rgb');
 		};
 	});
 </script>

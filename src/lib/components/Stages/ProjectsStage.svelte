@@ -4,7 +4,6 @@
 	import { getAssetURL } from '$lib/data/assets';
 	import { PROJECTS } from '$lib/params';
 	import type { Project } from '$lib/types';
-	import { isCoarsePointer, prefersReducedMotion } from '$lib/utils/motion';
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 
@@ -34,49 +33,6 @@
 
 	function easeInQuart(t: number): number {
 		return t * t * t * t;
-	}
-
-	/** Svelte action: subtle 3-D tilt + specular glare that follows the cursor. */
-	function tilt(node: HTMLElement) {
-		if (typeof window === 'undefined') return {};
-		if (prefersReducedMotion() || isCoarsePointer()) return {};
-
-		const STRENGTH = 5;
-		const glare = node.querySelector('.showcase-glare') as HTMLElement | null;
-
-		function onMove(e: MouseEvent) {
-			const rect = node.getBoundingClientRect();
-			const cx = rect.width / 2;
-			const cy = rect.height / 2;
-			const dx = (e.clientX - rect.left - cx) / cx;
-			const dy = (e.clientY - rect.top - cy) / cy;
-
-			node.style.transform = `perspective(900px) rotateY(${dx * STRENGTH}deg) rotateX(${-dy * STRENGTH}deg) translateY(-3px)`;
-			node.style.transition = 'transform 60ms linear';
-
-			if (glare) {
-				const gx = ((e.clientX - rect.left) / rect.width) * 100;
-				const gy = ((e.clientY - rect.top) / rect.height) * 100;
-				glare.style.background = `radial-gradient(circle at ${gx}% ${gy}%, rgba(255,255,255,0.1) 0%, transparent 65%)`;
-				glare.style.opacity = '1';
-			}
-		}
-
-		function onLeave() {
-			node.style.transform = '';
-			node.style.transition = 'transform 480ms cubic-bezier(0.16,1,0.3,1)';
-			if (glare) glare.style.opacity = '0';
-		}
-
-		node.addEventListener('mousemove', onMove, { passive: true });
-		node.addEventListener('mouseleave', onLeave);
-
-		return {
-			destroy() {
-				node.removeEventListener('mousemove', onMove);
-				node.removeEventListener('mouseleave', onLeave);
-			}
-		};
 	}
 
 	onMount(() => {
@@ -190,7 +146,9 @@
 				<div class="projects-counter mono-eyebrow" aria-live="polite">
 					<span class="projects-counter-label">{safeT('PROJECTS.counter_label')}</span>
 					<span class="projects-counter-num">
-						{(activeIndex + 1).toString().padStart(2, '0')} / {projectCount.toString().padStart(2, '0')}
+						{(activeIndex + 1).toString().padStart(2, '0')} / {projectCount
+							.toString()
+							.padStart(2, '0')}
 					</span>
 				</div>
 			</div>
@@ -199,9 +157,7 @@
 		<div class="stack-viewport">
 			{#each visibleProjects as project, i (project.slug)}
 				<div class="stack-card" bind:this={stackCardEls[i]} style="--card-i: {i}">
-					<div class="stack-card-inner" use:tilt>
-						<div class="showcase-glare" aria-hidden="true"></div>
-
+					<div class="stack-card-inner">
 						<div class="stack-left">
 							<div class="stack-meta-top">
 								<span class="stack-eyebrow mono-eyebrow">{safeT(project.type ?? '')}</span>
@@ -243,10 +199,7 @@
 
 		<footer class="pin-footer">
 			<div class="pin-progress-track">
-				<div
-					class="pin-progress-fill"
-					style="transform: scaleX({stackProgress.toFixed(4)})"
-				></div>
+				<div class="pin-progress-fill" style="transform: scaleX({stackProgress.toFixed(4)})"></div>
 			</div>
 			<div class="pin-scroll-hint mono-eyebrow">
 				<UIcon icon="i-carbon-arrow-down" classes="text-1em" alt="" />
@@ -276,8 +229,7 @@
 		<ul class="projects-grid">
 			{#each visibleProjects as project, i (project.slug)}
 				<li class="projects-grid-item" style="--card-i: {i}">
-					<a href="/projects/{project.slug}" class="showcase" use:tilt>
-						<div class="showcase-glare" aria-hidden="true"></div>
+					<a href="/projects/{project.slug}" class="showcase">
 						<div class="showcase-frame">
 							<img
 								class="showcase-image"
@@ -444,29 +396,14 @@
 		border-radius: clamp(1rem, 1.6vw, 1.5rem);
 		overflow: hidden;
 		position: relative;
-		transition: border-color 280ms ease, box-shadow 280ms ease;
-		transform-style: preserve-3d;
+		transition:
+			border-color 280ms ease,
+			box-shadow 280ms ease;
 	}
 
 	.stack-card-inner:hover {
 		border-color: var(--accent-electric);
 		box-shadow: 0 30px 80px -30px rgba(106, 166, 255, 0.4);
-	}
-
-	/* Specular glare */
-	.showcase-glare {
-		position: absolute;
-		inset: 0;
-		border-radius: inherit;
-		opacity: 0;
-		pointer-events: none;
-		transition: opacity 300ms ease;
-		z-index: 2;
-		mix-blend-mode: screen;
-	}
-
-	:global(:root[data-theme='light']) .showcase-glare {
-		mix-blend-mode: overlay;
 	}
 
 	/* ─── Stack left column ─────────────────────────────── */
@@ -538,7 +475,9 @@
 		padding: 0.6em 1.1em;
 		border: 1px solid var(--accent-electric);
 		border-radius: 999px;
-		transition: background 240ms ease, color 240ms ease;
+		transition:
+			background 240ms ease,
+			color 240ms ease;
 
 		&:hover {
 			background: var(--accent-electric);
@@ -711,10 +650,12 @@
 		border-radius: clamp(0.85rem, 1.4vw, 1.4rem);
 		overflow: hidden;
 		position: relative;
-		transition: border-color 280ms ease, box-shadow 280ms ease, transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+		transition:
+			border-color 280ms ease,
+			box-shadow 280ms ease,
+			transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
 		backdrop-filter: blur(10px);
 		-webkit-backdrop-filter: blur(10px);
-		transform-style: preserve-3d;
 	}
 
 	:global(:root[data-theme='light']) .showcase {
@@ -724,6 +665,13 @@
 	.showcase:hover {
 		border-color: var(--accent-electric);
 		box-shadow: 0 24px 60px -20px rgba(106, 166, 255, 0.45);
+		transform: translateY(-4px);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.showcase:hover {
+			transform: none;
+		}
 	}
 
 	.showcase-frame {

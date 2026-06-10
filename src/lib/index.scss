@@ -36,14 +36,11 @@
 	--accent-brand-muted: rgba(255, 255, 255, 0.04);
 	--accent-brand-rgb: 113, 113, 122;
 
-	/* Signature accent — soft electric blue by default. `--scene-hue` is
-	   animated by SceneCanvas to follow the active section, so the accent
-	   re-tints itself as you travel through the page. */
-	--scene-hue: 216;
-	--accent-electric: hsl(var(--scene-hue), 100%, 71%);
+	/* Signature accent — soft electric blue */
+	--accent-electric: #6aa6ff;
 	--accent-electric-rgb: 106, 166, 255;
-	--accent-electric-glow: hsla(var(--scene-hue), 100%, 71%, 0.18);
-	--accent-electric-soft: hsla(var(--scene-hue), 100%, 71%, 0.08);
+	--accent-electric-glow: rgba(106, 166, 255, 0.18);
+	--accent-electric-soft: rgba(106, 166, 255, 0.08);
 
 	/* Link colors */
 	--link: var(--accent-brand);
