@@ -54,7 +54,7 @@
 
 		const root = document.documentElement;
 		const lite = isCoarsePointer() || isNarrowViewport();
-		const COUNT = lite ? 70 : 150;
+		const COUNT = lite ? 45 : 90;
 
 		let width = 0;
 		let height = 0;
@@ -120,7 +120,7 @@
 				]
 			];
 			const dark = root.getAttribute('data-theme') !== 'light';
-			const baseAlpha = dark ? 0.075 : 0.055;
+			const baseAlpha = dark ? 0.045 : 0.032;
 			for (const [fx, fy, fr, am] of blobs) {
 				const cx = fx * width;
 				const cy = fy * height;
@@ -152,9 +152,9 @@
 			drawAurora(now / 1000);
 
 			const dark = root.getAttribute('data-theme') !== 'light';
-			// Warp factor: ±1 around two viewport-heights per second.
-			const warp = Math.max(-1, Math.min(1, velocity / (height * 2.2)));
-			const zSpeed = (0.045 + Math.abs(warp) * 1.25) * (warp < -0.02 ? -1 : 1) * dt;
+			// Warp factor: ±1 around three viewport-heights per second.
+			const warp = Math.max(-1, Math.min(1, velocity / (height * 3)));
+			const zSpeed = (0.035 + Math.abs(warp) * 0.6) * (warp < -0.02 ? -1 : 1) * dt;
 
 			const cx = width / 2;
 			const cy = height / 2;
@@ -179,8 +179,8 @@
 				}
 
 				const depth = 1 - p.z; // 0 far → 1 near
-				const alpha = (0.12 + depth * 0.55) * (dark ? 1 : 0.3);
-				const size = 0.5 + depth * 1.9;
+				const alpha = (0.06 + depth * 0.3) * (dark ? 1 : 0.22);
+				const size = 0.4 + depth * 1.3;
 				const color = dark
 					? `hsla(${hue.toFixed(1)}, 70%, 80%, ${alpha.toFixed(3)})`
 					: `hsla(${hue.toFixed(1)}, 65%, 45%, ${alpha.toFixed(3)})`;
