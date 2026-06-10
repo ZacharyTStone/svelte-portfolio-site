@@ -43,6 +43,32 @@ export function onIdle(cb: () => void, timeout = 1500): () => void {
 
 const clamp = (v: number, lo = 0, hi = 1) => Math.max(lo, Math.min(hi, v));
 
+/**
+ * rAF-batched scroll/resize listener. Returns a cleanup function.
+ * Used instead of Motion's `scroll()`, whose `offset` option is unreliable
+ * with plain callbacks — rect math is exact and composes with Lenis.
+ */
+function onScrollFrame(update: () => void): () => void {
+	let rafId = 0;
+	let pending = false;
+	const onScroll = () => {
+		if (pending) return;
+		pending = true;
+		rafId = requestAnimationFrame(() => {
+			pending = false;
+			update();
+		});
+	};
+	window.addEventListener('scroll', onScroll, { passive: true });
+	window.addEventListener('resize', onScroll, { passive: true });
+	update();
+	return () => {
+		window.removeEventListener('scroll', onScroll);
+		window.removeEventListener('resize', onScroll);
+		cancelAnimationFrame(rafId);
+	};
+}
+
 // ─────────────────────────────────────────────────────────────────
 // Lenis smooth-scroll
 // ─────────────────────────────────────────────────────────────────
@@ -137,56 +163,162 @@ export async function setupHeroChoreography(els: HeroElements): Promise<() => vo
 	if (typeof window === 'undefined') return () => {};
 	if (prefersReducedMotion() || isNarrowViewport()) return () => {};
 
-	const { scroll } = await import('motion');
+	els.name.style.transformOrigin = '50% 45%';
 
-	const cleanup = scroll(
-		(info: any) => {
-			const p = clamp(info.y?.progress ?? 0);
+	// Progress 0 with the section top at the viewport top, 1 once the section
+	// bottom reaches the viewport top (equivalent to ['start start','end start']).
+	const cleanup = onScrollFrame(() => {
+		const rect = els.section.getBoundingClientRect();
+		const p = clamp(-rect.top / Math.max(1, rect.height));
 
-			// Name: scale 1 → 0.42, drift up-left, soft blur near end, opacity fade in last third
-			const scale = 1 - p * 0.58;
-			const translateX = -p * 6; // vw — drifts left toward nav
-			const translateY = -p * 8; // vh — drifts up toward nav
-			const nameBlur = clamp(p - 0.65) * 8;
-			els.name.style.transform = `translate3d(${translateX}vw, ${translateY}vh, 0) scale(${scale})`;
-			els.name.style.opacity = `${1 - clamp((p - 0.55) * 2.2)}`;
-			els.name.style.filter = `blur(${nameBlur}px)`;
+		// Name: dolly-zoom *through* the letters — the camera flies past the
+		// type as you scroll, blurring and dissolving as it goes by.
+		const zoom = 1 + Math.pow(p, 1.45) * 5;
+		const nameBlur = clamp((p - 0.2) / 0.55) * 16;
+		els.name.style.transform = `translate3d(0, ${-p * 7}vh, 0) scale(${zoom})`;
+		els.name.style.opacity = `${1 - clamp((p - 0.4) / 0.32)}`;
+		els.name.style.filter = `blur(${nameBlur}px)`;
+		// Once the letters balloon past the camera they must not swallow
+		// clicks meant for the CTAs revealed beneath.
+		els.name.style.pointerEvents = p > 0.3 ? 'none' : '';
 
-			// Eyebrow: slide up, fade out by mid
-			els.eyebrow.style.opacity = `${1 - clamp(p * 1.6)}`;
-			els.eyebrow.style.transform = `translate3d(0, ${-p * 24}px, 0)`;
+		// Eyebrow: slide up, fade out by mid
+		els.eyebrow.style.opacity = `${1 - clamp(p * 1.6)}`;
+		els.eyebrow.style.transform = `translate3d(0, ${-p * 24}px, 0)`;
 
-			// Tagline: blur-fade in starting at p≈0.18, settled by p≈0.55
-			const tp = clamp((p - 0.18) / 0.4);
-			els.tagline.style.opacity = `${tp}`;
-			els.tagline.style.filter = `blur(${(1 - tp) * 8}px)`;
-			els.tagline.style.transform = `translate3d(0, ${(1 - tp) * 26}px, 0)`;
+		// Tagline: blur-fade in starting at p≈0.18, settled by p≈0.55
+		const tp = clamp((p - 0.18) / 0.4);
+		els.tagline.style.opacity = `${tp}`;
+		els.tagline.style.filter = `blur(${(1 - tp) * 8}px)`;
+		els.tagline.style.transform = `translate3d(0, ${(1 - tp) * 26}px, 0)`;
 
-			// CTAs: appear last
-			const cp = clamp((p - 0.42) / 0.28);
-			els.ctas.style.opacity = `${cp}`;
-			els.ctas.style.transform = `translate3d(0, ${(1 - cp) * 22}px, 0)`;
+		// CTAs: appear last
+		const cp = clamp((p - 0.42) / 0.28);
+		els.ctas.style.opacity = `${cp}`;
+		els.ctas.style.transform = `translate3d(0, ${(1 - cp) * 22}px, 0)`;
 
-			// Scroll cue: fades immediately on first scroll
-			els.scrollCue.style.opacity = `${1 - clamp(p * 4)}`;
-		},
-		{
-			target: els.section,
-			offset: ['start start', 'end start']
-		}
-	);
+		// Scroll cue: fades immediately on first scroll
+		els.scrollCue.style.opacity = `${1 - clamp(p * 4)}`;
+	});
 
 	return () => {
-		try {
-			cleanup?.();
-		} catch {
-			/* noop */
-		}
+		cleanup();
 		for (const el of [els.name, els.eyebrow, els.tagline, els.ctas, els.scrollCue]) {
 			el.style.transform = '';
 			el.style.opacity = '';
 			el.style.filter = '';
 		}
+		els.name.style.transformOrigin = '';
+		els.name.style.pointerEvents = '';
+	};
+}
+
+// ─────────────────────────────────────────────────────────────────
+// Depth transitions — sections tilt in/out of 3D space as they cross
+// the viewport, like a camera moving through floating panels.
+// ─────────────────────────────────────────────────────────────────
+
+const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+/**
+ * Scroll-scrubbed perspective shifts for full-page sections:
+ * - Entering sections rise toward the camera from a tilted, dimmed state.
+ * - Exiting sections fall away backward into depth.
+ *
+ * Pure rect math on rAF (no Motion import) so it composes with Lenis.
+ * No-op on reduced-motion and narrow viewports.
+ */
+export function setupDepthTransitions(sections: HTMLElement[]): () => void {
+	if (typeof window === 'undefined') return () => {};
+	if (prefersReducedMotion() || isNarrowViewport()) return () => {};
+
+	const els = sections.filter(Boolean);
+	if (els.length === 0) return () => {};
+
+	const active = new Set<HTMLElement>();
+	let rafId = 0;
+	let pending = false;
+
+	function clear(el: HTMLElement) {
+		el.style.transform = '';
+		el.style.filter = '';
+		el.style.opacity = '';
+		el.style.transformOrigin = '';
+		el.style.willChange = '';
+	}
+
+	function update() {
+		pending = false;
+		const vh = window.innerHeight;
+		const enterEnd = vh * 0.3; // section settled once its top passes 30% of the viewport
+		const exitStart = vh * 0.88; // section starts receding once its bottom passes 88%
+
+		for (const el of els) {
+			const rect = el.getBoundingClientRect();
+
+			// Fully off-screen or settled mid-viewport: make sure styles are cleared.
+			const offScreen = rect.bottom < -60 || rect.top > vh + 60;
+
+			let transform = '';
+			let filter = '';
+			let opacity = '';
+			let origin = '';
+
+			if (!offScreen) {
+				if (rect.top > enterEnd) {
+					// Entering from below: rise out of depth toward the camera.
+					const e = easeOutCubic(clamp((vh - rect.top) / (vh - enterEnd)));
+					const inv = 1 - e;
+					if (inv > 0.001) {
+						transform = `perspective(1100px) rotateX(${(inv * 9).toFixed(2)}deg) scale(${(0.94 + 0.06 * e).toFixed(4)}) translate3d(0, ${(inv * 26).toFixed(1)}px, 0)`;
+						filter = `brightness(${(0.62 + 0.38 * e).toFixed(3)})`;
+						opacity = `${(0.45 + 0.55 * e).toFixed(3)}`;
+						origin = '50% 0%';
+					}
+				} else if (rect.bottom < exitStart) {
+					// Exiting above: tip backward and recede.
+					const x = easeOutCubic(clamp((exitStart - rect.bottom) / exitStart));
+					if (x > 0.001) {
+						transform = `perspective(1100px) rotateX(${(-x * 8).toFixed(2)}deg) scale(${(1 - 0.05 * x).toFixed(4)})`;
+						filter = `brightness(${(1 - 0.32 * x).toFixed(3)})`;
+						opacity = `${(1 - 0.22 * x).toFixed(3)}`;
+						origin = '50% 100%';
+					}
+				}
+			}
+
+			if (transform) {
+				el.style.transformOrigin = origin;
+				el.style.transform = transform;
+				el.style.filter = filter;
+				el.style.opacity = opacity;
+				if (!active.has(el)) {
+					el.style.willChange = 'transform, filter, opacity';
+					active.add(el);
+				}
+			} else if (active.has(el)) {
+				clear(el);
+				active.delete(el);
+			}
+		}
+	}
+
+	function onScroll() {
+		if (pending) return;
+		pending = true;
+		rafId = requestAnimationFrame(update);
+	}
+
+	window.addEventListener('scroll', onScroll, { passive: true });
+	window.addEventListener('resize', onScroll, { passive: true });
+	update();
+
+	return () => {
+		window.removeEventListener('scroll', onScroll);
+		window.removeEventListener('resize', onScroll);
+		cancelAnimationFrame(rafId);
+		for (const el of els) clear(el);
+		active.clear();
 	};
 }
 
@@ -419,9 +551,8 @@ export async function setupHorizontalPin(
 
 /** Backwards-compatible alias used by ProjectsStage. */
 export type ProjectsElements = HorizontalPinElements;
-export const setupProjectsChoreography = (
-	els: HorizontalPinElements
-): Promise<() => void> => setupHorizontalPin(els);
+export const setupProjectsChoreography = (els: HorizontalPinElements): Promise<() => void> =>
+	setupHorizontalPin(els);
 
 // ─────────────────────────────────────────────────────────────────
 // Generic in-view reveal (sequenced fade + lift)
@@ -484,9 +615,12 @@ export async function setupReveals(
 				fire();
 				if (once) {
 					// Remove transitions + clear will-change after settle to free GPU layers
-					window.setTimeout(() => {
-						el.style.willChange = '';
-					}, delay + i * stagger + duration + 50);
+					window.setTimeout(
+						() => {
+							el.style.willChange = '';
+						},
+						delay + i * stagger + duration + 50
+					);
 				}
 				return undefined;
 			},
@@ -509,30 +643,23 @@ export async function setupContactScale(
 	if (typeof window === 'undefined') return () => {};
 	if (prefersReducedMotion() || isNarrowViewport()) return () => {};
 
-	const { scroll } = await import('motion');
-
 	heading.style.transformOrigin = 'left center';
 	heading.style.willChange = 'transform, letter-spacing';
 
-	const cleanup = scroll(
-		(info: any) => {
-			const p = clamp(info.y?.progress ?? 0);
-			// Scale 1.2 → 1.0 across the entry of the section
-			const scale = 1.2 - p * 0.2;
-			heading.style.transform = `scale(${scale})`;
-		},
-		{
-			target: section,
-			offset: ['start end', 'center center']
-		}
-	);
+	// Progress 0 with the section top at the viewport bottom, 1 once the
+	// section center reaches the viewport center (['start end','center center']).
+	const cleanup = onScrollFrame(() => {
+		const rect = section.getBoundingClientRect();
+		const vh = window.innerHeight;
+		const total = Math.max(1, vh / 2 + rect.height / 2);
+		const p = clamp((vh - rect.top) / total);
+		// Scale 1.2 → 1.0 across the entry of the section
+		const scale = 1.2 - p * 0.2;
+		heading.style.transform = `scale(${scale})`;
+	});
 
 	return () => {
-		try {
-			cleanup?.();
-		} catch {
-			/* noop */
-		}
+		cleanup();
 		heading.style.transform = '';
 		heading.style.willChange = '';
 	};

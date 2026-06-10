@@ -6,10 +6,12 @@
 	import HeroStage from '$lib/components/Stages/HeroStage.svelte';
 	import ProjectsStage from '$lib/components/Stages/ProjectsStage.svelte';
 	import ResumeStage from '$lib/components/Stages/ResumeStage.svelte';
+	import SceneCanvas from '$lib/components/Scene/SceneCanvas.svelte';
 	import SkillsStage from '$lib/components/Stages/SkillsStage.svelte';
 	import { HOME, TITLE_SUFFIX } from '$lib/params';
-	import { setupActiveSectionObserver } from '$lib/stores/activeSection';
+	import { setupActiveSectionObserver, SPA_SECTION_IDS } from '$lib/stores/activeSection';
 	import { useTitle } from '$lib/utils/helpers';
+	import { onIdle, setupDepthTransitions } from '$lib/utils/motion';
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 
@@ -26,7 +28,22 @@
 
 	onMount(() => {
 		const cleanup = setupActiveSectionObserver();
-		return cleanup;
+
+		// 3D depth transitions between stages. The hero is excluded — its own
+		// fly-through choreography handles its exit.
+		let depthCleanup: (() => void) | null = null;
+		const cancelIdle = onIdle(() => {
+			const sections = SPA_SECTION_IDS.filter((id) => id !== 'hero')
+				.map((id) => document.getElementById(id))
+				.filter((el): el is HTMLElement => el !== null);
+			depthCleanup = setupDepthTransitions(sections);
+		});
+
+		return () => {
+			cleanup();
+			cancelIdle();
+			depthCleanup?.();
+		};
 	});
 </script>
 
@@ -36,6 +53,7 @@
 </svelte:head>
 
 <div class="spa-root">
+	<SceneCanvas />
 	<HeroStage />
 	<AboutStage />
 	<ExperienceStage />
