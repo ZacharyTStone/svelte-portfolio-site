@@ -33,7 +33,7 @@ export enum Icons {
 // Re-export all utility functions for easier imports
 
 // Animation utilities
-export { handleTiltEffect, adjustColorOpacity, createContainerPerspective } from './animation';
+export { adjustColorOpacity } from './animation';
 
 // Navigation utilities
 export { handleNavigation, navigate, getRelativeUrl, getAssetUrl } from './navigation';
@@ -55,4 +55,3 @@ export {
 	calculateExperiencePeriod,
 	RANDOM_COLORS
 } from './helpers';
-

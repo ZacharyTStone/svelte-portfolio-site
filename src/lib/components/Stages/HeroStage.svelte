@@ -2,7 +2,7 @@
 	import { browser } from '$app/environment';
 	import UIcon from '$lib/components/Icon/UIcon.svelte';
 	import { HOME } from '$lib/params';
-	import { onIdle, setupCursorOrb, setupHeroChoreography } from '$lib/utils/motion';
+	import { onIdle, setupHeroChoreography } from '$lib/utils/motion';
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 
@@ -15,7 +15,6 @@
 	let taglineEl: HTMLElement | undefined = $state();
 	let ctasEl: HTMLElement | undefined = $state();
 	let scrollCueEl: HTMLElement | undefined = $state();
-	let orbEl: HTMLElement | undefined = $state();
 
 	let motionReady = $state(false);
 
@@ -35,17 +34,9 @@
 
 	onMount(() => {
 		let heroCleanup: (() => void) | null = null;
-		let orbCleanup: (() => void) | null = null;
 
 		const cancel = onIdle(() => {
-			if (
-				sectionEl &&
-				eyebrowEl &&
-				nameEl &&
-				taglineEl &&
-				ctasEl &&
-				scrollCueEl
-			) {
+			if (sectionEl && eyebrowEl && nameEl && taglineEl && ctasEl && scrollCueEl) {
 				setupHeroChoreography({
 					section: sectionEl,
 					eyebrow: eyebrowEl,
@@ -58,16 +49,11 @@
 					motionReady = true;
 				});
 			}
-
-			if (orbEl) {
-				orbCleanup = setupCursorOrb(orbEl);
-			}
 		});
 
 		return () => {
 			cancel();
 			heroCleanup?.();
-			orbCleanup?.();
 		};
 	});
 </script>
@@ -85,9 +71,6 @@
 		<div class="mesh mesh-b"></div>
 		<div class="mesh mesh-c"></div>
 	</div>
-
-	<!-- Cursor-tracked spotlight orb -->
-	<div bind:this={orbEl} class="cursor-orb" aria-hidden="true"></div>
 
 	<!-- Subtle grain overlay -->
 	<div class="grain" aria-hidden="true"></div>
@@ -277,39 +260,6 @@
 
 	:global(:root[data-theme='light']) .mesh {
 		opacity: 0.32;
-	}
-
-	/* Cursor-tracked orb ─────────────────────── */
-	.cursor-orb {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 50vmax;
-		height: 50vmax;
-		max-width: 900px;
-		max-height: 900px;
-		border-radius: 50%;
-		background: radial-gradient(
-			circle,
-			rgba(106, 166, 255, 0.12) 0%,
-			rgba(106, 166, 255, 0.04) 45%,
-			transparent 75%
-		);
-		filter: blur(70px);
-		transform: translate(
-			calc(var(--orb-x, 65vw) - 50%),
-			calc(var(--orb-y, 35vh) - 50%)
-		);
-		pointer-events: none;
-		z-index: 1;
-		opacity: 0.55;
-		mix-blend-mode: screen;
-		will-change: transform;
-	}
-
-	:global(:root[data-theme='light']) .cursor-orb {
-		opacity: 0.35;
-		mix-blend-mode: multiply;
 	}
 
 	/* Grain overlay ───────────────────────────── */
@@ -660,9 +610,6 @@
 		.hero-scroll-cue {
 			display: none;
 		}
-		.cursor-orb {
-			display: none;
-		}
 	}
 
 	@media (max-width: 480px) {
@@ -697,9 +644,6 @@
 		.status-pulse,
 		.hero-scroll-cue-line::before {
 			animation: none !important;
-		}
-		.cursor-orb {
-			display: none;
 		}
 	}
 </style>

@@ -16,8 +16,6 @@ export const countMonths = (from: Date, to: Date = new Date()): number => {
 	return monthsInFirstYear + monthsInBetween + monthsInLastYear;
 };
 
-// Note: onHover was removed - use handleTiltEffect from animation.ts instead
-
 /**
  * Changes the opacity of a hex color
  * @param color The hex color to change opacity of
@@ -202,7 +200,6 @@ export function calculateExperiencePeriod(
 		period: period.trim()
 	};
 }
-
 
 /**
  * Creates a debounced function that delays invoking the provided function until after wait milliseconds have elapsed since the last time it was invoked.

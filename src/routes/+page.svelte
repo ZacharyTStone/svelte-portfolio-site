@@ -9,9 +9,8 @@
 	import SceneCanvas from '$lib/components/Scene/SceneCanvas.svelte';
 	import SkillsStage from '$lib/components/Stages/SkillsStage.svelte';
 	import { HOME, TITLE_SUFFIX } from '$lib/params';
-	import { setupActiveSectionObserver, SPA_SECTION_IDS } from '$lib/stores/activeSection';
+	import { setupActiveSectionObserver } from '$lib/stores/activeSection';
 	import { useTitle } from '$lib/utils/helpers';
-	import { onIdle, setupDepthTransitions } from '$lib/utils/motion';
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 
@@ -28,22 +27,7 @@
 
 	onMount(() => {
 		const cleanup = setupActiveSectionObserver();
-
-		// 3D depth transitions between stages. The hero is excluded — its own
-		// fly-through choreography handles its exit.
-		let depthCleanup: (() => void) | null = null;
-		const cancelIdle = onIdle(() => {
-			const sections = SPA_SECTION_IDS.filter((id) => id !== 'hero')
-				.map((id) => document.getElementById(id))
-				.filter((el): el is HTMLElement => el !== null);
-			depthCleanup = setupDepthTransitions(sections);
-		});
-
-		return () => {
-			cleanup();
-			cancelIdle();
-			depthCleanup?.();
-		};
+		return cleanup;
 	});
 </script>
 
